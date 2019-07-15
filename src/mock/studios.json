@@ -1,0 +1,23 @@
+{
+  "studios": [
+    {
+      "name": "sd",
+      "address": {
+        "Latitude": "sss",
+        "Longitude": "sss",
+        "city": "ss",
+        "zipcode": "ss",
+        "street": "sds",
+        "number": "sd",
+        "room": "sdsd"
+      },
+      "logo": "sdsd",
+      "description": "sdsd",
+      "contact": {
+        "phones": [],
+        "mails": [],
+        "site": ""
+      }
+    }
+  ]
+}
