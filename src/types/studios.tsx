@@ -1,7 +1,7 @@
 export interface IContact {
-  mails: string[];
   phones: string[];
   site?: string;
+  mail?: string;
 }
 
 export interface IStudioAddress {
