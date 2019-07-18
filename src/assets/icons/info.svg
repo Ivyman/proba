@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
-    <defs>
-        <style>
-            .cls-info{fill:#0075ef}
-        </style>
-    </defs>
-    <path id="info" d="M327 394a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm1 9.874V400a1 1 0 0 0-2 0v3.874a4 4 0 0 1 0-7.747v.513a1 1 0 0 0 2 0v-.513a4 4 0 0 1 0 7.747z" class="cls-info" transform="translate(-321 -394)"/>
-</svg>

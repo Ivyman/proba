@@ -1,3 +1,3 @@
-import * as info from "./info.svg";
+import * as logo from "./info.svg";
 
-export default { info };
+export default { logo };
