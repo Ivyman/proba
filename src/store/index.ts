@@ -2,9 +2,9 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-// import studio from "./studio";
+import studio from "./studio";
 
-// export const rootReducer = combineReducers({});
+export const rootReducer = combineReducers({ studio });
 
 const store = createStore(
   rootReducer,
