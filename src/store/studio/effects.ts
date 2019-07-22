@@ -1,11 +1,27 @@
 import apiEndpoint from "@src/services/api";
 
-export const fetchStudiosList = async (limit: number, nextPageToken: string) =>
-  await apiEndpoint.get(nextPageToken ? `?nextPageToken=${nextPageToken}` : "");
+export const fetchStudiosList = async (
+  nextPageToken: string,
+  limit: number = 10,
+) => {
+  const params = {
+    limit,
+    nextPageToken,
+  };
+  return await apiEndpoint.get("", { params });
+};
 
 export const fetchFilteredStudiosList = async (
-  limit: number,
   nextPageToken: string,
   city: string,
   query: string,
-) => await apiEndpoint.get(`?city=${city}&?query=${query}`);
+  limit: number = 10,
+) => {
+  const params = {
+    limit,
+    query,
+    city,
+    nextPageToken,
+  };
+  return await apiEndpoint.get("", { params });
+};
