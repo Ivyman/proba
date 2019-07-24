@@ -1,4 +1,5 @@
 import actionTypes from "./types";
+import { ApiStatus } from "@src/types/api";
 import { fetchStudiosList, fetchFilteredStudiosList } from "./effects";
 
 export const populateStudios = async (dispatch: any, getStatate: any) => {
@@ -43,7 +44,7 @@ export const addStudiosToList = (studiosList: any, nextPageToken: any) => ({
   payload: { studiosList, nextPageToken },
 });
 
-export const setPopulatedStatus = (status: any) => ({
+export const setPopulatedStatus = (status: ApiStatus) => ({
   type: actionTypes.STUDIO_POPULATED_STATUS_SET,
   payload: status,
 });

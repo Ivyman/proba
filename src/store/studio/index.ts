@@ -1,18 +1,28 @@
 import actionTypes from "./types";
-import apiStatuses from "@src/types/api";
+import apiStatuses, { ApiStatus } from "@src/types/api";
+import { IStudio } from "@src/types/studio";
 
 export interface IAction {
   type: any;
   payload?: any;
 }
 
-export const initialState = {
-  populatedStatus: apiStatuses.IDLE,
+export interface IStudioState {
+  populatedStatus: ApiStatus;
+  studiosList: IStudio[];
+  nextPageToken: string;
+}
+
+export const initialState: IStudioState = {
+  populatedStatus: apiStatuses.IDLE as ApiStatus,
   studiosList: [],
   nextPageToken: "",
 };
 
-export default (state = initialState, { type, payload }: IAction) => {
+export default (
+  state = initialState,
+  { type, payload }: IAction,
+): IStudioState => {
   switch (type) {
     case actionTypes.STUDIO_LIST_SET:
       return {
