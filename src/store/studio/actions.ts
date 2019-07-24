@@ -1,8 +1,13 @@
 import actionTypes from "./types";
+import { RootState, ThunkDispatch } from "@src/types/store";
 import { ApiStatus } from "@src/types/api";
+import { IStudio } from "@src/types/studio";
 import { fetchStudiosList, fetchFilteredStudiosList } from "./effects";
 
-export const populateStudios = async (dispatch: any, getStatate: any) => {
+export const populateStudios = async (
+  dispatch: ThunkDispatch,
+  getStatate: () => RootState,
+) => {
   try {
     // const {
     //   studio: { nextPageToken },
@@ -19,7 +24,10 @@ export const populateStudios = async (dispatch: any, getStatate: any) => {
   }
 };
 
-export const searchStudios = async (dispatch: any, getStatate: any) => {
+export const searchStudios = async (
+  dispatch: ThunkDispatch,
+  getStatate: () => RootState,
+) => {
   try {
     // const {
     //   studio: { nextPageToken },
@@ -34,12 +42,18 @@ export const searchStudios = async (dispatch: any, getStatate: any) => {
   }
 };
 
-export const setStudiosList = (studiosList: any, nextPageToken: any) => ({
+export const setStudiosList = (
+  studiosList: IStudio[],
+  nextPageToken: string,
+) => ({
   type: actionTypes.STUDIO_LIST_SET,
   payload: { studiosList, nextPageToken },
 });
 
-export const addStudiosToList = (studiosList: any, nextPageToken: any) => ({
+export const addStudiosToList = (
+  studiosList: IStudio[],
+  nextPageToken: string,
+) => ({
   type: actionTypes.STUDIO_LIST_ADD,
   payload: { studiosList, nextPageToken },
 });

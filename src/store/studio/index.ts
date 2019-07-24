@@ -20,7 +20,7 @@ export const initialState: IStudioState = {
 };
 
 export default (
-  state = initialState,
+  state: IStudioState = initialState,
   { type, payload }: IAction,
 ): IStudioState => {
   switch (type) {
