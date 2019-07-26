@@ -1,5 +1,5 @@
 import actionTypes from "./types";
-import apiStatuses, { ApiStatus } from "@src/types/api";
+import { apiStatuses } from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 
 export interface IAction {
@@ -8,13 +8,13 @@ export interface IAction {
 }
 
 export interface IStudioState {
-  populatedStatus: ApiStatus;
+  populatedStatus: apiStatuses;
   studiosList: IStudio[];
   nextPageToken: string;
 }
 
 export const initialState: IStudioState = {
-  populatedStatus: apiStatuses.IDLE as ApiStatus,
+  populatedStatus: apiStatuses.IDLE,
   studiosList: [],
   nextPageToken: "",
 };
