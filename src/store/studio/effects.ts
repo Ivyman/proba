@@ -1,5 +1,4 @@
 import apiEndpoint from "@src/services/api";
-import { IStudioAPIResponse } from "@src/types/studio";
 
 export const fetchStudiosList = async (
   nextPageToken: string,
