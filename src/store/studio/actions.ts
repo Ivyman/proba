@@ -1,30 +1,32 @@
 import actionTypes from "./types";
 import { RootState, ThunkDispatch } from "@src/types/store";
-import { ApiStatus } from "@src/types/api";
+import apiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
-import { fetchStudiosList, fetchFilteredStudiosList } from "./effects";
+import * as effects from "./effects";
 
-export const populateStudios = async (
+export const populateStudios = () => async (
   dispatch: ThunkDispatch,
   getStatate: () => RootState,
 ) => {
   try {
-    // const {
-    //   studio: { nextPageToken },
-    // } = getStatate();
-    // TODO return nextPageToken as "" - empty string
-    // const { studiosList, nextPageToken } = await fetchStudiosList(
-    //   nextPageToken,
-    // );
-    // dispatch(setStudiosList(studiosList, nextPageToken));
-    // dispatch(setPopulatedStatus(requestStatus.SUCCESS))
-  } catch {
+    const {
+      studio: { nextPageToken },
+    } = getStatate();
+
+    const {
+      data: { studios, newNextPageToken },
+    } = await effects.fetchStudiosList(nextPageToken);
+
+    dispatch(setStudiosList(studios, newNextPageToken));
+    dispatch(setPopulatedStatus(apiStatuses.SUCCESS));
+  } catch (err) {
+    console.error(err);
     // TODO handle fetchStudiosList(...) responce error
     // dispatch(setPopulatedStatus(requestStatus.ERROR))
   }
 };
 
-export const searchStudios = async (
+export const searchStudios = () => async (
   dispatch: ThunkDispatch,
   getStatate: () => RootState,
 ) => {
@@ -58,7 +60,7 @@ export const addStudiosToList = (
   payload: { studiosList, nextPageToken },
 });
 
-export const setPopulatedStatus = (status: ApiStatus) => ({
+export const setPopulatedStatus = (status: apiStatuses) => ({
   type: actionTypes.STUDIO_POPULATED_STATUS_SET,
   payload: status,
 });

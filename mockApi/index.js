@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.status(200).send({ data: studios }));
+app.get("/", (req, res) => res.status(200).send(studios));
 
 app.listen(port, () =>
   console.log("\x1b[36m", `Mock api listening on port ${port}`, "\x1b[0m"),

@@ -21,3 +21,8 @@ export interface IStudio {
   description: string;
   contact: IContact;
 }
+
+export interface IStudioAPIResponse {
+  studios: IStudio[];
+  nextPageToken: string;
+}

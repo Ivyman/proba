@@ -1,5 +1,5 @@
 import actionTypes from "./types";
-import { apiStatuses } from "@src/types/api";
+import apiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 
 export interface IAction {
