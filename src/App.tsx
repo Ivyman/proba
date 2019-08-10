@@ -2,12 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { populateStudios } from "@src/store/studio/actions";
-import styled, { ThemeProvider, theme } from "@src/styles";
+import { ThemeProvider, theme } from "@src/styles";
 import GlobalStyle from "@src/styles/GlobalStyle";
+import Grid from "@src/Components/Grid";
 
 interface IProps {
   populateStudios: any;
 }
+
+const { Column, Row } = Grid;
 
 export class App extends React.Component<IProps> {
   public componentDidMount() {
@@ -19,18 +22,15 @@ export class App extends React.Component<IProps> {
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />
-          <Header>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </Header>
+          <Row>
+            <Column lg={12}>1</Column>
+            <Column lg={1}>1</Column>
+          </Row>
         </>
       </ThemeProvider>
     );
   }
 }
-
-export const Header = styled.header`
-  border: 2px solid gray;
-`;
 
 const mapDispatchToProps = { populateStudios };
 
