@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 import { populateStudios } from "@src/store/studio/actions";
 import { ThemeProvider, theme } from "@src/styles";
 import GlobalStyle from "@src/styles/GlobalStyle";
-import Grid from "@src/Components/Grid";
+import Layout from "@src/Components/layout";
 
 interface IProps {
   populateStudios: any;
 }
 
-const { Column, Row } = Grid;
+const { Column, Row, Container } = Layout;
 
 export class App extends React.Component<IProps> {
   public componentDidMount() {
@@ -22,10 +22,12 @@ export class App extends React.Component<IProps> {
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />
-          <Row>
-            <Column lg={12}>1</Column>
-            <Column lg={1}>1</Column>
-          </Row>
+          <Container>
+            <Row>
+              <Column lg={9}>test 9</Column>
+              <Column lg={3}>test 3</Column>
+            </Row>
+          </Container>
         </>
       </ThemeProvider>
     );
