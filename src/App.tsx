@@ -1,42 +1,51 @@
 import React from "react";
-import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-import { populateStudios } from "@src/store/studio/actions";
 import { ThemeProvider, theme } from "@src/styles";
 import GlobalStyle from "@src/styles/GlobalStyle";
-import Layout from "@src/Components/layout";
 
-interface IProps {
-  populateStudios: any;
-}
+import { AboutScreen } from "@src/Screens/About";
+import { ContactScreen } from "@src/Screens/Contact";
+import { CatalogScreen } from "@src/Screens/Catalog";
 
-const { Column, Row, Container } = Layout;
-
-export class App extends React.Component<IProps> {
-  public componentDidMount() {
-    this.props.populateStudios();
-  }
+export class App extends React.Component {
+  public renderRoute = () => (
+    <Switch>
+      <Route
+        exact
+        path={"/"}
+        component={(props: any) => <CatalogScreen {...props} />}
+      />
+      <Route
+        exact
+        path={"/contact"}
+        component={(props: any) => <ContactScreen {...props} />}
+      />
+      <Route
+        exact
+        path={"/about"}
+        component={(props: any) => <AboutScreen {...props} />}
+      />
+    </Switch>
+  );
 
   public render() {
     return (
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />
-          <Container>
-            <Row>
-              <Column lg={9}>test 9</Column>
-              <Column lg={3}>test 3</Column>
-            </Row>
-          </Container>
+          <Router basename={process.env.PUBLIC_URL}>
+            <div>
+              <Link to="/">Catalog</Link>
+              <Link to="/about">About</Link>
+              <Link to="/contact">Contact</Link>
+            </div>
+            {this.renderRoute()}
+          </Router>
         </>
       </ThemeProvider>
     );
   }
 }
 
-const mapDispatchToProps = { populateStudios };
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(App);
+export default App;
