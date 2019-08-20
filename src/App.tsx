@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 
-import { ThemeProvider, theme } from "@src/styles";
 import GlobalStyle from "@src/styles/GlobalStyle";
+import { ThemeProvider, theme } from "@src/styles";
 import { Routes } from "@src/Routes";
 import { paths } from "@src/Config/Paths";
 
