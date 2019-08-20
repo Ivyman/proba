@@ -18,7 +18,7 @@ export const Routes: TRoutesComponent = () => {
 
   return (
     <Suspense fallback={<>Loading...</>}>
-      <Switch>{renderRoutesList}</Switch>
+      <Switch>{renderRoutesList()}</Switch>
     </Suspense>
   );
 };
