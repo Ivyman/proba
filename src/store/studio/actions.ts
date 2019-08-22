@@ -19,10 +19,10 @@ export const populateStudios = () => async (
 
     dispatch(setStudiosList(studios, newNextPageToken));
     dispatch(setPopulatedStatus(apiStatuses.SUCCESS));
-  } catch (err) {
-    console.error(err);
-    // TODO handle fetchStudiosList(...) responce error
-    // dispatch(setPopulatedStatus(requestStatus.ERROR))
+  } catch (error) {
+    // tslint:disable-next-line
+    console.error(error);
+    dispatch(setPopulatedStatus(apiStatuses.ERROR));
   }
 };
 
@@ -38,9 +38,10 @@ export const searchStudios = () => async (
     // const { studiosList, nextPageToken } = await fetchFilteredStudiosList(nextPageToken, query, city);
     // dispatch(setStudiosList(studiosList, nextPageToken));
     // dispatch(setPopulatedStatus(requestStatus.SUCCESS))
-  } catch {
-    // TODO handle fetchStudiosList(...) responce error
-    // dispatch(setPopulatedStatus(requestStatus.ERROR))
+  } catch (error) {
+    // tslint:disable-next-line
+    console.error(error);
+    dispatch(setPopulatedStatus(apiStatuses.ERROR));
   }
 };
 
