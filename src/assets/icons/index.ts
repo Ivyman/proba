@@ -1,3 +1,3 @@
-import * as logo from "./info.svg";
+import { ReactComponent as LogoIcon } from "./logo.svg";
 
-export default { logo };
+export { LogoIcon };
