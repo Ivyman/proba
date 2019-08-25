@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "@src/styles";
 
-import { LogoIcon } from "@src/assets/icons";
+import { ReactComponent as LogoIcon } from "@src/assets/icons/logo.svg";
 
 type ILogoComponent = React.FunctionComponent;
 
 export const Logo: ILogoComponent = () => (
   <Wrapper>
-    <LogoIcon />
+    <LogoIcon /> Logo
   </Wrapper>
 );
 
-export const Wrapper = styled.span``;
+export const Wrapper = styled.span`
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 10px;
+  }
+`;

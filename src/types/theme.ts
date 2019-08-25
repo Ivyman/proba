@@ -13,6 +13,7 @@ export type IBreakpoints = { [key in keyof typeof EBreakpoints]: string };
 
 export interface IPalette {
   main: string;
+  white: string;
 }
 
 export default interface ITheme {
