@@ -8,16 +8,19 @@ import Navbar from "@src/Components/Navbar";
 import Sidebar from "@src/Components/Sidebar";
 import Logo from "@src/Components/Logo";
 
-type IHeaderComponent = React.FunctionComponent<{ showSidebar: boolean }>;
+type IHeaderComponent = React.FunctionComponent<{
+  showSidebar: boolean;
+  onSwitchSidebar: () => void;
+}>;
 
-export const Header: IHeaderComponent = ({ showSidebar }) => {
+export const Header: IHeaderComponent = ({ showSidebar, onSwitchSidebar }) => {
   return (
     <header>
       <StyledContainer>
         <Logo />
         <NavWrapper>
           <Navbar items={paths} />
-          <HamburgerIcon />
+          <StyledHamburgerIcon onClick={onSwitchSidebar} />
         </NavWrapper>
       </StyledContainer>
       {showSidebar && <Sidebar>Sidebar test</Sidebar>}
@@ -35,4 +38,8 @@ export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const StyledHamburgerIcon = styled(HamburgerIcon)`
+  cursor: pointer;
 `;

@@ -25,6 +25,7 @@ export const Container = styled.aside`
   width: 30vw;
   height: 100vh;
   position: absolute;
-  top: 0;
+  top: 30;
   right: 0;
+  border: 2px solid gray;
 `;

@@ -20,7 +20,7 @@ export const paths: IPath[] = [
     component: AboutScreen,
   },
   {
-    label: "Kontak",
+    label: "Kontakt",
     path: "/contact",
     exact: true,
     component: ContactScreen,
