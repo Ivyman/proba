@@ -8,9 +8,9 @@ import Navbar from "@src/Components/Navbar";
 import Sidebar from "@src/Components/Sidebar";
 import Logo from "@src/Components/Logo";
 
-type IHeaderComponent = React.FunctionComponent;
+type IHeaderComponent = React.FunctionComponent<{ showSidebar: boolean }>;
 
-export const Header: IHeaderComponent = () => {
+export const Header: IHeaderComponent = ({ showSidebar }) => {
   return (
     <header>
       <StyledContainer>
@@ -20,8 +20,7 @@ export const Header: IHeaderComponent = () => {
           <HamburgerIcon />
         </NavWrapper>
       </StyledContainer>
-      {/* TODO add triger sidebar to app store */}
-      {/* <Sidebar>Sidebar test</Sidebar> */}
+      {showSidebar && <Sidebar>Sidebar test</Sidebar>}
     </header>
   );
 };
