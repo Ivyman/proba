@@ -1,4 +1,4 @@
-import actionTypes from "./types";
+import StudioTypes from "./types";
 import apiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 
@@ -24,24 +24,24 @@ export default (
   { type, payload }: IAction,
 ): IStudioState => {
   switch (type) {
-    case actionTypes.STUDIO_LIST_SET:
+    case StudioTypes.STUDIO_LIST_SET:
       return {
         ...state,
         studiosList: payload.studiosList,
         nextPageToken: payload.nextPageToken,
       };
-    case actionTypes.STUDIO_LIST_ADD:
+    case StudioTypes.STUDIO_LIST_ADD:
       return {
         ...state,
         studiosList: [...state.studiosList, ...payload.studiosList],
         nextPageToken: payload.nextPageToken,
       };
-    case actionTypes.STUDIO_POPULATED_STATUS_SET:
+    case StudioTypes.STUDIO_POPULATED_STATUS_SET:
       return {
         ...state,
         populatedStatus: payload,
       };
-    case actionTypes.STUDIO_RESET:
+    case StudioTypes.STUDIO_RESET:
     default:
       return state;
   }

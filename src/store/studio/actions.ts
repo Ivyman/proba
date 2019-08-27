@@ -1,4 +1,4 @@
-import actionTypes from "./types";
+import StudioTypes from "./types";
 import { RootState, ThunkDispatch } from "@src/types/store";
 import apiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
@@ -49,7 +49,7 @@ export const setStudiosList = (
   studiosList: IStudio[],
   nextPageToken: string,
 ) => ({
-  type: actionTypes.STUDIO_LIST_SET,
+  type: StudioTypes.STUDIO_LIST_SET,
   payload: { studiosList, nextPageToken },
 });
 
@@ -57,15 +57,15 @@ export const addStudiosToList = (
   studiosList: IStudio[],
   nextPageToken: string,
 ) => ({
-  type: actionTypes.STUDIO_LIST_ADD,
+  type: StudioTypes.STUDIO_LIST_ADD,
   payload: { studiosList, nextPageToken },
 });
 
 export const setPopulatedStatus = (status: apiStatuses) => ({
-  type: actionTypes.STUDIO_POPULATED_STATUS_SET,
+  type: StudioTypes.STUDIO_POPULATED_STATUS_SET,
   payload: status,
 });
 
 export const resetStudions = () => ({
-  type: actionTypes.STUDIO_RESET,
+  type: StudioTypes.STUDIO_RESET,
 });
