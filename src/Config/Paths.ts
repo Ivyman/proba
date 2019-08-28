@@ -8,16 +8,16 @@ const CatalogScreen = lazy(() => import("@src/Screens/Catalog"));
 
 export const paths: IPath[] = [
   {
-    label: "Katalog",
-    path: "/",
-    exact: true,
-    component: CatalogScreen,
-  },
-  {
     label: "O nas",
     path: "/about",
     exact: true,
     component: AboutScreen,
+  },
+  {
+    label: "Katalog",
+    path: "/",
+    exact: true,
+    component: CatalogScreen,
   },
   {
     label: "Kontakt",
