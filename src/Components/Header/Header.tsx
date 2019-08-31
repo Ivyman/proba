@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@src/styles";
 
-import { paths } from "@src/Config/Paths";
-import { Container } from "@src/Components/layout/Container";
+import { mainPaths } from "@src/routing/Paths";
+import { Container } from "@src/components/layout/Container";
 import { HamburgerIcon, CloseIcon } from "@src/assets/icons";
-import Navbar from "@src/Components/Navbar";
-import Sidebar from "@src/Components/Sidebar";
-import Logo from "@src/Components/Logo";
+import Navbar from "@src/components/Navbar";
+import Sidebar from "@src/components/Sidebar";
+import Logo from "@src/components/Logo";
 import { IPath } from "@src/types/paths";
 
 type IHeaderComponent = React.FunctionComponent<{
@@ -14,8 +14,8 @@ type IHeaderComponent = React.FunctionComponent<{
   onSwitchSidebar: () => void;
 }>;
 
-const headerNav = [paths.shift() as IPath];
-const sidebarNav = [...paths];
+const headerNav = [mainPaths.shift() as IPath];
+const sidebarNav = [...mainPaths];
 
 export const Header: IHeaderComponent = ({ showSidebar, onSwitchSidebar }) => {
   return (

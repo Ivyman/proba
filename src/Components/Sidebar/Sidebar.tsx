@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import styled from "@src/styles";
 
-import Logo from "@src/Components/Logo";
+import Logo from "@src/components/Logo";
 
 type ISidebarComponent = React.FunctionComponent;
 

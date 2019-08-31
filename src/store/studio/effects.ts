@@ -1,5 +1,5 @@
 import apiEndpoint from "@src/services/api";
-import { studios } from "@src/Config/Constants";
+import { studios } from "@src/config/Constants";
 import { removeEmptyFields } from "@src/helpers";
 
 export const fetchStudiosList = async (

@@ -1,11 +1,12 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { paths } from "@src/Config/Paths";
+import { IPath } from "@src/types/paths";
+import { Container } from "@src/components/layout/Container";
 
-type TRoutesComponent = React.FunctionComponent<{}>;
+type TRoutesComponent = React.FunctionComponent<{ paths: IPath[] }>;
 
-export const Routes: TRoutesComponent = () => {
+export const Routes: TRoutesComponent = ({ paths }) => {
   const renderRoutesList = () =>
     paths.map(({ path, exact, component: Component }) => (
       <Route
@@ -18,7 +19,9 @@ export const Routes: TRoutesComponent = () => {
 
   return (
     <Suspense fallback={<>Loading...</>}>
-      <Switch>{renderRoutesList()}</Switch>
+      <Container as="main">
+        <Switch>{renderRoutesList()}</Switch>
+      </Container>
     </Suspense>
   );
 };

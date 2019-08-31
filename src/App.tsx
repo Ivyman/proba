@@ -6,9 +6,10 @@ import GlobalStyle from "@src/styles/GlobalStyle";
 import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
 import { ThemeProvider, theme } from "@src/styles";
-import { Routes } from "@src/Routes";
+import { Routes } from "@src/routing/Routes";
 import { RootState } from "./types/store";
-import Header from "@src/Components/Header";
+import { mainPaths } from "@src/routing/Paths";
+import Header from "@src/components/Header";
 
 interface IProps {
   switchSidebarAction: () => void;
@@ -28,7 +29,7 @@ export class App extends React.Component<IProps> {
               showSidebar={showSidebar}
               onSwitchSidebar={switchSidebarAction}
             />
-            <Routes />
+            <Routes paths={mainPaths} />
           </BrowserRouter>
         </>
       </ThemeProvider>
