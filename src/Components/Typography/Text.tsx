@@ -1,5 +1,3 @@
-import React from "react";
+import styled from "@src/styles";
 
-type TTextComponent = React.FunctionComponent<{}>;
-
-export const Text: TTextComponent = () => <>Text</>;
+export const Text = styled.p``;
