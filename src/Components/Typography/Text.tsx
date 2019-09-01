@@ -1,5 +1,5 @@
 import React from "react";
 
-type TTextareaComponent = React.FunctionComponent<{}>;
+type TTextComponent = React.FunctionComponent<{}>;
 
-export const Textarea: TTextareaComponent = () => <>Textarea</>;
+export const Text: TTextComponent = () => <>Text</>;

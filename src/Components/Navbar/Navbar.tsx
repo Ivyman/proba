@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@src/styles";
 
-import { IPath } from "@src/types/paths";
+import { IPath } from "@src/types/path";
 
 type INavbarComponent = React.FunctionComponent<{ items: IPath[] }>;
 

@@ -1,6 +1,6 @@
 import { lazy, FunctionComponent } from "react";
 
-import { IPath } from "@src/types/paths";
+import { IPath } from "@src/types/path";
 
 const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));

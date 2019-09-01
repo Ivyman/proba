@@ -2,9 +2,11 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Paths from "./Paths";
-import { Container } from "@src/components/layout/Container";
+import Layout from "@src/components/Layout";
 
 type TRoutesComponent = React.FunctionComponent;
+
+const { Container } = Layout;
 
 export const Routes: TRoutesComponent = () => {
   const renderRoutesList = () =>

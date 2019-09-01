@@ -1,3 +1,4 @@
-import { Textarea } from "./Text";
+import { Head } from "./Head";
+import { Text } from "./Text";
 
-export default { Textarea };
+export default { Head, Text };

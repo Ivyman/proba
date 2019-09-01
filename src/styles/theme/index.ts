@@ -1,4 +1,4 @@
-import ITheme from "../../types/theme";
+import ITheme from "@src/types/theme";
 import palette from "./palette";
 import breakpoints from "./breakpoints";
 

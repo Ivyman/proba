@@ -2,17 +2,19 @@ import React from "react";
 import styled from "@src/styles";
 
 import Paths from "@src/routing/Paths";
-import { Container } from "@src/components/layout/Container";
+import Layout from "@src/components/Layout";
 import { HamburgerIcon, CloseIcon } from "@src/assets/icons";
 import Navbar from "@src/components/Navbar";
 import Sidebar from "@src/components/Sidebar";
 import Logo from "@src/components/Logo";
-import { IPath } from "@src/types/paths";
+import { IPath } from "@src/types/path";
 
 type IHeaderComponent = React.FunctionComponent<{
   showSidebar: boolean;
   onSwitchSidebar: () => void;
 }>;
+
+const { Container } = Layout;
 
 const paths = [...Paths.app.paths];
 const headerNav = [paths.shift() as IPath];
