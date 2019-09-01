@@ -9,6 +9,8 @@ export enum EBreakpoints {
   lg = "lg",
 }
 
+export type IHeadSize = "h1" | "h2" | "h3" | "h4";
+
 export type IBreakpoints = { [key in keyof typeof EBreakpoints]: string };
 
 export interface IPalette {
