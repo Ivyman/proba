@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, FunctionComponent } from "react";
 
 import { IPath } from "@src/types/paths";
 
@@ -6,25 +6,26 @@ const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));
 const CatalogScreen = lazy(() => import("@src/screens/Catalog"));
 
-const mainPaths: IPath[] = [
-  {
-    label: "O nas",
-    path: "/about",
-    exact: true,
-    component: AboutScreen,
-  },
-  {
-    label: "Katalog",
-    path: "/",
-    exact: true,
-    component: CatalogScreen,
-  },
-  {
-    label: "Kontakt",
-    path: "/contact",
-    exact: true,
-    component: ContactScreen,
-  },
-];
+export const generatePaths = (
+  label: string,
+  path: string,
+  exact: boolean,
+  component: FunctionComponent,
+): IPath => ({
+  label,
+  path,
+  exact,
+  component,
+});
 
-export { mainPaths };
+const paths = {
+  app: {
+    paths: [
+      generatePaths("O nas", "/about", true, AboutScreen),
+      generatePaths("Katalog", "/", true, CatalogScreen),
+      generatePaths("Kontakt", "/contact", true, ContactScreen),
+    ],
+  },
+};
+
+export default paths;

@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { IPath } from "@src/types/paths";
+import Paths from "./Paths";
 import { Container } from "@src/components/layout/Container";
 
-type TRoutesComponent = React.FunctionComponent<{ paths: IPath[] }>;
+type TRoutesComponent = React.FunctionComponent;
 
-export const Routes: TRoutesComponent = ({ paths }) => {
+export const Routes: TRoutesComponent = () => {
   const renderRoutesList = () =>
-    paths.map(({ path, exact, component: Component }) => (
+    Paths.app.paths.map(({ path, exact, component: Component }) => (
       <Route
         key={path}
         exact={exact}

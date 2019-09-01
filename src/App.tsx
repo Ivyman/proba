@@ -8,7 +8,6 @@ import { switchSidebar } from "@src/store/app/actions";
 import { ThemeProvider, theme } from "@src/styles";
 import { Routes } from "@src/routing/Routes";
 import { RootState } from "./types/store";
-import { mainPaths } from "@src/routing/Paths";
 import Header from "@src/components/Header";
 
 interface IProps {
@@ -29,7 +28,7 @@ export class App extends React.Component<IProps> {
               showSidebar={showSidebar}
               onSwitchSidebar={switchSidebarAction}
             />
-            <Routes paths={mainPaths} />
+            <Routes />
           </BrowserRouter>
         </>
       </ThemeProvider>
