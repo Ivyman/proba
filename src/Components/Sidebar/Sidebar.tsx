@@ -9,7 +9,7 @@ type ISidebarComponent = React.FunctionComponent;
 export const Sidebar: ISidebarComponent = ({ children }) => {
   const renderSidebar = () => (
     <Container>
-      <Logo />
+      <Logo link="/" />
       {children}
     </Container>
   );

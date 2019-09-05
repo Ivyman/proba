@@ -24,7 +24,7 @@ export const Header: IHeaderComponent = ({ showSidebar, onSwitchSidebar }) => {
   return (
     <header>
       <StyledContainer>
-        <Logo />
+        <Logo link="/" />
         <NavWrapper>
           <Navbar items={headerNav} />
           <StyledHamburgerIcon onClick={onSwitchSidebar} />
