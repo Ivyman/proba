@@ -1,11 +1,13 @@
 import React from "react";
+
+import { IStudioAddress } from "@src/types/studio";
 import styled from "@src/styles";
 import Typography from "@src/components/Typography";
 
 type ICatalogItemComponent = React.FunctionComponent<{
   thumbnail?: string;
   name: string;
-  address: string;
+  address: IStudioAddress;
 }>;
 
 const { Head, Text } = Typography;
@@ -18,7 +20,9 @@ export const CatalogItem: ICatalogItemComponent = ({
   <>
     {thumbnail && <Thumbnail src={thumbnail} />}
     <Head as="h1">{name}</Head>
-    <Text>{address}</Text>
+    <Text>
+      {address.city}, {address.zipcode}, {address.street}
+    </Text>
   </>
 );
 

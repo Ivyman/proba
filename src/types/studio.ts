@@ -15,6 +15,7 @@ export interface IStudioAddress {
 }
 
 export interface IStudio {
+  id: string;
   name: string;
   address: IStudioAddress;
   logo: string;
