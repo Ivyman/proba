@@ -1,5 +1,5 @@
 import StudioTypes from "./types";
-import apiStatuses from "@src/types/api";
+import EApiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 
 export interface IAction {
@@ -8,13 +8,13 @@ export interface IAction {
 }
 
 export interface IStudioState {
-  populatedStatus: apiStatuses;
+  populatedStatus: EApiStatuses;
   studiosList: IStudio[];
   nextPageToken: string;
 }
 
 export const initialState: IStudioState = {
-  populatedStatus: apiStatuses.IDLE,
+  populatedStatus: EApiStatuses.IDLE,
   studiosList: [],
   nextPageToken: "",
 };

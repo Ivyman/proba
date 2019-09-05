@@ -1,0 +1,17 @@
+import React from "react";
+
+import { IStudio } from "@src/types/studio";
+
+import CatalagItem from "@src/components/CatalagItem";
+
+type TCatalogComponent = React.FunctionComponent<{ studiosList: IStudio[] }>;
+
+export const Catalog: TCatalogComponent = ({ studiosList }) => (
+  <>
+    {studiosList.map(({ id, logo, name, address }) => (
+      <CatalagItem key={id} thumbnail={logo} name={name} address={address} />
+    ))}
+  </>
+);
+
+export default Catalog;

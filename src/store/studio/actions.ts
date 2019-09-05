@@ -1,6 +1,6 @@
 import StudioTypes from "./types";
 import { RootState, ThunkDispatch } from "@src/types/store";
-import apiStatuses from "@src/types/api";
+import EApiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 import * as effects from "./effects";
 
@@ -18,11 +18,11 @@ export const populateStudios = () => async (
     } = await effects.fetchStudiosList(nextPageToken);
 
     dispatch(setStudiosList(studios, newNextPageToken));
-    dispatch(setPopulatedStatus(apiStatuses.SUCCESS));
+    dispatch(setPopulatedStatus(EApiStatuses.SUCCESS));
   } catch (error) {
     // tslint:disable-next-line
     console.error(error);
-    dispatch(setPopulatedStatus(apiStatuses.ERROR));
+    dispatch(setPopulatedStatus(EApiStatuses.ERROR));
   }
 };
 
@@ -41,7 +41,7 @@ export const searchStudios = () => async (
   } catch (error) {
     // tslint:disable-next-line
     console.error(error);
-    dispatch(setPopulatedStatus(apiStatuses.ERROR));
+    dispatch(setPopulatedStatus(EApiStatuses.ERROR));
   }
 };
 
@@ -61,7 +61,7 @@ export const addStudiosToList = (
   payload: { studiosList, nextPageToken },
 });
 
-export const setPopulatedStatus = (status: apiStatuses) => ({
+export const setPopulatedStatus = (status: EApiStatuses) => ({
   type: StudioTypes.STUDIO_POPULATED_STATUS_SET,
   payload: status,
 });
