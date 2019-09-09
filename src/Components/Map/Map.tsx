@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactMapGL, { NavigationControl } from "react-map-gl";
 
+import { GlMap } from "@src/config/Confing";
 import styled from "@src/styles";
 
 type IMapComponent = React.FunctionComponent<{}>;
@@ -22,9 +23,7 @@ export const Map: IMapComponent = ({}) => {
     <Container>
       <ReactMapGL
         {...viewport}
-        mapboxApiAccessToken={
-          "pk.eyJ1Ijoibm8tbmFtZSIsImEiOiJjazA3M2N1YWYwM2J2M25vMXhlZDVhcWExIn0.Rm7b72RFKxrx6HjVLFqSRQ"
-        }
+        mapboxApiAccessToken={GlMap.accessToken}
         onViewportChange={handeleViewportChange}
       >
         <NavigationControlWrapper>
