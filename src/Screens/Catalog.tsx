@@ -11,6 +11,7 @@ import {
 } from "@src/store/studio/selectors";
 
 import Catalog from "@src/components/Catalog";
+import Map from "@src/components/Map";
 
 interface IProps {
   studiosList: IStudio[];
@@ -29,7 +30,12 @@ class CatalogScreen extends React.Component<IProps> {
 
     switch (populatedStatus) {
       case EApiStatuses.SUCCESS:
-        return <Catalog studiosList={studiosList} />;
+        return (
+          <>
+            <Catalog studiosList={studiosList} />
+            <Map />
+          </>
+        );
       case EApiStatuses.ERROR:
         return "Error";
       case EApiStatuses.IDLE:
