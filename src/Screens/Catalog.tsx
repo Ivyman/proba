@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { IStudio } from "@src/types/studio";
+import { IStudio, ICoordinate } from "@src/types/studio";
 import EApiStatuses from "@src/types/api";
 import { RootState } from "@src/types/store";
 import { populateStudios } from "@src/store/studio/actions";
@@ -24,7 +24,20 @@ class CatalogScreen extends React.Component<IProps> {
     this.props.populateStudios();
   }
 
-  // TODO move this to separete component
+  public getCoordinates = (studiosList: IStudio[]) =>
+    studiosList.reduce(
+      (acc: ICoordinate[], current: IStudio) => [
+        ...acc,
+        {
+          id: current.id,
+          latitude: current.address.latitude,
+          longitude: current.address.longitude,
+        },
+      ],
+      [],
+    );
+
+  // TODO move renderContent to HOC component for using in all screens
   public renderContent = () => {
     const { populatedStatus, studiosList } = this.props;
 
@@ -33,7 +46,7 @@ class CatalogScreen extends React.Component<IProps> {
         return (
           <>
             <Catalog studiosList={studiosList} />
-            <Map />
+            <Map markersList={this.getCoordinates(studiosList)} />
           </>
         );
       case EApiStatuses.ERROR:
