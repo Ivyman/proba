@@ -4,9 +4,15 @@ export interface IContact {
   mail?: string;
 }
 
+export interface ICoordinate {
+  id: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface IStudioAddress {
-  Latitude?: string;
-  Longitude?: string;
+  latitude: number;
+  longitude: number;
   city: string;
   zipcode: string;
   street: string;

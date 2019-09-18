@@ -4,8 +4,8 @@
       "id": "1",
       "name": "Yrtych media",
       "address": {
-        "Latitude": "52.233343",
-        "Longitude": "21.000965",
+        "latitude": 52.233343,
+        "longitude": 21.000965,
         "city": "Warszawa",
         "zipcode": "00-123",
         "street": "ul. Mariańska",
@@ -24,8 +24,8 @@
       "id": "2",
       "name": "Mistic Studio",
       "address": {
-        "Latitude": "52.210513",
-        "Longitude": "21.005193",
+        "latitude": 52.210513,
+        "longitude": 21.005193,
         "city": "Warszawa",
         "zipcode": "02-591",
         "street": "Ul.Stefana Batorego",
@@ -44,8 +44,8 @@
       "id": "3",
       "name": "Hear Studio",
       "address": {
-        "Latitude": "52.241297",
-        "Longitude": "20.959305",
+        "latitude": 52.241297,
+        "longitude": 20.959305,
         "city": "Warszawa",
         "zipcode": "01-424",
         "street": "Aleja Prymasa Tysiąclecia",
@@ -64,8 +64,8 @@
       "id": "4",
       "name": "Redrum Studio",
       "address": {
-        "Latitude": "52.248147",
-        "Longitude": "21.060489",
+        "latitude": 52.248147,
+        "longitude": 21.060489,
         "city": "Warszawa",
         "zipcode": "00-001",
         "street": "Grochowska",
