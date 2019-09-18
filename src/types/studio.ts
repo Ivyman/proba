@@ -28,3 +28,8 @@ export interface IStudio {
   description: string;
   contact: IContact;
 }
+
+export enum ECoordinateName {
+  latitude = "latitude",
+  longitude = "longitude",
+}

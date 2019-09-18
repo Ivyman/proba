@@ -2,34 +2,28 @@ import React, { useState } from "react";
 import ReactMapGL, { NavigationControl, Marker } from "react-map-gl";
 
 import { GlMap } from "@src/config/Confing";
-import { ICoordinate } from "@src/types/studio";
+import { ICoordinate, ECoordinateName } from "@src/types/studio";
 import styled from "@src/styles";
 
 type IMapComponent = React.FunctionComponent<{ markersList: ICoordinate[] }>;
 
-// TODO move this outside
-const countAverageLatitude = (coordinates: ICoordinate[]) =>
-  coordinates.reduce(
-    (averageLatitude: number, coordinate: ICoordinate) =>
-      averageLatitude + coordinate.latitude,
-    0,
-  ) / coordinates.length;
-
-// TODO move this outside
-const countAverageLongitude = (coordinates: ICoordinate[]) =>
-  coordinates.reduce(
-    (averageLongitude: number, coordinate: ICoordinate) =>
-      averageLongitude + coordinate.longitude,
-    0,
-  ) / coordinates.length;
-
 export const Map: IMapComponent = ({ markersList }) => {
+  const countCoordinateAverage = (
+    coordinates: ICoordinate[],
+    name: ECoordinateName,
+  ) =>
+    coordinates.reduce(
+      (averageLongitude: number, currentCoordinates: ICoordinate) =>
+        averageLongitude + currentCoordinates[name],
+      0,
+    ) / coordinates.length;
+
   const [viewport, setViewport] = useState({
     width: "100%",
     height: "100%",
-    // TODO change this depend on chosen city
-    latitude: countAverageLatitude(markersList),
-    longitude: countAverageLongitude(markersList),
+    // TODO change this depend on chosen city in filters
+    latitude: countCoordinateAverage(markersList, ECoordinateName.latitude),
+    longitude: countCoordinateAverage(markersList, ECoordinateName.longitude),
     zoom: 10,
   });
 
