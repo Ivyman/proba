@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IStudioAddress } from "@src/types/studio";
-import styled from "@src/styles";
+import { Thumbnail } from "./elements";
 import Typography from "@src/components/Typography";
 
 type ICatalogItemComponent = React.FunctionComponent<{
@@ -25,5 +25,3 @@ export const CatalogItem: ICatalogItemComponent = ({
     </Text>
   </>
 );
-
-export const Thumbnail = styled.img``;

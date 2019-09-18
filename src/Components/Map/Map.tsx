@@ -3,7 +3,11 @@ import ReactMapGL, { NavigationControl, Marker } from "react-map-gl";
 
 import { GlMap } from "@src/config/Confing";
 import { ICoordinate, ECoordinateName } from "@src/types/studio";
-import styled from "@src/styles";
+import {
+  MapContainer,
+  NavigationControlWrapper,
+  MarkerInner,
+} from "./elements";
 
 type IMapComponent = React.FunctionComponent<{ markersList: ICoordinate[] }>;
 
@@ -32,7 +36,7 @@ export const Map: IMapComponent = ({ markersList }) => {
   };
 
   return (
-    <Container>
+    <MapContainer>
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={GlMap.accessToken}
@@ -53,25 +57,6 @@ export const Map: IMapComponent = ({ markersList }) => {
           <NavigationControl showCompass={false} />
         </NavigationControlWrapper>
       </ReactMapGL>
-    </Container>
+    </MapContainer>
   );
 };
-
-export const MarkerInner = styled.div`
-  background: gray;
-  border: 1px slid black;
-  color: white;
-  padding: 5px;
-`;
-
-export const NavigationControlWrapper = styled.div`
-  position: absolute;
-  bottom: 30px;
-  right: 12px;
-`;
-
-export const Container = styled.div`
-  background-color: gray;
-  height: 100vh;
-  width: 50%;
-`;

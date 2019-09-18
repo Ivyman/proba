@@ -13,5 +13,3 @@ export const Catalog: TCatalogComponent = ({ studiosList }) => (
     ))}
   </>
 );
-
-export default Catalog;

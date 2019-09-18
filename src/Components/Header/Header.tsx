@@ -1,20 +1,22 @@
 import React from "react";
-import styled from "@src/styles";
 
 import Paths from "@src/routing/Paths";
-import Layout from "@src/components/Layout";
-import { HamburgerIcon, CloseIcon } from "@src/assets/icons";
+import { IPath } from "@src/types/path";
+
+import {
+  StyledContainer,
+  NavWrapper,
+  StyledHamburgerIcon,
+  StyledCloseIcon,
+} from "./elements";
 import Navbar from "@src/components/Navbar";
 import Sidebar from "@src/components/Sidebar";
 import Logo from "@src/components/Logo";
-import { IPath } from "@src/types/path";
 
 type IHeaderComponent = React.FunctionComponent<{
   showSidebar: boolean;
   onSwitchSidebar: () => void;
 }>;
-
-const { Container } = Layout;
 
 const paths = [...Paths.app.paths];
 const headerNav = [paths.shift() as IPath];
@@ -39,23 +41,3 @@ export const Header: IHeaderComponent = ({ showSidebar, onSwitchSidebar }) => {
     </header>
   );
 };
-
-export const StyledContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const NavWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const StyledHamburgerIcon = styled(HamburgerIcon)`
-  cursor: pointer;
-`;
-
-export const StyledCloseIcon = styled(CloseIcon)`
-  cursor: pointer;
-`;

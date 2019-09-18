@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "@src/styles";
 
 import { IPath } from "@src/types/path";
+
+import { Nav } from "./elements";
 
 type INavbarComponent = React.FunctionComponent<{ items: IPath[] }>;
 
@@ -15,10 +16,3 @@ export const Navbar: INavbarComponent = ({ items }) => (
     ))}
   </Nav>
 );
-
-export const Nav = styled.nav`
-  display: flex;
-  a {
-    margin-right: 20px;
-  }
-`;

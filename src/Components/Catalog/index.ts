@@ -1,3 +1,3 @@
-import Catalod from "./Catalog";
+import { Catalog } from "./Catalog";
 
-export default Catalod;
+export default Catalog;
