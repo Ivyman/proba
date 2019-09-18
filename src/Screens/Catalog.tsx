@@ -10,6 +10,7 @@ import {
   getPopulatedStatus,
 } from "@src/store/studio/selectors";
 
+import Screen from "../components/Screen";
 import Catalog from "@src/components/Catalog";
 import Map from "@src/components/Map";
 
@@ -37,28 +38,15 @@ class CatalogScreen extends React.Component<IProps> {
       [],
     );
 
-  // TODO move renderContent to HOC component for using in all screens
-  public renderContent = () => {
+  public render() {
     const { populatedStatus, studiosList } = this.props;
 
-    switch (populatedStatus) {
-      case EApiStatuses.SUCCESS:
-        return (
-          <>
-            <Catalog studiosList={studiosList} />
-            <Map markersList={this.getCoordinates(studiosList)} />
-          </>
-        );
-      case EApiStatuses.ERROR:
-        return "Error";
-      case EApiStatuses.IDLE:
-      case EApiStatuses.FETCHING:
-        return "Pending...";
-    }
-  };
-
-  public render() {
-    return this.renderContent();
+    return (
+      <Screen populatedStatus={populatedStatus}>
+        <Catalog studiosList={studiosList} />
+        <Map markersList={this.getCoordinates(studiosList)} />
+      </Screen>
+    );
   }
 }
 
