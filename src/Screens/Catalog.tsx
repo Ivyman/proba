@@ -10,6 +10,7 @@ import {
   getPopulatedStatus,
 } from "@src/store/studio/selectors";
 
+import Filters from "@src/containers/Filters";
 import Screen from "../components/Screen";
 import Catalog from "@src/components/Catalog";
 import Map from "@src/components/Map";
@@ -30,6 +31,7 @@ class CatalogScreen extends React.Component<IProps> {
 
     return (
       <Screen populatedStatus={populatedStatus}>
+        <Filters />
         <Catalog studiosList={studiosList} />
         <Map studiosList={studiosList} />
       </Screen>
