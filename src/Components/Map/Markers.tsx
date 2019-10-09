@@ -2,7 +2,12 @@ import React, { useState, useCallback } from "react";
 import { Marker as GlMarker } from "react-map-gl";
 
 import { IStudio } from "@src/types/studio";
-import { MarkerInner, MarkerWrapper, StyledPopup } from "./elements";
+import {
+  MarkerInner,
+  MarkerWrapper,
+  StyledPopup,
+  MarkerTitle,
+} from "./elements";
 
 type IMarkerComponent = React.FunctionComponent<{ dataList: IStudio[] }>;
 
@@ -41,7 +46,10 @@ export const Markers: IMarkerComponent = ({ dataList }) => {
               closeButton={false}
               anchor="top"
             >
-              <div>You are here</div>
+              <MarkerTitle>{data.name}</MarkerTitle>
+              <div>
+                {data.address.street}, {data.address.number}
+              </div>
             </StyledPopup>
           )}
         </MarkerWrapper>
