@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { IStudio, ICoordinate } from "@src/types/studio";
+import { IStudio } from "@src/types/studio";
 import EApiStatuses from "@src/types/api";
 import { RootState } from "@src/types/store";
 import { populateStudios } from "@src/store/studio/actions";
@@ -25,26 +25,13 @@ class CatalogScreen extends React.Component<IProps> {
     this.props.populateStudios();
   }
 
-  public getCoordinates = (studiosList: IStudio[]) =>
-    studiosList.reduce(
-      (acc: ICoordinate[], current: IStudio) => [
-        ...acc,
-        {
-          id: current.id,
-          latitude: current.address.latitude,
-          longitude: current.address.longitude,
-        },
-      ],
-      [],
-    );
-
   public render() {
     const { populatedStatus, studiosList } = this.props;
 
     return (
       <Screen populatedStatus={populatedStatus}>
         <Catalog studiosList={studiosList} />
-        <Map markersList={this.getCoordinates(studiosList)} />
+        <Map studiosList={studiosList} />
       </Screen>
     );
   }
