@@ -1,4 +1,4 @@
-import apiEndpoint from "@src/services/api";
+import apiEndpoint, { URLS } from "@src/services/api";
 import { studios } from "@src/config/Constants";
 import { removeEmptyFields } from "@src/helpers";
 
@@ -7,7 +7,7 @@ export const fetchStudiosList = async (
   limit: number = studios.fetchLimit,
 ) => {
   const params = removeEmptyFields({ limit, nextPageToken });
-  return await apiEndpoint.get("", { params });
+  return await apiEndpoint.get(URLS.studiosList, { params });
 };
 
 export const fetchFilteredStudiosList = async (
@@ -17,5 +17,5 @@ export const fetchFilteredStudiosList = async (
   limit: number = studios.fetchLimit,
 ) => {
   const params = removeEmptyFields({ limit, query, city, nextPageToken });
-  return await apiEndpoint.get("", { params });
+  return await apiEndpoint.get(URLS.studiosList, { params });
 };
