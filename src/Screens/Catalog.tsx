@@ -9,8 +9,9 @@ import {
   getStudiosList,
   getPopulatedStatus,
 } from "@src/store/studio/selectors";
+import { IFiltersForm } from "@src/types/studio";
 
-import Filters from "@src/containers/Filters";
+import Filters from "@src/components/Filters";
 import Screen from "../components/Screen";
 import Catalog from "@src/components/Catalog";
 import Map from "@src/components/Map";
@@ -26,12 +27,15 @@ class CatalogScreen extends React.Component<IProps> {
     this.props.populateStudios();
   }
 
+  public handleFiltersChange = (filtersForm: IFiltersForm) =>
+    console.log(filtersForm);
+
   public render() {
     const { populatedStatus, studiosList } = this.props;
 
     return (
       <Screen populatedStatus={populatedStatus}>
-        <Filters />
+        <Filters onFiltersChange={this.handleFiltersChange} />
         <Catalog studiosList={studiosList} />
         <Map studiosList={studiosList} />
       </Screen>

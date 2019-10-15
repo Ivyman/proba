@@ -29,6 +29,11 @@ export interface IStudio {
   contact: IContact;
 }
 
+export interface IFiltersForm {
+  city: { [key: string]: boolean };
+  studionName: string;
+}
+
 export enum ECoordinateName {
   latitude = "latitude",
   longitude = "longitude",
