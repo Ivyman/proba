@@ -3,7 +3,7 @@ import ReactMapGL, { NavigationControl } from "react-map-gl";
 
 import { GlMap } from "@src/config/Confing";
 import { IStudio, ECoordinateName } from "@src/types/studio";
-import { countCoordinateAverage, getCoordinates } from "@src/helpers";
+import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
 import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";
 
