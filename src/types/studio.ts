@@ -29,9 +29,9 @@ export interface IStudio {
   contact: IContact;
 }
 
-export interface IFiltersForm {
-  city: { [key: string]: boolean };
-  studionName: string;
+export interface IFiltersData {
+  query: string;
+  city: string[];
 }
 
 export enum ECoordinateName {

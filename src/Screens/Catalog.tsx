@@ -9,7 +9,8 @@ import {
   getStudiosList,
   getPopulatedStatus,
 } from "@src/store/studio/selectors";
-import { IFiltersForm } from "@src/types/studio";
+import { IFiltersData } from "@src/types/studio";
+import { reduceUncheckedCities } from "@src/helpers/filters";
 
 import Filters from "@src/components/Filters";
 import Screen from "../components/Screen";
@@ -19,7 +20,7 @@ import Map from "@src/components/Map";
 interface IProps {
   studiosList: IStudio[];
   populatedStatus: EApiStatuses;
-  populateStudios: () => void;
+  populateStudios: (filtersData?: IFiltersData) => void;
 }
 
 class CatalogScreen extends React.Component<IProps> {
@@ -27,8 +28,12 @@ class CatalogScreen extends React.Component<IProps> {
     this.props.populateStudios();
   }
 
-  public handleFiltersChange = (filtersForm: IFiltersForm) =>
-    console.log(filtersForm);
+  public handleFiltersChange = (filtersData: any) => {
+    this.props.populateStudios({
+      query: filtersData.query,
+      city: reduceUncheckedCities(filtersData.city),
+    });
+  };
 
   public render() {
     const { populatedStatus, studiosList } = this.props;

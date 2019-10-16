@@ -13,7 +13,8 @@ export const Screen: IRenderScreenComponent = ({
   <>
     {populatedStatus === EApiStatuses.SUCCESS && children}
     {populatedStatus === EApiStatuses.ERROR && "Error"}
-    {populatedStatus === EApiStatuses.IDLE ||
-      (populatedStatus === EApiStatuses.FETCHING && "Pending...")}
+    {(populatedStatus === EApiStatuses.IDLE ||
+      populatedStatus === EApiStatuses.FETCHING) &&
+      "Pending..."}
   </>
 );

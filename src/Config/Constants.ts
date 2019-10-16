@@ -1,4 +1,4 @@
-export const studios = {
+export const Studios = {
   fetchLimit: 10,
   // TODO get cities from API
   cities: [

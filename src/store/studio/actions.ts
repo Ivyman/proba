@@ -3,8 +3,9 @@ import { RootState, ThunkDispatch } from "@src/types/store";
 import EApiStatuses from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 import * as effects from "./effects";
+import { IFiltersData } from "@src/types/studio";
 
-export const populateStudios = () => async (
+export const populateStudios = (filtersData?: IFiltersData) => async (
   dispatch: ThunkDispatch,
   getStatate: () => RootState,
 ) => {
@@ -15,29 +16,10 @@ export const populateStudios = () => async (
 
     const {
       data: { studios, newNextPageToken },
-    } = await effects.fetchStudiosList(nextPageToken);
+    } = await effects.fetchStudiosList(nextPageToken, filtersData);
 
     dispatch(setStudiosList(studios, newNextPageToken));
     dispatch(setPopulatedStatus(EApiStatuses.SUCCESS));
-  } catch (error) {
-    // tslint:disable-next-line
-    console.error(error);
-    dispatch(setPopulatedStatus(EApiStatuses.ERROR));
-  }
-};
-
-export const searchStudios = () => async (
-  dispatch: ThunkDispatch,
-  getStatate: () => RootState,
-) => {
-  try {
-    // const {
-    //   studio: { nextPageToken },
-    //   filter: { query, city },
-    // } = getStatate();
-    // const { studiosList, nextPageToken } = await fetchFilteredStudiosList(nextPageToken, query, city);
-    // dispatch(setStudiosList(studiosList, nextPageToken));
-    // dispatch(setPopulatedStatus(requestStatus.SUCCESS))
   } catch (error) {
     // tslint:disable-next-line
     console.error(error);
