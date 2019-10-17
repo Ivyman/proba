@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import studios from "../src/mock/studios";
+import responseData from "../src/mock/studios";
 
 const app = express();
 const port = 8086;
@@ -11,7 +11,21 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/studios", (req, res) => res.status(200).send(studios));
+app.get("/studios", (req, res) => {
+  const studios = responseData.studios.filter(item => {
+    const itemName = item.name.toLocaleLowerCase();
+    const queryString = req.query.query.toLocaleLowerCase();
+
+    return itemName.includes(queryString);
+  });
+
+  const result = {
+    nextPageToken: responseData.nextPageToken,
+    studios,
+  };
+
+  return res.status(200).send(result);
+});
 
 app.listen(port, () =>
   console.log("\x1b[36m", `Mock api listening on port ${port}`, "\x1b[0m"),
