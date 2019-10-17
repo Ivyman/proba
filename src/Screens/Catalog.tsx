@@ -24,15 +24,32 @@ interface IProps {
 }
 
 class CatalogScreen extends React.Component<IProps> {
+  public state = {
+    debounceTimeout: 400,
+    debouncing: false,
+  };
+  public timeoutId: any;
+
   public componentDidMount() {
     this.props.populateStudios();
   }
 
   public handleFiltersChange = (filtersData: any) => {
-    this.props.populateStudios({
-      query: filtersData.query,
-      city: reduceUncheckedCities(filtersData.city),
-    });
+    const { debounceTimeout, debouncing } = this.state;
+
+    if (debouncing) {
+      clearInterval(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      this.setState({ debouncing: false });
+
+      return this.props.populateStudios({
+        query: filtersData.query,
+        city: reduceUncheckedCities(filtersData.city),
+      });
+    }, debounceTimeout);
+    this.setState({ debouncing: true });
   };
 
   public render() {

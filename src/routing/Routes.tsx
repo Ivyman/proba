@@ -2,11 +2,10 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Paths from "./Paths";
-import Layout from "@src/components/Layout";
+
+import { StyledContainer } from "./elements";
 
 type TRoutesComponent = React.FunctionComponent;
-
-const { Container } = Layout;
 
 export const Routes: TRoutesComponent = () => {
   const renderRoutesList = () =>
@@ -21,9 +20,9 @@ export const Routes: TRoutesComponent = () => {
 
   return (
     <Suspense fallback={<>Loading...</>}>
-      <Container as="main">
+      <StyledContainer as="main">
         <Switch>{renderRoutesList()}</Switch>
-      </Container>
+      </StyledContainer>
     </Suspense>
   );
 };
