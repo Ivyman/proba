@@ -1,9 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { IStudio } from "@src/types/studio";
-import EApiStatuses from "@src/types/api";
-import { RootState } from "@src/types/store";
 import { populateStudios } from "@src/store/studio/actions";
 import {
   getStudiosList,
@@ -17,62 +14,37 @@ import Screen from "../components/Screen";
 import Catalog from "@src/components/Catalog";
 import Map from "@src/components/Map";
 
-interface IProps {
-  studiosList: IStudio[];
-  populatedStatus: EApiStatuses;
-  populateStudios: (filtersData?: IFiltersData) => void;
-}
+const CatalogScreen: React.FC = () => {
+  const dispatch = useDispatch();
 
-class CatalogScreen extends React.Component<IProps> {
-  public state = {
-    debounceTimeout: 400,
-    debouncing: false,
-  };
-  public timeoutId: any;
+  const studiosList = useSelector(getStudiosList);
+  const populatedStatus = useSelector(getPopulatedStatus);
 
-  public componentDidMount() {
-    this.props.populateStudios();
-  }
+  const callPopulateStudios = useCallback(
+    (filtersData?: any) => {
+      dispatch(populateStudios(filtersData));
+    },
+    [dispatch],
+  );
 
-  public handleFiltersChange = (filtersData: any) => {
-    const { debounceTimeout, debouncing } = this.state;
-
-    if (debouncing) {
-      clearInterval(this.timeoutId);
-    }
-
-    this.timeoutId = setTimeout(() => {
-      this.setState({ debouncing: false });
-
-      return this.props.populateStudios({
-        query: filtersData.query,
-        city: reduceUncheckedCities(filtersData.city),
-      });
-    }, debounceTimeout);
-    this.setState({ debouncing: true });
+  const handleFiltersChange = (filtersData: IFiltersData) => {
+    callPopulateStudios({
+      query: filtersData.query,
+      city: reduceUncheckedCities(filtersData.city),
+    });
   };
 
-  public render() {
-    const { populatedStatus, studiosList } = this.props;
+  useEffect(() => {
+    callPopulateStudios();
+  }, []);
 
-    return (
-      <Screen populatedStatus={populatedStatus}>
-        <Filters onFiltersChange={this.handleFiltersChange} />
-        <Catalog studiosList={studiosList} />
-        <Map studiosList={studiosList} />
-      </Screen>
-    );
-  }
-}
+  return (
+    <Screen populatedStatus={populatedStatus}>
+      <Filters onFiltersChange={handleFiltersChange} />
+      <Catalog studiosList={studiosList} />
+      <Map studiosList={studiosList} />
+    </Screen>
+  );
+};
 
-const mapStateToProps = (state: RootState) => ({
-  studiosList: getStudiosList(state),
-  populatedStatus: getPopulatedStatus(state),
-});
-
-const mapDispatchToProps = { populateStudios };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CatalogScreen);
+export default CatalogScreen;

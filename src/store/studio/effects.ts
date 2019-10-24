@@ -9,7 +9,7 @@ export const fetchStudiosList = async (
   const params = {
     limit: Studios.fetchLimit,
     query: filtersData ? filtersData.query : "",
-    city: filtersData ? filtersData.city.join(",") : "",
+    city: filtersData ? (filtersData.city as string[]).join(",") : "",
     nextPageToken,
   };
   return await apiEndpoint.get(URLS.studiosList, { params });

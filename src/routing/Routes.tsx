@@ -5,9 +5,7 @@ import Paths from "./Paths";
 
 import { StyledContainer } from "./elements";
 
-type TRoutesComponent = React.FunctionComponent;
-
-export const Routes: TRoutesComponent = () => {
+export const Routes: React.FC = () => {
   const renderRoutesList = () =>
     Paths.app.paths.map(({ path, exact, component: Component }) => (
       <Route

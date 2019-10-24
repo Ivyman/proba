@@ -31,7 +31,7 @@ export interface IStudio {
 
 export interface IFiltersData {
   query: string;
-  city: string[];
+  city: string[] | string;
 }
 
 export enum ECoordinateName {

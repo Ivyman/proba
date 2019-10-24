@@ -5,9 +5,7 @@ import Logo from "@src/components/Logo";
 
 import { SidebarContainer } from "./elements";
 
-type ISidebarComponent = React.FunctionComponent;
-
-export const Sidebar: ISidebarComponent = ({ children }) => {
+export const Sidebar: React.FC = ({ children }) => {
   const renderSidebar = () => (
     <SidebarContainer>
       <Logo link="/" />

@@ -5,11 +5,9 @@ import { createCityField } from "@src/helpers/filters";
 
 import { Wrapper } from "./elements";
 
-type IFiltersComponent = React.FunctionComponent<{
+export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
-}>;
-
-export const Filters: IFiltersComponent = ({ onFiltersChange }) => {
+}> = ({ onFiltersChange }) => {
   const [nameInput, setNameInput] = useState("");
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [checkboxMap, setCheckboxMap] = useState(
@@ -25,8 +23,9 @@ export const Filters: IFiltersComponent = ({ onFiltersChange }) => {
     if (isFirstRender) {
       return setIsFirstRender(false);
     }
+
     onFiltersChange({ query: nameInput, city: checkboxMap });
-  }, [nameInput, checkboxMap, onFiltersChange]);
+  }, [nameInput, checkboxMap]);
 
   return (
     <Wrapper>

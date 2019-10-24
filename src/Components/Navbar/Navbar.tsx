@@ -5,9 +5,7 @@ import { IPath } from "@src/types/path";
 
 import { Nav } from "./elements";
 
-type INavbarComponent = React.FunctionComponent<{ items: IPath[] }>;
-
-export const Navbar: INavbarComponent = ({ items }) => (
+export const Navbar: React.FC<{ items: IPath[] }> = ({ items }) => (
   <Nav>
     {items.map(({ path, label }) => (
       <Link key={path} to={path}>

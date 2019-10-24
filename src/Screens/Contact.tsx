@@ -1,7 +1,5 @@
 import React from "react";
 
-type TContactScreen = React.FunctionComponent<{}>;
-
-export const ContactScreen: TContactScreen = () => <>Contact Screen</>;
+export const ContactScreen: React.FC = () => <>Contact Screen</>;
 
 export default ContactScreen;

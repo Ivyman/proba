@@ -2,14 +2,9 @@ import React from "react";
 
 import EApiStatuses from "@src/types/api";
 
-type IRenderScreenComponent = React.FunctionComponent<{
+export const Screen: React.FC<{
   populatedStatus: EApiStatuses;
-}>;
-
-export const Screen: IRenderScreenComponent = ({
-  populatedStatus,
-  children,
-}) => (
+}> = ({ populatedStatus, children }) => (
   <>
     {populatedStatus === EApiStatuses.SUCCESS && children}
     {populatedStatus === EApiStatuses.ERROR && "Error"}

@@ -4,19 +4,13 @@ import { IStudioAddress } from "@src/types/studio";
 import { Thumbnail, Wrapper } from "./elements";
 import Typography from "@src/components/Typography";
 
-type ICatalogItemComponent = React.FunctionComponent<{
+const { Head, Text } = Typography;
+
+export const CatalogItem: React.FC<{
   thumbnail?: string;
   name: string;
   address: IStudioAddress;
-}>;
-
-const { Head, Text } = Typography;
-
-export const CatalogItem: ICatalogItemComponent = ({
-  thumbnail,
-  name,
-  address,
-}) => (
+}> = ({ thumbnail, name, address }) => (
   <Wrapper>
     {thumbnail && <Thumbnail src={thumbnail} />}
     <Head as="h1">{name}</Head>

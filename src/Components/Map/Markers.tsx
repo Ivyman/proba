@@ -9,9 +9,7 @@ import {
   MarkerTitle,
 } from "./elements";
 
-type IMarkerComponent = React.FunctionComponent<{ dataList: IStudio[] }>;
-
-export const Markers: IMarkerComponent = ({ dataList }) => {
+export const Markers: React.FC<{ dataList: IStudio[] }> = ({ dataList }) => {
   const [hoveredMarker, setHoveredMarkerMarker] = useState("");
 
   const handleMouseOver = useCallback(

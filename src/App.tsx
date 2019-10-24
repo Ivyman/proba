@@ -1,48 +1,37 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import GlobalStyle from "@src/styles/GlobalStyle";
 import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
 import { ThemeProvider, theme } from "@src/styles";
 import { Routes } from "@src/routing/Routes";
-import { RootState } from "./types/store";
+
 import Header from "@src/components/Header";
 
-interface IProps {
-  switchSidebarAction: () => void;
-  showSidebar: boolean;
-}
+const App: React.FC = () => {
+  const dispatch = useDispatch();
+  const sidebarStatus = useSelector(getSidebarStatus);
 
-export class App extends React.Component<IProps> {
-  public render() {
-    const { switchSidebarAction, showSidebar } = this.props;
+  const hadleSidebarSwith = useCallback(() => {
+    dispatch(switchSidebar());
+  }, [dispatch]);
 
-    return (
-      <ThemeProvider theme={theme}>
-        <>
-          <GlobalStyle />
-          <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <Header
-              showSidebar={showSidebar}
-              onSwitchSidebar={switchSidebarAction}
-            />
-            <Routes />
-          </BrowserRouter>
-        </>
-      </ThemeProvider>
-    );
-  }
-}
+  return (
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyle />
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Header
+            showSidebar={sidebarStatus}
+            onSwitchSidebar={hadleSidebarSwith}
+          />
+          <Routes />
+        </BrowserRouter>
+      </>
+    </ThemeProvider>
+  );
+};
 
-const mapStateToProps = (state: RootState) => ({
-  showSidebar: getSidebarStatus(state),
-});
-
-const mapDispatchToProps = { switchSidebarAction: switchSidebar };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default App;

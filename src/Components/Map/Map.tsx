@@ -7,9 +7,7 @@ import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
 import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";
 
-type IMapComponent = React.FunctionComponent<{ studiosList: IStudio[] }>;
-
-export const Map: IMapComponent = ({ studiosList }) => {
+export const Map: React.FC<{ studiosList: IStudio[] }> = ({ studiosList }) => {
   const coordinates = getCoordinates(studiosList);
 
   const [viewport, setViewport] = useState({
