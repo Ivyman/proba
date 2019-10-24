@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 
 import { Studios } from "@src/config/Constants";
 import { createCityField } from "@src/helpers/filters";
+import { useDebounce } from "@src/hooks/debounce";
 
 import { Wrapper } from "./elements";
 
 export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
 }> = ({ onFiltersChange }) => {
+  const { filtersDebounced, cities } = Studios;
   const [nameInput, setNameInput] = useState("");
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const [checkboxMap, setCheckboxMap] = useState(
-    createCityField(Studios.cities),
-  );
+  const [checkboxMap, setCheckboxMap] = useState(createCityField(cities));
+  const debouncedNameInput = useDebounce(nameInput, filtersDebounced);
+  const debouncedCheckboxMap = useDebounce(checkboxMap, filtersDebounced);
 
   const handleCheckboxChange = (key: string) =>
     setCheckboxMap({ ...checkboxMap, [key]: !checkboxMap[key] });
@@ -24,8 +26,8 @@ export const Filters: React.FC<{
       return setIsFirstRender(false);
     }
 
-    onFiltersChange({ query: nameInput, city: checkboxMap });
-  }, [nameInput, checkboxMap]);
+    onFiltersChange({ query: debouncedNameInput, city: debouncedCheckboxMap });
+  }, [debouncedNameInput, debouncedCheckboxMap]);
 
   return (
     <Wrapper>

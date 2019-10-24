@@ -1,4 +1,5 @@
 export const Studios = {
+  filtersDebounced: 500,
   fetchLimit: 10,
   // TODO get cities from API
   cities: [
