@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { populateStudios } from "@src/store/studio/actions";
 import {
@@ -8,6 +8,7 @@ import {
 } from "@src/store/studio/selectors";
 import { IFiltersData } from "@src/types/studio";
 import { reduceUncheckedCities } from "@src/helpers/filters";
+import { useDispatch } from "@src/hooks/dispatch";
 
 import Filters from "@src/components/Filters";
 import Screen from "../components/Screen";
@@ -15,17 +16,10 @@ import Catalog from "@src/components/Catalog";
 import Map from "@src/components/Map";
 
 const CatalogScreen: React.FC = () => {
-  const dispatch = useDispatch();
-
   const studiosList = useSelector(getStudiosList);
   const populatedStatus = useSelector(getPopulatedStatus);
 
-  const callPopulateStudios = useCallback(
-    (filtersData?: any) => {
-      dispatch(populateStudios(filtersData));
-    },
-    [dispatch],
-  );
+  const callPopulateStudios = useDispatch(populateStudios);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
     callPopulateStudios({
@@ -36,7 +30,7 @@ const CatalogScreen: React.FC = () => {
 
   useEffect(() => {
     callPopulateStudios();
-  }, []);
+  }, [callPopulateStudios]);
 
   return (
     <Screen populatedStatus={populatedStatus}>

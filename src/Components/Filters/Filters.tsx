@@ -11,7 +11,6 @@ export const Filters: React.FC<{
 }> = ({ onFiltersChange }) => {
   const { filtersDebounced, cities } = Studios;
   const [nameInput, setNameInput] = useState("");
-  const [isFirstRender, setIsFirstRender] = useState(true);
   const [checkboxMap, setCheckboxMap] = useState(createCityField(cities));
   const debouncedNameInput = useDebounce(nameInput, filtersDebounced);
   const debouncedCheckboxMap = useDebounce(checkboxMap, filtersDebounced);
@@ -22,10 +21,6 @@ export const Filters: React.FC<{
   const handleInputNameChange = (value: string) => setNameInput(value);
 
   useEffect(() => {
-    if (isFirstRender) {
-      return setIsFirstRender(false);
-    }
-
     onFiltersChange({ query: debouncedNameInput, city: debouncedCheckboxMap });
   }, [debouncedNameInput, debouncedCheckboxMap]);
 
