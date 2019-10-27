@@ -7,7 +7,10 @@ import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
 import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";
 
-export const Map: React.FC<{ studiosList: IStudio[] }> = ({ studiosList }) => {
+export const Map: React.FC<{
+  studiosList: IStudio[];
+  hoverdItemId: string;
+}> = ({ studiosList, hoverdItemId }) => {
   const coordinates = getCoordinates(studiosList);
 
   const [viewport, setViewport] = useState({
@@ -30,7 +33,7 @@ export const Map: React.FC<{ studiosList: IStudio[] }> = ({ studiosList }) => {
         mapboxApiAccessToken={GlMap.accessToken}
         onViewportChange={handeleViewportChange}
       >
-        <Markers dataList={studiosList} />
+        <Markers dataList={studiosList} hoverdItemId={hoverdItemId} />
         <NavigationControlWrapper>
           <NavigationControl showCompass={false} />
         </NavigationControlWrapper>

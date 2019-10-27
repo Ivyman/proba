@@ -9,7 +9,11 @@ import {
   MarkerTitle,
 } from "./elements";
 
-export const Markers: React.FC<{ dataList: IStudio[] }> = ({ dataList }) => {
+export const Markers: React.FC<{
+  dataList: IStudio[];
+  showPopupId?: string;
+  hoverdItemId: string;
+}> = ({ dataList, hoverdItemId }) => {
   const [hoveredMarker, setHoveredMarkerMarker] = useState("");
 
   const handleMouseOver = useCallback(
@@ -35,7 +39,7 @@ export const Markers: React.FC<{ dataList: IStudio[] }> = ({ dataList }) => {
           >
             <MarkerInner>Studio</MarkerInner>
           </GlMarker>
-          {hoveredMarker === data.id && (
+          {(hoveredMarker === data.id || hoverdItemId === data.id) && (
             <StyledPopup
               latitude={data.address.latitude}
               longitude={data.address.longitude}

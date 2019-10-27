@@ -12,6 +12,7 @@ export const Filters: React.FC<{
   const { filtersDebounced, cities } = Studios;
   const [nameInput, setNameInput] = useState("");
   const [checkboxMap, setCheckboxMap] = useState(createCityField(cities));
+
   const debouncedNameInput = useDebounce(nameInput, filtersDebounced);
   const debouncedCheckboxMap = useDebounce(checkboxMap, filtersDebounced);
 

@@ -7,11 +7,16 @@ import Typography from "@src/components/Typography";
 const { Head, Text } = Typography;
 
 export const CatalogItem: React.FC<{
+  id: string;
   thumbnail?: string;
   name: string;
   address: IStudioAddress;
-}> = ({ thumbnail, name, address }) => (
-  <Wrapper>
+  onHoverItem: (id: string) => void;
+}> = ({ id, thumbnail, name, address, onHoverItem }) => (
+  <Wrapper
+    onMouseOver={() => onHoverItem(id)}
+    onMouseLeave={() => onHoverItem("")}
+  >
     {thumbnail && <Thumbnail src={thumbnail} />}
     <Head as="h1">{name}</Head>
     <Text>
