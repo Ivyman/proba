@@ -7,10 +7,12 @@ export interface IAction {
 
 export interface IAppState {
   showSidebar: boolean;
+  hoveredStudio: string;
 }
 
 export const initialState: IAppState = {
   showSidebar: false,
+  hoveredStudio: "",
 };
 
 export default (
@@ -22,6 +24,12 @@ export default (
       return {
         ...state,
         showSidebar: !state.showSidebar,
+      };
+
+    case AppTypes.APP_SET_HOVERED_STUDIO:
+      return {
+        ...state,
+        hoveredStudio: payload,
       };
     default:
       return state;

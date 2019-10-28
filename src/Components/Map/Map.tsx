@@ -9,8 +9,7 @@ import { MapContainer, NavigationControlWrapper } from "./elements";
 
 export const Map: React.FC<{
   studiosList: IStudio[];
-  hoverdItemId: string;
-}> = ({ studiosList, hoverdItemId }) => {
+}> = ({ studiosList }) => {
   const coordinates = getCoordinates(studiosList);
 
   const [viewport, setViewport] = useState({
@@ -33,7 +32,7 @@ export const Map: React.FC<{
         mapboxApiAccessToken={GlMap.accessToken}
         onViewportChange={handeleViewportChange}
       >
-        <Markers dataList={studiosList} hoverdItemId={hoverdItemId} />
+        <Markers dataList={studiosList} />
         <NavigationControlWrapper>
           <NavigationControl showCompass={false} />
         </NavigationControlWrapper>

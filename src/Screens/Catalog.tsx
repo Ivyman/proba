@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { populateStudios } from "@src/store/studio/actions";
+import { setHoveredStudio } from "@src/store/app/actions";
 import {
   getStudiosList,
   getPopulatedStatus,
@@ -19,9 +20,8 @@ const CatalogScreen: React.FC = () => {
   const studiosList = useSelector(getStudiosList);
   const populatedStatus = useSelector(getPopulatedStatus);
 
-  const [hoveredItemId, setHoveredItemId] = useState("");
-
   const callPopulateStudios = useDispatch(populateStudios);
+  const setHoveredItem = useDispatch(setHoveredStudio);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
     callPopulateStudios({
@@ -37,8 +37,8 @@ const CatalogScreen: React.FC = () => {
   return (
     <Screen populatedStatus={populatedStatus}>
       <Filters onFiltersChange={handleFiltersChange} />
-      <Catalog studiosList={studiosList} onHoverItem={setHoveredItemId} />
-      <Map studiosList={studiosList} hoverdItemId={hoveredItemId} />
+      <Catalog studiosList={studiosList} onHoverItem={setHoveredItem} />
+      <Map studiosList={studiosList} />
     </Screen>
   );
 };
