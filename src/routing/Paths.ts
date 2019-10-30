@@ -22,8 +22,8 @@ const paths = {
   app: {
     paths: [
       generatePaths("O nas", "/about", true, AboutScreen),
-      generatePaths("Katalog", "/", true, CatalogScreen),
       generatePaths("Kontakt", "/contact", true, ContactScreen),
+      generatePaths("Katalog", "/catalog", true, CatalogScreen),
     ],
   },
 };

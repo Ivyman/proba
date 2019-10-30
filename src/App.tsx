@@ -6,7 +6,7 @@ import GlobalStyle from "@src/styles/GlobalStyle";
 import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
 import { ThemeProvider, theme } from "@src/styles";
-import { Routes } from "@src/routing/Routes";
+import { RouterScreen } from "@src/routing/RouterScreen";
 
 import Header from "@src/components/Header";
 
@@ -27,7 +27,7 @@ const App: React.FC = () => {
             showSidebar={sidebarStatus}
             onSwitchSidebar={hadleSidebarSwith}
           />
-          <Routes />
+          <RouterScreen />
         </BrowserRouter>
       </>
     </ThemeProvider>
