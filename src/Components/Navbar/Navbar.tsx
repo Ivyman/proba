@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 import { IPath } from "@src/types/path";
 
-import { Nav } from "./elements";
+import { Wrapper } from "./elements";
 
 export const Navbar: React.FC<{ items: IPath[] }> = ({ items }) => (
-  <Nav>
+  <Wrapper>
     {items.map(({ path, label }) => (
       <Link key={path} to={path}>
         {label}
       </Link>
     ))}
-  </Nav>
+  </Wrapper>
 );
