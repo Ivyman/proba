@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link, Route, useRouteMatch, Switch } from "react-router-dom";
 
 import { populateStudios } from "@src/store/studio/actions";
 import { setHoveredStudio } from "@src/store/app/actions";
@@ -15,6 +16,7 @@ import Filters from "@src/components/Filters";
 import Screen from "../components/Screen";
 import Catalog from "@src/components/Catalog";
 import Map from "@src/components/Map";
+import ItemBox from "@src/components/ItemBox";
 
 const CatalogScreen: React.FC = () => {
   const studiosList = useSelector(getStudiosList);
@@ -22,6 +24,8 @@ const CatalogScreen: React.FC = () => {
 
   const callPopulateStudios = useDispatch(populateStudios);
   const setHoveredItem = useDispatch(setHoveredStudio);
+
+  const { path, url } = useRouteMatch();
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
     callPopulateStudios({
@@ -37,7 +41,14 @@ const CatalogScreen: React.FC = () => {
   return (
     <Screen populatedStatus={populatedStatus}>
       <Filters onFiltersChange={handleFiltersChange} />
-      <Catalog studiosList={studiosList} onHoverItem={setHoveredItem} />
+      <Switch>
+        <Route path={`${path}/:studioId`}>
+          <ItemBox />
+        </Route>
+        <Route path={path}>
+          <Catalog studiosList={studiosList} onHoverItem={setHoveredItem} />
+        </Route>
+      </Switch>
       <Map studiosList={studiosList} />
     </Screen>
   );
