@@ -12,8 +12,8 @@ export const RouterScreen: React.FC = () => (
     <StyledContainer as="main">
       <Switch>
         <Route path="/about" component={AboutScreen} exact />
-        <Route path="/contact" component={ContactScreen} />
-        <Route path="/catalog" component={CatalogScreen} exact />
+        <Route path="/contact" component={ContactScreen} exact />
+        <Route path="/catalog" component={CatalogScreen} />
         <Redirect from="/*" to="/catalog" />
       </Switch>
     </StyledContainer>

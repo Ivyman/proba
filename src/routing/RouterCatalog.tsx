@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useRouteMatch, Switch } from "react-router-dom";
+import { Route, useRouteMatch, useParams, Switch } from "react-router-dom";
 
 import ItemBox from "@src/components/ItemBox";
 import Catalog from "@src/components/Catalog";
@@ -9,6 +9,7 @@ export const RouterCatalog: React.FC<{
   setHoveredItem: any;
 }> = ({ studiosList, setHoveredItem }) => {
   const { path } = useRouteMatch();
+  const { studioId } = useParams();
 
   return (
     <Switch>
