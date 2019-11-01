@@ -12,14 +12,7 @@ export const Catalog: React.FC<{
   <Wrapper>
     {studiosList.length ? (
       studiosList.map(({ id, logo, name, address }) => (
-        <CatalagItem
-          id={id}
-          key={id}
-          thumbnail={logo}
-          name={name}
-          address={address}
-          onHoverItem={onHoverItem}
-        />
+        <CatalagItem key={id} id={id} thumbnail={logo} name={name} address={address} onHoverItem={onHoverItem} />
       ))
     ) : (
       <>Studios not found...</>
