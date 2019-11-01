@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Route, useRouteMatch, Switch } from "react-router-dom";
 
-import { populateStudios } from "@src/store/studio/actions";
-import { setHoveredStudio } from "@src/store/app/actions";
+import { populateStudios, setHoveredStudio } from "@src/store/studio/actions";
 import { getStudiosList, getPopulatedStatus } from "@src/store/studio/selectors";
 import { IFiltersData } from "@src/types/studio";
 import { reduceUncheckedCities } from "@src/helpers/filters";

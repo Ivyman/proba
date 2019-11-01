@@ -3,13 +3,8 @@ import { useSelector } from "react-redux";
 import { Marker as GlMarker } from "react-map-gl";
 
 import { IStudio } from "@src/types/studio";
-import {
-  MarkerInner,
-  MarkerWrapper,
-  StyledPopup,
-  MarkerTitle,
-} from "./elements";
-import { getHoverdStudioId } from "@src/store/app/selectors";
+import { MarkerInner, MarkerWrapper, StyledPopup, MarkerTitle } from "./elements";
+import { getHoverdStudioId } from "@src/store/studio/selectors";
 
 export const Markers: React.FC<{
   dataList: IStudio[];
@@ -18,20 +13,13 @@ export const Markers: React.FC<{
 
   const hoveredItemId = useSelector(getHoverdStudioId);
 
-  const handleMouseOver = useCallback(
-    (markerId: string) => setHoveredMarker(markerId),
-    [],
-  );
+  const handleMouseOver = useCallback((markerId: string) => setHoveredMarker(markerId), []);
   const handleMouseLeave = useCallback(() => setHoveredMarker(""), []);
 
   return (
     <>
       {dataList.map(data => (
-        <MarkerWrapper
-          onMouseOver={() => handleMouseOver(data.id)}
-          onMouseLeave={handleMouseLeave}
-          key={data.id}
-        >
+        <MarkerWrapper onMouseOver={() => handleMouseOver(data.id)} onMouseLeave={handleMouseLeave} key={data.id}>
           <GlMarker
             key={data.id}
             latitude={data.address.latitude}

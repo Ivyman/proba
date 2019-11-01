@@ -13,7 +13,7 @@ export const CatalogItem: React.FC<{
   address: IStudioAddress;
   onHoverItem: (id: string) => void;
 }> = ({ id, thumbnail, name, address, onHoverItem }) => (
-  <Wrapper onMouseOver={() => onHoverItem(id)} onMouseLeave={() => onHoverItem("")}>
+  <Wrapper onMouseOver={() => onHoverItem(id)} onMouseLeave={() => onHoverItem("")} onClick={() => onHoverItem("")}>
     <StyledLink to={`/catalog/${id}`}>
       {thumbnail && <Thumbnail src={thumbnail} />}
       <Head as="h1">{name}</Head>

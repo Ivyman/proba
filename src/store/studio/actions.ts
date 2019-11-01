@@ -27,18 +27,12 @@ export const populateStudios = (filtersData?: IFiltersData) => async (
   }
 };
 
-export const setStudiosList = (
-  studiosList: IStudio[],
-  nextPageToken: string,
-) => ({
+export const setStudiosList = (studiosList: IStudio[], nextPageToken: string) => ({
   type: StudioTypes.STUDIO_LIST_SET,
   payload: { studiosList, nextPageToken },
 });
 
-export const addStudiosToList = (
-  studiosList: IStudio[],
-  nextPageToken: string,
-) => ({
+export const addStudiosToList = (studiosList: IStudio[], nextPageToken: string) => ({
   type: StudioTypes.STUDIO_LIST_ADD,
   payload: { studiosList, nextPageToken },
 });
@@ -50,4 +44,9 @@ export const setPopulatedStatus = (status: EApiStatuses) => ({
 
 export const resetStudions = () => ({
   type: StudioTypes.STUDIO_RESET,
+});
+
+export const setHoveredStudio = (id: string) => ({
+  type: StudioTypes.STUDIO_SET_HOVERED_STUDIO,
+  payload: id,
 });
