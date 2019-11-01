@@ -13,7 +13,7 @@ export const RouterCatalog: React.FC<{
   return (
     <Switch>
       <Route path={`${path}/:studioId`}>
-        <ItemBox />
+        <ItemBox studiosList={studiosList} />
       </Route>
       <Route path={path}>
         <Catalog studiosList={studiosList} onHoverItem={setHoveredItem} />
