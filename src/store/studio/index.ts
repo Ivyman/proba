@@ -11,14 +11,16 @@ export interface IStudioState {
   populatedStatus: EApiStatuses;
   studiosList: IStudio[];
   nextPageToken: string;
-  hoveredStudio: string;
+  hoveredStudioId: string;
+  openedStudio: IStudio | null;
 }
 
 export const initialState: IStudioState = {
   populatedStatus: EApiStatuses.IDLE,
   studiosList: [],
   nextPageToken: "",
-  hoveredStudio: "",
+  hoveredStudioId: "",
+  openedStudio: null,
 };
 
 export default (state: IStudioState = initialState, { type, payload }: IAction): IStudioState => {
@@ -43,7 +45,13 @@ export default (state: IStudioState = initialState, { type, payload }: IAction):
     case StudioTypes.STUDIO_SET_HOVERED_STUDIO:
       return {
         ...state,
-        hoveredStudio: payload,
+        hoveredStudioId: payload,
+      };
+
+    case StudioTypes.STUDIO_SET_OPENED_STUDIO:
+      return {
+        ...state,
+        openedStudio: payload,
       };
     case StudioTypes.STUDIO_RESET:
     default:

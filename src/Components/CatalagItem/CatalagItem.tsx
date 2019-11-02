@@ -1,25 +1,41 @@
 import React from "react";
 
-import { IStudioAddress } from "@src/types/studio";
+import { IStudio } from "@src/types/studio";
 import { Thumbnail, Wrapper, StyledLink } from "./elements";
 import Typography from "@src/components/Typography";
 
 const { Head, Text } = Typography;
 
 export const CatalogItem: React.FC<{
-  id: string;
-  thumbnail?: string;
-  name: string;
-  address: IStudioAddress;
+  itemData: IStudio;
   onHoverItem: (id: string) => void;
-}> = ({ id, thumbnail, name, address, onHoverItem }) => (
-  <Wrapper onMouseOver={() => onHoverItem(id)} onMouseLeave={() => onHoverItem("")} onClick={() => onHoverItem("")}>
-    <StyledLink to={`/catalog/${id}`}>
-      {thumbnail && <Thumbnail src={thumbnail} />}
-      <Head as="h1">{name}</Head>
-      <Text>
-        {address.city}, {address.zipcode}, {address.street}
-      </Text>
-    </StyledLink>
-  </Wrapper>
-);
+  onOpenItem: (item: IStudio | null) => void;
+}> = ({ itemData, onHoverItem, onOpenItem }) => {
+  const handleClick = () => {
+    onHoverItem("");
+    onOpenItem(itemData);
+  };
+
+  const {
+    id,
+    address: { city, zipcode, street },
+    name,
+    logo,
+  } = itemData;
+
+  return (
+    <Wrapper
+      onMouseOver={() => onHoverItem(itemData.id)}
+      onMouseLeave={() => onHoverItem("")}
+      onClick={() => handleClick()}
+    >
+      <StyledLink to={`/catalog/${id}`}>
+        {logo && <Thumbnail src={logo} />}
+        <Head as="h1">{name}</Head>
+        <Text>
+          {city}, {zipcode}, {street}
+        </Text>
+      </StyledLink>
+    </Wrapper>
+  );
+};

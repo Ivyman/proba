@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { populateStudios, setHoveredStudio } from "@src/store/studio/actions";
-import { getStudiosList, getPopulatedStatus } from "@src/store/studio/selectors";
+import { populateStudios, setHoveredStudio, setOpenedStudio } from "@src/store/studio/actions";
+import { getStudiosList, getPopulatedStatus, getOpenedStudio } from "@src/store/studio/selectors";
 import { IFiltersData } from "@src/types/studio";
 import { reduceUncheckedCities } from "@src/helpers/filters";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
@@ -15,9 +15,11 @@ import Map from "@src/components/Map";
 const CatalogScreen: React.FC = () => {
   const studiosList = useSelector(getStudiosList);
   const populatedStatus = useSelector(getPopulatedStatus);
+  const openedStudio = useSelector(getOpenedStudio);
 
   const callPopulateStudios = useDispatch(populateStudios);
   const setHoveredItem = useDispatch(setHoveredStudio);
+  const setOpenedItem = useDispatch(setOpenedStudio);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
     callPopulateStudios({
@@ -33,7 +35,12 @@ const CatalogScreen: React.FC = () => {
   return (
     <Screen populatedStatus={populatedStatus}>
       <Filters onFiltersChange={handleFiltersChange} />
-      <RouterCatalog studiosList={studiosList} setHoveredItem={setHoveredItem} />
+      <RouterCatalog
+        studiosList={studiosList}
+        openedStudio={openedStudio}
+        onHoverStudio={setHoveredItem}
+        onOpenStudio={setOpenedItem}
+      />
       <Map studiosList={studiosList} />
     </Screen>
   );

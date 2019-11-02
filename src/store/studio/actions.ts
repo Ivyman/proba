@@ -50,3 +50,8 @@ export const setHoveredStudio = (id: string) => ({
   type: StudioTypes.STUDIO_SET_HOVERED_STUDIO,
   payload: id,
 });
+
+export const setOpenedStudio = (studio: IStudio | null) => ({
+  type: StudioTypes.STUDIO_SET_OPENED_STUDIO,
+  payload: studio,
+});

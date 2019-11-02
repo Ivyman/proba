@@ -8,11 +8,12 @@ import { Wrapper } from "./elements";
 export const Catalog: React.FC<{
   studiosList: IStudio[];
   onHoverItem: (itemId: string) => void;
-}> = ({ studiosList, onHoverItem }) => (
+  onOpenItem: (item: IStudio | null) => void;
+}> = ({ studiosList, onHoverItem, onOpenItem }) => (
   <Wrapper>
     {studiosList.length ? (
-      studiosList.map(({ id, logo, name, address }) => (
-        <CatalagItem key={id} id={id} thumbnail={logo} name={name} address={address} onHoverItem={onHoverItem} />
+      studiosList.map(itemData => (
+        <CatalagItem key={itemData.id} itemData={itemData} onHoverItem={onHoverItem} onOpenItem={onOpenItem} />
       ))
     ) : (
       <>Studios not found...</>

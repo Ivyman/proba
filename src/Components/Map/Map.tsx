@@ -27,11 +27,7 @@ export const Map: React.FC<{
 
   return (
     <MapContainer>
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={GlMap.accessToken}
-        onViewportChange={handeleViewportChange}
-      >
+      <ReactMapGL {...viewport} mapboxApiAccessToken={GlMap.accessToken} onViewportChange={handeleViewportChange}>
         <Markers dataList={studiosList} />
         <NavigationControlWrapper>
           <NavigationControl showCompass={false} />
