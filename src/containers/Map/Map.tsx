@@ -11,7 +11,7 @@ import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";
 
 export const Map: React.FC = () => {
-  const hoveredItemId: string = useSelector(getHoverdStudioId);
+  const hoveredItemId: string | null = useSelector(getHoverdStudioId);
   const studiosList: IStudio[] = useSelector(getStudiosList);
 
   const coordinates = getCoordinates(studiosList);
@@ -31,7 +31,11 @@ export const Map: React.FC = () => {
 
   return (
     <MapContainer>
-      <ReactMapGL {...viewport} mapboxApiAccessToken={GlMap.accessToken} onViewportChange={handeleViewportChange}>
+      <ReactMapGL
+        {...viewport}
+        mapboxApiAccessToken={GlMap.accessToken}
+        onViewportChange={handeleViewportChange}
+      >
         <Markers dataList={studiosList} hoveredItemId={hoveredItemId} />
         <NavigationControlWrapper>
           <NavigationControl showCompass={false} />

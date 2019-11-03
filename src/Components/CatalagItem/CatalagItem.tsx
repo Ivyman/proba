@@ -8,11 +8,11 @@ const { Head, Text } = Typography;
 
 export const CatalogItem: React.FC<{
   itemData: IStudio;
-  onHoverItem: (id: string) => void;
+  onHoveredItem: (id: string | null) => void;
   onOpenItem: (item: IStudio | null) => void;
-}> = ({ itemData, onHoverItem, onOpenItem }) => {
+}> = ({ itemData, onHoveredItem, onOpenItem }) => {
   const handleClick = () => {
-    onHoverItem("");
+    onHoveredItem(null);
     onOpenItem(itemData);
   };
 
@@ -25,8 +25,8 @@ export const CatalogItem: React.FC<{
 
   return (
     <Wrapper
-      onMouseOver={() => onHoverItem(itemData.id)}
-      onMouseLeave={() => onHoverItem("")}
+      onMouseOver={() => onHoveredItem(itemData.id)}
+      onMouseLeave={() => onHoveredItem("")}
       onClick={() => handleClick()}
     >
       <StyledLink to={`/catalog/${id}`}>

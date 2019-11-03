@@ -6,19 +6,27 @@ import { MarkerInner, Wrapper, StyledPopup, MarkerTitle } from "./elements";
 
 export const Markers: React.FC<{
   dataList: IStudio[];
-  hoveredItemId: string;
+  hoveredItemId: string | null;
 }> = ({ dataList, hoveredItemId }) => {
   const [hoveredMarker, setHoveredMarker] = useState("");
 
-  const handleMouseOver = useCallback((markerId: string) => setHoveredMarker(markerId), []);
+  const handleMouseOver = useCallback(
+    (markerId: string) => setHoveredMarker(markerId),
+    [],
+  );
   const handleMouseLeave = useCallback(() => setHoveredMarker(""), []);
 
-  const isShowPopup = (data: IStudio) => hoveredMarker === data.id || hoveredItemId === data.id;
+  const isShowPopup = (data: IStudio) =>
+    hoveredMarker === data.id || hoveredItemId === data.id;
 
   return (
     <>
       {dataList.map(data => (
-        <Wrapper onMouseOver={() => handleMouseOver(data.id)} onMouseLeave={handleMouseLeave} key={data.id}>
+        <Wrapper
+          onMouseOver={() => handleMouseOver(data.id)}
+          onMouseLeave={handleMouseLeave}
+          key={data.id}
+        >
           <GlMarker
             key={data.id}
             latitude={data.address.latitude}

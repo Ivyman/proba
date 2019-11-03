@@ -2,14 +2,10 @@ import React from "react";
 import { Route, useRouteMatch, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-import { IStudio } from "@src/types/studio";
-
-import ItemBox from "@src/components/ItemBox";
+import Studio from "@src/containers/Studio";
 import Catalog from "@src/containers/Catalog";
 
-export const RouterCatalog: React.FC<{
-  openedStudio: IStudio | null;
-}> = ({ openedStudio }) => {
+export const RouterCatalog: React.FC = () => {
   const { path } = useRouteMatch();
   const { goBack } = useHistory();
 
@@ -18,7 +14,7 @@ export const RouterCatalog: React.FC<{
   return (
     <Switch>
       <Route path={`${path}/:studioId`}>
-        <ItemBox openedItem={openedStudio} onGoBack={handleGoBack} />
+        <Studio onGoBack={handleGoBack} />
       </Route>
       <Route path={path}>
         <Catalog />

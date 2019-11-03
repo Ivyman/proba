@@ -6,7 +6,7 @@ export const useDispatch = (action: any) => {
 
   return useCallback(
     (payload?: any) => {
-      dispatch(payload ? action(payload) : action());
+      dispatch(payload !== undefined ? action(payload) : action());
     },
     [dispatch, action],
   );

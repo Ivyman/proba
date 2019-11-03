@@ -11,7 +11,7 @@ export interface IStudioState {
   populatedStatus: EApiStatuses;
   studiosList: IStudio[];
   nextPageToken: string;
-  hoveredStudioId: string;
+  hoveredStudioId: string | null;
   openedStudio: IStudio | null;
 }
 
@@ -19,11 +19,14 @@ export const initialState: IStudioState = {
   populatedStatus: EApiStatuses.IDLE,
   studiosList: [],
   nextPageToken: "",
-  hoveredStudioId: "",
+  hoveredStudioId: null,
   openedStudio: null,
 };
 
-export default (state: IStudioState = initialState, { type, payload }: IAction): IStudioState => {
+export default (
+  state: IStudioState = initialState,
+  { type, payload }: IAction,
+): IStudioState => {
   switch (type) {
     case StudioTypes.STUDIO_LIST_SET:
       return {
