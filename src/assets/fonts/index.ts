@@ -1,4 +1,4 @@
-import { css } from "../index";
+import { css } from "../../styles/index";
 
 import * as gilroyBoldWoff from "./gilroy-bold.woff";
 import * as gilroyBoldWoff2 from "./gilroy-bold.woff2";

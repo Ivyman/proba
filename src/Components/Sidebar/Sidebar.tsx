@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 
 import Logo from "@src/components/Logo";
 
-import { SidebarContainer } from "./elements";
+import { Wrapper } from "./elements";
 
 export const Sidebar: React.FC = ({ children }) => {
   const renderSidebar = () => (
-    <SidebarContainer>
+    <Wrapper>
       <Logo link="/" />
       {children}
-    </SidebarContainer>
+    </Wrapper>
   );
   const sidebarRoot = document.getElementById("sidebar-root") as HTMLElement;
 

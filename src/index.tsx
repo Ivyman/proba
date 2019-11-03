@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./store";
 
-console.log("v0.5", process.env.NODE_ENV); // tslint:disable-line
+console.log("v1.0", process.env.NODE_ENV); // tslint:disable-line
 
 ReactDOM.render(
   <Provider store={store}>

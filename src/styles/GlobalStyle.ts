@@ -1,4 +1,4 @@
-import fonts from "./fonts";
+import fonts from "@src/assets/fonts";
 import { createGlobalStyle } from "./index";
 
 export default createGlobalStyle`

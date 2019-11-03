@@ -7,8 +7,11 @@ import { MarkerInner, Wrapper, StyledPopup, MarkerTitle } from "./elements";
 export const Markers: React.FC<{
   dataList: IStudio[];
   hoveredItemId: string | null;
-}> = ({ dataList, hoveredItemId }) => {
+  openedStudioId: string | null;
+}> = ({ dataList, hoveredItemId, openedStudioId }) => {
   const [hoveredMarker, setHoveredMarker] = useState("");
+  const isShowPopup = (data: IStudio) =>
+    hoveredMarker === data.id || hoveredItemId === data.id;
 
   const handleMouseOver = useCallback(
     (markerId: string) => setHoveredMarker(markerId),
@@ -16,16 +19,16 @@ export const Markers: React.FC<{
   );
   const handleMouseLeave = useCallback(() => setHoveredMarker(""), []);
 
-  const isShowPopup = (data: IStudio) =>
-    hoveredMarker === data.id || hoveredItemId === data.id;
+  const isStudioOpened = (id: string) => openedStudioId === id;
 
   return (
     <>
       {dataList.map(data => (
         <Wrapper
+          key={data.id}
+          isOpened={isStudioOpened(data.id)}
           onMouseOver={() => handleMouseOver(data.id)}
           onMouseLeave={handleMouseLeave}
-          key={data.id}
         >
           <GlMarker
             key={data.id}

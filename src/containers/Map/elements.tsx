@@ -1,6 +1,13 @@
 import styled from "@src/styles";
 import { Popup } from "react-map-gl";
 
+export const Wrapper = styled.div<{ isOpened?: boolean }>`
+  ${({ isOpened }) =>
+    isOpened
+      ? `z-index: 1; position: relative; ${MarkerInner} { background: blue; }`
+      : ""}
+`;
+
 export const NavigationControlWrapper = styled.div`
   position: absolute;
   bottom: 30px;
@@ -12,8 +19,6 @@ export const MapContainer = styled.div`
   height: 100vh;
   width: 50%;
 `;
-
-export const Wrapper = styled.div``;
 
 export const MarkerInner = styled.div`
   background: gray;

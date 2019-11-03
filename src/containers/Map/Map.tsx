@@ -5,13 +5,18 @@ import { useSelector } from "react-redux";
 import { GlMap } from "@src/config/Confing";
 import { IStudio, ECoordinateName } from "@src/types/studio";
 import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
-import { getHoverdStudioId, getStudiosList } from "@src/store/studio/selectors";
+import {
+  getHoverdStudioId,
+  getOpenedStudio,
+  getStudiosList,
+} from "@src/store/studio/selectors";
 
 import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";
 
 export const Map: React.FC = () => {
   const hoveredItemId: string | null = useSelector(getHoverdStudioId);
+  const openedStudio: IStudio | null = useSelector(getOpenedStudio);
   const studiosList: IStudio[] = useSelector(getStudiosList);
 
   const coordinates = getCoordinates(studiosList);
@@ -25,6 +30,8 @@ export const Map: React.FC = () => {
     zoom: 10,
   });
 
+  const getOpenedStudioId = () => (openedStudio ? openedStudio.id : null);
+
   const handeleViewportChange = (changedViewport: any) => {
     setViewport(changedViewport);
   };
@@ -36,7 +43,11 @@ export const Map: React.FC = () => {
         mapboxApiAccessToken={GlMap.accessToken}
         onViewportChange={handeleViewportChange}
       >
-        <Markers dataList={studiosList} hoveredItemId={hoveredItemId} />
+        <Markers
+          dataList={studiosList}
+          hoveredItemId={hoveredItemId}
+          openedStudioId={getOpenedStudioId()}
+        />
         <NavigationControlWrapper>
           <NavigationControl showCompass={false} />
         </NavigationControlWrapper>

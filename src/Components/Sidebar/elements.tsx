@@ -1,6 +1,6 @@
 import styled from "@src/styles";
 
-export const SidebarContainer = styled.aside`
+export const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.palette.white};
