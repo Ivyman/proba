@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent, useState } from "react";
 
 import { IStudio } from "@src/types/studio";
 import { Thumbnail, Wrapper, StyledLink } from "./elements";
@@ -7,13 +7,27 @@ import Typography from "@src/components/Typography";
 const { Head, Text } = Typography;
 
 export const CatalogItem: React.FC<{
-  itemData: IStudio;
-  onHoveredItem: (id: string | null) => void;
-  onOpenItem: (item: IStudio | null) => void;
-}> = ({ itemData, onHoveredItem, onOpenItem }) => {
+  studioData: IStudio;
+  onHoveredStudio: (id: string | null) => void;
+  onOpenStudio: (studio: IStudio | null) => void;
+}> = ({ studioData, onHoveredStudio, onOpenStudio }) => {
+  const [hover, setHover] = useState();
+
   const handleClick = () => {
-    onHoveredItem(null);
-    onOpenItem(itemData);
+    onHoveredStudio(null);
+    onOpenStudio(studioData);
+  };
+  const handleMouseOver = (event: MouseEvent, studioId: string) => {
+    if (hover === event.currentTarget) {
+      return;
+    }
+    setHover(event.currentTarget);
+    onHoveredStudio(studioId);
+  };
+
+  const handleMouseLeave = () => {
+    setHover(null);
+    onHoveredStudio("");
   };
 
   const {
@@ -21,12 +35,12 @@ export const CatalogItem: React.FC<{
     address: { city, zipcode, street },
     name,
     logo,
-  } = itemData;
+  } = studioData;
 
   return (
     <Wrapper
-      onMouseOver={() => onHoveredItem(itemData.id)}
-      onMouseLeave={() => onHoveredItem("")}
+      onMouseOver={event => handleMouseOver(event, studioData.id)}
+      onMouseLeave={event => handleMouseLeave()}
       onClick={() => handleClick()}
     >
       <StyledLink to={`/catalog/${id}`}>
