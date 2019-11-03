@@ -6,7 +6,7 @@ import { IStudio } from "@src/types/studio";
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studio/actions";
 import { getStudiosList } from "@src/store/studio/selectors";
 
-import CatalagItem from "@src/components/CatalagItem";
+import CatalogItem from "@src/components/CatalogItem";
 import { Wrapper } from "./elements";
 
 export const Catalog: React.FC = () => {
@@ -18,7 +18,7 @@ export const Catalog: React.FC = () => {
     <Wrapper>
       {studiosList.length ? (
         studiosList.map(itemData => (
-          <CatalagItem
+          <CatalogItem
             key={itemData.id}
             itemData={itemData}
             onHoveredItem={setHoveredItem}
