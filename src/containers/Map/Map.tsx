@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import ReactMapGL, { NavigationControl } from "react-map-gl";
+import { useSelector } from "react-redux";
 
 import { GlMap } from "@src/config/Confing";
 import { IStudio, ECoordinateName } from "@src/types/studio";
 import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
+import { getHoverdStudioId, getStudiosList } from "@src/store/studio/selectors";
+
 import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";
 
-export const Map: React.FC<{
-  studiosList: IStudio[];
-}> = ({ studiosList }) => {
+export const Map: React.FC = () => {
+  const hoveredItemId: string = useSelector(getHoverdStudioId);
+  const studiosList: IStudio[] = useSelector(getStudiosList);
+
   const coordinates = getCoordinates(studiosList);
 
   const [viewport, setViewport] = useState({
@@ -28,7 +32,7 @@ export const Map: React.FC<{
   return (
     <MapContainer>
       <ReactMapGL {...viewport} mapboxApiAccessToken={GlMap.accessToken} onViewportChange={handeleViewportChange}>
-        <Markers dataList={studiosList} />
+        <Markers dataList={studiosList} hoveredItemId={hoveredItemId} />
         <NavigationControlWrapper>
           <NavigationControl showCompass={false} />
         </NavigationControlWrapper>

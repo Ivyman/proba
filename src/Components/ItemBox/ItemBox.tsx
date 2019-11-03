@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 import { IStudio } from "@src/types/studio";
 
@@ -7,18 +6,11 @@ import { Wrapper } from "./elements";
 
 export const ItemBox: React.FC<{
   openedItem: IStudio | null;
-  onOpenItem: (item: IStudio | null) => void;
-}> = ({ openedItem, onOpenItem }) => {
-  const { goBack } = useHistory();
-
-  const handleClick = () => {
-    onOpenItem(null);
-    goBack();
-  };
-
+  onGoBack: () => void;
+}> = ({ openedItem, onGoBack }) => {
   return (
     <Wrapper>
-      <button onClick={() => handleClick()}>powrót</button>
+      <button onClick={() => onGoBack()}>powrót</button>
       {openedItem ? (
         <>
           <div>

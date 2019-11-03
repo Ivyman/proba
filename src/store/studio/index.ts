@@ -1,5 +1,5 @@
 import StudioTypes from "./types";
-import EApiStatuses from "@src/types/api";
+import { EApiStatuses } from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 
 export interface IAction {

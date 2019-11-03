@@ -12,7 +12,7 @@ import Header from "@src/components/Header";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const sidebarStatus = useSelector(getSidebarStatus);
+  const sidebarStatus: boolean = useSelector(getSidebarStatus);
 
   const hadleSidebarSwith = useCallback(() => {
     dispatch(switchSidebar());
@@ -23,10 +23,7 @@ const App: React.FC = () => {
       <>
         <GlobalStyle />
         <BrowserRouter basename={process.env.PUBLIC_URL}>
-          <Header
-            showSidebar={sidebarStatus}
-            onSwitchSidebar={hadleSidebarSwith}
-          />
+          <Header showSidebar={sidebarStatus} onSwitchSidebar={hadleSidebarSwith} />
           <RouterScreen />
         </BrowserRouter>
       </>

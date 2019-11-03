@@ -13,7 +13,7 @@ export const MapContainer = styled.div`
   width: 50%;
 `;
 
-export const MarkerWrapper = styled.div``;
+export const Wrapper = styled.div``;
 
 export const MarkerInner = styled.div`
   background: gray;

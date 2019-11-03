@@ -1,26 +1,27 @@
 import React from "react";
 import { Route, useRouteMatch, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { IStudio } from "@src/types/studio";
 
 import ItemBox from "@src/components/ItemBox";
-import Catalog from "@src/components/Catalog";
+import Catalog from "@src/containers/Catalog";
 
 export const RouterCatalog: React.FC<{
-  studiosList: IStudio[];
-  onHoverStudio: (itemId: string) => void;
   openedStudio: IStudio | null;
-  onOpenStudio: (item: IStudio | null) => void;
-}> = ({ studiosList, onHoverStudio, openedStudio, onOpenStudio }) => {
+}> = ({ openedStudio }) => {
   const { path } = useRouteMatch();
+  const { goBack } = useHistory();
+
+  const handleGoBack = () => goBack();
 
   return (
     <Switch>
       <Route path={`${path}/:studioId`}>
-        <ItemBox openedItem={openedStudio} onOpenItem={onOpenStudio} />
+        <ItemBox openedItem={openedStudio} onGoBack={handleGoBack} />
       </Route>
       <Route path={path}>
-        <Catalog studiosList={studiosList} onHoverItem={onHoverStudio} onOpenItem={onOpenStudio} />
+        <Catalog />
       </Route>
     </Switch>
   );

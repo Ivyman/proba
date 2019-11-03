@@ -1,6 +1,6 @@
 import StudioTypes from "./types";
 import { RootState, ThunkDispatch } from "@src/types/store";
-import EApiStatuses from "@src/types/api";
+import { EApiStatuses } from "@src/types/api";
 import { IStudio } from "@src/types/studio";
 import * as effects from "./effects";
 import { IFiltersData } from "@src/types/studio";

@@ -1,25 +1,24 @@
 import React, { useState, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { Marker as GlMarker } from "react-map-gl";
 
 import { IStudio } from "@src/types/studio";
-import { MarkerInner, MarkerWrapper, StyledPopup, MarkerTitle } from "./elements";
-import { getHoverdStudioId } from "@src/store/studio/selectors";
+import { MarkerInner, Wrapper, StyledPopup, MarkerTitle } from "./elements";
 
 export const Markers: React.FC<{
   dataList: IStudio[];
-}> = ({ dataList }) => {
+  hoveredItemId: string;
+}> = ({ dataList, hoveredItemId }) => {
   const [hoveredMarker, setHoveredMarker] = useState("");
-
-  const hoveredItemId = useSelector(getHoverdStudioId);
 
   const handleMouseOver = useCallback((markerId: string) => setHoveredMarker(markerId), []);
   const handleMouseLeave = useCallback(() => setHoveredMarker(""), []);
 
+  const isShowPopup = (data: IStudio) => hoveredMarker === data.id || hoveredItemId === data.id;
+
   return (
     <>
       {dataList.map(data => (
-        <MarkerWrapper onMouseOver={() => handleMouseOver(data.id)} onMouseLeave={handleMouseLeave} key={data.id}>
+        <Wrapper onMouseOver={() => handleMouseOver(data.id)} onMouseLeave={handleMouseLeave} key={data.id}>
           <GlMarker
             key={data.id}
             latitude={data.address.latitude}
@@ -29,7 +28,7 @@ export const Markers: React.FC<{
           >
             <MarkerInner>Studio</MarkerInner>
           </GlMarker>
-          {(hoveredMarker === data.id || hoveredItemId === data.id) && (
+          {isShowPopup(data) && (
             <StyledPopup
               latitude={data.address.latitude}
               longitude={data.address.longitude}
@@ -44,7 +43,7 @@ export const Markers: React.FC<{
               </div>
             </StyledPopup>
           )}
-        </MarkerWrapper>
+        </Wrapper>
       ))}
     </>
   );
