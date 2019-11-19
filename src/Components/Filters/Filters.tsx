@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { Studios } from "@src/config/Constants";
-import { createCityField } from "@src/helpers/filters";
 import { useDebounce } from "@src/hooks/debounce";
 
 import { Wrapper } from "./elements";
@@ -9,33 +8,35 @@ import { Wrapper } from "./elements";
 export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
 }> = ({ onFiltersChange }) => {
-  const { filtersDebounced, cities } = Studios;
-  const [nameInput, setNameInput] = useState("");
-  const [checkboxMap, setCheckboxMap] = useState(createCityField(cities));
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("all");
 
-  const debouncedNameInput = useDebounce(nameInput, filtersDebounced);
-  const debouncedCheckboxMap = useDebounce(checkboxMap, filtersDebounced);
+  const debouncedName = useDebounce(name, Studios.filtersDebounced);
+  const debouncedCity = useDebounce(city, Studios.filtersDebounced);
 
-  const handleCheckboxChange = (key: string) =>
-    setCheckboxMap({ ...checkboxMap, [key]: !checkboxMap[key] });
+  const handleCityChange = useCallback((cityKey: string) => setCity(cityKey), [
+    setCity,
+  ]);
 
-  const handleInputNameChange = (value: string) => setNameInput(value);
+  const handleInputNameChange = useCallback((value: string) => setName(value), [
+    setName,
+  ]);
 
   useEffect(() => {
-    onFiltersChange({ query: debouncedNameInput, city: debouncedCheckboxMap });
-  }, [debouncedNameInput, debouncedCheckboxMap]);
+    onFiltersChange({ query: debouncedName, city: debouncedCity });
+  }, [debouncedName, debouncedCity, onFiltersChange]);
 
   return (
     <Wrapper>
-      {Studios.cities.map(city => (
-        <label key={city.key}>
-          {city.name}
+      {Studios.cities.map(cityItem => (
+        <label key={cityItem.key}>
+          {cityItem.name}
           <input
-            onChange={() => handleCheckboxChange(city.key)}
-            type="checkbox"
+            onChange={() => handleCityChange(cityItem.key)}
+            type="radio"
             name="city"
-            value={city.key}
-            checked={checkboxMap[city.key]}
+            value={cityItem.key}
+            checked={city === cityItem.key}
           />
         </label>
       ))}
