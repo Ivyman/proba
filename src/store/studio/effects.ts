@@ -1,12 +1,12 @@
 import apiEndpoint, { URLS } from "@src/services/api";
 import { Studios } from "@src/config/Constants";
-import { IFiltersData } from "@src/types/studio";
+import { IFiltersData } from "@src/types/filters";
+import { IStudioResponse } from "@src/types/studio";
 
 export const fetchStudios = async (
   nextPageToken?: string | null,
   filtersData?: IFiltersData,
-  // TODO change to type
-): Promise<any> => {
+): Promise<{ data: IStudioResponse }> => {
   const params = {
     limit: Studios.fetchLimit,
     query: filtersData ? filtersData.query : "",

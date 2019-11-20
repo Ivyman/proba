@@ -29,9 +29,9 @@ export interface IStudio {
   contact: IContact;
 }
 
-export interface IFiltersData {
-  query: string;
-  city: string[] | string;
+export interface IStudioResponse {
+  studios: IStudio[];
+  nextPageToken: string;
 }
 
 export enum ECoordinateName {

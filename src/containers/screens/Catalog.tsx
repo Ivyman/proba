@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { IFiltersData } from "@src/types/studio";
+import { IFiltersData } from "@src/types/filters";
 import { EApiStatuses } from "@src/types/api";
 import { fetchStudios } from "@src/store/studio/actions";
 import { getStudiosApiStatus } from "@src/store/studio/selectors";

@@ -1,7 +1,8 @@
 import StudioTypes from "./types";
 import { RootState, ThunkDispatch } from "@src/types/store";
 import { IStudio } from "@src/types/studio";
-import { IFiltersData } from "@src/types/studio";
+import { IFiltersData } from "@src/types/filters";
+import { IAction } from "@src/types/store";
 import * as effects from "./effects";
 
 export const fetchStudios = (filtersData?: IFiltersData) => async (
@@ -16,7 +17,7 @@ export const fetchStudios = (filtersData?: IFiltersData) => async (
     } = getStatate();
 
     const {
-      data: { studios, newNextPageToken },
+      data: { studios, nextPageToken: newNextPageToken },
     } = await effects.fetchStudios(nextPageToken, filtersData);
 
     dispatch(fetchStudiosSuccess(studios, newNextPageToken));
@@ -27,33 +28,36 @@ export const fetchStudios = (filtersData?: IFiltersData) => async (
   }
 };
 
-export const isFetching = () => ({
+export const isFetching = (): IAction => ({
   type: StudioTypes.STUDIO_FETCHING,
 });
 
 export const fetchStudiosSuccess = (
   studios: IStudio[],
   nextPageToken: string,
-) => ({
+): IAction => ({
   type: StudioTypes.STUDIO_FETCH_SUCCESS,
   payload: { studios, nextPageToken },
 });
 
-export const studiosAppend = (studios: IStudio[], nextPageToken: string) => ({
+export const studiosAppend = (
+  studios: IStudio[],
+  nextPageToken: string,
+): IAction => ({
   type: StudioTypes.STUDIO_APPEND,
   payload: { studios, nextPageToken },
 });
 
-export const fetchStudiosReject = () => ({
+export const fetchStudiosReject = (): IAction => ({
   type: StudioTypes.STUDIO_FETCH_REJECT,
 });
 
-export const setHoveredStudio = (id: string) => ({
+export const setHoveredStudio = (id: string): IAction => ({
   type: StudioTypes.STUDIO_SET_HOVERED,
   payload: id,
 });
 
-export const setOpenedStudio = (studio: IStudio | null) => ({
+export const setOpenedStudio = (studio: IStudio | null): IAction => ({
   type: StudioTypes.STUDIO_SET_OPENED,
   payload: studio,
 });

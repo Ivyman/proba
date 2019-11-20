@@ -1,10 +1,12 @@
-import { RootState, ThunkDispatch } from "@src/types/store";
+import { ThunkDispatch } from "@src/types/store";
+import { IFilters } from "@src/types/filters";
+import { IAction } from "@src/types/store";
 import FiltersTypes from "./types";
 import * as effects from "./effects";
 
 export const fetchFilters = () => async (dispatch: ThunkDispatch) => {
   try {
-    const { filters } = await effects.fetchFilters();
+    const filters = await effects.fetchFilters();
 
     dispatch(fetchFiltersSuccess(filters));
   } catch (error) {
@@ -14,12 +16,11 @@ export const fetchFilters = () => async (dispatch: ThunkDispatch) => {
   }
 };
 
-// TODO create filters type
-export const fetchFiltersSuccess = (filters: any) => ({
+export const fetchFiltersSuccess = (filters: IFilters): IAction => ({
   type: FiltersTypes.FILTERS_FETCH_SUCCESS,
   payload: filters,
 });
 
-export const fetchFiltersReject = () => ({
+export const fetchFiltersReject = (): IAction => ({
   type: FiltersTypes.FILTERS_FETCH_REJECT,
 });

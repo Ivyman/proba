@@ -1,18 +1,15 @@
 import FiltersTypes from "./types";
 import { EApiStatuses } from "@src/types/api";
-
-export interface IAction {
-  type: any;
-  payload?: any;
-}
+import { IFilters } from "@src/types/filters";
+import { IAction } from "@src/types/store";
 
 export interface IFiltersState {
-  filters: any;
+  cities: IFilters[];
   fetchStatus: EApiStatuses;
 }
 
 export const initialState: IFiltersState = {
-  filters: null,
+  cities: [],
   fetchStatus: EApiStatuses.IDLE,
 };
 
@@ -24,14 +21,14 @@ export default (
     case FiltersTypes.FILTERS_FETCH_SUCCESS:
       return {
         ...state,
-        filters: payload,
+        cities: payload,
         fetchStatus: EApiStatuses.SUCCESS,
       };
 
     case FiltersTypes.FILTERS_FETCH_REJECT:
       return {
         ...state,
-        filters: null,
+        cities: [],
         fetchStatus: EApiStatuses.ERROR,
       };
 
