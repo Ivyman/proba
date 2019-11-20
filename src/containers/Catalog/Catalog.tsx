@@ -4,23 +4,23 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "@src/hooks/dispatch";
 import { IStudio } from "@src/types/studio";
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studio/actions";
-import { getStudiosList } from "@src/store/studio/selectors";
+import { getStudios } from "@src/store/studio/selectors";
 
 import CatalogItem from "@src/components/CatalogItem";
 import { Wrapper } from "./elements";
 
 export const Catalog: React.FC = () => {
-  const studiosList: IStudio[] = useSelector(getStudiosList);
+  const studios: IStudio[] = useSelector(getStudios);
   const setHoveredStudioItem = useDispatch(setHoveredStudio);
   const setOpenedStudioItem = useDispatch(setOpenedStudio);
 
   return (
     <Wrapper>
-      {studiosList.length ? (
-        studiosList.map(studioData => (
+      {studios.length ? (
+        studios.map(studio => (
           <CatalogItem
-            key={studioData.id}
-            studioData={studioData}
+            key={studio.id}
+            studioData={studio}
             onHoveredStudio={setHoveredStudioItem}
             onOpenStudio={setOpenedStudioItem}
           />

@@ -1,11 +1,10 @@
 import StudioTypes from "./types";
 import { RootState, ThunkDispatch } from "@src/types/store";
-import { EApiStatuses } from "@src/types/api";
 import { IStudio } from "@src/types/studio";
-import * as effects from "./effects";
 import { IFiltersData } from "@src/types/studio";
+import * as effects from "./effects";
 
-export const populateStudios = (filtersData?: IFiltersData) => async (
+export const fetchStudios = (filtersData?: IFiltersData) => async (
   dispatch: ThunkDispatch,
   getStatate: () => RootState,
 ) => {
@@ -16,42 +15,39 @@ export const populateStudios = (filtersData?: IFiltersData) => async (
 
     const {
       data: { studios, newNextPageToken },
-    } = await effects.fetchStudiosList(nextPageToken, filtersData);
+    } = await effects.fetchStudios(nextPageToken, filtersData);
 
-    dispatch(setStudiosList(studios, newNextPageToken));
-    dispatch(setPopulatedStatus(EApiStatuses.SUCCESS));
+    dispatch(fetchStudiosSuccess(studios, newNextPageToken));
   } catch (error) {
+    dispatch(fetchStudiosReject());
     // tslint:disable-next-line
     console.error(error);
-    dispatch(setPopulatedStatus(EApiStatuses.ERROR));
   }
 };
 
-export const setStudiosList = (studiosList: IStudio[], nextPageToken: string) => ({
-  type: StudioTypes.STUDIO_LIST_SET,
-  payload: { studiosList, nextPageToken },
+export const fetchStudiosSuccess = (
+  studios: IStudio[],
+  nextPageToken: string,
+) => ({
+  type: StudioTypes.STUDIO_FETCH_SUCCESS,
+  payload: { studios, nextPageToken },
 });
 
-export const addStudiosToList = (studiosList: IStudio[], nextPageToken: string) => ({
-  type: StudioTypes.STUDIO_LIST_ADD,
-  payload: { studiosList, nextPageToken },
+export const studiosAppend = (studios: IStudio[], nextPageToken: string) => ({
+  type: StudioTypes.STUDIO_APPEND,
+  payload: { studios, nextPageToken },
 });
 
-export const setPopulatedStatus = (status: EApiStatuses) => ({
-  type: StudioTypes.STUDIO_POPULATED_STATUS_SET,
-  payload: status,
-});
-
-export const resetStudions = () => ({
-  type: StudioTypes.STUDIO_RESET,
+export const fetchStudiosReject = () => ({
+  type: StudioTypes.STUDIO_FETCH_REJECT,
 });
 
 export const setHoveredStudio = (id: string) => ({
-  type: StudioTypes.STUDIO_SET_HOVERED_STUDIO,
+  type: StudioTypes.STUDIO_SET_HOVERED,
   payload: id,
 });
 
 export const setOpenedStudio = (studio: IStudio | null) => ({
-  type: StudioTypes.STUDIO_SET_OPENED_STUDIO,
+  type: StudioTypes.STUDIO_SET_OPENED,
   payload: studio,
 });

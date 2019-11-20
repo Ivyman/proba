@@ -8,17 +8,17 @@ export interface IAction {
 }
 
 export interface IStudioState {
-  populatedStatus: EApiStatuses;
-  studiosList: IStudio[];
-  nextPageToken: string;
+  apiStatus: EApiStatuses;
+  studios: IStudio[];
+  nextPageToken: string | null;
   hoveredStudioId: string | null;
   openedStudio: IStudio | null;
 }
 
 export const initialState: IStudioState = {
-  populatedStatus: EApiStatuses.IDLE,
-  studiosList: [],
-  nextPageToken: "",
+  apiStatus: EApiStatuses.IDLE,
+  studios: [],
+  nextPageToken: null,
   hoveredStudioId: null,
   openedStudio: null,
 };
@@ -28,35 +28,47 @@ export default (
   { type, payload }: IAction,
 ): IStudioState => {
   switch (type) {
-    case StudioTypes.STUDIO_LIST_SET:
+    case StudioTypes.STUDIO_FETCHING:
       return {
         ...state,
-        studiosList: payload.studiosList,
+        apiStatus: EApiStatuses.FETCHING,
+      };
+
+    case StudioTypes.STUDIO_FETCH_SUCCESS:
+      return {
+        ...state,
+        apiStatus: EApiStatuses.SUCCESS,
+        studios: payload.studios,
         nextPageToken: payload.nextPageToken,
       };
-    case StudioTypes.STUDIO_LIST_ADD:
+
+    case StudioTypes.STUDIO_FETCH_REJECT:
       return {
         ...state,
-        studiosList: [...state.studiosList, ...payload.studiosList],
+        apiStatus: EApiStatuses.ERROR,
+        studios: [],
+        nextPageToken: null,
+      };
+
+    case StudioTypes.STUDIO_APPEND:
+      return {
+        ...state,
+        studios: [...state.studios, ...payload.studios],
         nextPageToken: payload.nextPageToken,
       };
-    case StudioTypes.STUDIO_POPULATED_STATUS_SET:
-      return {
-        ...state,
-        populatedStatus: payload,
-      };
-    case StudioTypes.STUDIO_SET_HOVERED_STUDIO:
+
+    case StudioTypes.STUDIO_SET_HOVERED:
       return {
         ...state,
         hoveredStudioId: payload,
       };
 
-    case StudioTypes.STUDIO_SET_OPENED_STUDIO:
+    case StudioTypes.STUDIO_SET_OPENED:
       return {
         ...state,
         openedStudio: payload,
       };
-    case StudioTypes.STUDIO_RESET:
+
     default:
       return state;
   }

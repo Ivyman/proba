@@ -1,11 +1,13 @@
 import { RootState } from "@src/types/store";
 
-export const getStudiosList = (state: RootState) => state.studio.studiosList;
+export const getStudios = (state: RootState) => state.studio.studios;
 
-export const getPopulatedStatus = (state: RootState) => state.studio.populatedStatus;
+export const getApiStatus = (state: RootState) => state.studio.apiStatus;
 
-export const hasMoreStudios = (state: RootState) => !!state.studio.nextPageToken;
+export const hasMoreStudios = (state: RootState) =>
+  !!state.studio.nextPageToken;
 
-export const getHoverdStudioId = (state: RootState) => state.studio.hoveredStudioId;
+export const getHoverdStudioId = (state: RootState) =>
+  state.studio.hoveredStudioId;
 
 export const getOpenedStudio = (state: RootState) => state.studio.openedStudio;

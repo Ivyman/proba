@@ -8,7 +8,7 @@ import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
 import {
   getHoverdStudioId,
   getOpenedStudio,
-  getStudiosList,
+  getStudios,
 } from "@src/store/studio/selectors";
 
 import { Markers } from "./Markers";
@@ -17,7 +17,7 @@ import { MapContainer, NavigationControlWrapper } from "./elements";
 export const Map: React.FC = () => {
   const hoveredItemId: string | null = useSelector(getHoverdStudioId);
   const openedStudio: IStudio | null = useSelector(getOpenedStudio);
-  const studiosList: IStudio[] = useSelector(getStudiosList);
+  const studiosList: IStudio[] = useSelector(getStudios);
 
   const coordinates = getCoordinates(studiosList);
 

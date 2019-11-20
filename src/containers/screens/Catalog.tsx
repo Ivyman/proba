@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 
 import { IFiltersData } from "@src/types/studio";
 import { EApiStatuses } from "@src/types/api";
-import { populateStudios } from "@src/store/studio/actions";
-import { getPopulatedStatus } from "@src/store/studio/selectors";
+import { fetchStudios } from "@src/store/studio/actions";
+import { getApiStatus } from "@src/store/studio/selectors";
 import { reduceUncheckedCities } from "@src/helpers/filters";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";
@@ -14,22 +14,22 @@ import Screen from "@src/components/Screen";
 import Map from "@src/containers/Map";
 
 const CatalogScreen: React.FC = () => {
-  const populatedStatus: EApiStatuses = useSelector(getPopulatedStatus);
-  const callPopulateStudios = useDispatch(populateStudios);
+  const apiStatus: EApiStatuses = useSelector(getApiStatus);
+  const dispatchFetchStudios = useDispatch(fetchStudios);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
-    callPopulateStudios({
+    fetchStudios({
       query: filtersData.query,
       city: reduceUncheckedCities(filtersData.city),
     });
   };
 
   useEffect(() => {
-    callPopulateStudios();
-  }, [callPopulateStudios]);
+    dispatchFetchStudios();
+  }, [dispatchFetchStudios]);
 
   return (
-    <Screen populatedStatus={populatedStatus}>
+    <Screen populatedStatus={apiStatus}>
       <Filters onFiltersChange={handleFiltersChange} />
       <RouterCatalog />
       <Map />
