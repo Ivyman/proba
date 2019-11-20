@@ -1,11 +1,7 @@
 import StudioTypes from "./types";
 import { EApiStatuses } from "@src/types/api";
 import { IStudio } from "@src/types/studio";
-
-export interface IAction {
-  type: any;
-  payload?: any;
-}
+import { IAction } from "@src/types/store";
 
 export interface IStudioState {
   apiStatus: EApiStatuses;

@@ -3,11 +3,12 @@ import React from "react";
 import { EApiStatuses } from "@src/types/api";
 
 export const Screen: React.FC<{
-  populatedStatus: EApiStatuses;
-}> = ({ populatedStatus, children }) => (
+  apiStatus: EApiStatuses;
+}> = ({ apiStatus, children }) => (
   <>
-    {populatedStatus === EApiStatuses.SUCCESS && children}
-    {populatedStatus === EApiStatuses.ERROR && "Error"}
-    {(populatedStatus === EApiStatuses.IDLE || populatedStatus === EApiStatuses.FETCHING) && "Pending..."}
+    {apiStatus === EApiStatuses.SUCCESS && children}
+    {apiStatus === EApiStatuses.ERROR && "Error"}
+    {(apiStatus === EApiStatuses.IDLE || apiStatus === EApiStatuses.FETCHING) &&
+      "Pending..."}
   </>
 );

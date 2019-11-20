@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { IFiltersData } from "@src/types/studio";
 import { EApiStatuses } from "@src/types/api";
 import { fetchStudios } from "@src/store/studio/actions";
-import { getApiStatus } from "@src/store/studio/selectors";
+import { getStudiosApiStatus } from "@src/store/studio/selectors";
 import { reduceUncheckedCities } from "@src/helpers/filters";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";
@@ -14,8 +14,8 @@ import Screen from "@src/components/Screen";
 import Map from "@src/containers/Map";
 
 const CatalogScreen: React.FC = () => {
-  const apiStatus: EApiStatuses = useSelector(getApiStatus);
   const dispatchFetchStudios = useDispatch(fetchStudios);
+  const studiosApiStatus: EApiStatuses = useSelector(getStudiosApiStatus);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
     fetchStudios({
@@ -29,7 +29,7 @@ const CatalogScreen: React.FC = () => {
   }, [dispatchFetchStudios]);
 
   return (
-    <Screen populatedStatus={apiStatus}>
+    <Screen apiStatus={studiosApiStatus}>
       <Filters onFiltersChange={handleFiltersChange} />
       <RouterCatalog />
       <Map />

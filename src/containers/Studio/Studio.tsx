@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studio/selectors";
-
 import StudioBox from "@src/components/StudioBox";
 
 import { Wrapper } from "./elements";

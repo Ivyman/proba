@@ -9,6 +9,8 @@ export const fetchStudios = (filtersData?: IFiltersData) => async (
   getStatate: () => RootState,
 ) => {
   try {
+    dispatch(isFetching());
+
     const {
       studio: { nextPageToken },
     } = getStatate();
@@ -24,6 +26,10 @@ export const fetchStudios = (filtersData?: IFiltersData) => async (
     console.error(error);
   }
 };
+
+export const isFetching = () => ({
+  type: StudioTypes.STUDIO_FETCHING,
+});
 
 export const fetchStudiosSuccess = (
   studios: IStudio[],
