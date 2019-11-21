@@ -52,12 +52,12 @@ export const fetchStudiosReject = (): IAction => ({
   type: StudioTypes.STUDIO_FETCH_REJECT,
 });
 
-export const setHoveredStudio = (id: string): IAction => ({
+export const setHoveredStudio = (id?: string): IAction => ({
   type: StudioTypes.STUDIO_SET_HOVERED,
   payload: id,
 });
 
-export const setOpenedStudio = (studio: IStudio | null): IAction => ({
+export const setOpenedStudio = (id?: string): IAction => ({
   type: StudioTypes.STUDIO_SET_OPENED,
-  payload: studio,
+  payload: id,
 });

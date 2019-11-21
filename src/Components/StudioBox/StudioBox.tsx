@@ -1,5 +1,4 @@
 import React from "react";
-
 import { IStudio } from "@src/types/studio";
 
 import { Wrapper } from "./elements";

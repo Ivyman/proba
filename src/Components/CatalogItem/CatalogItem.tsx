@@ -8,14 +8,14 @@ const { Head, Text } = Typography;
 
 export const CatalogItem: React.FC<{
   studioData: IStudio;
-  onHoveredStudio: (id: string | null) => void;
-  onOpenStudio: (studio: IStudio | null) => void;
+  onHoveredStudio: (id?: string) => void;
+  onOpenStudio: (id?: string) => void;
 }> = ({ studioData, onHoveredStudio, onOpenStudio }) => {
   const [hover, setHover] = useState();
 
   const handleClick = () => {
-    onHoveredStudio(null);
-    onOpenStudio(studioData);
+    onHoveredStudio();
+    onOpenStudio(studioData.id);
   };
   const handleMouseOver = (event: MouseEvent, studioId: string) => {
     if (hover === event.currentTarget) {
@@ -27,7 +27,7 @@ export const CatalogItem: React.FC<{
 
   const handleMouseLeave = () => {
     setHover(null);
-    onHoveredStudio("");
+    onHoveredStudio();
   };
 
   const {
@@ -40,7 +40,7 @@ export const CatalogItem: React.FC<{
   return (
     <Wrapper
       onMouseOver={event => handleMouseOver(event, studioData.id)}
-      onMouseLeave={event => handleMouseLeave()}
+      onMouseLeave={() => handleMouseLeave()}
       onClick={() => handleClick()}
     >
       <StyledLink to={`/catalog/${id}`}>

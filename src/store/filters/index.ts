@@ -1,10 +1,10 @@
 import FiltersTypes from "./types";
 import { EApiStatuses } from "@src/types/api";
-import { IFilters } from "@src/types/filters";
+import { ICityFilter } from "@src/types/filters";
 import { IAction } from "@src/types/store";
 
 export interface IFiltersState {
-  cities: IFilters[];
+  cities: ICityFilter[];
   fetchStatus: EApiStatuses;
 }
 

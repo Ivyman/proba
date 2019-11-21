@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import StudioBox from "@src/components/StudioBox";
 import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studios/selectors";
-import StudioBox from "@src/components/StudioBox";
 
 import { Wrapper } from "./elements";
 

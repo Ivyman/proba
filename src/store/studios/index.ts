@@ -8,7 +8,7 @@ export interface IStudioState {
   studios: IStudio[];
   nextPageToken: string | null;
   hoveredStudioId: string | null;
-  openedStudio: IStudio | null;
+  openedStudioId: string | null;
 }
 
 export const initialState: IStudioState = {
@@ -16,7 +16,7 @@ export const initialState: IStudioState = {
   studios: [],
   nextPageToken: null,
   hoveredStudioId: null,
-  openedStudio: null,
+  openedStudioId: null,
 };
 
 export default (
@@ -56,13 +56,13 @@ export default (
     case StudioTypes.STUDIO_SET_HOVERED:
       return {
         ...state,
-        hoveredStudioId: payload,
+        hoveredStudioId: payload || null,
       };
 
     case StudioTypes.STUDIO_SET_OPENED:
       return {
         ...state,
-        openedStudio: payload,
+        openedStudioId: payload || null,
       };
 
     default:

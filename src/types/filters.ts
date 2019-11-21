@@ -3,10 +3,6 @@ export interface ICityFilter {
   value: string;
 }
 
-export interface IFilters {
-  cities: ICityFilter[];
-}
-
 export interface IFiltersData {
   query: string;
   city: string[] | string;

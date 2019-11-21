@@ -11,8 +11,9 @@ import { Wrapper } from "./elements";
 
 export const Catalog: React.FC = () => {
   const studios: IStudio[] = useSelector(getStudios);
-  const setHoveredStudioItem = useDispatch(setHoveredStudio);
-  const setOpenedStudioItem = useDispatch(setOpenedStudio);
+
+  const dispatchHoveredStudio = useDispatch(setHoveredStudio);
+  const dispatchOpenedStudio = useDispatch(setOpenedStudio);
 
   return (
     <Wrapper>
@@ -21,8 +22,8 @@ export const Catalog: React.FC = () => {
           <CatalogItem
             key={studio.id}
             studioData={studio}
-            onHoveredStudio={setHoveredStudioItem}
-            onOpenStudio={setOpenedStudioItem}
+            onHoveredStudio={dispatchHoveredStudio}
+            onOpenStudio={dispatchOpenedStudio}
           />
         ))
       ) : (
