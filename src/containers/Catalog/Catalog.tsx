@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 
 import { useDispatch } from "@src/hooks/dispatch";
 import { IStudio } from "@src/types/studio";
-import { setHoveredStudio, setOpenedStudio } from "@src/store/studio/actions";
-import { getStudios } from "@src/store/studio/selectors";
+import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
+import { getStudios } from "@src/store/studios/selectors";
 
 import CatalogItem from "@src/components/CatalogItem";
 import { Wrapper } from "./elements";

@@ -2,11 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-import studio from "./studio";
+import studios from "./studios";
 import app from "./app";
 import filters from "./filters";
 
-export const rootReducer = combineReducers({ studio, app, filters });
+export const rootReducer = combineReducers({ studios, app, filters });
 
 const store = createStore(
   rootReducer,

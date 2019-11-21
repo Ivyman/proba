@@ -9,7 +9,7 @@ import {
   getHoverdStudioId,
   getOpenedStudio,
   getStudios,
-} from "@src/store/studio/selectors";
+} from "@src/store/studios/selectors";
 
 import { Markers } from "./Markers";
 import { MapContainer, NavigationControlWrapper } from "./elements";

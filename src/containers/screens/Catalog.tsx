@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 
 import { IFiltersData } from "@src/types/filters";
 import { EApiStatuses } from "@src/types/api";
-import { fetchStudios } from "@src/store/studio/actions";
-import { getStudiosApiStatus } from "@src/store/studio/selectors";
+import { fetchStudios } from "@src/store/studios/actions";
+import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { reduceUncheckedCities } from "@src/helpers/filters";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";

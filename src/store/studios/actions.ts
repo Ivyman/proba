@@ -13,7 +13,7 @@ export const fetchStudios = (filtersData?: IFiltersData) => async (
     dispatch(isFetching());
 
     const {
-      studio: { nextPageToken },
+      studios: { nextPageToken },
     } = getStatate();
 
     const {
