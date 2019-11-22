@@ -8,23 +8,23 @@ import { Wrapper } from "./elements";
 export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
 }> = ({ onFiltersChange }) => {
-  const [name, setName] = useState("");
+  const [search, setSearch] = useState("");
   const [city, setCity] = useState("all");
 
-  const debouncedName = useDebounce(name, Studios.filtersDebounced);
+  const debouncedSearch = useDebounce(search, Studios.filtersDebounced);
   const debouncedCity = useDebounce(city, Studios.filtersDebounced);
 
   const handleCityChange = useCallback((cityKey: string) => setCity(cityKey), [
     setCity,
   ]);
 
-  const handleInputNameChange = useCallback((value: string) => setName(value), [
-    setName,
+  const handleSearchChange = useCallback((value: string) => setSearch(value), [
+    setSearch,
   ]);
 
   useEffect(() => {
-    onFiltersChange({ query: debouncedName, city: debouncedCity });
-  }, [debouncedName, debouncedCity, onFiltersChange]);
+    onFiltersChange({ search: debouncedSearch, city: debouncedCity });
+  }, [debouncedSearch, debouncedCity, onFiltersChange]);
 
   return (
     <Wrapper>
@@ -44,7 +44,7 @@ export const Filters: React.FC<{
       <input
         type="text"
         placeholder="Wpisz nazwe"
-        onChange={(event: any) => handleInputNameChange(event.target.value)}
+        onChange={(event: any) => handleSearchChange(event.target.value)}
       />
     </Wrapper>
   );

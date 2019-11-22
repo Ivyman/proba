@@ -19,7 +19,7 @@ const CatalogScreen: React.FC = () => {
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
     fetchStudios({
-      query: filtersData.query,
+      search: filtersData.search,
       city: reduceUncheckedCities(filtersData.city),
     });
   };

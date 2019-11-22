@@ -13,22 +13,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/studios", (req, res) => {
-  const studios = responseStudiosData.studios.filter(item => {
-    const itemName = item.name.toLocaleLowerCase();
-    const queryString = req.query.query.toLocaleLowerCase();
+  // const studios = responseStudiosData.studios.filter(item => {
+  //   const itemName = item.name.toLocaleLowerCase();
+  //   let search = "";
 
-    return itemName.includes(queryString);
-  });
+  //   if (req.query.search) {
+  //     search = req.query.search.toLocaleLowerCase();
+  //   }
+
+  //   return itemName.includes(search);
+  // });
 
   const result = {
     nextPageToken: responseStudiosData.nextPageToken,
-    studios,
+    studios: responseStudiosData.studios,
   };
 
   return res.status(200).send(result);
 });
 
-app.get("/filters", (req, res) => {});
+app.get("/filters", (req, res) => {
+  return res.status(200).send(responseFiltersData);
+});
 
 app.listen(port, () =>
   console.log("\x1b[36m", `Mock api listening on port ${port}`, "\x1b[0m"),

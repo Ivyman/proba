@@ -9,7 +9,7 @@ export const fetchStudios = async (
 ): Promise<{ data: IStudioResponse }> => {
   const params = {
     limit: Studios.fetchLimit,
-    query: filtersData ? filtersData.query : "",
+    search: filtersData ? filtersData.search : "",
     city: filtersData ? (filtersData.city as string[]).join(",") : "",
     nextPageToken,
   };
