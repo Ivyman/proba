@@ -4,12 +4,16 @@ import { ICityFilter } from "@src/types/filters";
 import { IAction } from "@src/types/store";
 
 export interface IFiltersState {
-  cities: ICityFilter[];
+  fields: {
+    cities: ICityFilter[];
+  };
   fetchStatus: EApiStatuses;
 }
 
 export const initialState: IFiltersState = {
-  cities: [],
+  fields: {
+    cities: [],
+  },
   fetchStatus: EApiStatuses.IDLE,
 };
 
@@ -21,14 +25,16 @@ export default (
     case FiltersTypes.FILTERS_FETCH_SUCCESS:
       return {
         ...state,
-        cities: payload,
+        fields: payload,
         fetchStatus: EApiStatuses.SUCCESS,
       };
 
     case FiltersTypes.FILTERS_FETCH_REJECT:
       return {
         ...state,
-        cities: [],
+        fields: {
+          cities: [],
+        },
         fetchStatus: EApiStatuses.ERROR,
       };
 

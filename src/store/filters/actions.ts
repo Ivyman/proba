@@ -1,12 +1,12 @@
 import { ThunkDispatch } from "@src/types/store";
-import { ICityFilter } from "@src/types/filters";
+import { IFilters } from "@src/types/filters";
 import { IAction } from "@src/types/store";
 import FiltersTypes from "./types";
 import * as effects from "./effects";
 
 export const fetchFilters = () => async (dispatch: ThunkDispatch) => {
   try {
-    const filters = await effects.fetchFilters();
+    const { data: filters } = await effects.fetchFilters();
 
     dispatch(fetchFiltersSuccess(filters));
   } catch (error) {
@@ -16,7 +16,7 @@ export const fetchFilters = () => async (dispatch: ThunkDispatch) => {
   }
 };
 
-export const fetchFiltersSuccess = (filters: ICityFilter[]): IAction => ({
+export const fetchFiltersSuccess = (filters: IFilters): IAction => ({
   type: FiltersTypes.FILTERS_FETCH_SUCCESS,
   payload: filters,
 });

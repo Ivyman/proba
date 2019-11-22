@@ -1,6 +1,6 @@
 export interface ICityFilter {
   key: string;
-  value: string;
+  name: string;
 }
 
 export interface IFilters {

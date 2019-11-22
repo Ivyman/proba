@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/config/Constants";
 import { useDebounce } from "@src/hooks/debounce";
 
@@ -7,9 +8,11 @@ import { Wrapper } from "./elements";
 
 export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
-}> = ({ onFiltersChange }) => {
+  fields: IFilters;
+}> = ({ onFiltersChange, fields }) => {
+  const { cities } = fields;
   const [search, setSearch] = useState("");
-  const [city, setCity] = useState("all");
+  const [city, setCity] = useState("");
 
   const debouncedSearch = useDebounce(search, Studios.filtersDebounced);
   const debouncedCity = useDebounce(city, Studios.filtersDebounced);
@@ -26,9 +29,15 @@ export const Filters: React.FC<{
     onFiltersChange({ search: debouncedSearch, city: debouncedCity });
   }, [debouncedSearch, debouncedCity, onFiltersChange]);
 
+  useEffect(() => {
+    if (cities.length!) {
+      setCity(cities[0].key);
+    }
+  }, [cities]);
+
   return (
     <Wrapper>
-      {Studios.cities.map(cityItem => (
+      {cities.map(cityItem => (
         <label key={cityItem.key}>
           {cityItem.name}
           <input
