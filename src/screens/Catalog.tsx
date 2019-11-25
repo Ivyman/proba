@@ -7,7 +7,6 @@ import { fetchStudios } from "@src/store/studios/actions";
 import { fetchFilters } from "@src/store/filters/actions";
 import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { getFilters } from "@src/store/filters/selectors";
-import { reduceUncheckedCities } from "@src/helpers/filters";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";
 
@@ -23,10 +22,10 @@ const CatalogScreen: React.FC = () => {
   const fields: IFilters = useSelector(getFilters);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
-    fetchStudios({
-      search: filtersData.search,
-      city: reduceUncheckedCities(filtersData.city),
-    });
+    // dispatchStudios({
+    //   search: filtersData.search,
+    //   city: filtersData.city,
+    // });
   };
 
   useEffect(() => {

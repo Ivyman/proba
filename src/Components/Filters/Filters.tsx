@@ -14,8 +14,8 @@ export const Filters: React.FC<{
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
 
-  const debouncedSearch = useDebounce(search, Studios.filtersDebounced);
-  const debouncedCity = useDebounce(city, Studios.filtersDebounced);
+  const debouncedSearch = useDebounce(search, Studios.filtersDebouncedInterval);
+  const debouncedCity = useDebounce(city, Studios.filtersDebouncedInterval);
 
   const handleCityChange = useCallback((cityKey: string) => setCity(cityKey), [
     setCity,

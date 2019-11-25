@@ -10,7 +10,7 @@ export const fetchStudios = async (
   const params = {
     limit: Studios.fetchLimit,
     search: filtersData ? filtersData.search : "",
-    city: filtersData ? (filtersData.city as string[]).join(",") : "",
+    city: filtersData ? filtersData.search : "",
     nextPageToken,
   };
   return await apiEndpoint.get(URLS.studios, { params });

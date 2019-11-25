@@ -13,20 +13,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/studios", (req, res) => {
-  // const studios = responseStudiosData.studios.filter(item => {
-  //   const itemName = item.name.toLocaleLowerCase();
-  //   let search = "";
+  const studios = responseStudiosData.studios.filter(item => {
+    const itemName = item.name.toLocaleLowerCase();
+    let search = "";
 
-  //   if (req.query.search) {
-  //     search = req.query.search.toLocaleLowerCase();
-  //   }
+    if (req.query.search) {
+      search = req.query.search.toLocaleLowerCase();
+    }
 
-  //   return itemName.includes(search);
-  // });
+    return itemName.includes(search);
+  });
 
   const result = {
     nextPageToken: responseStudiosData.nextPageToken,
-    studios: responseStudiosData.studios,
+    studios: studios,
   };
 
   return res.status(200).send(result);

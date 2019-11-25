@@ -1,6 +1,3 @@
-export const reduceUncheckedCities = (obj: any) =>
-  Object.keys(obj).filter(key => obj[key]);
-
 export const createCityFields = (obj: any) =>
   obj.reduce(
     (acc: any, next: any) => ({

@@ -1,4 +1,4 @@
 export const Studios = {
-  filtersDebounced: 500,
+  filtersDebouncedInterval: 500,
   fetchLimit: 10,
 };
