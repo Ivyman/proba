@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { IFiltersData, IFilters } from "@src/types/filters";
 import { EApiStatuses } from "@src/types/api";
 import { fetchStudios } from "@src/store/studios/actions";
+import { fetchFilteredStudios } from "@src/store/studios/actions";
 import { fetchFilters } from "@src/store/filters/actions";
 import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { getFilters } from "@src/store/filters/selectors";
@@ -16,16 +17,17 @@ import Map from "@src/containers/Map";
 
 const CatalogScreen: React.FC = () => {
   const dispatchStudios = useDispatch(fetchStudios);
+  const dispatchFilteredStudios = useDispatch(fetchFilteredStudios);
   const dispatchFilters = useDispatch(fetchFilters);
 
   const studiosApiStatus: EApiStatuses = useSelector(getStudiosApiStatus);
   const fields: IFilters = useSelector(getFilters);
 
   const handleFiltersChange = (filtersData: IFiltersData) => {
-    // dispatchStudios({
-    //   search: filtersData.search,
-    //   city: filtersData.city,
-    // });
+    dispatchFilteredStudios({
+      search: filtersData.search,
+      city: filtersData.city,
+    });
   };
 
   useEffect(() => {
