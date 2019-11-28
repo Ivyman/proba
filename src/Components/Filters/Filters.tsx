@@ -25,13 +25,12 @@ export const Filters: React.FC<{
     setSearch,
   ]);
 
-  useEffect(
-    () => onFiltersChange({ search: debouncedSearch, city: debouncedCity }),
-    [debouncedSearch, debouncedCity, onFiltersChange],
-  );
+  useEffect(() => {
+    onFiltersChange({ search: debouncedSearch, city: debouncedCity });
+  }, [debouncedSearch, debouncedCity, onFiltersChange]);
 
   useEffect(() => {
-    if (cities.length!) {
+    if (cities.length) {
       setCity(cities[0].key);
     }
   }, [cities]);

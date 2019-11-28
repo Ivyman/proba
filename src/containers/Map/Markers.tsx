@@ -19,7 +19,9 @@ export const Markers: React.FC<{
   );
   const handleMouseLeave = useCallback(() => setHoveredMarker(""), []);
 
-  const isStudioOpened = (id: string) => openedStudioId === id;
+  const isStudioOpened = useCallback((id: string) => openedStudioId === id, [
+    openedStudioId,
+  ]);
 
   return (
     <>
