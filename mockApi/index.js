@@ -36,6 +36,10 @@ app.get("/filters", (req, res) => {
   return res.status(200).send(responseFiltersData);
 });
 
+app.post("/contact", (req, res) => {
+  return res.status(200);
+});
+
 app.listen(port, () =>
   console.log("\x1b[36m", `Mock api listening on port ${port}`, "\x1b[0m"),
 );
