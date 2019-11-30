@@ -27,7 +27,7 @@ export default (
     case StudioTypes.STUDIO_FETCHING:
       return {
         ...state,
-        apiStatus: EApiStatuses.FETCHING,
+        apiStatus: EApiStatuses.RUNNING,
       };
 
     case StudioTypes.STUDIO_FETCH_SUCCESS:

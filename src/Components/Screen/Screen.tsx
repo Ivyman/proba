@@ -8,7 +8,7 @@ export const Screen: React.FC<{
   <>
     {(apiStatus === EApiStatuses.SUCCESS || !apiStatus) && children}
     {apiStatus === EApiStatuses.ERROR && "Error"}
-    {(apiStatus === EApiStatuses.IDLE || apiStatus === EApiStatuses.FETCHING) &&
+    {(apiStatus === EApiStatuses.IDLE || apiStatus === EApiStatuses.RUNNING) &&
       "Pending..."}
   </>
 );

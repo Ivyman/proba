@@ -1,6 +1,6 @@
 export enum EApiStatuses {
   IDLE = "IDLE",
-  FETCHING = "FETCHING",
+  RUNNING = "RUNNING",
   SUCCESS = "SUCCESS",
   ERROR = "ERROR",
 }

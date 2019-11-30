@@ -36,7 +36,7 @@ app.get("/filters", (req, res) => {
   return res.status(200).send(responseFiltersData);
 });
 
-app.post("/contact", (req, res) => {
+app.post("/message", (req, res) => {
   return res.status(200);
 });
 
