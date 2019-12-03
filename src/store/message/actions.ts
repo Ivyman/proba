@@ -1,15 +1,16 @@
 import MessageTypes from "./types";
 import { ThunkDispatch } from "@src/types/store";
 import { IAction } from "@src/types/store";
+import { IMessageData } from "@src/types/message";
 import * as effects from "./effects";
 
-export const fetchStudios = () => async (dispatch: ThunkDispatch) => {
+export const sendMessage = (messageData: IMessageData) => async (
+  dispatch: ThunkDispatch,
+) => {
   try {
     dispatch(isFetching());
 
-    const xxx = await effects.sendMessage();
-
-    console.log(xxx);
+    await effects.sendMessage(messageData);
 
     dispatch(sendMessageSuccess());
   } catch (error) {

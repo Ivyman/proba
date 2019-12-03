@@ -37,7 +37,7 @@ app.get("/filters", (req, res) => {
 });
 
 app.post("/message", (req, res) => {
-  return res.status(200);
+  return res.status(200).end();
 });
 
 app.listen(port, () =>

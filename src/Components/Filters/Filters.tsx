@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/config/Constants";
 import { useDebounce } from "@src/hooks/debounce";
-
 import { Wrapper } from "./elements";
 
 export const Filters: React.FC<{
