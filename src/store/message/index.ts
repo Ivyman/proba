@@ -33,7 +33,7 @@ export default (
         apiStatus: EApiStatuses.ERROR,
       };
 
-    case MessageTypes.MESSAGE_RELOAD:
+    case MessageTypes.MESSAGE_SET_IDLE:
       return {
         ...state,
         apiStatus: EApiStatuses.IDLE,

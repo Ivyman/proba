@@ -31,3 +31,7 @@ export const sendMessageSuccess = (): IAction => ({
 export const sendMessageReject = (): IAction => ({
   type: MessageTypes.MESSAGE_SEND_REJECT,
 });
+
+export const setIdleStatus = (): IAction => ({
+  type: MessageTypes.MESSAGE_SET_IDLE,
+});

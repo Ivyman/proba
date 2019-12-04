@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "@src/hooks/dispatch";
 
 import { EApiStatuses } from "@src/types/api";
-import { sendMessage } from "@src/store/message/actions";
+import { sendMessage, setIdleStatus } from "@src/store/message/actions";
 import { getMessageApiStatus } from "@src/store/message/selectors";
+import Error from "@src/components/Error";
 import ContactForm from "@src/components/ContactForm";
 import Screen from "@src/components/Screen";
 import Typography from "@src/components/Typography";
@@ -13,8 +14,28 @@ const { Head, Text } = Typography;
 
 export const ContactScreen: React.FC = () => {
   const dispatchMessage = useDispatch(sendMessage);
+  const dispatchIdleStatus = useDispatch(setIdleStatus);
 
   const messageApiStatus: EApiStatuses = useSelector(getMessageApiStatus);
+
+  const renderContactForm = () => {
+    switch (messageApiStatus) {
+      case EApiStatuses.ERROR:
+        return <Error />;
+      case EApiStatuses.IDLE:
+        return <ContactForm onSubmit={dispatchMessage} />;
+      case EApiStatuses.SUCCESS:
+        return <Text>Thanks for send message to as</Text>;
+      case EApiStatuses.RUNNING:
+        return <Text>Sending...</Text>;
+    }
+  };
+
+  useEffect(() => {
+    if (messageApiStatus !== EApiStatuses.IDLE) {
+      dispatchIdleStatus();
+    }
+  }, []);
 
   return (
     <Screen>
@@ -25,7 +46,7 @@ export const ContactScreen: React.FC = () => {
         vero ducimus eligendi
       </Text>
 
-      <ContactForm onSubmit={dispatchMessage} />
+      {renderContactForm()}
 
       <Text>
         Lub wyślij wiedomość pod adress

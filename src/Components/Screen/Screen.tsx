@@ -1,14 +1,23 @@
 import React from "react";
 
 import { EApiStatuses } from "@src/types/api";
+import Error from "@src/components/Error";
 
 export const Screen: React.FC<{
   apiStatus?: EApiStatuses;
-}> = ({ apiStatus, children }) => (
-  <>
-    {(apiStatus === EApiStatuses.SUCCESS || !apiStatus) && children}
-    {apiStatus === EApiStatuses.ERROR && "Error"}
-    {(apiStatus === EApiStatuses.IDLE || apiStatus === EApiStatuses.RUNNING) &&
-      "Pending..."}
-  </>
-);
+}> = ({ apiStatus, children }) => {
+  const renderScreen = () => {
+    switch (apiStatus) {
+      case EApiStatuses.ERROR:
+        return <Error />;
+      case EApiStatuses.RUNNING:
+      case EApiStatuses.IDLE:
+        return "Pending...";
+      case EApiStatuses.SUCCESS:
+      default:
+        return children;
+    }
+  };
+
+  return <>{renderScreen()}</>;
+};

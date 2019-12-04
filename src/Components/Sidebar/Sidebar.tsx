@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import Logo from "@src/components/Logo";
-
 import { Wrapper } from "./elements";
 
 export const Sidebar: React.FC = ({ children }) => {
