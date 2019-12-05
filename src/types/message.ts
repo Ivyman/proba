@@ -1,4 +1,3 @@
 export interface IMessageData {
-  subject: string;
-  message: string;
+  [index: string]: string;
 }

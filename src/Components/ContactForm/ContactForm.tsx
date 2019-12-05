@@ -11,31 +11,47 @@ import { Wrapper } from "./elements";
 export const ContactForm: React.FC<{
   onSubmit: (messageData: IMessageData) => void;
 }> = ({ onSubmit }) => {
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  } as IMessageData);
 
-  const handleChangeSubject = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => setSubject(event.target.value),
-    [setSubject],
-  );
-
-  const handleChangeMessage = useCallback(
-    (event: ChangeEvent<HTMLTextAreaElement>) => setMessage(event.target.value),
-    [setMessage],
+  const handleInput = useCallback(
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = event.target;
+      setFormData({ [name]: value });
+    },
+    [formData],
   );
 
   const handleSubmit = useCallback(
     (event: SyntheticEvent) => {
       event.preventDefault();
-      onSubmit({ subject, message });
+      onSubmit(formData);
     },
-    [onSubmit, subject, message],
+    [onSubmit, formData],
   );
 
   return (
     <Wrapper>
-      <input type="text" onChange={handleChangeSubject} value={subject} />
-      <textarea onChange={handleChangeMessage} value={message} />
+      <input
+        type="email"
+        name="email"
+        onChange={handleInput}
+        value={formData.email}
+      />
+      <input
+        type="text"
+        name="subject"
+        onChange={handleInput}
+        value={formData.subject}
+      />
+      <textarea
+        name="message"
+        onChange={handleInput}
+        value={formData.message}
+      />
       <button onClick={handleSubmit}>Wyślij</button>
     </Wrapper>
   );
