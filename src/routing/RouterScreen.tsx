@@ -4,6 +4,7 @@ import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { StyledContainer } from "./elements";
 import { useDispatch } from "@src/hooks/dispatch";
 import { setOpenedStudio } from "@src/store/studios/actions";
+import Loading from "@src/components/Loading";
 
 const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));
@@ -23,7 +24,7 @@ export const RouterScreen: React.FC = () => {
   }, [location]);
 
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<Loading />}>
       <StyledContainer as="main">
         <Switch>
           <Route path="/about" component={AboutScreen} exact />

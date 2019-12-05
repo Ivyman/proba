@@ -2,6 +2,7 @@ import React from "react";
 
 import { EApiStatuses } from "@src/types/api";
 import Error from "@src/components/Error";
+import Loading from "@src/components/Loading";
 
 export const Screen: React.FC<{
   apiStatus?: EApiStatuses;
@@ -12,7 +13,7 @@ export const Screen: React.FC<{
         return <Error />;
       case EApiStatuses.RUNNING:
       case EApiStatuses.IDLE:
-        return "Pending...";
+        return <Loading />;
       case EApiStatuses.SUCCESS:
       default:
         return children;
