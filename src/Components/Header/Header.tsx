@@ -23,7 +23,7 @@ export const Header: React.FC<{
   return (
     <header>
       <StyledContainer>
-        <Logo link="/" />
+        <Logo link="/catalog" />
         <NavWrapper>
           <Navbar items={navbarLinks} />
           <StyledHamburgerIcon onClick={onSwitchSidebar} />
