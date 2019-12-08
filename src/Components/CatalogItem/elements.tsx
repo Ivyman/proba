@@ -1,5 +1,5 @@
 import styled from "@src/styles";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 export const Wrapper = styled.li`
   &:hover {
@@ -8,7 +8,7 @@ export const Wrapper = styled.li`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const Link = styled(RouterLink)`
   display: block;
 `;
 

@@ -1,9 +1,7 @@
 import styled from "@src/styles";
 import Layout from "@src/components/Layout";
 
-const { Container } = Layout;
-
-export const StyledContainer = styled(Container)`
+export const Container = styled(Layout.Container)`
   display: flex;
   flex-direction: column;
 `;

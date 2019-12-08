@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StyledContainer, NavWrapper, StyledHamburgerIcon } from "./elements";
+import { Container, NavWrapper, HamburgerIcon } from "./elements";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 
@@ -11,13 +11,13 @@ export const Header: React.FC<{
 
   return (
     <header>
-      <StyledContainer>
+      <Container>
         <Logo link="/catalog" />
         <NavWrapper>
           <Navbar items={navbarLinks} />
-          <StyledHamburgerIcon onClick={onSwitchSidebar} />
+          <HamburgerIcon onClick={onSwitchSidebar} />
         </NavWrapper>
-      </StyledContainer>
+      </Container>
     </header>
   );
 };

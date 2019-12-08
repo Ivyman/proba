@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 
-import { StyledContainer } from "./elements";
+import { Container } from "./elements";
 import { useDispatch } from "@src/hooks/dispatch";
 import { setOpenedStudio } from "@src/store/studios/actions";
 import Loading from "@src/components/Loading";
@@ -25,14 +25,14 @@ export const RouterScreen: React.FC = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <StyledContainer as="main">
+      <Container as="main">
         <Switch>
           <Route path="/about" component={AboutScreen} exact />
           <Route path="/contact" component={ContactScreen} exact />
           <Route path="/catalog" component={CatalogScreen} />
           <Redirect from="/*" to="/catalog" />
         </Switch>
-      </StyledContainer>
+      </Container>
     </Suspense>
   );
 };

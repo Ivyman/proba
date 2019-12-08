@@ -1,5 +1,5 @@
 import styled from "@src/styles";
-import { Popup } from "react-map-gl";
+import { Popup as Tooltip } from "react-map-gl";
 
 export const Wrapper = styled.div<{ isOpened?: boolean }>`
   ${({ isOpened }) =>
@@ -32,6 +32,6 @@ export const MarkerTitle = styled.h5`
   margin: 5px 0;
 `;
 
-export const StyledPopup = styled(Popup)`
+export const Popup = styled(Tooltip)`
   z-index: 1;
 `;

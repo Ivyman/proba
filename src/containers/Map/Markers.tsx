@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Marker as GlMarker } from "react-map-gl";
 
 import { IStudio } from "@src/types/studio";
-import { MarkerInner, Wrapper, StyledPopup, MarkerTitle } from "./elements";
+import { MarkerInner, Wrapper, Popup, MarkerTitle } from "./elements";
 
 export const Markers: React.FC<{
   dataList: IStudio[];
@@ -42,7 +42,7 @@ export const Markers: React.FC<{
             <MarkerInner>Studio</MarkerInner>
           </GlMarker>
           {isShowPopup(data) && (
-            <StyledPopup
+            <Popup
               latitude={data.address.latitude}
               longitude={data.address.longitude}
               offsetTop={14}
@@ -54,7 +54,7 @@ export const Markers: React.FC<{
               <div>
                 {data.address.street}, {data.address.number}
               </div>
-            </StyledPopup>
+            </Popup>
           )}
         </Wrapper>
       ))}

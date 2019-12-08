@@ -1,7 +1,7 @@
 import React, { MouseEvent, useState } from "react";
 
 import { IStudio } from "@src/types/studio";
-import { Thumbnail, Wrapper, StyledLink } from "./elements";
+import { Thumbnail, Wrapper, Link } from "./elements";
 import Typography from "@src/components/Typography";
 
 const { Head, Text } = Typography;
@@ -43,13 +43,13 @@ export const CatalogItem: React.FC<{
       onMouseLeave={() => handleMouseLeave()}
       onClick={() => handleClick()}
     >
-      <StyledLink to={`/catalog/${id}`}>
+      <Link to={`/catalog/${id}`}>
         {logo && <Thumbnail src={logo} />}
         <Head as="h1">{name}</Head>
         <Text>
           {city}, {zipcode}, {street}
         </Text>
-      </StyledLink>
+      </Link>
     </Wrapper>
   );
 };

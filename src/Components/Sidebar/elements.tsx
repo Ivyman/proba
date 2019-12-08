@@ -1,6 +1,6 @@
 import styled from "@src/styles";
 
-import { CloseIcon } from "@src/assets/icons";
+import { CloseIcon as Close } from "@src/assets/icons";
 
 export const Wrapper = styled.aside`
   display: flex;
@@ -14,6 +14,6 @@ export const Wrapper = styled.aside`
   border: 2px solid gray;
 `;
 
-export const StyledCloseIcon = styled(CloseIcon)`
+export const CloseIcon = styled(Close)`
   cursor: pointer;
 `;
