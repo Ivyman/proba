@@ -1,3 +1,5 @@
 import styled from "@src/styles";
 
-export const Wrapper = styled.form``;
+import Layout from "@src/components/Layout";
+
+export const Wrapper = styled(Layout.Container)``;

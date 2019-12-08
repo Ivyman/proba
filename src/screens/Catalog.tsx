@@ -10,7 +10,7 @@ import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { getFilters } from "@src/store/filters/selectors";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";
-
+import CatalogFrame from "@src/components/CatalogFrame";
 import Filters from "@src/components/Filters";
 import Screen from "@src/components/Screen";
 import Map from "@src/containers/Map";
@@ -38,8 +38,10 @@ const CatalogScreen: React.FC = () => {
   return (
     <Screen apiStatus={studiosApiStatus}>
       <Filters onFiltersChange={handleFiltersChange} fields={fields} />
-      <RouterCatalog />
-      <Map />
+      <CatalogFrame>
+        <RouterCatalog />
+        <Map />
+      </CatalogFrame>
     </Screen>
   );
 };

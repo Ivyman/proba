@@ -35,7 +35,7 @@ export const Filters: React.FC<{
   }, [cities]);
 
   return (
-    <Wrapper>
+    <Wrapper as="form">
       {cities.map(cityItem => (
         <label key={cityItem.key}>
           {cityItem.name}

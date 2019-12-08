@@ -6,7 +6,7 @@ import { useDispatch } from "@src/hooks/dispatch";
 import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
 import { ThemeProvider, theme } from "@src/styles";
-import { RouterScreen } from "@src/routing/RouterScreen";
+import { RouterScreens } from "@src/routing/RouterScreens";
 import GlobalStyle from "@src/styles/GlobalStyle";
 import Sidebar from "@src/components/Sidebar";
 import Header from "@src/components/Header";
@@ -30,7 +30,7 @@ const App: React.FC = () => {
         <GlobalStyle />
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Header onSwitchSidebar={hadleSidebarSwith} />
-          <RouterScreen />
+          <RouterScreens />
           {sidebarStatus && (
             <Sidebar onClose={hadleSidebarSwith}>
               <Navbar items={sidebarLinks} />

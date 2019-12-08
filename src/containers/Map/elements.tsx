@@ -17,7 +17,7 @@ export const NavigationControlWrapper = styled.div`
 export const MapContainer = styled.div`
   background-color: gray;
   height: 100vh;
-  width: 50%;
+  width: 50vw;
 `;
 
 export const MarkerInner = styled.div`
