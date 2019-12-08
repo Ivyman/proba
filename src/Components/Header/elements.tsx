@@ -1,6 +1,6 @@
 import styled from "@src/styles";
 
-import { HamburgerIcon, CloseIcon } from "@src/assets/icons";
+import { HamburgerIcon } from "@src/assets/icons";
 import Layout from "@src/components/Layout";
 
 const { Container } = Layout;
@@ -18,9 +18,5 @@ export const NavWrapper = styled.div`
 `;
 
 export const StyledHamburgerIcon = styled(HamburgerIcon)`
-  cursor: pointer;
-`;
-
-export const StyledCloseIcon = styled(CloseIcon)`
   cursor: pointer;
 `;
