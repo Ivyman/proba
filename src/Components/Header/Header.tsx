@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, NavWrapper, HamburgerIcon } from "./elements";
+import { Wrapper, Nav, HamburgerIcon } from "./elements";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 
@@ -10,14 +10,12 @@ export const Header: React.FC<{
   const navbarLinks = [{ path: "/about", label: "O nas" }];
 
   return (
-    <header>
-      <Container>
-        <Logo link="/catalog" />
-        <NavWrapper>
-          <Navbar items={navbarLinks} />
-          <HamburgerIcon onClick={onSwitchSidebar} />
-        </NavWrapper>
-      </Container>
-    </header>
+    <Wrapper as="header">
+      <Logo link="/catalog" />
+      <Nav>
+        <Navbar items={navbarLinks} />
+        <HamburgerIcon onClick={onSwitchSidebar} />
+      </Nav>
+    </Wrapper>
   );
 };
