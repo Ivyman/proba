@@ -6,6 +6,6 @@ const { breakpoint } = mixins;
 
 export const Container = styled.section`
   padding: 10px;
-  ${breakpoint(EBreakpoints.xs)(`padding: 15px`)}
-  ${breakpoint(EBreakpoints.md)(`padding: 20px`)}
+  ${breakpoint(EBreakpoints.xs)(`padding: 10px 15px`)}
+  ${breakpoint(EBreakpoints.md)(`padding: 15px 20px`)}
 `;

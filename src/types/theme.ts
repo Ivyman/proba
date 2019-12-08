@@ -25,7 +25,17 @@ export interface IPalette {
   grayDark: string;
 }
 
+export interface IFontSizes {
+  one: string;
+  two: string;
+  three: string;
+  four: string;
+  five: string;
+  six: string;
+}
+
 export default interface ITheme {
   palette: IPalette;
   breakpoints: IBreakpoints;
+  fontSizes: IFontSizes;
 }

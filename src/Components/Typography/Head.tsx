@@ -3,20 +3,20 @@ import styled from "@src/styles";
 import { IHeadSize } from "@src/types/theme";
 
 export const Head = styled.h1<{ as: IHeadSize }>`
-  ${({ as }) => {
+  ${({ as, theme: { fontSizes } }) => {
     switch (as) {
       case "h1":
-        return "font-size: 2.5rem";
+        return `font-size: ${fontSizes.one}`;
       case "h2":
-        return "font-size: 2rem";
+        return `font-size: ${fontSizes.two}`;
       case "h3":
-        return "font-size: 1.75rem";
+        return `font-size: ${fontSizes.three}`;
       case "h4":
-        return "font-size: 1.5rem";
+        return `font-size: ${fontSizes.four}`;
       case "h5":
-        return "font-size: 1.25rem";
+        return `font-size: ${fontSizes.five}`;
       case "h6":
-        return "font-size: 1rem";
+        return `font-size: ${fontSizes.six}`;
     }
   }}
 `;
