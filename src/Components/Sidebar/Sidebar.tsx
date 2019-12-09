@@ -1,16 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Wrapper, CloseIcon } from "./elements";
+import { Wrapper } from "./elements";
 import Logo from "@src/components/Logo";
 
-export const Sidebar: React.FC<{ onClose?: () => void }> = ({
-  children,
-  onClose,
-}) => {
+export const Sidebar: React.FC = ({ children }) => {
   const renderSidebar = () => (
     <Wrapper>
-      {onClose && <CloseIcon onClick={onClose} />}
       <Logo link="/" />
       {children}
     </Wrapper>

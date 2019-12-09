@@ -32,7 +32,7 @@ const App: React.FC = () => {
           <Header onSwitchSidebar={hadleSidebarSwith} />
           <RouterScreens />
           {sidebarStatus && (
-            <Sidebar onClose={hadleSidebarSwith}>
+            <Sidebar>
               <Navbar items={sidebarLinks} />
             </Sidebar>
           )}
