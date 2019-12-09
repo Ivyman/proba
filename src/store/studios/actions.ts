@@ -5,23 +5,7 @@ import { IFiltersData } from "@src/types/filters";
 import { IAction } from "@src/types/store";
 import * as effects from "./effects";
 
-export const fetchStudios = () => async (dispatch: ThunkDispatch) => {
-  try {
-    dispatch(isFetching());
-
-    const {
-      data: { studios, nextPageToken: newNextPageToken },
-    } = await effects.fetchStudios();
-
-    dispatch(fetchStudiosSuccess(studios, newNextPageToken));
-  } catch (error) {
-    dispatch(fetchStudiosReject());
-    // tslint:disable-next-line
-    console.error(error);
-  }
-};
-
-export const fetchFilteredStudios = (filtersData?: IFiltersData) => async (
+export const fetchStudios = (filtersData: IFiltersData) => async (
   dispatch: ThunkDispatch,
   getStatate: () => RootState,
 ) => {

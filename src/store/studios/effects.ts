@@ -5,13 +5,13 @@ import { IFiltersData } from "@src/types/filters";
 import { IStudioResponse } from "@src/types/studio";
 
 export const fetchStudios = async (
-  filtersData?: IFiltersData,
-  nextPageToken: string | null = null,
+  filtersData: IFiltersData,
+  nextPageToken?: string | null,
 ): Promise<{ data: IStudioResponse }> => {
   const params = removeEmptyFields({
     limit: Studios.fetchLimit,
-    search: filtersData ? filtersData.search : "",
-    city: filtersData ? filtersData.search : "",
+    search: filtersData.search || null,
+    city: filtersData.city || null,
     nextPageToken,
   });
   return await apiEndpoint.get(URLS.studios, { params });

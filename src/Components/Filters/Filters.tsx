@@ -10,22 +10,33 @@ export const Filters: React.FC<{
   fields: IFilters;
 }> = ({ onFiltersChange, fields }) => {
   const { cities } = fields;
+  const [touched, setTouched] = useState(false);
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
 
   const debouncedSearch = useDebounce(search, Studios.filtersDebouncedInterval);
   const debouncedCity = useDebounce(city, Studios.filtersDebouncedInterval);
 
-  const handleCityChange = useCallback((cityKey: string) => setCity(cityKey), [
-    setCity,
-  ]);
+  const handleCityChange = useCallback(
+    (cityKey: string) => {
+      setCity(cityKey);
+      setTouched(true);
+    },
+    [setCity],
+  );
 
-  const handleSearchChange = useCallback((value: string) => setSearch(value), [
-    setSearch,
-  ]);
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      setSearch(value);
+      setTouched(true);
+    },
+    [setSearch],
+  );
 
   useEffect(() => {
-    onFiltersChange({ search: debouncedSearch, city: debouncedCity });
+    if (touched) {
+      onFiltersChange({ search: debouncedSearch, city: debouncedCity });
+    }
   }, [debouncedSearch, debouncedCity, onFiltersChange]);
 
   useEffect(() => {
