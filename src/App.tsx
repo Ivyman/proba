@@ -34,7 +34,7 @@ const App: React.FC = () => {
 
         <RouterScreens />
 
-        <Sidebar sidebarStatus={sidebarStatus}>
+        <Sidebar sidebarStatus={sidebarStatus} onClose={hadleSidebarSwith}>
           <Navbar items={sidebarLinks} />
         </Sidebar>
 

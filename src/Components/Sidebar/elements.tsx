@@ -1,5 +1,7 @@
 import styled from "@src/styles";
 
+import { CloseIcon as CloseI } from "@src/assets/icons";
+
 export const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
@@ -25,4 +27,8 @@ export const Wrapper = styled.aside`
   &.sidebar-exit-active {
     transform: translateX(100%);
   }
+`;
+
+export const CloseIcon = styled(CloseI)`
+  cursor: pointer;
 `;
