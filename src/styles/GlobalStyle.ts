@@ -32,6 +32,7 @@ export default createGlobalStyle`
     line-height: 1;
     font-family: Gilroy;
     position: relative;
+    overflow-x: hidden;
   }
   ol, ul {
     list-style: none;

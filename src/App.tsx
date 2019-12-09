@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -11,6 +11,7 @@ import GlobalStyle from "@src/styles/GlobalStyle";
 import Sidebar from "@src/components/Sidebar";
 import Header from "@src/components/Header";
 import Navbar from "@src/components/Navbar";
+import Overlay from "@src/components/Overlay";
 
 const App: React.FC = () => {
   const dispatchSwitchSidebar = useDispatch(switchSidebar);
@@ -26,18 +27,19 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <GlobalStyle />
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-          <Header onSwitchSidebar={hadleSidebarSwith} />
-          <RouterScreens />
-          {sidebarStatus && (
-            <Sidebar>
-              <Navbar items={sidebarLinks} />
-            </Sidebar>
-          )}
-        </BrowserRouter>
-      </>
+
+        <Header onSwitchSidebar={hadleSidebarSwith} />
+
+        <RouterScreens />
+
+        <Sidebar sidebarStatus={sidebarStatus}>
+          <Navbar items={sidebarLinks} />
+        </Sidebar>
+
+        <Overlay overlayStatus={sidebarStatus} onClick={hadleSidebarSwith} />
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

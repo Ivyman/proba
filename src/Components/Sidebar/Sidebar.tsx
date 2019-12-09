@@ -1,17 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { CSSTransition } from "react-transition-group";
 
 import { Wrapper } from "./elements";
 import Logo from "@src/components/Logo";
 
-export const Sidebar: React.FC = ({ children }) => {
-  const renderSidebar = () => (
+export const Sidebar: React.FC<{ sidebarStatus: boolean }> = ({
+  children,
+  sidebarStatus,
+}) => (
+  <CSSTransition
+    in={sidebarStatus}
+    timeout={200}
+    classNames="sidebar"
+    unmountOnExit
+  >
     <Wrapper>
       <Logo link="/" />
       {children}
     </Wrapper>
-  );
-  const sidebarRoot = document.getElementById("sidebar-root") as HTMLElement;
-
-  return ReactDOM.createPortal(renderSidebar(), sidebarRoot);
-};
+  </CSSTransition>
+);
