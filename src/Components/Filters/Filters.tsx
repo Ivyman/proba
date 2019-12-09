@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/config/Constants";
 import { useDebounce } from "@src/hooks/debounce";
-import { Wrapper } from "./elements";
+import { Wrapper, Cities } from "./elements";
 
 export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
@@ -36,18 +36,20 @@ export const Filters: React.FC<{
 
   return (
     <Wrapper as="form">
-      {cities.map(cityItem => (
-        <label key={cityItem.key}>
-          {cityItem.name}
-          <input
-            onChange={() => handleCityChange(cityItem.key)}
-            type="radio"
-            name="city"
-            value={cityItem.key}
-            checked={city === cityItem.key}
-          />
-        </label>
-      ))}
+      <Cities>
+        {cities.map(cityItem => (
+          <label key={cityItem.key}>
+            {cityItem.name}
+            <input
+              onChange={() => handleCityChange(cityItem.key)}
+              type="radio"
+              name="city"
+              value={cityItem.key}
+              checked={city === cityItem.key}
+            />
+          </label>
+        ))}
+      </Cities>
 
       <input
         type="text"

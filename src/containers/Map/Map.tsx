@@ -40,6 +40,7 @@ export const Map: React.FC = () => {
     <MapContainer>
       <ReactMapGL
         {...viewport}
+        scrollZoom={false}
         mapboxApiAccessToken={GlMap.accessToken}
         onViewportChange={handeleViewportChange}
       >
