@@ -10,16 +10,11 @@ import { RouterScreens } from "@src/routing/RouterScreens";
 import GlobalStyle from "@src/styles/GlobalStyle";
 import Sidebar from "@src/components/Sidebar";
 import Header from "@src/components/Header";
-import Navbar from "@src/components/Navbar";
 import Overlay from "@src/components/Overlay";
 
 const App: React.FC = () => {
   const dispatchSwitchSidebar = useDispatch(switchSidebar);
   const sidebarStatus: boolean = useSelector(getSidebarStatus);
-  const sidebarLinks = [
-    { path: "/catalog", label: "Katalog" },
-    { path: "/contact", label: "Kontakt" },
-  ];
 
   const hadleSidebarSwith = useCallback(() => {
     dispatchSwitchSidebar();
@@ -34,10 +29,7 @@ const App: React.FC = () => {
 
         <RouterScreens />
 
-        <Sidebar sidebarStatus={sidebarStatus} onClose={hadleSidebarSwith}>
-          <Navbar items={sidebarLinks} />
-        </Sidebar>
-
+        <Sidebar sidebarStatus={sidebarStatus} onClose={hadleSidebarSwith} />
         <Overlay overlayStatus={sidebarStatus} onClick={hadleSidebarSwith} />
       </BrowserRouter>
     </ThemeProvider>

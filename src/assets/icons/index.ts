@@ -1,5 +1,12 @@
-import { ReactComponent as LogoIcon } from "./logo.svg";
-import { ReactComponent as HamburgerIcon } from "./hamburger.svg";
-import { ReactComponent as CloseIcon } from "./close.svg";
+import React from "react";
 
-export { LogoIcon, HamburgerIcon, CloseIcon };
+import { ReactComponent as Logo } from "./logo.svg";
+import { ReactComponent as Hamburger } from "./hamburger.svg";
+import { ReactComponent as Close } from "./close.svg";
+import { ReactComponent as Catalog } from "./catalog.svg";
+
+const icons = { Logo, Hamburger, Close, Catalog };
+
+export type IconTypes = keyof typeof icons;
+
+export default (name: IconTypes) => icons[name];

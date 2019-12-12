@@ -1,9 +1,10 @@
 import React from "react";
 
 import { Wrapper, WrapperLink } from "./elements";
-import { ReactComponent as LogoIcon } from "@src/assets/icons/logo.svg";
+import Icon from "@src/assets/icons";
 import { Brand } from "@src/config/Confing";
 
+const LogoIcon = Icon("Logo");
 const { nameWithDomain: Name } = Brand;
 
 export const Logo: React.FC<{ link?: string; small?: boolean }> = ({

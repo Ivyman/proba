@@ -1,7 +1,9 @@
 import styled from "@src/styles";
 
-import { HamburgerIcon as Hamburger } from "@src/assets/icons";
+import Icon from "@src/assets/icons";
 import Layout from "@src/components/Layout";
+
+const HamburgerI = Icon("Hamburger");
 
 export const Wrapper = styled(Layout.Container)`
   display: flex;
@@ -20,6 +22,6 @@ export const Nav = styled.div`
   }
 `;
 
-export const HamburgerIcon = styled(Hamburger)`
+export const HamburgerIcon = styled(HamburgerI)`
   cursor: pointer;
 `;

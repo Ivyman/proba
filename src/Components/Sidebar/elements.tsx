@@ -1,6 +1,8 @@
-import styled, { css } from "@src/styles";
+import styled from "@src/styles";
 
-import { CloseIcon as CloseI } from "@src/assets/icons";
+import Icon from "@src/assets/icons";
+
+const CloseI = Icon("Close");
 
 export const Wrapper = styled.aside`
   display: flex;
