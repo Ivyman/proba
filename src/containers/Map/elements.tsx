@@ -24,7 +24,6 @@ export const MarkerInner = styled.div`
   background: gray;
   cursor: pointer;
   color: white;
-  padding: 5px;
 `;
 
 export const MarkerTitle = styled.h5`

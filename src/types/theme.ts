@@ -34,8 +34,13 @@ export interface IFontSizes {
   six: string;
 }
 
+export interface ICommon {
+  space: string;
+}
+
 export default interface ITheme {
   palette: IPalette;
   breakpoints: IBreakpoints;
   fontSizes: IFontSizes;
+  common: ICommon;
 }

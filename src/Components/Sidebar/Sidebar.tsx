@@ -1,13 +1,19 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { Wrapper, CloseIcon } from "./elements";
+import { Wrapper, CloseIcon, Footer, Header, Body } from "./elements";
 import Logo from "@src/components/Logo";
+import SidebarNav from "@src/components/SidebarNav";
+
+const sidebarLinks = [
+  { path: "/catalog", label: "Katalog", icon: "Catalog" },
+  { path: "/contact", label: "Kontakt", icon: "Contact" },
+];
 
 export const Sidebar: React.FC<{
   sidebarStatus: boolean;
   onClose?: () => void;
-}> = ({ children, sidebarStatus, onClose }) => (
+}> = ({ sidebarStatus, onClose }) => (
   <CSSTransition
     in={sidebarStatus}
     timeout={200}
@@ -15,9 +21,13 @@ export const Sidebar: React.FC<{
     unmountOnExit
   >
     <Wrapper>
-      <Logo link="/" />
-      {onClose && <CloseIcon onClick={onClose} />}
-      {children}
+      <Header>{onClose && <CloseIcon onClick={onClose} />}</Header>
+      <Body>
+        <SidebarNav items={sidebarLinks} />
+      </Body>
+      <Footer>
+        <Logo small />
+      </Footer>
     </Wrapper>
   </CSSTransition>
 );

@@ -1,21 +1,22 @@
 import React from "react";
 
-import { Wrapper, Link } from "./elements";
+import { Wrapper, WrapperLink } from "./elements";
 import { ReactComponent as LogoIcon } from "@src/assets/icons/logo.svg";
 import { Brand } from "@src/config/Confing";
 
 const { nameWithDomain: Name } = Brand;
 
-export const Logo: React.FC<{ link?: string }> = ({ link }) => (
+export const Logo: React.FC<{ link?: string; small?: boolean }> = ({
+  link,
+  small,
+}) => (
   <>
     {link ? (
-      <Link to={link}>
-        <Wrapper>
-          <LogoIcon /> {Name}
-        </Wrapper>
-      </Link>
+      <WrapperLink to={link} small={small}>
+        <LogoIcon /> {Name}
+      </WrapperLink>
     ) : (
-      <Wrapper>
+      <Wrapper small={small}>
         <LogoIcon /> {Name}
       </Wrapper>
     )}
