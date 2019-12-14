@@ -3,9 +3,9 @@ import React from "react";
 export default () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
-    viewBox="0 0 21 21"
+    width="25"
+    height="25"
+    viewBox="0 0 1000 1000"
   >
     <path
       className="path1"

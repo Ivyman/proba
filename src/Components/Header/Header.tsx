@@ -1,5 +1,4 @@
 import React from "react";
-import { Maybe } from "true-myth";
 
 import { Wrapper, Nav, HamburgerIconWrapper } from "./elements";
 import GenericIcon from "@src/icons/GenericIcon";

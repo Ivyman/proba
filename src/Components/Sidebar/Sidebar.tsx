@@ -1,7 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { Wrapper, CloseIconWrapper, Footer, Header, Body } from "./elements";
+import { Wrapper, CloseIconWrapper, Header, Footer, Body } from "./elements";
 import { IPathWithIcon } from "@src/types/path";
 import GenericIcon from "@src/icons/GenericIcon";
 import Logo from "@src/components/Logo";
@@ -24,11 +24,9 @@ export const Sidebar: React.FC<{
   >
     <Wrapper>
       <Header>
-        {onClose && (
-          <CloseIconWrapper onClick={onClose}>
-            <GenericIcon name="Close" />
-          </CloseIconWrapper>
-        )}
+        <CloseIconWrapper onClick={onClose}>
+          <GenericIcon name="Close" />
+        </CloseIconWrapper>
       </Header>
       <Body>
         <SidebarNav items={sidebarLinks} />

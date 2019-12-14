@@ -6,6 +6,7 @@ export const Wrapper = styled(Layout.Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid ${({ theme: { palette } }) => palette.grayLight};
 `;
 
 export const Nav = styled.div`
