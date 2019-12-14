@@ -20,5 +20,6 @@ export const Nav = styled.div`
 `;
 
 export const HamburgerIconWrapper = styled.div`
+  display: flex;
   cursor: pointer;
 `;

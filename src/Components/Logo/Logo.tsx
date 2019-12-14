@@ -2,7 +2,7 @@ import React from "react";
 
 import { Wrapper, WrapperLink } from "./elements";
 import { Brand } from "@src/config/Confing";
-import GenericIcon from "@src/icons/Icon";
+import GenericIcon from "@src/icons/GenericIcon";
 
 const { nameWithDomain: Name } = Brand;
 

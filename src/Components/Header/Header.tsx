@@ -2,7 +2,7 @@ import React from "react";
 import { Maybe } from "true-myth";
 
 import { Wrapper, Nav, HamburgerIconWrapper } from "./elements";
-import GenericIcon from "@src/icons/Icon";
+import GenericIcon from "@src/icons/GenericIcon";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 

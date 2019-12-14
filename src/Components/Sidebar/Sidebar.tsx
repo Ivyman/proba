@@ -3,7 +3,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { Wrapper, CloseIconWrapper, Footer, Header, Body } from "./elements";
 import { IPathWithIcon } from "@src/types/path";
-import GenericIcon from "@src/icons/Icon";
+import GenericIcon from "@src/icons/GenericIcon";
 import Logo from "@src/components/Logo";
 import SidebarNav from "@src/components/SidebarNav";
 
