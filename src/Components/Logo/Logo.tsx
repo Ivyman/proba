@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Wrapper, WrapperLink } from "./elements";
-import Icon from "@src/assets/icons";
+import getIcon from "@src/icons";
 import { Brand } from "@src/config/Confing";
 
-const LogoIcon = Icon("Logo");
+const LogoIcon = getIcon("Logo");
 const { nameWithDomain: Name } = Brand;
 
 export const Logo: React.FC<{ link?: string; small?: boolean }> = ({

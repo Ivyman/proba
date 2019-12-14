@@ -1,9 +1,5 @@
 import styled from "@src/styles";
 
-import Icon from "@src/assets/icons";
-
-const CloseI = Icon("Close");
-
 export const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
@@ -33,7 +29,7 @@ export const Wrapper = styled.aside`
   }
 `;
 
-export const CloseIcon = styled(CloseI)`
+export const CloseIconWrapper = styled.div`
   cursor: pointer;
 `;
 

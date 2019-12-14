@@ -1,11 +1,15 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { Wrapper, CloseIcon, Footer, Header, Body } from "./elements";
+import { Wrapper, CloseIconWrapper, Footer, Header, Body } from "./elements";
+import { IPathWithIcon } from "@src/types/path";
 import Logo from "@src/components/Logo";
 import SidebarNav from "@src/components/SidebarNav";
+import getIcon from "@src/icons";
 
-const sidebarLinks = [
+const CloseIcon = getIcon("Close");
+
+const sidebarLinks: IPathWithIcon[] = [
   { path: "/catalog", label: "Katalog", icon: "Catalog" },
   { path: "/contact", label: "Kontakt", icon: "Contact" },
 ];
@@ -21,7 +25,13 @@ export const Sidebar: React.FC<{
     unmountOnExit
   >
     <Wrapper>
-      <Header>{onClose && <CloseIcon onClick={onClose} />}</Header>
+      <Header>
+        {onClose && (
+          <CloseIconWrapper onClick={onClose}>
+            <CloseIcon />
+          </CloseIconWrapper>
+        )}
+      </Header>
       <Body>
         <SidebarNav items={sidebarLinks} />
       </Body>
