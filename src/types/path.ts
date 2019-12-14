@@ -1,4 +1,4 @@
-import { IconTypes } from "@src/icons";
+import { IconTypes } from "@src/types/icons";
 
 export interface IPath {
   label: string;

@@ -2,11 +2,9 @@ import React from "react";
 import { Maybe } from "true-myth";
 
 import { Wrapper, Nav, HamburgerIconWrapper } from "./elements";
-import getIcon from "@src/icons";
+import GenericIcon from "@src/icons/Icon";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
-
-const HamburgerIcon = getIcon(Maybe.just("Hamburger"));
 
 export const Header: React.FC<{
   onSwitchSidebar: () => void;
@@ -19,7 +17,7 @@ export const Header: React.FC<{
       <Nav>
         <Navbar items={navbarLinks} />
         <HamburgerIconWrapper onClick={onSwitchSidebar}>
-          <HamburgerIcon />
+          <GenericIcon name="Hamburger" />
         </HamburgerIconWrapper>
       </Nav>
     </Wrapper>

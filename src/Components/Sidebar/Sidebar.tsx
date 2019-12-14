@@ -1,14 +1,11 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
-import { Maybe } from "true-myth";
 
 import { Wrapper, CloseIconWrapper, Footer, Header, Body } from "./elements";
 import { IPathWithIcon } from "@src/types/path";
+import GenericIcon from "@src/icons/Icon";
 import Logo from "@src/components/Logo";
 import SidebarNav from "@src/components/SidebarNav";
-import getIcon from "@src/icons";
-
-const CloseIcon = getIcon(Maybe.just("Close"));
 
 const sidebarLinks: IPathWithIcon[] = [
   { path: "/catalog", label: "Katalog", icon: "Catalog" },
@@ -29,7 +26,7 @@ export const Sidebar: React.FC<{
       <Header>
         {onClose && (
           <CloseIconWrapper onClick={onClose}>
-            <CloseIcon />
+            <GenericIcon name="Close" />
           </CloseIconWrapper>
         )}
       </Header>
