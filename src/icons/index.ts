@@ -1,3 +1,5 @@
+import { Maybe } from "true-myth";
+
 import Logo from "./logo";
 import Hamburger from "./hamburger";
 import Close from "./close";
@@ -8,4 +10,5 @@ const icons = { Logo, Hamburger, Close, Catalog, Contact };
 
 export type IconTypes = keyof typeof icons;
 
-export default (name: IconTypes) => icons[name];
+export default (name: Maybe<IconTypes>) =>
+  icons[name.map((value: IconTypes) => value).unwrapOr("Logo")];

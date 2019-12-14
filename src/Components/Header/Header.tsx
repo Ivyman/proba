@@ -1,11 +1,12 @@
 import React from "react";
+import { Maybe } from "true-myth";
 
 import { Wrapper, Nav, HamburgerIconWrapper } from "./elements";
 import getIcon from "@src/icons";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 
-const HamburgerIcon = getIcon("Hamburger");
+const HamburgerIcon = getIcon(Maybe.just("Hamburger"));
 
 export const Header: React.FC<{
   onSwitchSidebar: () => void;
