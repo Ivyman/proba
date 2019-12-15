@@ -20,7 +20,7 @@ export const Nav = styled.div`
   }
 `;
 
-export const HamburgerIconWrapper = styled.div`
+export const MenuIconWrapper = styled.div`
   display: flex;
   cursor: pointer;
 `;

@@ -1,9 +1,8 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { Wrapper, CloseIconWrapper, Header, Footer, Body } from "./elements";
+import { Wrapper, Footer, Body } from "./elements";
 import { IPathWithIcon } from "@src/types/path";
-import GenericIcon from "@src/icons/GenericIcon";
 import Logo from "@src/components/Logo";
 import SidebarNav from "@src/components/SidebarNav";
 
@@ -14,8 +13,7 @@ const sidebarLinks: IPathWithIcon[] = [
 
 export const Sidebar: React.FC<{
   sidebarStatus: boolean;
-  onClose?: () => void;
-}> = ({ sidebarStatus, onClose }) => (
+}> = ({ sidebarStatus }) => (
   <CSSTransition
     in={sidebarStatus}
     timeout={200}
@@ -23,11 +21,6 @@ export const Sidebar: React.FC<{
     unmountOnExit
   >
     <Wrapper>
-      <Header>
-        <CloseIconWrapper onClick={onClose}>
-          <GenericIcon name="Close" />
-        </CloseIconWrapper>
-      </Header>
       <Body>
         <SidebarNav items={sidebarLinks} />
       </Body>

@@ -29,7 +29,7 @@ const App: React.FC = () => {
 
         <RouterScreens />
 
-        <Sidebar sidebarStatus={sidebarStatus} onClose={hadleSidebarSwith} />
+        <Sidebar sidebarStatus={sidebarStatus} />
         <Overlay overlayStatus={sidebarStatus} onClick={hadleSidebarSwith} />
       </BrowserRouter>
     </ThemeProvider>

@@ -10,15 +10,12 @@ export const Wrapper = styled.nav`
   a {
     display: flex;
     padding: ${({ theme }) =>
-      `${theme.common.space * 0.75}em  ${theme.common.space * 1.5}em`};
+      `${theme.common.space}em  ${theme.common.space * 1.5}em`};
     text-decoration: none;
     color: ${({ theme }) => theme.palette.gray};
     font-size: ${({ theme }) => theme.fontSizes.five};
     &:hover {
-      color: ${({ theme }) => theme.palette.turkus};
-      svg {
-        fill: ${({ theme }) => theme.palette.turkus};
-      }
+      background-color: ${({ theme }) => theme.palette.grayLight};
     }
   }
 `;

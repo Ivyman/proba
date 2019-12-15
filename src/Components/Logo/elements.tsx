@@ -5,8 +5,8 @@ import { Link as RouterLink } from "react-router-dom";
 const smallSize = css`
   font-size: ${({ theme: { fontSizes } }) => fontSizes.six}};
   svg {
-    height: 30px;
     margin-right: 4px;
+    height: 30px;
   }
 `;
 
@@ -20,7 +20,7 @@ const WarapperStyles = css`
   color: ${({ theme: { palette } }) => palette.grayDark}};
   svg {
     vertical-align: middle;
-    margin-right: 12px;
+    margin-right: 10px;
   }
 `;
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Wrapper, Nav, HamburgerIconWrapper } from "./elements";
+import { Wrapper, Nav, MenuIconWrapper } from "./elements";
 import GenericIcon from "@src/icons/GenericIcon";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
@@ -15,9 +15,9 @@ export const Header: React.FC<{
       <Logo link="/catalog" />
       <Nav>
         <Navbar items={navbarLinks} />
-        <HamburgerIconWrapper onClick={onSwitchSidebar}>
-          <GenericIcon name="Hamburger" />
-        </HamburgerIconWrapper>
+        <MenuIconWrapper onClick={onSwitchSidebar}>
+          <GenericIcon name="Menu" />
+        </MenuIconWrapper>
       </Nav>
     </Wrapper>
   );
