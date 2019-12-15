@@ -12,7 +12,7 @@ export const Wrapper = styled.nav`
     padding: ${({ theme }) =>
       `${theme.common.space}em  ${theme.common.space * 1.5}em`};
     text-decoration: none;
-    color: ${({ theme }) => theme.palette.gray};
+    color: ${({ theme }) => theme.palette.black};
     font-size: ${({ theme }) => theme.fontSizes.five};
     &:hover {
       background-color: ${({ theme }) => theme.palette.grayLight};
