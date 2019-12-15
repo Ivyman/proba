@@ -12,18 +12,19 @@ export const Wrapper = styled.aside`
   right: 0;
   top: 0;
   z-index: 2;
-  transition: transform 0.2s linear;
   &.sidebar-enter {
     transform: translateX(100%);
   }
   &.sidebar-enter-active {
     transform: translateX(0);
+    transition: transform 200ms ease-in-out;
   }
   &.sidebar-exit {
     transform: translateX(0);
   }
   &.sidebar-exit-active {
     transform: translateX(100%);
+    transition: transform 200ms ease-in-out;
   }
 `;
 

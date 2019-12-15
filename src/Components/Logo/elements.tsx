@@ -14,7 +14,7 @@ const normalSize = css`
   font-size: ${({ theme: { fontSizes } }) => fontSizes.five}};
 `;
 
-const WarapperStyles = css`
+export const Wrapper = styled.span<{ small?: boolean }>`
   text-decoration: none;
   font-weight: bold;
   color: ${({ theme: { palette } }) => palette.grayDark}};
@@ -22,14 +22,10 @@ const WarapperStyles = css`
     vertical-align: middle;
     margin-right: 10px;
   }
+  ${({ small }) => (small ? smallSize : normalSize)};
 `;
 
-export const Wrapper = styled.span<{ small?: boolean }>`
-  ${WarapperStyles}
-  ${props => (props.small ? smallSize : normalSize)};
-`;
-
-export const WrapperLink = styled(RouterLink)<{ small?: boolean }>`
-  ${WarapperStyles}
-  ${props => (props.small ? smallSize : normalSize)};
+export const Link = styled(RouterLink)`
+  text-decoration: none;
+  color: ${({ theme: { palette } }) => palette.grayDark}};
 `;
