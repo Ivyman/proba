@@ -7,8 +7,8 @@ import Logo from "@src/components/Logo";
 import SidebarNav from "@src/components/SidebarNav";
 
 const sidebarLinks: IPathWithIcon[] = [
-  { path: "/catalog", label: "Katalog", icon: "Catalog" },
   { path: "/contact", label: "Kontakt", icon: "Contact" },
+  { path: "/about", label: "O nas", icon: "Menu" },
 ];
 
 export const Sidebar: React.FC<{

@@ -8,7 +8,7 @@ import Logo from "@src/components/Logo";
 export const Header: React.FC<{
   onSwitchSidebar: () => void;
 }> = ({ onSwitchSidebar }) => {
-  const navbarLinks = [{ path: "/about", label: "O nas" }];
+  const navbarLinks = [{ path: "/catalog", label: "Katalog" }];
 
   return (
     <Wrapper as="header">

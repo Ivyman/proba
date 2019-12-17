@@ -36,6 +36,7 @@ export interface IFontSizes {
 
 export interface ICommon {
   space: number;
+  shadowBox: string;
 }
 
 export default interface ITheme {

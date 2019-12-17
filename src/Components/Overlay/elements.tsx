@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   height: 100vh;
   background-color: rgba(24, 24, 24, 0.5);
   transition: opacity 0.2s ease-in-out;
+  z-index: 1;
   &.overlay-enter {
     opacity: 0;
   }

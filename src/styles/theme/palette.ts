@@ -5,7 +5,7 @@ export default {
   turkus: "#1dc8ea",
   black: "#181818",
   white: "#ffffff",
-  gray: "#a4a8ab",
-  grayLight: "#e2e7ea",
+  gray: "#dcdcdc",
+  grayLight: "#f1f2f6",
   grayDark: "#515c63",
 };

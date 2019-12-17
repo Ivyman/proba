@@ -3,7 +3,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/config/Constants";
 import { useDebounce } from "@src/hooks/debounce";
-import { Wrapper, Cities, CityBox } from "./elements";
+import { Wrapper, Cities, CityBox, Search } from "./elements";
+import Controls from "@src/components/Controls";
+
+const { Input } = Controls;
 
 export const Filters: React.FC<{
   onFiltersChange: (filtersForm: any) => void;
@@ -63,11 +66,13 @@ export const Filters: React.FC<{
         ))}
       </Cities>
 
-      <input
-        type="text"
-        placeholder="Wpisz nazwe"
-        onChange={(event: any) => handleSearchChange(event.target.value)}
-      />
+      <Search>
+        <Input
+          type="text"
+          placeholder="Wpisz nazwe"
+          onChange={(event: any) => handleSearchChange(event.target.value)}
+        />
+      </Search>
     </Wrapper>
   );
 };
