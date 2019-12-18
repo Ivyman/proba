@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Wrapper, Nav, MenuIconWrapper } from "./elements";
-import GenericIcon from "@src/icons/GenericIcon";
+import GenericIcon from "@src/components/Icons/GenericIcon";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 

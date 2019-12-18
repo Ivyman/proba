@@ -1,3 +1,3 @@
-import icons from "@src/icons";
+import Icons from "@src/components/Icons";
 
-export type IconTypes = keyof typeof icons;
+export type IconTypes = keyof typeof Icons;

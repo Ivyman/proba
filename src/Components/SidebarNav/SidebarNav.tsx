@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { IPathWithIcon } from "@src/types/path";
 import { Wrapper, Text } from "./elements";
-import GenericIcon from "@src/icons/GenericIcon";
+import GenericIcon from "@src/components/Icons/GenericIcon";
 
 export const SidebarNav: React.FC<{ items: IPathWithIcon[] }> = ({ items }) => (
   <Wrapper>
