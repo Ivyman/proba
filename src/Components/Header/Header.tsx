@@ -1,24 +1,21 @@
-import React from "react";
+import React, { memo } from "react";
 
-import { Wrapper, Nav, MenuIconWrapper } from "./elements";
-import GenericIcon from "@src/components/Icons/GenericIcon";
+// TODO remove icons
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 
 export const Header: React.FC<{
-  onSwitchSidebar: () => void;
-}> = ({ onSwitchSidebar }) => {
-  const navbarLinks = [{ path: "/catalog", label: "Katalog" }];
+    onSwitchSidebar: () => void;
+}> = memo(({ onSwitchSidebar }) => {
+    const navbarLinks = [{ path: "/catalog", label: "Katalog" }];
 
-  return (
-    <Wrapper as="header">
-      <Logo link="/catalog" />
-      <Nav>
-        <Navbar items={navbarLinks} />
-        <MenuIconWrapper onClick={onSwitchSidebar}>
-          <GenericIcon name="Menu" />
-        </MenuIconWrapper>
-      </Nav>
-    </Wrapper>
-  );
-};
+    return (
+        <header>
+            <Logo link="/catalog" />
+            <nav>
+                <Navbar items={navbarLinks} />
+                <div onClick={onSwitchSidebar}>"menu icon"</div>
+            </nav>
+        </header>
+    );
+});

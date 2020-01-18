@@ -1,58 +1,65 @@
-import React, { useState } from "react";
-import ReactMapGL, { NavigationControl } from "react-map-gl";
+import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
-
-import { GlMap } from "@src/config/Confing";
+import { GlMap } from "@src/Confing";
 import { IStudio, ECoordinateName } from "@src/types/studio";
-import { countCoordinateAverage, getCoordinates } from "@src/helpers/map";
+import { countCoordinateAverage, getCoordinates } from "@src/utils/map";
 import {
-  getHoverdStudioId,
-  getOpenedStudio,
-  getStudios,
+    getHoverdStudioId,
+    getOpenedStudio,
+    getStudios,
 } from "@src/store/studios/selectors";
+import { ICoordinate } from "@src/types/studio";
 
-import { Markers } from "./Markers";
-import { MapContainer, NavigationControlWrapper } from "./elements";
+import ReactMapGL, { NavigationControl } from "react-map-gl";
+import Markers from "@src/components/Markers";
 
 export const Map: React.FC = () => {
-  const hoveredItemId: string | null = useSelector(getHoverdStudioId);
-  const openedStudio: IStudio | null = useSelector(getOpenedStudio);
-  const studiosList: IStudio[] = useSelector(getStudios);
+    const hoveredItemId: string = useSelector(getHoverdStudioId);
+    const openedStudio: IStudio | undefined = useSelector(getOpenedStudio);
+    const studiosList: IStudio[] = useSelector(getStudios);
 
-  const coordinates = getCoordinates(studiosList);
+    const coordinates = useMemo<ICoordinate[]>(
+        () => getCoordinates(studiosList),
+        [studiosList],
+    );
 
-  const [viewport, setViewport] = useState({
-    width: "100%",
-    height: "100%",
-    // TODO change this depend on chosen city in filters
-    latitude: countCoordinateAverage(coordinates, ECoordinateName.latitude),
-    longitude: countCoordinateAverage(coordinates, ECoordinateName.longitude),
-    zoom: 10,
-  });
+    // TODO any
+    const [viewport, setViewport] = useState<any>({
+        width: "100%",
+        height: "100%",
+        latitude: countCoordinateAverage(coordinates, ECoordinateName.latitude),
+        longitude: countCoordinateAverage(
+            coordinates,
+            ECoordinateName.longitude,
+        ),
+        zoom: 10,
+    });
 
-  const getOpenedStudioId = () => (openedStudio ? openedStudio.id : null);
+    const getOpenedStudioId = useMemo<string>(
+        () => (openedStudio ? openedStudio.id : ""),
+        [openedStudio],
+    );
 
-  const handeleViewportChange = (changedViewport: any) => {
-    setViewport(changedViewport);
-  };
+    const handeleViewportChange = (changedViewport: any) =>
+        setViewport(changedViewport);
 
-  return (
-    <MapContainer>
-      <ReactMapGL
-        {...viewport}
-        scrollZoom={false}
-        mapboxApiAccessToken={GlMap.accessToken}
-        onViewportChange={handeleViewportChange}
-      >
-        <Markers
-          dataList={studiosList}
-          hoveredItemId={hoveredItemId}
-          openedStudioId={getOpenedStudioId()}
-        />
-        <NavigationControlWrapper>
-          <NavigationControl showCompass={false} />
-        </NavigationControlWrapper>
-      </ReactMapGL>
-    </MapContainer>
-  );
+    return (
+        <div>
+            <ReactMapGL
+                {...viewport}
+                scrollZoom={false}
+                mapboxApiAccessToken={GlMap.accessToken}
+                onViewportChange={handeleViewportChange}
+            >
+                <Markers
+                    dataList={studiosList}
+                    hoveredItemId={hoveredItemId}
+                    openedStudioId={getOpenedStudioId}
+                />
+                <NavigationControl>
+                    <NavigationControl showCompass={false} />
+                </NavigationControl>
+            </ReactMapGL>
+        </div>
+    );
 };

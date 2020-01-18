@@ -1,26 +1,19 @@
-import React from "react";
-
-import { Wrapper, Link } from "./elements";
-import { Brand } from "@src/config/Confing";
-import GenericIcon from "@src/components/Icons/GenericIcon";
+import React, { memo } from "react";
+import { Link } from "react-router-dom";
+import { Brand } from "@src/Confing";
 
 const { nameWithDomain: Name } = Brand;
 
-export const Logo: React.FC<{ link?: string; small?: boolean }> = ({
-  link,
-  small,
-}) => (
-  <>
-    {link ? (
-      <Wrapper small={small}>
-        <Link to={link}>
-          <GenericIcon name="Logo" /> {Name}
-        </Link>
-      </Wrapper>
-    ) : (
-      <Wrapper small={small}>
-        <GenericIcon name="Logo" /> {Name}
-      </Wrapper>
-    )}
-  </>
+export const Logo: React.FC<{ link?: string; small?: boolean }> = memo(
+    ({ link, small }) => (
+        <>
+            {link ? (
+                <div>
+                    <Link to={link}>"logo" {Name}</Link>
+                </div>
+            ) : (
+                <div>"logo" {Name}</div>
+            )}
+        </>
+    ),
 );

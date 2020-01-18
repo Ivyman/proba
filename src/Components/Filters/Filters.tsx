@@ -1,78 +1,78 @@
-import React, { useState, useEffect, useCallback } from "react";
-
+import React, { useState, useEffect, memo } from "react";
 import { IFilters } from "@src/types/filters";
-import { Studios } from "@src/config/Constants";
+import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
-import { Wrapper, Cities, CityBox, Search } from "./elements";
-import Controls from "@src/components/Controls";
-
-const { Input } = Controls;
 
 export const Filters: React.FC<{
-  onFiltersChange: (filtersForm: any) => void;
-  fields: IFilters;
-}> = ({ onFiltersChange, fields }) => {
-  const { cities } = fields;
-  const [touched, setTouched] = useState(false);
-  const [search, setSearch] = useState("");
-  const [city, setCity] = useState("");
+    onFiltersChange: (filtersForm: any) => void;
+    fields: IFilters;
+}> = memo(({ onFiltersChange, fields }) => {
+    const [touched, setTouched] = useState<boolean>(false);
+    const [search, setSearch] = useState<string>("");
+    const [city, setCity] = useState<string>("");
 
-  const debouncedSearch = useDebounce(search, Studios.filtersDebouncedInterval);
-  const debouncedCity = useDebounce(city, Studios.filtersDebouncedInterval);
+    const { cities } = fields;
 
-  const handleCityChange = useCallback(
-    (cityKey: string) => {
-      setCity(cityKey);
-      setTouched(true);
-    },
-    [setCity],
-  );
+    const debouncedSearch = useDebounce<string>(
+        search,
+        Studios.filtersDebouncedInterval,
+    );
+    const debouncedCity = useDebounce<string>(
+        city,
+        Studios.filtersDebouncedInterval,
+    );
 
-  const handleSearchChange = useCallback(
-    (value: string) => {
-      setSearch(value);
-      setTouched(true);
-    },
-    [setSearch],
-  );
+    const handleCityChange = (cityKey: string) => {
+        setCity(cityKey);
+        setTouched(true);
+    };
 
-  useEffect(() => {
-    if (touched) {
-      onFiltersChange({ search: debouncedSearch, city: debouncedCity });
-    }
-  }, [debouncedSearch, debouncedCity, onFiltersChange]);
+    const handleSearchChange = (value: string) => {
+        setSearch(value);
+        setTouched(true);
+    };
 
-  useEffect(() => {
-    if (cities.length) {
-      setCity(cities[0].key);
-    }
-  }, [cities]);
+    useEffect(() => {
+        if (touched) {
+            onFiltersChange({ search: debouncedSearch, city: debouncedCity });
+        }
+    }, [debouncedSearch, debouncedCity, onFiltersChange, touched]);
 
-  return (
-    <Wrapper as="form">
-      <Cities>
-        {cities.map(cityItem => (
-          <CityBox key={cityItem.key}>
-            <input
-              onChange={() => handleCityChange(cityItem.key)}
-              type="radio"
-              name="city"
-              id={`${cityItem.key}-radio-box`}
-              value={cityItem.key}
-              checked={city === cityItem.key}
-            />
-            <label htmlFor={`${cityItem.key}-radio-box`}>{cityItem.name}</label>
-          </CityBox>
-        ))}
-      </Cities>
+    useEffect(() => {
+        if (cities.length) {
+            setCity(cities[0].key);
+        }
+    }, [cities]);
 
-      <Search>
-        <Input
-          type="text"
-          placeholder="Wpisz nazwe"
-          onChange={(event: any) => handleSearchChange(event.target.value)}
-        />
-      </Search>
-    </Wrapper>
-  );
-};
+    return (
+        <form>
+            <div>
+                {cities.map(cityItem => (
+                    <div key={cityItem.key}>
+                        <input
+                            onChange={() => handleCityChange(cityItem.key)}
+                            type="radio"
+                            name="city"
+                            id={`${cityItem.key}-radio-box`}
+                            value={cityItem.key}
+                            checked={city === cityItem.key}
+                        />
+                        <label htmlFor={`${cityItem.key}-radio-box`}>
+                            {cityItem.name}
+                        </label>
+                    </div>
+                ))}
+            </div>
+
+            <div>
+                <input
+                    type="text"
+                    placeholder="Wpisz nazwe"
+                    onChange={(event: any) =>
+                        handleSearchChange(event.target.value)
+                    }
+                />
+            </div>
+        </form>
+    );
+});

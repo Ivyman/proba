@@ -1,19 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
-import StudioBox from "@src/components/StudioBox";
 import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studios/selectors";
 
-import { Wrapper } from "./elements";
+import StudioBox from "@src/components/StudioBox";
 
-export const Studio: React.FC<{ onGoBack: () => void }> = ({ onGoBack }) => {
-  const openedStudio: IStudio | null = useSelector(getOpenedStudio);
+interface IProps {
+    onGoBack: () => void;
+}
 
-  return (
-    <Wrapper>
-      <button onClick={() => onGoBack()}>powrót</button>
-      <StudioBox openedStudio={openedStudio} />
-    </Wrapper>
-  );
+export const Studio: React.FC<IProps> = ({ onGoBack }) => {
+    const openedStudio: IStudio | undefined = useSelector(getOpenedStudio);
+
+    return (
+        <div>
+            <button onClick={() => onGoBack()}>powrót</button>
+            <StudioBox openedStudio={openedStudio} />
+        </div>
+    );
 };

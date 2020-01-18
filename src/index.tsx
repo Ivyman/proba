@@ -5,11 +5,12 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./store";
 
-console.log("v1.0", process.env.NODE_ENV); // tslint:disable-line
+// tslint:disable-next-line
+console.log("v1.0", process.env.NODE_ENV);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root"),
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById("root"),
 );

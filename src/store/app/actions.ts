@@ -1,6 +1,6 @@
-import { IAction } from "@src/types/store";
+import { IAppAction } from ".";
 import AppTypes from "./types";
 
-export const switchSidebar = (): IAction => ({
-  type: AppTypes.APP_SIDEBAR_SWITCH,
+export const switchSidebar = (): IAppAction => ({
+    type: AppTypes.APP_SIDEBAR_SWITCH,
 });

@@ -1,76 +1,73 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.8.3",
-    "@material-ui/icons": "^4.5.1",
-    "@types/jest": "24.0.21",
-    "@types/node": "12.12.4",
-    "@types/react": "16.9.11",
-    "@types/react-dom": "16.9.3",
-    "@types/react-map-gl": "^5.0.2",
-    "@types/react-redux": "^7.1.5",
-    "@types/react-router-dom": "^5.1.2",
-    "@types/react-transition-group": "^4.2.3",
-    "@types/styled-components": "^4.1.20",
-    "axios": "^0.19.0",
-    "prettier": "^1.18.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-map-gl": "^5.1.1",
-    "react-redux": "^7.1.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
-    "react-transition-group": "^4.3.0",
-    "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0",
-    "styled-components": "^4.4.1",
-    "typescript": "3.6.4"
-  },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test -- --coverage",
-    "eject": "react-scripts eject",
-    "mockapi": "nodemon mockApi --exec babel-node --"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "husky": "^3.0.9",
-    "nodemon": "^1.19.4",
-    "pretty-quick": "^2.0.0",
-    "react-app-rewired": "^2.1.4",
-    "redux-devtools-extension": "^2.13.8",
-    "tslint": "^5.20.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
+    "name": "frontend",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@material-ui/core": "^4.8.3",
+        "@material-ui/icons": "^4.5.1",
+        "@types/jest": "24.0.21",
+        "@types/node": "12.12.4",
+        "@types/react": "16.9.11",
+        "@types/react-dom": "16.9.3",
+        "@types/react-map-gl": "^5.0.2",
+        "@types/react-redux": "^7.1.5",
+        "@types/react-router-dom": "^5.1.2",
+        "@types/styled-components": "^4.1.20",
+        "axios": "^0.19.0",
+        "prettier": "^1.18.2",
+        "react": "^16.11.0",
+        "react-dom": "^16.11.0",
+        "react-map-gl": "^5.1.1",
+        "react-redux": "^7.1.1",
+        "react-router-dom": "^5.1.2",
+        "react-scripts": "3.2.0",
+        "redux-thunk": "^2.3.0",
+        "reselect": "^4.0.0",
+        "typescript": "3.6.4"
+    },
+    "scripts": {
+        "start": "react-app-rewired start",
+        "build": "react-app-rewired build",
+        "test": "react-app-rewired test -- --coverage",
+        "eject": "react-scripts eject",
+        "mockapi": "nodemon mockApi --exec babel-node --"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "babel": {
+        "presets": [
+            "env"
+        ]
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "husky": "^3.0.9",
+        "nodemon": "^1.19.4",
+        "pretty-quick": "^2.0.0",
+        "react-app-rewired": "^2.1.4",
+        "redux-devtools-extension": "^2.13.8",
+        "tslint": "^5.20.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     }
-  }
 }

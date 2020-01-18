@@ -1,7 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
 
-import { Wrapper } from "./elements";
-
-export const CatalogFrame: React.FC = ({ children }) => (
-  <Wrapper>{children}</Wrapper>
-);
+export const CatalogFrame: React.FC = memo(({ children }) => (
+    <div>{children}</div>
+));

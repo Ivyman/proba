@@ -6,7 +6,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 export type MyExtraArg = undefined;
 export type ThunkDispatch = TDispatch<RootState, MyExtraArg, Action>;
 
-export interface IAction {
-  type: any;
-  payload?: any;
+export interface IAction<T> {
+    type: T;
+    payload?: any;
 }
