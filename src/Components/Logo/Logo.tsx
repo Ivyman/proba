@@ -1,19 +1,23 @@
 import React, { memo } from "react";
-import { Link } from "react-router-dom";
 import { Brand } from "@src/Confing";
+import useStyles from "./styles";
+
+import { ReactComponent as LogoIcon } from "@src/assets/logo.svg";
+import { Box } from "@material-ui/core";
+
+interface IProps {
+    small?: boolean;
+}
 
 const { nameWithDomain: Name } = Brand;
 
-export const Logo: React.FC<{ link?: string; small?: boolean }> = memo(
-    ({ link, small }) => (
-        <>
-            {link ? (
-                <div>
-                    <Link to={link}>"logo" {Name}</Link>
-                </div>
-            ) : (
-                <div>"logo" {Name}</div>
-            )}
-        </>
-    ),
-);
+export const Logo: React.FC<IProps> = memo(({ small }) => {
+    const classes = useStyles();
+
+    return (
+        <Box display="flex" alignItems="center" component="span">
+            <LogoIcon />
+            <span className={classes.brandName}>{Name}</span>
+        </Box>
+    );
+});
