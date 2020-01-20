@@ -6,6 +6,7 @@ import { IMessageData } from "@src/types/message";
 import { sendMessage, setIdleStatus } from "@src/store/message/actions";
 import { getMessageApiStatus } from "@src/store/message/selectors";
 
+import { Container } from "@material-ui/core";
 import ContactForm from "@src/components/ContactForm";
 import Screen from "@src/components/Screen";
 
@@ -39,19 +40,21 @@ export const ContactScreen: React.FC = () => {
 
     return (
         <Screen>
-            <h1>Napisz do nas</h1>
+            <Container>
+                <h1>Napisz do nas</h1>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-                mollitia vero ducimus eligendi
-            </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Porro mollitia vero ducimus eligendi
+                </p>
 
-            {renderContactForm()}
+                {renderContactForm()}
 
-            <p>
-                Lub wyślij wiedomość pod adress
-                <a href="mailto:mail@gmail.com">probamail@gmail.com</a>
-            </p>
+                <p>
+                    Lub wyślij wiedomość pod adress
+                    <a href="mailto:mail@gmail.com">probamail@gmail.com</a>
+                </p>
+            </Container>
         </Screen>
     );
 };

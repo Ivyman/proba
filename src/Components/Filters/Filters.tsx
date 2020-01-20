@@ -1,78 +1,92 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, ChangeEvent } from "react";
 import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
 
-export const Filters: React.FC<{
-    onFiltersChange: (filtersForm: any) => void;
+import {
+    FormControl,
+    TextField,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+} from "@material-ui/core";
+
+interface IProps {
     fields: IFilters;
-}> = memo(({ onFiltersChange, fields }) => {
-    const [touched, setTouched] = useState<boolean>(false);
-    const [search, setSearch] = useState<string>("");
-    const [city, setCity] = useState<string>("");
+    onFiltersChange: (filtersForm: any) => void;
+}
 
-    const { cities } = fields;
+export const Filters: React.FC<IProps> = memo(
+    ({ onFiltersChange, fields: { cities } }) => {
+        const [touched, setTouched] = useState<boolean>(false);
+        const [search, setSearch] = useState<string>("");
+        const [city, setCity] = useState<string>("");
 
-    const debouncedSearch = useDebounce<string>(
-        search,
-        Studios.filtersDebouncedInterval,
-    );
-    const debouncedCity = useDebounce<string>(
-        city,
-        Studios.filtersDebouncedInterval,
-    );
+        const debouncedSearch = useDebounce<string>(
+            search,
+            Studios.filtersDebouncedInterval,
+        );
+        const debouncedCity = useDebounce<string>(
+            city,
+            Studios.filtersDebouncedInterval,
+        );
 
-    const handleCityChange = (cityKey: string) => {
-        setCity(cityKey);
-        setTouched(true);
-    };
+        const handleCityChange = (
+            event: React.ChangeEvent<HTMLInputElement>,
+        ) => {
+            setCity(event.target.value);
+            setTouched(true);
+        };
 
-    const handleSearchChange = (value: string) => {
-        setSearch(value);
-        setTouched(true);
-    };
+        const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+            setSearch(event.target.value);
+            setTouched(true);
+        };
 
-    useEffect(() => {
-        if (touched) {
-            onFiltersChange({ search: debouncedSearch, city: debouncedCity });
-        }
-    }, [debouncedSearch, debouncedCity, onFiltersChange, touched]);
+        useEffect(() => {
+            if (touched) {
+                onFiltersChange({
+                    search: debouncedSearch,
+                    city: debouncedCity,
+                });
+            }
+        }, [debouncedSearch, debouncedCity, onFiltersChange, touched]);
 
-    useEffect(() => {
-        if (cities.length) {
-            setCity(cities[0].key);
-        }
-    }, [cities]);
+        useEffect(() => {
+            if (cities.length) {
+                setCity(cities[0].key);
+            }
+        }, [cities]);
 
-    return (
-        <form>
-            <div>
-                {cities.map(cityItem => (
-                    <div key={cityItem.key}>
-                        <input
-                            onChange={() => handleCityChange(cityItem.key)}
-                            type="radio"
-                            name="city"
-                            id={`${cityItem.key}-radio-box`}
-                            value={cityItem.key}
-                            checked={city === cityItem.key}
-                        />
-                        <label htmlFor={`${cityItem.key}-radio-box`}>
-                            {cityItem.name}
-                        </label>
-                    </div>
-                ))}
-            </div>
+        return (
+            <form>
+                <FormControl component="fieldset">
+                    <RadioGroup
+                        aria-label="position"
+                        value={city}
+                        onChange={handleCityChange}
+                    >
+                        {cities.map(cityItem => (
+                            <FormControlLabel
+                                key={cityItem.key}
+                                value={cityItem.key}
+                                checked={city === cityItem.key}
+                                control={<Radio color="primary" />}
+                                label={cityItem.name}
+                                labelPlacement="end"
+                            />
+                        ))}
+                    </RadioGroup>
+                </FormControl>
 
-            <div>
-                <input
-                    type="text"
-                    placeholder="Wpisz nazwe"
-                    onChange={(event: any) =>
-                        handleSearchChange(event.target.value)
-                    }
-                />
-            </div>
-        </form>
-    );
-});
+                <FormControl component="fieldset">
+                    <TextField
+                        label="Wpisz nazwe"
+                        variant="outlined"
+                        onChange={handleSearchChange}
+                    />
+                </FormControl>
+            </form>
+        );
+    },
+);

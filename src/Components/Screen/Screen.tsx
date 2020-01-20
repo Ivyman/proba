@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { EApiStatuses } from "@src/types/api";
 
 import { CircularProgress } from "@material-ui/core";
@@ -7,7 +7,7 @@ interface IProps {
     apiStatus?: EApiStatuses;
 }
 
-export const Screen: React.FC<IProps> = ({ apiStatus, children }) => {
+export const Screen: React.FC<IProps> = memo(({ apiStatus, children }) => {
     const renderScreen = () => {
         switch (apiStatus) {
             case EApiStatuses.ERROR:
@@ -22,4 +22,4 @@ export const Screen: React.FC<IProps> = ({ apiStatus, children }) => {
     };
 
     return <>{renderScreen()}</>;
-};
+});

@@ -9,7 +9,7 @@ import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";
 
-import CatalogFrame from "@src/components/CatalogFrame";
+import { Divider, Container, Box, Grid } from "@material-ui/core";
 import Filters from "@src/components/Filters";
 import Map from "@src/containers/Map";
 import Screen from "@src/components/Screen";
@@ -40,11 +40,29 @@ const CatalogScreen: React.FC = () => {
 
     return (
         <Screen apiStatus={studiosApiStatus}>
-            <Filters onFiltersChange={handleFiltersChange} fields={fields} />
-            <CatalogFrame>
-                <RouterCatalog />
-                <Map />
-            </CatalogFrame>
+            <Box py={2}>
+                <Container>
+                    <Filters
+                        onFiltersChange={handleFiltersChange}
+                        fields={fields}
+                    />
+                </Container>
+            </Box>
+
+            <Divider />
+
+            <Box py={2}>
+                <Container>
+                    <Grid container>
+                        <Grid item>
+                            <RouterCatalog />
+                        </Grid>
+                        <Grid item>
+                            <Map />
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
         </Screen>
     );
 };
