@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
+import { IPath } from "@src/types/path";
 import useStyles from "./styles";
 
 import { Container, AppBar, Toolbar, IconButton, Box } from "@material-ui/core";
@@ -7,17 +8,14 @@ import { Menu as MenuIcon } from "@material-ui/icons";
 import Navbar from "@src/components/Navbar";
 import Logo from "@src/components/Logo";
 
+const navbarLinks: IPath[] = [{ path: "/catalog", label: "Katalog" }];
+
 interface IProps {
     onSwitchSidebar: () => void;
 }
 
 export const Header: React.FC<IProps> = memo(({ onSwitchSidebar }) => {
     const classes = useStyles();
-
-    const navbarLinks = [
-        { path: "/catalog", label: "Katalog" },
-        { path: "/catalog1", label: "Katalog" },
-    ];
 
     return (
         <AppBar position="static">

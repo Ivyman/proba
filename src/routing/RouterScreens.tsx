@@ -1,8 +1,9 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
-
 import { useDispatch } from "@src/hooks/dispatch";
 import { setOpenedStudio } from "@src/store/studios/actions";
+
+import { CircularProgress, Container } from "@material-ui/core";
 
 const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));
@@ -24,13 +25,15 @@ export const RouterScreens: React.FC = () => {
     }, [location, dispatchOpenedStudio]);
 
     return (
-        <Suspense fallback={<>Loadign...</>}>
-            <Switch>
-                <Route path="/about" component={AboutScreen} exact />
-                <Route path="/contact" component={ContactScreen} exact />
-                <Route path="/catalog" component={CatalogScreen} />
-                <Redirect from="/*" to="/catalog" />
-            </Switch>
+        <Suspense fallback={<CircularProgress />}>
+            <Container>
+                <Switch>
+                    <Route path="/about" component={AboutScreen} exact />
+                    <Route path="/contact" component={ContactScreen} exact />
+                    <Route path="/catalog" component={CatalogScreen} />
+                    <Redirect from="/*" to="/catalog" />
+                </Switch>
+            </Container>
         </Suspense>
     );
 };

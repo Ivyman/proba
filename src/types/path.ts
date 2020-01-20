@@ -4,5 +4,5 @@ export interface IPath {
 }
 
 export interface IPathWithIcon extends IPath {
-    icon: any;
+    icon: JSX.Element;
 }

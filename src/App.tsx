@@ -25,7 +25,10 @@ const App: React.FC = () => {
 
             <RouterScreens />
 
-            <Sidebar sidebarStatus={sidebarStatus} />
+            <Sidebar
+                sidebarStatus={sidebarStatus}
+                onClose={dispatchSwitchSidebar}
+            />
         </BrowserRouter>
     );
 };

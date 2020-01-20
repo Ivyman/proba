@@ -35,7 +35,7 @@ export const ContactScreen: React.FC = () => {
         if (messageApiStatus !== EApiStatuses.IDLE) {
             dispatchIdleStatus();
         }
-    }, []);
+    }, [dispatchIdleStatus, messageApiStatus]);
 
     return (
         <Screen>

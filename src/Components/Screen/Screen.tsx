@@ -1,17 +1,20 @@
 import React from "react";
-
 import { EApiStatuses } from "@src/types/api";
 
-export const Screen: React.FC<{
+import { CircularProgress } from "@material-ui/core";
+
+interface IProps {
     apiStatus?: EApiStatuses;
-}> = ({ apiStatus, children }) => {
+}
+
+export const Screen: React.FC<IProps> = ({ apiStatus, children }) => {
     const renderScreen = () => {
         switch (apiStatus) {
             case EApiStatuses.ERROR:
                 return "error";
             case EApiStatuses.RUNNING:
             case EApiStatuses.IDLE:
-                return "loading";
+                return <CircularProgress />;
             case EApiStatuses.SUCCESS:
             default:
                 return children;

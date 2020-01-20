@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import Screen from "@src/components/Screen";
 
 const AboutScreen: React.FC = () => (
