@@ -2,14 +2,10 @@ import React, { useState, useEffect, memo, ChangeEvent } from "react";
 import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
+import useStyles from "./styles";
 
-import {
-    FormControl,
-    TextField,
-    RadioGroup,
-    FormControlLabel,
-    Radio,
-} from "@material-ui/core";
+import { FormControl, TextField, RadioGroup } from "@material-ui/core";
+import ChipField from "@src/components/ChipField";
 
 interface IProps {
     fields: IFilters;
@@ -21,6 +17,8 @@ export const Filters: React.FC<IProps> = memo(
         const [touched, setTouched] = useState<boolean>(false);
         const [search, setSearch] = useState<string>("");
         const [city, setCity] = useState<string>("");
+
+        const classes = useStyles();
 
         const debouncedSearch = useDebounce<string>(
             search,
@@ -59,21 +57,20 @@ export const Filters: React.FC<IProps> = memo(
         }, [cities]);
 
         return (
-            <form>
+            <form className={classes.root}>
                 <FormControl component="fieldset">
                     <RadioGroup
                         aria-label="position"
                         value={city}
+                        className={classes.radioGroup}
                         onChange={handleCityChange}
                     >
                         {cities.map(cityItem => (
-                            <FormControlLabel
+                            <ChipField
                                 key={cityItem.key}
+                                label={cityItem.name}
                                 value={cityItem.key}
                                 checked={city === cityItem.key}
-                                control={<Radio color="primary" />}
-                                label={cityItem.name}
-                                labelPlacement="end"
                             />
                         ))}
                     </RadioGroup>
@@ -81,8 +78,10 @@ export const Filters: React.FC<IProps> = memo(
 
                 <FormControl component="fieldset">
                     <TextField
+                        size="small"
                         label="Wpisz nazwe"
                         variant="outlined"
+                        className={classes.searchFiled}
                         onChange={handleSearchChange}
                     />
                 </FormControl>

@@ -7,9 +7,11 @@ import React, {
 } from "react";
 import { IMessageData } from "@src/types/message";
 
-export const ContactForm: React.FC<{
+interface IProps {
     onSubmit: (messageData: IMessageData) => void;
-}> = memo(({ onSubmit }) => {
+}
+
+export const ContactForm: React.FC<IProps> = memo(({ onSubmit }) => {
     const [formData, setFormData] = useState({
         email: "",
         subject: "",
