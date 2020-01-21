@@ -11,7 +11,7 @@ import { useDispatch } from "@src/hooks/dispatch";
 
 import { Divider, Container, Box, Grid } from "@material-ui/core";
 import Filters from "@src/components/Filters";
-import Map from "@src/containers/Map";
+import MapContainer from "@src/containers/MapContainer";
 import Screen from "@src/components/Screen";
 
 const CatalogScreen: React.FC = () => {
@@ -58,7 +58,7 @@ const CatalogScreen: React.FC = () => {
                             <RouterCatalog />
                         </Grid>
                         <Grid item xs={7}>
-                            <Map />
+                            <MapContainer />
                         </Grid>
                     </Grid>
                 </Container>

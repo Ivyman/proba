@@ -4,7 +4,7 @@ import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { FormControl, TextField, RadioGroup } from "@material-ui/core";
+import { FormControl, TextField, RadioGroup, Grid } from "@material-ui/core";
 import ChipField from "@src/components/ChipField";
 
 interface IProps {
@@ -33,7 +33,6 @@ export const Filters: React.FC<IProps> = memo(
             setCity(event.target.value);
             setTouched(true);
         };
-
         const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
             setSearch(event.target.value);
             setTouched(true);
@@ -55,8 +54,18 @@ export const Filters: React.FC<IProps> = memo(
         }, [cities]);
 
         return (
-            <form className={classes.root}>
-                <FormControl component="fieldset">
+            <Grid container spacing={2} component="form">
+                <Grid item xs={5} className={classes.searchFiledWrapper}>
+                    <TextField
+                        fullWidth
+                        size="small"
+                        label="Wpisz nazwe"
+                        variant="outlined"
+                        onChange={handleSearchChange}
+                    />
+                </Grid>
+
+                <Grid item xs={7}>
                     <RadioGroup
                         aria-label="position"
                         value={city}
@@ -72,18 +81,8 @@ export const Filters: React.FC<IProps> = memo(
                             />
                         ))}
                     </RadioGroup>
-                </FormControl>
-
-                <FormControl component="fieldset">
-                    <TextField
-                        size="small"
-                        label="Wpisz nazwe"
-                        variant="outlined"
-                        className={classes.searchFiled}
-                        onChange={handleSearchChange}
-                    />
-                </FormControl>
-            </form>
+                </Grid>
+            </Grid>
         );
     },
 );

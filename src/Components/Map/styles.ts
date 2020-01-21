@@ -2,13 +2,11 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        radioGroup: {
-            display: "flex",
-            flexDirection: "row",
-        },
-        searchFiledWrapper: {
-            display: "flex",
-            alignItems: "center",
+        root: {},
+        navigationControl: {
+            position: "absolute",
+            bottom: theme.spacing(3),
+            right: theme.spacing(1),
         },
     }),
 );
