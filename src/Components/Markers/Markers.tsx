@@ -18,21 +18,18 @@ export const Markers: React.FC<IProps> = memo(
                 hoveredMarker === data.id || hoveredItemId === data.id,
             [hoveredMarker, hoveredItemId],
         );
-
         const isStudioOpened = useCallback(
             (id: string) => openedStudioId === id,
             [openedStudioId],
         );
-
         const handleMouseOver = (markerId: string) =>
             setHoveredMarker(markerId);
-
         const handleMouseLeave = () => setHoveredMarker("");
 
         return (
             <>
                 {dataList.map(data => (
-                    <div>
+                    <div key={data.id}>
                         <GlMarker
                             key={data.id}
                             latitude={data.address.latitude}

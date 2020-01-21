@@ -23,7 +23,7 @@ export const ContactForm: React.FC<IProps> = memo(({ onSubmit }) => {
             const { name, value } = event.target;
             setFormData({ [name]: value });
         },
-        [formData],
+        [setFormData],
     );
 
     const handleSubmit = useCallback(

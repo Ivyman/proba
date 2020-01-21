@@ -29,9 +29,7 @@ export const Filters: React.FC<IProps> = memo(
             Studios.filtersDebouncedInterval,
         );
 
-        const handleCityChange = (
-            event: React.ChangeEvent<HTMLInputElement>,
-        ) => {
+        const handleCityChange = (event: ChangeEvent<HTMLInputElement>) => {
             setCity(event.target.value);
             setTouched(true);
         };

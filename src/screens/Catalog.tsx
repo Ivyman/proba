@@ -41,7 +41,7 @@ const CatalogScreen: React.FC = () => {
     return (
         <Screen apiStatus={studiosApiStatus}>
             <Box py={2}>
-                <Container>
+                <Container maxWidth="xl">
                     <Filters
                         onFiltersChange={handleFiltersChange}
                         fields={fields}
@@ -52,12 +52,12 @@ const CatalogScreen: React.FC = () => {
             <Divider />
 
             <Box py={2}>
-                <Container>
-                    <Grid container>
-                        <Grid item>
+                <Container maxWidth="xl">
+                    <Grid container spacing={2}>
+                        <Grid item xs={5}>
                             <RouterCatalog />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={7}>
                             <Map />
                         </Grid>
                     </Grid>

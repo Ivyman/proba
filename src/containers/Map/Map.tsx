@@ -44,22 +44,20 @@ export const Map: React.FC = () => {
         setViewport(changedViewport);
 
     return (
-        <div>
-            <ReactMapGL
-                {...viewport}
-                scrollZoom={false}
-                mapboxApiAccessToken={GlMap.accessToken}
-                onViewportChange={handeleViewportChange}
-            >
-                <Markers
-                    dataList={studiosList}
-                    hoveredItemId={hoveredItemId}
-                    openedStudioId={getOpenedStudioId}
-                />
-                <NavigationControl>
-                    <NavigationControl showCompass={false} />
-                </NavigationControl>
-            </ReactMapGL>
-        </div>
+        <ReactMapGL
+            {...viewport}
+            scrollZoom={false}
+            mapboxApiAccessToken={GlMap.accessToken}
+            onViewportChange={handeleViewportChange}
+        >
+            <Markers
+                dataList={studiosList}
+                hoveredItemId={hoveredItemId}
+                openedStudioId={getOpenedStudioId}
+            />
+            <NavigationControl>
+                <NavigationControl showCompass={false} />
+            </NavigationControl>
+        </ReactMapGL>
     );
 };

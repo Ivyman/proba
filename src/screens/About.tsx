@@ -6,7 +6,7 @@ import Screen from "@src/components/Screen";
 
 const AboutScreen: React.FC = () => (
     <Screen>
-        <Container>
+        <Container maxWidth="xl">
             <h1>O nas</h1>
 
             <img src="https://via.placeholder.com/150" alt="O nas" />

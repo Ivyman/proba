@@ -18,6 +18,7 @@ export const ChipField: React.FC<IProps> = memo(({ label, value, checked }) => {
         <FormControlLabel
             label={
                 <Chip
+                    variant={checked ? "default" : "outlined"}
                     label={label}
                     onClick={handleClick}
                     color={checked ? "primary" : "default"}

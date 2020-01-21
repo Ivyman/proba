@@ -40,7 +40,7 @@ export const ContactScreen: React.FC = () => {
 
     return (
         <Screen>
-            <Container>
+            <Container maxWidth="xl">
                 <h1>Napisz do nas</h1>
 
                 <p>
