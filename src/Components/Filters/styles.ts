@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         searchFiledWrapper: {
             display: "flex",
-            alignItems: "center",
+            alignItems: "center ",
         },
     }),
 );

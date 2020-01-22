@@ -4,7 +4,7 @@ import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { FormControl, TextField, RadioGroup, Grid } from "@material-ui/core";
+import { TextField, RadioGroup, Grid } from "@material-ui/core";
 import ChipField from "@src/components/ChipField";
 
 interface IProps {
