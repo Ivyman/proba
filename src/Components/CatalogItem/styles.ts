@@ -1,13 +1,20 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
+const hoveredItem = (theme: Theme) => ({
+    transform: "scale(1.01)",
+    boxShadow: theme.shadows[3],
+    borderRight: `5px solid ${theme.palette.success.main}`,
+});
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             marginBottom: theme.spacing(2),
             transition: "0.2s",
-            "&:hover": {
-                transform: "scale(1.01)",
-            },
+            "&:hover": hoveredItem(theme),
+        },
+        hoveredItem: {
+            ...hoveredItem(theme),
         },
         address: {
             display: "flex",
@@ -28,6 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
         linkWrapper: {
             display: "flex",
             textDecoration: "none",
+            transition: "0.2s",
         },
     }),
 );

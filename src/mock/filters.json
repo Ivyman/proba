@@ -1,8 +1,8 @@
 {
-  "cities": [
-    { "name": "Warszawa", "key": "waw" },
-    { "name": "Gdańsk", "key": "gda" },
-    { "name": "Wrocław", "key": "wro" },
-    { "name": "Gdynia", "key": "gdy" }
-  ]
+    "cities": [
+        { "name": "Warszawa", "key": "waw" },
+        { "name": "Gdańsk", "key": "gda" },
+        { "name": "Wrocław", "key": "wro" },
+        { "name": "Gdynia", "key": "gdy" }
+    ]
 }

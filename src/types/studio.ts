@@ -16,7 +16,7 @@ export interface IStudioAddress {
     city: string;
     zipcode: string;
     street: string;
-    number: string;
+    buildingNumber: string;
     room?: string;
 }
 

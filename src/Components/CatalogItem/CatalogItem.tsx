@@ -1,22 +1,28 @@
-import React, { MouseEvent, useState, memo } from "react";
+import React, { MouseEvent, useState, memo, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { IStudio } from "@src/types/studio";
 import useStyles from "./styles";
 
 import { Card, CardContent, Typography, CardMedia } from "@material-ui/core";
-import { Room as RoomIcon } from "@material-ui/icons";
+import { RoomOutlined as RoomOutlinedIcon } from "@material-ui/icons";
 
 interface IProps {
     studioData: IStudio;
+    hoverdStudioId: string;
     onHoveredStudio: (id?: string) => void;
     onOpenStudio: (id?: string) => void;
 }
 
 export const CatalogItem: React.FC<IProps> = memo(
-    ({ studioData, onHoveredStudio, onOpenStudio }) => {
+    ({ studioData, onHoveredStudio, onOpenStudio, hoverdStudioId }) => {
         const [hover, setHover] = useState();
 
         const classes = useStyles();
+
+        const isHovered = useCallback(
+            (hoveredId: string) => hoverdStudioId === hoveredId,
+            [hoverdStudioId],
+        );
 
         const handleClick = () => {
             onHoveredStudio();
@@ -39,7 +45,7 @@ export const CatalogItem: React.FC<IProps> = memo(
 
         const {
             id,
-            address: { city, zipcode, street },
+            address: { street, buildingNumber },
             name,
             logo,
         } = studioData;
@@ -51,7 +57,9 @@ export const CatalogItem: React.FC<IProps> = memo(
                 }
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClick}
-                className={classes.root}
+                className={`${classes.root} ${
+                    isHovered(id) ? classes.hoveredItem : ""
+                }`}
             >
                 <Link to={`/catalog/${id}`} className={classes.linkWrapper}>
                     <CardMedia
@@ -72,11 +80,11 @@ export const CatalogItem: React.FC<IProps> = memo(
                             color="textSecondary"
                             className={classes.address}
                         >
-                            <RoomIcon
+                            <RoomOutlinedIcon
                                 fontSize="small"
                                 className={classes.roomIcon}
                             />
-                            {city}, {zipcode}, {street}
+                            {street} {buildingNumber}
                         </Typography>
                     </CardContent>
                 </Link>

@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "@src/hooks/dispatch";
 import { IStudio } from "@src/types/studio";
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
-import { getStudios } from "@src/store/studios/selectors";
+import { getStudios, getHoverdStudioId } from "@src/store/studios/selectors";
 
 import CatalogItem from "@src/components/CatalogItem";
 
 export const Catalog: React.FC = () => {
     const studios: IStudio[] = useSelector(getStudios);
+    const hoverdStudioId: string = useSelector(getHoverdStudioId);
 
     const dispatchHoveredStudio = useDispatch<typeof setHoveredStudio, string>(
         setHoveredStudio,
@@ -20,12 +21,13 @@ export const Catalog: React.FC = () => {
     return (
         <div>
             {studios.length ? (
-                studios.map(studio => (
+                studios.map((studio: IStudio) => (
                     <CatalogItem
                         key={studio.id}
                         studioData={studio}
                         onHoveredStudio={dispatchHoveredStudio}
                         onOpenStudio={dispatchOpenedStudio}
+                        hoverdStudioId={hoverdStudioId}
                     />
                 ))
             ) : (

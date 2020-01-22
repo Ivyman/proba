@@ -1,6 +1,6 @@
 export interface IViewport {
-    width: string;
-    height: string;
+    width: number | string;
+    height: number | string;
     latitude: number;
     longitude: number;
     zoom: number;

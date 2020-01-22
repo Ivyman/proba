@@ -1,57 +1,87 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useCallback, memo, useMemo } from "react";
 import { IStudio } from "@src/types/studio";
+import useStyles from "./styles";
 
 import { Marker as GlMarker, Popup } from "react-map-gl";
+import { Typography } from "@material-ui/core";
+import { ReactComponent as DrumIcon } from "@src/assets/drum.svg";
 
 interface IProps {
     dataList: IStudio[];
     hoveredItemId: string;
     openedStudioId: string;
+    onMarkerOver: (id: string) => void;
+    onMarkerLeave: () => void;
 }
 
 export const Markers: React.FC<IProps> = memo(
-    ({ dataList, hoveredItemId, openedStudioId }) => {
-        const [hoveredMarker, setHoveredMarker] = useState<string>("");
+    ({
+        dataList,
+        hoveredItemId,
+        openedStudioId,
+        onMarkerOver,
+        onMarkerLeave,
+    }) => {
+        const classes = useStyles();
 
-        const isShowPopup = useCallback(
-            (data: IStudio) =>
-                hoveredMarker === data.id || hoveredItemId === data.id,
-            [hoveredMarker, hoveredItemId],
-        );
+        const isHovered = useCallback((id: string) => hoveredItemId === id, [
+            hoveredItemId,
+        ]);
         const isStudioOpened = useCallback(
             (id: string) => openedStudioId === id,
             [openedStudioId],
         );
-        const handleMouseOver = (markerId: string) =>
-            setHoveredMarker(markerId);
-        const handleMouseLeave = () => setHoveredMarker("");
+        const isOpened = useMemo(() => !!openedStudioId, [openedStudioId]);
+
+        const handleMouseOver = (id: string) => onMarkerOver(id);
 
         return (
             <>
-                {dataList.map(data => (
-                    <div key={data.id}>
+                {dataList.map(({ id, name, address }: IStudio) => (
+                    <div
+                        key={id}
+                        onMouseOver={() => handleMouseOver(id)}
+                        onMouseLeave={() => onMarkerLeave()}
+                    >
                         <GlMarker
-                            key={data.id}
-                            latitude={data.address.latitude}
-                            longitude={data.address.longitude}
                             offsetLeft={-20}
                             offsetTop={-10}
+                            latitude={address.latitude}
+                            longitude={address.longitude}
                         >
-                            <span>Studio</span>
-                        </GlMarker>
-                        {isShowPopup(data) && (
-                            <Popup
-                                latitude={data.address.latitude}
-                                longitude={data.address.longitude}
-                                offsetTop={14}
-                                offsetLeft={8}
-                                closeButton={false}
-                                anchor="top"
+                            <div
+                                className={`${classes.marker} ${
+                                    isOpened
+                                        ? isStudioOpened(id)
+                                            ? classes.markerActive
+                                            : classes.markerNotActive
+                                        : classes.markerDefault
+                                }`}
                             >
-                                <span>{data.name}</span>
-                                <div>
-                                    {data.address.street}, {data.address.number}
-                                </div>
+                                <DrumIcon className={classes.markerIcon} />
+                            </div>
+                        </GlMarker>
+
+                        {isHovered(id) && (
+                            <Popup
+                                anchor="top"
+                                offsetTop={30}
+                                offsetLeft={-2}
+                                closeButton={false}
+                                className={classes.popup}
+                                latitude={address.latitude}
+                                longitude={address.longitude}
+                            >
+                                <Typography
+                                    component="h6"
+                                    variant="subtitle2"
+                                    className={classes.popupTitle}
+                                >
+                                    {name}
+                                </Typography>
+                                <Typography component="p" variant="subtitle2">
+                                    {address.street}, {address.buildingNumber}
+                                </Typography>
                             </Popup>
                         )}
                     </div>
