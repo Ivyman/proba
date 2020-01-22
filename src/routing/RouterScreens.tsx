@@ -1,9 +1,8 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { useDispatch } from "@src/hooks/dispatch";
-import { setOpenedStudio } from "@src/store/studios/actions";
-
 import { CircularProgress } from "@material-ui/core";
+import { setOpenedStudio } from "@src/store/studios/actions";
 
 const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));

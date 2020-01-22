@@ -15,14 +15,15 @@ import MapContainer from "@src/containers/MapContainer";
 import Screen from "@src/components/Screen";
 
 const CatalogScreen: React.FC = () => {
+    const fields: IFilters = useSelector(getFilters);
+    const studiosApiStatus: EApiStatuses = useSelector(getStudiosApiStatus);
+
     const dispatchStudios = useDispatch<typeof fetchStudios, IFiltersData>(
         fetchStudios,
     );
     const dispatchFilters = useDispatch<typeof fetchFilters, undefined>(
         fetchFilters,
     );
-    const fields: IFilters = useSelector(getFilters);
-    const studiosApiStatus: EApiStatuses = useSelector(getStudiosApiStatus);
 
     const handleFiltersChange = (filtersData: IFiltersData) => {
         dispatchStudios({

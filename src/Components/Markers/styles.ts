@@ -2,7 +2,6 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {},
         navigationControl: {
             position: "absolute",
             bottom: theme.spacing(3),
@@ -27,6 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         markerNotActive: {
             filter: "grayscale(100%)",
+            "& > svg": {
+                opacity: "0.7",
+            },
         },
         markerIcon: {
             width: "100%",

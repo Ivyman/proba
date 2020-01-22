@@ -10,10 +10,11 @@ import Sidebar from "@src/components/Sidebar";
 import Header from "@src/components/Header";
 
 const App: React.FC = () => {
+    const sidebarStatus: boolean = useSelector(getSidebarStatus);
+
     const dispatchSwitchSidebar = useDispatch<typeof switchSidebar, undefined>(
         switchSidebar,
     );
-    const sidebarStatus: boolean = useSelector(getSidebarStatus);
 
     const hadleSidebarSwith = useCallback(() => {
         dispatchSwitchSidebar();

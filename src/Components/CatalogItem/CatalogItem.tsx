@@ -1,5 +1,4 @@
 import React, { MouseEvent, useState, memo, useCallback } from "react";
-import { Link } from "react-router-dom";
 import { IStudio } from "@src/types/studio";
 import useStyles from "./styles";
 
@@ -9,12 +8,12 @@ import { RoomOutlined as RoomOutlinedIcon } from "@material-ui/icons";
 interface IProps {
     studioData: IStudio;
     hoverdStudioId: string;
-    onHoveredStudio: (id?: string) => void;
-    onOpenStudio: (id?: string) => void;
+    onItemClick: (id: string) => void;
+    onHoverStudio: (id?: string) => void;
 }
 
 export const CatalogItem: React.FC<IProps> = memo(
-    ({ studioData, onHoveredStudio, onOpenStudio, hoverdStudioId }) => {
+    ({ studioData, hoverdStudioId, onHoverStudio, onItemClick }) => {
         const [hover, setHover] = useState();
 
         const classes = useStyles();
@@ -24,9 +23,9 @@ export const CatalogItem: React.FC<IProps> = memo(
             [hoverdStudioId],
         );
 
-        const handleClick = () => {
-            onHoveredStudio();
-            onOpenStudio(studioData.id);
+        const handleClick = (itemId: string) => {
+            onHoverStudio();
+            onItemClick(itemId);
         };
         const handleMouseOver = (
             event: MouseEvent<HTMLElement>,
@@ -36,11 +35,11 @@ export const CatalogItem: React.FC<IProps> = memo(
                 return;
             }
             setHover(event.currentTarget);
-            onHoveredStudio(studioId);
+            onHoverStudio(studioId);
         };
         const handleMouseLeave = () => {
             setHover(null);
-            onHoveredStudio();
+            onHoverStudio();
         };
 
         const {
@@ -52,42 +51,36 @@ export const CatalogItem: React.FC<IProps> = memo(
 
         return (
             <Card
+                onClick={() => handleClick(id)}
                 onMouseOver={(event: MouseEvent<HTMLElement>) =>
                     handleMouseOver(event, id)
                 }
                 onMouseLeave={handleMouseLeave}
-                onClick={handleClick}
                 className={`${classes.root} ${
                     isHovered(id) ? classes.hoveredItem : ""
                 }`}
             >
-                <Link to={`/catalog/${id}`} className={classes.linkWrapper}>
-                    <CardMedia
-                        image={logo}
-                        title={name}
-                        className={classes.cardMedia}
-                    />
-                    <CardContent className={classes.cardContent}>
-                        <Typography
-                            component="h6"
-                            variant="h6"
-                            color="textPrimary"
-                        >
-                            {name}
-                        </Typography>
-                        <Typography
-                            variant="subtitle2"
-                            color="textSecondary"
-                            className={classes.address}
-                        >
-                            <RoomOutlinedIcon
-                                fontSize="small"
-                                className={classes.roomIcon}
-                            />
-                            {street} {buildingNumber}
-                        </Typography>
-                    </CardContent>
-                </Link>
+                <CardMedia
+                    image={logo}
+                    title={name}
+                    className={classes.cardMedia}
+                />
+                <CardContent className={classes.cardContent}>
+                    <Typography component="h6" variant="h6" color="textPrimary">
+                        {name}
+                    </Typography>
+                    <Typography
+                        variant="subtitle2"
+                        color="textSecondary"
+                        className={classes.address}
+                    >
+                        <RoomOutlinedIcon
+                            fontSize="small"
+                            className={classes.roomIcon}
+                        />
+                        {street} {buildingNumber}
+                    </Typography>
+                </CardContent>
             </Card>
         );
     },

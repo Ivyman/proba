@@ -43,6 +43,7 @@ export const Sidebar: React.FC<IProps> = memo(({ sidebarStatus, onClose }) => {
             <List component="nav" className={classes.list}>
                 <Logo />
                 <Divider />
+
                 {sidebarLinks.map((item: IPathWithIcon) => (
                     <ListItem
                         button

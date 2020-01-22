@@ -14,6 +14,7 @@ interface IProps {
     viewport: IViewport;
     onViewportChange: (viewport: IViewport) => void;
     onMarkerOver: (id: string) => void;
+    onMarkerClick: (studioId: string) => void;
     onMarkerLeave: () => void;
 }
 
@@ -25,6 +26,7 @@ export const Map: React.FC<IProps> = ({
     onViewportChange,
     onMarkerOver,
     onMarkerLeave,
+    onMarkerClick,
 }) => {
     const classes = useStyles();
 
@@ -41,6 +43,7 @@ export const Map: React.FC<IProps> = ({
                 openedStudioId={openedStudioId}
                 onMarkerOver={onMarkerOver}
                 onMarkerLeave={onMarkerLeave}
+                onMarkerClick={onMarkerClick}
             />
             <NavigationControl
                 showCompass={false}

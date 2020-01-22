@@ -11,13 +11,14 @@ import ContactForm from "@src/components/ContactForm";
 import Screen from "@src/components/Screen";
 
 export const ContactScreen: React.FC = () => {
+    const messageApiStatus: EApiStatuses = useSelector(getMessageApiStatus);
+
     const dispatchMessage = useDispatch<typeof sendMessage, IMessageData>(
         sendMessage,
     );
     const dispatchIdleStatus = useDispatch<typeof setIdleStatus, undefined>(
         setIdleStatus,
     );
-    const messageApiStatus: EApiStatuses = useSelector(getMessageApiStatus);
 
     const renderContactForm = () => {
         switch (messageApiStatus) {

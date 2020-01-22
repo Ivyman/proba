@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             marginBottom: theme.spacing(2),
+            display: "flex",
             transition: "0.2s",
+            cursor: "pointer",
             "&:hover": hoveredItem(theme),
         },
         hoveredItem: {
@@ -31,11 +33,6 @@ const useStyles = makeStyles((theme: Theme) =>
             "&:last-child": {
                 paddingBottom: theme.spacing(2),
             },
-        },
-        linkWrapper: {
-            display: "flex",
-            textDecoration: "none",
-            transition: "0.2s",
         },
     }),
 );

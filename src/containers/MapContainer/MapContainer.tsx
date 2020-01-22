@@ -1,21 +1,24 @@
 import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { IStudio, ECoordinateName } from "@src/types/studio";
 import { IViewport } from "@src/types/map";
 import { countCoordinateAverage, getCoordinates } from "@src/utils/map";
 import {
-    getHoverdStudioId,
+    getHoveredStudioId,
     getOpenedStudio,
     getStudios,
 } from "@src/store/studios/selectors";
-import { setHoveredStudio } from "@src/store/studios/actions";
+import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
 import { useDispatch } from "@src/hooks/dispatch";
 import { ICoordinate } from "@src/types/studio";
 
 import Map from "@src/components/Map";
 
 export const MapContainer: React.FC = () => {
-    const hoveredItemId: string = useSelector(getHoverdStudioId);
+    const history = useHistory();
+
+    const hoveredItemId: string = useSelector(getHoveredStudioId);
     const openedStudio: IStudio | undefined = useSelector(getOpenedStudio);
     const studiosList: IStudio[] = useSelector(getStudios);
 
@@ -23,10 +26,17 @@ export const MapContainer: React.FC = () => {
         typeof setHoveredStudio,
         string | undefined
     >(setHoveredStudio);
+    const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
+        setOpenedStudio,
+    );
 
     const coordinates = useMemo<ICoordinate[]>(
         () => getCoordinates(studiosList),
         [studiosList],
+    );
+    const getOpenedStudioId = useMemo<string>(
+        () => (openedStudio ? openedStudio.id : ""),
+        [openedStudio],
     );
 
     const [viewport, setViewport] = useState<IViewport>({
@@ -39,24 +49,26 @@ export const MapContainer: React.FC = () => {
         ),
         zoom: 10,
     });
-    const getOpenedStudioId = useMemo<string>(
-        () => (openedStudio ? openedStudio.id : ""),
-        [openedStudio],
-    );
+
     const handeleViewportChange = (changedViewport: IViewport) =>
         setViewport(changedViewport);
     const handleMarkerOver = (id: string) => dispatchHoveredStudio(id);
     const handleMarkerLeave = () => dispatchHoveredStudio();
+    const handleMarkerClick = (studioId: string) => {
+        dispatchOpenedStudio(studioId);
+        history.push(`/catalog/${studioId}`);
+    };
 
     return (
         <Map
+            viewport={viewport}
             studiosList={studiosList}
+            hoveredItemId={hoveredItemId}
+            openedStudioId={getOpenedStudioId}
             onViewportChange={handeleViewportChange}
             onMarkerOver={handleMarkerOver}
             onMarkerLeave={handleMarkerLeave}
-            hoveredItemId={hoveredItemId}
-            openedStudioId={getOpenedStudioId}
-            viewport={viewport}
+            onMarkerClick={handleMarkerClick}
         />
     );
 };

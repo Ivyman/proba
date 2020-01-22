@@ -11,6 +11,7 @@ interface IProps {
     hoveredItemId: string;
     openedStudioId: string;
     onMarkerOver: (id: string) => void;
+    onMarkerClick: (studioId: string) => void;
     onMarkerLeave: () => void;
 }
 
@@ -21,6 +22,7 @@ export const Markers: React.FC<IProps> = memo(
         openedStudioId,
         onMarkerOver,
         onMarkerLeave,
+        onMarkerClick,
     }) => {
         const classes = useStyles();
 
@@ -33,15 +35,14 @@ export const Markers: React.FC<IProps> = memo(
         );
         const isOpened = useMemo(() => !!openedStudioId, [openedStudioId]);
 
-        const handleMouseOver = (id: string) => onMarkerOver(id);
-
         return (
             <>
                 {dataList.map(({ id, name, address }: IStudio) => (
                     <div
                         key={id}
-                        onMouseOver={() => handleMouseOver(id)}
+                        onMouseOver={() => onMarkerOver(id)}
                         onMouseLeave={() => onMarkerLeave()}
+                        onClick={() => onMarkerClick(id)}
                     >
                         <GlMarker
                             offsetLeft={-20}

@@ -13,7 +13,7 @@ export const getStudiosApiStatus = (state: RootState): EApiStatuses =>
 export const hasMoreStudios = (state: RootState): boolean =>
     !!state.studios.nextPageToken;
 
-export const getHoverdStudioId = (state: RootState): string =>
+export const getHoveredStudioId = (state: RootState): string =>
     state.studios.hoveredStudioId;
 
 export const getOpenedStudioId = (state: RootState): string =>
