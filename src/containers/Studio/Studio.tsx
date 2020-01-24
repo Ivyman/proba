@@ -6,6 +6,7 @@ import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studios/selectors";
 import { setOpenedStudio } from "@src/store/studios/actions";
 
+import { Card } from "@material-ui/core";
 import StudioBox from "@src/components/StudioBox";
 
 export const Studio: React.FC = () => {
@@ -23,9 +24,8 @@ export const Studio: React.FC = () => {
     };
 
     return (
-        <div>
-            <button onClick={handleGoBack}>powrót</button>
-            <StudioBox openedStudio={openedStudio} />
-        </div>
+        <Card>
+            <StudioBox openedStudio={openedStudio} onGoBack={handleGoBack} />
+        </Card>
     );
 };

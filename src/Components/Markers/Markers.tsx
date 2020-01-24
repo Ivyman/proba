@@ -81,7 +81,7 @@ export const Markers: React.FC<IProps> = memo(
                                     {name}
                                 </Typography>
                                 <Typography component="p" variant="subtitle2">
-                                    {address.street}, {address.buildingNumber}
+                                    {address.street} {address.buildingNumber}
                                 </Typography>
                             </Popup>
                         )}
