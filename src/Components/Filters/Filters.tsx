@@ -62,6 +62,7 @@ export const Filters: React.FC<IProps> = memo(
                         label="Wpisz nazwe"
                         variant="outlined"
                         onChange={handleSearchChange}
+                        className={classes.searchField}
                     />
                 </Grid>
 

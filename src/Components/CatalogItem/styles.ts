@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundSize: "80% auto",
         },
         cardContent: {
-            padding: theme.spacing(2),
+            padding: theme.spacing(2, 2, 2, 0),
             "&:last-child": {
                 paddingBottom: theme.spacing(2),
             },

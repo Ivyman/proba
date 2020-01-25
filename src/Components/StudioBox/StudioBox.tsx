@@ -1,14 +1,16 @@
 import React from "react";
 import { IStudio } from "@src/types/studio";
+import pattern from "@src/assets/pattern.jpg";
 import useStyles from "./styles";
 
 import {
     CardContent,
     CardMedia,
     Box,
-    IconButton,
+    Fab,
     Typography,
     Link,
+    Grid,
 } from "@material-ui/core";
 import {
     ArrowBack as ArrowBackIcon,
@@ -27,89 +29,115 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
 
     return (
         <Box className={classes.root}>
-            <IconButton
+            <Fab
                 aria-label="back"
                 size="small"
                 onClick={onGoBack}
                 className={classes.backBotton}
             >
-                <ArrowBackIcon fontSize="large" />
-            </IconButton>
+                <ArrowBackIcon />
+            </Fab>
 
             {openedStudio ? (
                 <>
                     <CardMedia
                         className={classes.cardMedia}
-                        image="https://via.placeholder.com/150"
+                        image={pattern}
                         title="Contemplative Reptile"
                     />
                     <CardContent className={classes.cardContent}>
-                        <Box className={classes.imageWrapper}>
-                            <img src={openedStudio.logo} alt="logo" />
-                        </Box>
-                        <Typography
-                            variant="h4"
-                            component="h2"
-                            className={classes.studioName}
-                        >
-                            {openedStudio.name}
-                        </Typography>
-                        <div>
-                            <ul className={classes.contactsList}>
-                                {openedStudio.contact.mail && (
-                                    <Typography
-                                        component="li"
-                                        className={classes.contactsListItem}
-                                    >
-                                        <MailOutlineIcone />
+                        <Box display="flex">
+                            <Box flexGrow={1} pr={3}>
+                                <Typography
+                                    variant="h4"
+                                    component="h2"
+                                    className={classes.studioName}
+                                >
+                                    {openedStudio.name}
+                                </Typography>
+                                <Box>
+                                    <ul className={classes.contactsList}>
+                                        {openedStudio.contact.mail && (
+                                            <Typography
+                                                component="li"
+                                                className={
+                                                    classes.contactsListItem
+                                                }
+                                            >
+                                                <MailOutlineIcone />
 
-                                        <Link
-                                            target="_blank"
-                                            variant="body1"
-                                            href={`mailto:${openedStudio.contact.mail}`}
-                                        >
-                                            {openedStudio.contact.mail}
-                                        </Link>
-                                    </Typography>
-                                )}
-
-                                {openedStudio.contact.phones && (
-                                    <Typography
-                                        component="li"
-                                        className={classes.contactsListItem}
-                                    >
-                                        <PhoneAndroidIcone />
-
-                                        {openedStudio.contact.phones.map(
-                                            (phone: string) => `${phone}, `,
+                                                <Link
+                                                    target="_blank"
+                                                    variant="body1"
+                                                    href={`mailto:${openedStudio.contact.mail}`}
+                                                >
+                                                    {openedStudio.contact.mail}
+                                                </Link>
+                                            </Typography>
                                         )}
-                                    </Typography>
-                                )}
 
-                                {openedStudio.contact.site && (
-                                    <Typography
-                                        component="li"
-                                        className={classes.contactsListItem}
-                                    >
-                                        <LanguageIcon />
+                                        {openedStudio.contact.phones && (
+                                            <Typography
+                                                component="li"
+                                                className={
+                                                    classes.contactsListItem
+                                                }
+                                            >
+                                                <PhoneAndroidIcone />
 
-                                        <Link
-                                            target="_blank"
-                                            variant="body1"
-                                            href={openedStudio.contact.site}
-                                        >
-                                            {openedStudio.contact.site}
-                                        </Link>
-                                    </Typography>
-                                )}
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Opis</h3>
-                            <Typography component="p" variant="body1">
+                                                {openedStudio.contact.phones.map(
+                                                    (phone: string) => (
+                                                        <span key={phone}>
+                                                            {phone}
+                                                        </span>
+                                                    ),
+                                                )}
+                                            </Typography>
+                                        )}
+
+                                        {openedStudio.contact.site && (
+                                            <Typography
+                                                component="li"
+                                                className={
+                                                    classes.contactsListItem
+                                                }
+                                            >
+                                                <LanguageIcon />
+
+                                                <Link
+                                                    target="_blank"
+                                                    variant="body1"
+                                                    href={
+                                                        openedStudio.contact
+                                                            .site
+                                                    }
+                                                >
+                                                    {openedStudio.contact.site}
+                                                </Link>
+                                            </Typography>
+                                        )}
+                                    </ul>
+                                </Box>
+                            </Box>
+                            <Box>
+                                <Box className={classes.imageWrapper}>
+                                    <img src={openedStudio.logo} alt="logo" />
+                                </Box>
+                            </Box>
+                        </Box>
+
+                        <Box mt={2}>
+                            <Typography variant="h5" component="h3">
+                                Opis
+                            </Typography>
+                            <Typography
+                                component="p"
+                                variant="body1"
+                                className={classes.description}
+                            >
                                 {openedStudio.description}
                             </Typography>
-                        </div>
+                        </Box>
                     </CardContent>
                 </>
             ) : (
