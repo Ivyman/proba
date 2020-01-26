@@ -49,6 +49,7 @@ export const Sidebar: React.FC<IProps> = memo(({ sidebarStatus, onClose }) => {
                         component={Link}
                         className={classes.listItem}
                         key={item.path}
+                        onClick={onClose}
                         to={item.path}
                     >
                         <ListItemIcon>{item.icon}</ListItemIcon>
