@@ -6,4 +6,5 @@ export const GlMap = {
 export const Brand = {
     name: "Proba",
     nameWithDomain: "proba.pl",
+    email: "probamail@gmail.com",
 };

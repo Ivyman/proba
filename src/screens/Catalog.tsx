@@ -52,13 +52,13 @@ const CatalogScreen: React.FC = () => {
 
             <Divider />
 
-            <Box py={2}>
+            <Box py={2} flexGrow={1} display="flex" alignItems="stretch">
                 <Container maxWidth="xl">
-                    <Grid container spacing={2}>
-                        <Grid item xs={5}>
+                    <Grid container spacing={2} style={{ minHeight: "100%" }}>
+                        <Grid item sm={5}>
                             <RouterCatalog />
                         </Grid>
-                        <Grid item xs={7}>
+                        <Grid item sm={7}>
                             <MapContainer />
                         </Grid>
                     </Grid>

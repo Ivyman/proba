@@ -6,6 +6,7 @@ import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
 import { RouterScreens } from "@src/routing/RouterScreens";
 
+import { Box } from "@material-ui/core";
 import Sidebar from "@src/components/Sidebar";
 import Header from "@src/components/Header";
 
@@ -21,16 +22,18 @@ const App: React.FC = () => {
     }, [dispatchSwitchSidebar]);
 
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <Header onSwitchSidebar={hadleSidebarSwith} />
+        <Box display="flex" flexDirection="column" minHeight="100vh">
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
+                <Header onSwitchSidebar={hadleSidebarSwith} />
 
-            <RouterScreens />
+                <RouterScreens />
 
-            <Sidebar
-                sidebarStatus={sidebarStatus}
-                onClose={dispatchSwitchSidebar}
-            />
-        </BrowserRouter>
+                <Sidebar
+                    sidebarStatus={sidebarStatus}
+                    onClose={dispatchSwitchSidebar}
+                />
+            </BrowserRouter>
+        </Box>
     );
 };
 

@@ -40,8 +40,6 @@ export const MapContainer: React.FC = () => {
     );
 
     const [viewport, setViewport] = useState<IViewport>({
-        width: "100%",
-        height: "100%",
         latitude: countCoordinateAverage(coordinates, ECoordinateName.latitude),
         longitude: countCoordinateAverage(
             coordinates,

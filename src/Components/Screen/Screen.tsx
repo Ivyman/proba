@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { EApiStatuses } from "@src/types/api";
 
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Box } from "@material-ui/core";
 
 interface IProps {
     apiStatus?: EApiStatuses;
@@ -14,7 +14,16 @@ export const Screen: React.FC<IProps> = memo(({ apiStatus, children }) => {
                 return "error";
             case EApiStatuses.RUNNING:
             case EApiStatuses.IDLE:
-                return <CircularProgress />;
+                return (
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        flexGrow={1}
+                        justifyContent="center"
+                    >
+                        <CircularProgress size={30} />
+                    </Box>
+                );
             case EApiStatuses.SUCCESS:
             default:
                 return children;

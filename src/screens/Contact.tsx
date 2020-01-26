@@ -5,8 +5,9 @@ import { EApiStatuses } from "@src/types/api";
 import { IMessageData } from "@src/types/message";
 import { sendMessage, setIdleStatus } from "@src/store/message/actions";
 import { getMessageApiStatus } from "@src/store/message/selectors";
+import { Brand } from "@src/Confing";
 
-import { Container } from "@material-ui/core";
+import { Container, Typography, Box, Link } from "@material-ui/core";
 import ContactForm from "@src/components/ContactForm";
 import Screen from "@src/components/Screen";
 
@@ -41,20 +42,36 @@ export const ContactScreen: React.FC = () => {
 
     return (
         <Screen>
-            <Container maxWidth="xl">
-                <h1>Napisz do nas</h1>
+            <Container maxWidth="lg">
+                <Box py={4}>
+                    <Box mb={4}>
+                        <Typography component="h2" variant="h4">
+                            Napisz do nas
+                        </Typography>
+                    </Box>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Porro mollitia vero ducimus eligendi
-                </p>
+                    <Box mb={4}>
+                        <Typography component="p" variant="body1">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Porro mollitia vero ducimus eligend iLorem
+                            ipsum dolor sit amet, consectetur adipisicing elit.
+                            Porro mollitia vero ducimus eligendi
+                        </Typography>
+                    </Box>
 
-                {renderContactForm()}
+                    {renderContactForm()}
 
-                <p>
-                    Lub wyślij wiedomość pod adress
-                    <a href="mailto:mail@gmail.com">probamail@gmail.com</a>
-                </p>
+                    <Typography
+                        component="p"
+                        variant="body1"
+                        color="textSecondary"
+                    >
+                        {"Lub wyślij wiedomość pod adress "}
+                        <Link href={`mailto:${Brand.email}`}>
+                            {Brand.email}
+                        </Link>
+                    </Typography>
+                </Box>
             </Container>
         </Screen>
     );

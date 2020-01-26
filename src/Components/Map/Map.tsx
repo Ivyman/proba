@@ -33,6 +33,8 @@ export const Map: React.FC<IProps> = ({
     return (
         <ReactMapGL
             {...viewport}
+            width="100%"
+            height="100%"
             scrollZoom={false}
             mapboxApiAccessToken={GlMap.accessToken}
             onViewportChange={onViewportChange}

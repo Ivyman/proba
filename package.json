@@ -2,6 +2,7 @@
     "name": "frontend",
     "version": "0.1.0",
     "private": true,
+    "workspaces": "frontend",
     "dependencies": {
         "@material-ui/core": "^4.8.3",
         "@material-ui/icons": "^4.5.1",
@@ -17,7 +18,7 @@
         "prettier": "^1.18.2",
         "react": "^16.11.0",
         "react-dom": "^16.11.0",
-        "react-hook-form": "^4.6.2",
+        "react-hook-form": "^4.7.1",
         "react-map-gl": "^5.1.1",
         "react-redux": "^7.1.1",
         "react-router-dom": "^5.1.2",
