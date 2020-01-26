@@ -18,8 +18,8 @@ export const Header: React.FC<IProps> = memo(({ onSwitchSidebar }) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static">
-            <Container maxWidth="xl" component="header">
+        <AppBar position="static" className={classes.root}>
+            <Container maxWidth="xl">
                 <Toolbar className={classes.toolbar}>
                     <Link className={classes.logo} to="/">
                         <Logo />
@@ -28,7 +28,6 @@ export const Header: React.FC<IProps> = memo(({ onSwitchSidebar }) => {
                         <Navbar items={navbarLinks} />
                         <IconButton
                             edge="end"
-                            color="inherit"
                             aria-label="menu"
                             onClick={onSwitchSidebar}
                         >

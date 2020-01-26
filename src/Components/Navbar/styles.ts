@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: "flex",
         },
+        menuItem: {
+            color: theme.palette.common.black,
+        },
     }),
 );
 

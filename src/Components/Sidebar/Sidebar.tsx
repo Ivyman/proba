@@ -10,6 +10,7 @@ import {
     ListItemIcon,
     ListItemText,
     Divider,
+    Box,
 } from "@material-ui/core";
 import {
     ListAlt as ListAltIcon,
@@ -36,18 +37,17 @@ export const Sidebar: React.FC<IProps> = memo(({ sidebarStatus, onClose }) => {
             anchor="right"
             open={sidebarStatus}
             onClose={onClose}
+            className={classes.root}
             ModalProps={{
                 keepMounted: true,
             }}
         >
             <List component="nav" className={classes.list}>
-                <Logo />
-                <Divider />
-
                 {sidebarLinks.map((item: IPathWithIcon) => (
                     <ListItem
                         button
                         component={Link}
+                        className={classes.listItem}
                         key={item.path}
                         to={item.path}
                     >
@@ -56,6 +56,17 @@ export const Sidebar: React.FC<IProps> = memo(({ sidebarStatus, onClose }) => {
                     </ListItem>
                 ))}
             </List>
+
+            <Divider />
+
+            <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                p={1.5}
+            >
+                <Logo />
+            </Box>
         </Drawer>
     );
 });

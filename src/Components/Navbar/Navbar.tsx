@@ -15,7 +15,12 @@ export const Navbar: React.FC<IProps> = memo(({ items }) => {
     return (
         <MenuList className={classes.root}>
             {items.map(({ path, label }) => (
-                <MenuItem key={path} component={Link} to={path}>
+                <MenuItem
+                    key={path}
+                    component={Link}
+                    to={path}
+                    className={classes.menuItem}
+                >
                     {label}
                 </MenuItem>
             ))}
