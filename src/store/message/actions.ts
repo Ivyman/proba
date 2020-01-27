@@ -1,16 +1,16 @@
 import MessageTypes from "./types";
 import { IMessageAction } from ".";
 import { ThunkDispatch } from "@src/types/store";
-import { IMessageData } from "@src/types/message";
+import { IContactFormData } from "@src/types/forms";
 import * as effects from "./effects";
 
-export const sendMessage = (messageData: IMessageData) => async (
+export const sendMessage = (formData: IContactFormData) => async (
     dispatch: ThunkDispatch,
 ) => {
     try {
         dispatch(isFetching());
 
-        await effects.sendMessage(messageData);
+        await effects.sendMessage(formData);
 
         dispatch(sendMessageSuccess());
     } catch (error) {

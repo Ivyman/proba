@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "@src/hooks/dispatch";
 import { EApiStatuses } from "@src/types/api";
-import { IMessageData } from "@src/types/message";
+import { IContactFormData } from "@src/types/forms";
 import { sendMessage, setIdleStatus } from "@src/store/message/actions";
 import { getMessageApiStatus } from "@src/store/message/selectors";
 import { Brand } from "@src/Confing";
@@ -14,7 +14,7 @@ import Screen from "@src/components/Screen";
 export const ContactScreen: React.FC = () => {
     const messageApiStatus: EApiStatuses = useSelector(getMessageApiStatus);
 
-    const dispatchMessage = useDispatch<typeof sendMessage, IMessageData>(
+    const dispatchMessage = useDispatch<typeof sendMessage, IContactFormData>(
         sendMessage,
     );
     const dispatchIdleStatus = useDispatch<typeof setIdleStatus, undefined>(
@@ -26,9 +26,9 @@ export const ContactScreen: React.FC = () => {
             case EApiStatuses.ERROR:
                 return "error";
             case EApiStatuses.IDLE:
-                return <ContactForm onSubmit={dispatchMessage} />;
+                return <ContactForm onFormSubmit={dispatchMessage} />;
             case EApiStatuses.SUCCESS:
-                return <p>Thanks for send message to as</p>;
+                return <p>Thanks for send message</p>;
             case EApiStatuses.RUNNING:
                 return <p>Sending...</p>;
         }

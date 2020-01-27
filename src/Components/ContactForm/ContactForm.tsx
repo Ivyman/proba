@@ -1,72 +1,85 @@
-import React, {
-    useState,
-    useCallback,
-    ChangeEvent,
-    SyntheticEvent,
-    memo,
-} from "react";
+import React, { memo } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { IMessageData } from "@src/types/message";
+import { IContactFormData } from "@src/types/forms";
+import { useForm, OnSubmit } from "react-hook-form";
+import { contactValidationScheme } from "@src/utils/formsValidation";
 import useStyles from "./styles";
 
 import { TextField, Button, Box } from "@material-ui/core";
 import { ArrowBackIos as ArrowBackIosIcon } from "@material-ui/icons";
 
 interface IProps {
-    onSubmit: (messageData: IMessageData) => void;
+    onFormSubmit: OnSubmit<IContactFormData>;
 }
 
-export const ContactForm: React.FC<IProps> = memo(({ onSubmit }) => {
+export const ContactForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
     const classes = useStyles();
-
-    const [formData, setFormData] = useState({
-        email: "",
-        subject: "",
-        message: "",
-    } as IMessageData);
-
-    const handleInput = useCallback(
-        (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            const { name, value } = event.target;
-            setFormData({ [name]: value });
-        },
-        [setFormData],
-    );
-
-    const handleSubmit = useCallback(
-        (event: SyntheticEvent) => {
-            event.preventDefault();
-            onSubmit(formData);
-        },
-        [onSubmit, formData],
-    );
+    const { register, handleSubmit, errors } = useForm<IContactFormData>({
+        validationSchema: contactValidationScheme,
+    });
 
     return (
-        <>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
             <Box mb={3}>
                 <TextField
                     fullWidth
                     className={classes.field}
-                    label="Email"
+                    label="Twoje imię"
                     variant="outlined"
-                    name="email"
-                    type="email"
-                    onChange={handleInput}
-                    value={formData.email}
+                    name="name"
+                    type="text"
+                    inputRef={register}
                 />
             </Box>
 
             <Box mb={3}>
                 <TextField
                     fullWidth
-                    label="Temat"
+                    className={classes.field}
+                    label={
+                        <>
+                            {"E-mail "}
+                            <Box color="secondary.main" component="span">
+                                *
+                            </Box>
+                        </>
+                    }
+                    variant="outlined"
+                    name="email"
+                    type="text"
+                    error={!!errors.email}
+                    inputRef={register}
+                />
+                {errors.email && (
+                    <Box color="error.main" component="p" m={0.5}>
+                        {errors.email.message}
+                    </Box>
+                )}
+            </Box>
+
+            <Box mb={3}>
+                <TextField
+                    fullWidth
+                    label={
+                        <>
+                            {"Temat "}
+                            <Box color="secondary.main" component="span">
+                                *
+                            </Box>
+                        </>
+                    }
                     className={classes.field}
                     variant="outlined"
                     type="text"
                     name="subject"
-                    onChange={handleInput}
-                    value={formData.subject}
+                    error={!!errors.subject}
+                    inputRef={register}
                 />
+                {errors.subject && (
+                    <Box color="error.main" component="p" m={0.5}>
+                        {errors.subject.message}
+                    </Box>
+                )}
             </Box>
 
             <Box mb={3}>
@@ -75,13 +88,25 @@ export const ContactForm: React.FC<IProps> = memo(({ onSubmit }) => {
                     multiline
                     rows={5}
                     className={classes.field}
-                    label="Wiadomość"
+                    label={
+                        <>
+                            {"Wiadomość "}
+                            <Box color="secondary.main" component="span">
+                                *
+                            </Box>
+                        </>
+                    }
                     variant="outlined"
                     type="text"
                     name="message"
-                    onChange={handleInput}
-                    value={formData.message}
+                    error={!!errors.message}
+                    inputRef={register}
                 />
+                {errors.message && (
+                    <Box color="error.main" component="p" m={0.5}>
+                        {errors.message.message}
+                    </Box>
+                )}
             </Box>
 
             <Box display="flex" mb={4} justifyContent="space-between">
@@ -94,14 +119,14 @@ export const ContactForm: React.FC<IProps> = memo(({ onSubmit }) => {
                 </Button>
 
                 <Button
-                    onClick={handleSubmit}
                     variant="contained"
                     color="primary"
                     size="large"
+                    type="submit"
                 >
                     Wyślij
                 </Button>
             </Box>
-        </>
+        </form>
     );
 });
