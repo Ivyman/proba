@@ -4,7 +4,13 @@ import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { TextField, RadioGroup, Grid } from "@material-ui/core";
+import {
+    TextField,
+    RadioGroup,
+    Grid,
+    CircularProgress,
+    Box,
+} from "@material-ui/core";
 import ChipField from "@src/components/ChipField";
 
 interface IProps {
@@ -15,16 +21,17 @@ interface IProps {
 export const Filters: React.FC<IProps> = memo(
     ({ onFiltersChange, fields: { cities } }) => {
         const [touched, setTouched] = useState<boolean>(false);
-        const [search, setSearch] = useState<string>("");
-        const [city, setCity] = useState<string>("");
+        const [search, setSearch] = useState<string | null>(null);
+        const [city, setCity] = useState<string | null>(null);
+        const [showThrobber, setShowThrobber] = useState<boolean>(false);
 
         const classes = useStyles();
 
-        const debouncedSearch = useDebounce<string>(
+        const debouncedSearch = useDebounce<string | null>(
             search,
             Studios.filtersDebouncedInterval,
         );
-        const debouncedCity = useDebounce<string>(
+        const debouncedCity = useDebounce<string | null>(
             city,
             Studios.filtersDebouncedInterval,
         );
@@ -36,15 +43,17 @@ export const Filters: React.FC<IProps> = memo(
         const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
             setSearch(event.target.value);
             setTouched(true);
+            setShowThrobber(true);
         };
 
         useEffect(() => {
-            if (touched) {
+            if (debouncedSearch !== null || debouncedCity !== null) {
                 onFiltersChange({
                     search: debouncedSearch,
                     city: debouncedCity,
                 });
             }
+            setShowThrobber(false);
         }, [debouncedSearch, debouncedCity, onFiltersChange, touched]);
 
         useEffect(() => {
@@ -58,11 +67,21 @@ export const Filters: React.FC<IProps> = memo(
                 <Grid item xs={5} className={classes.searchFiledWrapper}>
                     <TextField
                         fullWidth
-                        size="small"
                         label="Wpisz nazwe"
                         variant="outlined"
                         onChange={handleSearchChange}
                         className={classes.searchField}
+                        InputProps={
+                            showThrobber
+                                ? {
+                                      endAdornment: (
+                                          <Box display="flex">
+                                              <CircularProgress size={25} />
+                                          </Box>
+                                      ),
+                                  }
+                                : {}
+                        }
                     />
                 </Grid>
 

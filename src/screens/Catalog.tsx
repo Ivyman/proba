@@ -25,10 +25,10 @@ const CatalogScreen: React.FC = () => {
         fetchFilters,
     );
 
-    const handleFiltersChange = (filtersData: IFiltersData) => {
+    const handleFiltersChange = ({ search, city }: IFiltersData) => {
         dispatchStudios({
-            search: filtersData.search,
-            city: filtersData.city,
+            search,
+            city,
         });
     };
 
