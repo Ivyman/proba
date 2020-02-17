@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             position: "relative",
+            boxShadow: theme.shadows[1],
         },
         cardMedia: {
             height: theme.spacing(20),
@@ -15,6 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
             top: theme.spacing(2),
             left: theme.spacing(2),
             backgroundColor: theme.palette.common.white,
+            "& svg": {
+                position: "relative",
+                left: "4px",
+                top: ".5px",
+            },
         },
         imageWrapper: {
             boxShadow: theme.shadows[3],

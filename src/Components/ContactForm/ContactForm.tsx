@@ -5,7 +5,7 @@ import { useForm, OnSubmit } from "react-hook-form";
 import { contactValidationScheme } from "@src/utils/formsValidation";
 import useStyles from "./styles";
 
-import { TextField, Button, Box } from "@material-ui/core";
+import { TextField, Button, Box, Grid } from "@material-ui/core";
 import { ArrowBackIos as ArrowBackIosIcon } from "@material-ui/icons";
 
 interface IProps {
@@ -21,40 +21,47 @@ export const ContactForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
     return (
         <form onSubmit={handleSubmit(onFormSubmit)}>
             <Box mb={3}>
-                <TextField
-                    fullWidth
-                    className={classes.field}
-                    label="Twoje imię"
-                    variant="outlined"
-                    name="name"
-                    type="text"
-                    inputRef={register}
-                />
-            </Box>
+                <Grid container spacing={3}>
+                    <Grid item sm={6} xs={12}>
+                        <TextField
+                            fullWidth
+                            className={classes.field}
+                            label="Twoje imię"
+                            variant="outlined"
+                            name="name"
+                            type="text"
+                            inputRef={register}
+                        />
+                    </Grid>
 
-            <Box mb={3}>
-                <TextField
-                    fullWidth
-                    className={classes.field}
-                    label={
-                        <>
-                            {"E-mail "}
-                            <Box color="secondary.main" component="span">
-                                *
+                    <Grid item sm={6} xs={12}>
+                        <TextField
+                            fullWidth
+                            className={classes.field}
+                            label={
+                                <>
+                                    {"E-mail "}
+                                    <Box
+                                        color="secondary.main"
+                                        component="span"
+                                    >
+                                        *
+                                    </Box>
+                                </>
+                            }
+                            variant="outlined"
+                            name="email"
+                            type="text"
+                            error={!!errors.email}
+                            inputRef={register}
+                        />
+                        {errors.email && (
+                            <Box color="error.main" component="p" m={0.5}>
+                                {errors.email.message}
                             </Box>
-                        </>
-                    }
-                    variant="outlined"
-                    name="email"
-                    type="text"
-                    error={!!errors.email}
-                    inputRef={register}
-                />
-                {errors.email && (
-                    <Box color="error.main" component="p" m={0.5}>
-                        {errors.email.message}
-                    </Box>
-                )}
+                        )}
+                    </Grid>
+                </Grid>
             </Box>
 
             <Box mb={3}>

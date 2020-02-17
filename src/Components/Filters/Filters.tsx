@@ -67,7 +67,7 @@ export const Filters: React.FC<IProps> = memo(
                 <Grid item xs={5} className={classes.searchFiledWrapper}>
                     <TextField
                         fullWidth
-                        label="Wpisz nazwe"
+                        label="Wpisz nazwe lub adres"
                         variant="outlined"
                         onChange={handleSearchChange}
                         className={classes.searchField}

@@ -13,6 +13,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "flex",
             transition: "0.2s",
             cursor: "pointer",
+            padding: theme.spacing(1),
+            boxShadow: theme.shadows[1],
             "&:hover": hoveredItem(theme),
         },
         hoveredItem: {
@@ -26,7 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         cardMedia: {
             width: "150px",
-            backgroundSize: "80% auto",
+            marginRight: theme.spacing(2),
+            backgroundSize: "contain",
         },
         cardContent: {
             padding: theme.spacing(2, 2, 2, 0),

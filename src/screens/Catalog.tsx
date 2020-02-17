@@ -9,8 +9,9 @@ import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { RouterCatalog } from "@src/routing/RouterCatalog";
 import { useDispatch } from "@src/hooks/dispatch";
 
-import { Divider, Container, Box, Grid } from "@material-ui/core";
+import { Container, Box, Grid } from "@material-ui/core";
 import Filters from "@src/components/Filters";
+import Divider from "@src/components/Divider";
 import MapContainer from "@src/containers/MapContainer";
 import Screen from "@src/components/Screen";
 

@@ -12,7 +12,7 @@ import {
     Link,
 } from "@material-ui/core";
 import {
-    ArrowBack as ArrowBackIcon,
+    ArrowBackIos as ArrowBackIosIcon,
     PhoneAndroid as PhoneAndroidIcone,
     MailOutline as MailOutlineIcone,
     Language as LanguageIcon,
@@ -34,7 +34,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                 onClick={onGoBack}
                 className={classes.backBotton}
             >
-                <ArrowBackIcon />
+                <ArrowBackIosIcon />
             </Fab>
 
             {openedStudio ? (
