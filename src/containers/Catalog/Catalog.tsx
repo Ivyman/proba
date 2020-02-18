@@ -32,6 +32,7 @@ export const Catalog: React.FC = () => {
                 studios.map((studio: IStudio) => (
                     <CatalogItem
                         key={studio.id}
+                        price="od 20zł/h"
                         studioData={studio}
                         onHoverStudio={dispatchHoveredStudio}
                         hoverdStudioId={hoverdStudioId}

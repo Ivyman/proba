@@ -9,14 +9,19 @@ import {
     Box,
     Fab,
     Typography,
+    Grid,
     Link,
+    Button,
 } from "@material-ui/core";
 import {
     ArrowBackIos as ArrowBackIosIcon,
-    PhoneAndroid as PhoneAndroidIcone,
+    Phone as PhoneIcone,
     Share as ShareIcon,
     MailOutline as MailOutlineIcone,
     Language as LanguageIcon,
+    Facebook as FacebookIcon,
+    Instagram as InstagramIcon,
+    OpenInNew as OpenInNewIcon,
 } from "@material-ui/icons";
 import LogoBox from "./LogoBox";
 
@@ -57,8 +62,44 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                         <LogoBox studioData={openedStudio} />
                     </CardMedia>
                     <CardContent className={classes.cardContent}>
-                        <Box display="flex">
-                            <Box flexGrow={1} pr={3}>
+                        <Grid
+                            container
+                            spacing={2}
+                            justify="space-between"
+                            alignItems="center"
+                        >
+                            <Grid item>
+                                <Typography variant="h6" component="h3">
+                                    Dd <strong>20zł</strong> za godzinę
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Fab
+                                    size="small"
+                                    className={classes.socialIcon}
+                                >
+                                    <FacebookIcon fontSize="small" />
+                                </Fab>
+                                <Fab
+                                    size="small"
+                                    className={classes.socialIcon}
+                                >
+                                    <InstagramIcon fontSize="small" />
+                                </Fab>
+                                {openedStudio.contact.site && (
+                                    <Fab
+                                        size="small"
+                                        href={openedStudio.contact.site}
+                                        className={classes.socialIcon}
+                                    >
+                                        <LanguageIcon fontSize="small" />
+                                    </Fab>
+                                )}
+                            </Grid>
+                        </Grid>
+
+                        <Box display="flex" my={2}>
+                            <Box flexGrow={1}>
                                 <Box>
                                     <ul className={classes.contactsList}>
                                         {openedStudio.contact.mail && (
@@ -87,37 +128,19 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                                                     classes.contactsListItem
                                                 }
                                             >
-                                                <PhoneAndroidIcone />
+                                                <PhoneIcone />
 
                                                 {openedStudio.contact.phones.map(
-                                                    (phone: string) => (
+                                                    (
+                                                        phone: string,
+                                                        i: number,
+                                                    ) => (
                                                         <span key={phone}>
+                                                            {i > 0 && ", "}
                                                             {phone}
                                                         </span>
                                                     ),
                                                 )}
-                                            </Typography>
-                                        )}
-
-                                        {openedStudio.contact.site && (
-                                            <Typography
-                                                component="li"
-                                                className={
-                                                    classes.contactsListItem
-                                                }
-                                            >
-                                                <LanguageIcon />
-
-                                                <Link
-                                                    target="_blank"
-                                                    variant="body1"
-                                                    href={
-                                                        openedStudio.contact
-                                                            .site
-                                                    }
-                                                >
-                                                    {openedStudio.contact.site}
-                                                </Link>
                                             </Typography>
                                         )}
                                     </ul>
@@ -125,17 +148,25 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                             </Box>
                         </Box>
 
-                        <Box mt={2}>
-                            <Typography variant="h5" component="h3">
-                                Opis
-                            </Typography>
-                            <Typography
-                                component="p"
-                                variant="body1"
-                                className={classes.description}
-                            >
+                        <Box my={2}>
+                            <Typography component="p" variant="body1">
                                 {openedStudio.description}
                             </Typography>
+                        </Box>
+
+                        <Box mt={4}>
+                            {openedStudio.contact.site && (
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    target="_blank"
+                                    endIcon={<OpenInNewIcon />}
+                                    href={openedStudio.contact.site}
+                                >
+                                    Przejdź na stronę
+                                </Button>
+                            )}
                         </Box>
                     </CardContent>
                 </>

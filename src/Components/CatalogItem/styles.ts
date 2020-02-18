@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 const hoveredItem = (theme: Theme) => ({
     transform: "scale(1.01)",
     boxShadow: theme.shadows[3],
-    borderRight: `5px solid ${theme.palette.success.main}`,
+    borderColor: theme.palette.success.main,
 });
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -13,21 +13,19 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "flex",
             transition: "0.2s",
             cursor: "pointer",
-            padding: theme.spacing(1),
+            position: "relative",
+            padding: theme.spacing(1, 0.5, 1, 1),
             boxShadow: theme.shadows[1],
+            borderRight: `${theme.spacing(0.5)}px solid ${
+                theme.palette.common.white
+            }`,
             "&:hover": hoveredItem(theme),
         },
         hoveredItem: {
             ...hoveredItem(theme),
         },
-        address: {
-            display: "flex",
-        },
-        roomIcon: {
-            marginRight: theme.spacing(0.5),
-        },
         cardMedia: {
-            width: "150px",
+            width: "120px",
             marginRight: theme.spacing(2),
             backgroundSize: "contain",
         },
@@ -36,6 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
             "&:last-child": {
                 paddingBottom: theme.spacing(1),
             },
+        },
+        chip: {
+            position: "absolute",
+            right: theme.spacing(2),
+            top: theme.spacing(2),
         },
     }),
 );

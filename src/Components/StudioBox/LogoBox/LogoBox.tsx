@@ -2,7 +2,8 @@ import React, { memo } from "react";
 import useStyles from "./styles";
 import { IStudio } from "@src/types/studio";
 
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
+import Title from "@src/components/common/Title";
 
 interface IProps {
     studioData: IStudio;
@@ -14,7 +15,7 @@ export const LogoBox: React.FC<IProps> = memo(
 
         return (
             <Box className={classes.root}>
-                <Box className={classes.imageWrapper}>
+                <Box className={classes.image}>
                     <img src={logo} alt="logo" />
                 </Box>
                 <Box
@@ -22,16 +23,11 @@ export const LogoBox: React.FC<IProps> = memo(
                     flexDirection="column"
                     justifyContent="center"
                 >
-                    <Typography
-                        variant="h5"
-                        component="h2"
-                        className={classes.studioName}
-                    >
-                        {name}
-                    </Typography>
-                    <Typography variant="h6" component="h3">
-                        {name}
-                    </Typography>
+                    <Title
+                        large
+                        name={name}
+                        address={`${address.street} ${address.buildingNumber}`}
+                    />
                 </Box>
             </Box>
         );

@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme: Theme) =>
             height: theme.spacing(30),
             filter: "grayscale(0.6)",
         },
+        cardContent: {
+            position: "relative",
+            "&, &:last-child": {
+                padding: theme.spacing(4, 3),
+            },
+        },
         backBotton: {
             ...iconButton(theme),
             position: "absolute",
@@ -34,16 +40,16 @@ const useStyles = makeStyles((theme: Theme) =>
             position: "absolute",
             right: theme.spacing(2),
         },
-        cardContent: {
-            position: "relative",
-            "&, &:last-child": {
-                padding: theme.spacing(4, 3),
-            },
+        socialIcon: {
+            boxShadow: "none",
+            marginLeft: theme.spacing(1),
+            width: theme.spacing(4.5),
+            height: theme.spacing(4.5),
         },
         contactsList: {
             listStyleType: "none",
-            margin: theme.spacing(0),
-            paddingLeft: theme.spacing(2),
+            margin: 0,
+            padding: 0,
         },
         contactsListItem: {
             display: "flex",
@@ -52,12 +58,6 @@ const useStyles = makeStyles((theme: Theme) =>
             "& > svg": {
                 marginRight: theme.spacing(2),
             },
-            "& > span:not(:last-of-type)": {
-                paddingRight: theme.spacing(1.5),
-            },
-        },
-        description: {
-            padding: theme.spacing(2, 0, 0, 2),
         },
     }),
 );

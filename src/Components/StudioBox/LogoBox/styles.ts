@@ -3,21 +3,23 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: "flex",
             position: "absolute",
-            bottom: theme.spacing(2),
-            left: theme.spacing(2),
+            display: "flex",
+            padding: theme.spacing(1.5, 2),
+            width: "100%",
+            bottom: 0,
+            left: 0,
         },
-        imageWrapper: {
+        image: {
             boxShadow: theme.shadows[3],
-            borderRadius: theme.spacing(13),
+            borderRadius: theme.spacing(11),
             marginRight: theme.spacing(2),
             overflow: "hidden",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: theme.spacing(13),
-            height: theme.spacing(13),
+            width: theme.spacing(11),
+            height: theme.spacing(11),
             maxWidth: theme.spacing(35),
             backgroundColor: theme.palette.common.white,
             "& > img": {
@@ -27,7 +29,15 @@ const useStyles = makeStyles((theme: Theme) =>
                 height: "auto",
             },
         },
-        studioName: {},
+        name: {
+            fontWeight: theme.typography.fontWeightBold,
+        },
+        address: {
+            lineHeight: 1,
+        },
+        roomIcon: {
+            marginRight: theme.spacing(0.5),
+        },
     }),
 );
 

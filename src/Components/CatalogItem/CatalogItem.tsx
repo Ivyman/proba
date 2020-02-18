@@ -2,18 +2,20 @@ import React, { MouseEvent, useState, memo, useCallback } from "react";
 import { IStudio } from "@src/types/studio";
 import useStyles from "./styles";
 
-import { Card, CardContent, Typography, CardMedia } from "@material-ui/core";
-import { RoomOutlined as RoomOutlinedIcon } from "@material-ui/icons";
+import { Card, CardContent, CardMedia, Chip } from "@material-ui/core";
+import { MonetizationOn as MonetizationOnIcons } from "@material-ui/icons";
+import Title from "@src/components/common/Title";
 
 interface IProps {
     studioData: IStudio;
     hoverdStudioId: string;
+    price: string;
     onItemClick: (id: string) => void;
     onHoverStudio: (id?: string) => void;
 }
 
 export const CatalogItem: React.FC<IProps> = memo(
-    ({ studioData, hoverdStudioId, onHoverStudio, onItemClick }) => {
+    ({ studioData, hoverdStudioId, price, onHoverStudio, onItemClick }) => {
         const [hover, setHover] = useState();
 
         const classes = useStyles();
@@ -66,21 +68,19 @@ export const CatalogItem: React.FC<IProps> = memo(
                     className={classes.cardMedia}
                 />
                 <CardContent className={classes.cardContent}>
-                    <Typography component="h6" variant="h6" color="textPrimary">
-                        {name}
-                    </Typography>
-                    <Typography
-                        variant="subtitle2"
-                        color="textSecondary"
-                        className={classes.address}
-                    >
-                        <RoomOutlinedIcon
-                            fontSize="small"
-                            className={classes.roomIcon}
-                        />
-                        {street} {buildingNumber}
-                    </Typography>
+                    <Title
+                        name={name}
+                        address={`${street} ${buildingNumber}`}
+                    />
                 </CardContent>
+
+                <Chip
+                    label={price}
+                    variant="outlined"
+                    size="small"
+                    icon={<MonetizationOnIcons fontSize="small" />}
+                    className={classes.chip}
+                />
             </Card>
         );
     },
