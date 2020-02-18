@@ -1,5 +1,14 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
+const iconButton = (theme: Theme) => ({
+    zIndex: 1,
+    width: theme.spacing(4.5),
+    height: theme.spacing(4.5),
+    top: theme.spacing(2),
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: theme.palette.common.white,
+});
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -7,40 +16,23 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: theme.shadows[1],
         },
         cardMedia: {
-            height: theme.spacing(20),
+            height: theme.spacing(30),
             filter: "grayscale(0.6)",
         },
         backBotton: {
-            zIndex: 1,
+            ...iconButton(theme),
             position: "absolute",
-            top: theme.spacing(2),
             left: theme.spacing(2),
-            backgroundColor: theme.palette.common.white,
             "& svg": {
                 position: "relative",
                 left: "4px",
                 top: ".5px",
             },
         },
-        imageWrapper: {
-            boxShadow: theme.shadows[3],
-            borderRadius: theme.shape.borderRadius,
-            overflow: "hidden",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: theme.spacing(13),
-            width: "auto",
-            maxWidth: theme.spacing(35),
-            padding: theme.spacing(0.5),
-            transform: `translateY(calc(-50% - ${theme.spacing(4)}px))`,
-            backgroundColor: theme.palette.common.white,
-            "& > img": {
-                verticalAlign: "middle",
-                maxWidth: "100%",
-                maxHeight: "100%",
-                height: "auto",
-            },
+        shareBotton: {
+            ...iconButton(theme),
+            position: "absolute",
+            right: theme.spacing(2),
         },
         cardContent: {
             position: "relative",
@@ -63,9 +55,6 @@ const useStyles = makeStyles((theme: Theme) =>
             "& > span:not(:last-of-type)": {
                 paddingRight: theme.spacing(1.5),
             },
-        },
-        studioName: {
-            marginBottom: theme.spacing(2),
         },
         description: {
             padding: theme.spacing(2, 0, 0, 2),

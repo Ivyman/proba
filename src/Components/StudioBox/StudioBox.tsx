@@ -14,9 +14,11 @@ import {
 import {
     ArrowBackIos as ArrowBackIosIcon,
     PhoneAndroid as PhoneAndroidIcone,
+    Share as ShareIcon,
     MailOutline as MailOutlineIcone,
     Language as LanguageIcon,
 } from "@material-ui/icons";
+import LogoBox from "./LogoBox";
 
 interface IProps {
     openedStudio: IStudio | undefined;
@@ -34,26 +36,29 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                 onClick={onGoBack}
                 className={classes.backBotton}
             >
-                <ArrowBackIosIcon />
+                <ArrowBackIosIcon fontSize="small" />
             </Fab>
 
             {openedStudio ? (
                 <>
+                    <Fab
+                        aria-label="share"
+                        size="small"
+                        onClick={() => {}}
+                        className={classes.shareBotton}
+                    >
+                        <ShareIcon fontSize="small" />
+                    </Fab>
                     <CardMedia
                         className={classes.cardMedia}
                         image={pattern}
                         title="Contemplative Reptile"
-                    />
+                    >
+                        <LogoBox studioData={openedStudio} />
+                    </CardMedia>
                     <CardContent className={classes.cardContent}>
                         <Box display="flex">
                             <Box flexGrow={1} pr={3}>
-                                <Typography
-                                    variant="h4"
-                                    component="h2"
-                                    className={classes.studioName}
-                                >
-                                    {openedStudio.name}
-                                </Typography>
                                 <Box>
                                     <ul className={classes.contactsList}>
                                         {openedStudio.contact.mail && (
@@ -116,11 +121,6 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                                             </Typography>
                                         )}
                                     </ul>
-                                </Box>
-                            </Box>
-                            <Box>
-                                <Box className={classes.imageWrapper}>
-                                    <img src={openedStudio.logo} alt="logo" />
                                 </Box>
                             </Box>
                         </Box>

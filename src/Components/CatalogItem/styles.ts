@@ -32,9 +32,9 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundSize: "contain",
         },
         cardContent: {
-            padding: theme.spacing(2, 2, 2, 0),
+            padding: theme.spacing(1, 1, 1, 0),
             "&:last-child": {
-                paddingBottom: theme.spacing(2),
+                paddingBottom: theme.spacing(1),
             },
         },
     }),
