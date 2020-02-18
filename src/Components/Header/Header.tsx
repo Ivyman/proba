@@ -5,8 +5,8 @@ import useStyles from "./styles";
 
 import { Container, AppBar, Toolbar, IconButton, Box } from "@material-ui/core";
 import { Menu as MenuIcon } from "@material-ui/icons";
-import Navbar from "@src/components/Navbar";
-import Logo from "@src/components/Logo";
+import Logo from "@src/components/common/Logo";
+import Navbar from "./Navbar";
 
 const navbarLinks: IPath[] = [{ path: "/catalog", label: "Katalog" }];
 

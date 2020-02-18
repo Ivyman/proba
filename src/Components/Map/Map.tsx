@@ -5,7 +5,7 @@ import { GlMap } from "@src/Confing";
 import useStyles from "./styles";
 
 import ReactMapGL, { NavigationControl } from "react-map-gl";
-import Markers from "@src/components/Markers";
+import Markers from "./Markers";
 
 interface IProps {
     studiosList: IStudio[];

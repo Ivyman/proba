@@ -11,7 +11,7 @@ import { useDispatch } from "@src/hooks/dispatch";
 
 import { Container, Box, Grid } from "@material-ui/core";
 import Filters from "@src/components/Filters";
-import Divider from "@src/components/Divider";
+import Divider from "@src/components/common/Divider";
 import MapContainer from "@src/containers/MapContainer";
 import Screen from "@src/components/Screen";
 

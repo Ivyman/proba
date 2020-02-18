@@ -11,7 +11,7 @@ import {
     CircularProgress,
     Box,
 } from "@material-ui/core";
-import ChipField from "@src/components/ChipField";
+import ChipField from "@src/components/common/ChipField";
 
 interface IProps {
     fields: IFilters;

@@ -16,7 +16,7 @@ import {
     ListAlt as ListAltIcon,
     ContactMail as ContactMailIcon,
 } from "@material-ui/icons";
-import Logo from "@src/components/Logo";
+import Logo from "@src/components/common/Logo";
 
 const sidebarLinks: IPathWithIcon[] = [
     { path: "/contact", label: "Kontakt", icon: <ContactMailIcon /> },
