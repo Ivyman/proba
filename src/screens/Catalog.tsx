@@ -6,7 +6,7 @@ import { fetchStudios } from "@src/store/studios/actions";
 import { fetchFilters } from "@src/store/filters/actions";
 import { getFilters } from "@src/store/filters/selectors";
 import { getStudiosApiStatus } from "@src/store/studios/selectors";
-import { RouterCatalog } from "@src/routing/RouterCatalog";
+import { CatalogRouter } from "@src/routing/CatalogRouter";
 import { useDispatch } from "@src/hooks/dispatch";
 
 import { Container, Box, Grid } from "@material-ui/core";
@@ -57,7 +57,7 @@ const CatalogScreen: React.FC = () => {
                 <Container maxWidth="xl">
                     <Grid container spacing={2} style={{ minHeight: "100%" }}>
                         <Grid item sm={5}>
-                            <RouterCatalog />
+                            <CatalogRouter />
                         </Grid>
                         <Grid item sm={7}>
                             <MapContainer />

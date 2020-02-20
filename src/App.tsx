@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "@src/hooks/dispatch";
 import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
-import { RouterScreens } from "@src/routing/RouterScreens";
+import { ScreensRouter } from "@src/routing/ScreensRouter";
 
 import { Box } from "@material-ui/core";
 import Sidebar from "@src/components/Sidebar";
@@ -26,7 +26,7 @@ const App: React.FC = () => {
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Header onSwitchSidebar={hadleSidebarSwith} />
 
-                <RouterScreens />
+                <ScreensRouter />
 
                 <Sidebar
                     sidebarStatus={sidebarStatus}

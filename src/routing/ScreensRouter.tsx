@@ -11,7 +11,7 @@ const CatalogScreen = lazy(() => import("@src/screens/Catalog"));
 const TermsScreen = lazy(() => import("@src/screens/Terms"));
 const PolicyScreen = lazy(() => import("@src/screens/Policy"));
 
-export const RouterScreens: React.FC = () => {
+export const ScreensRouter: React.FC = () => {
     const location = useLocation();
 
     const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(

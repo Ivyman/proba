@@ -4,7 +4,7 @@ import { Route, useRouteMatch, Switch } from "react-router-dom";
 import Studio from "@src/containers/Studio";
 import Catalog from "@src/containers/Catalog";
 
-export const RouterCatalog: React.FC = () => {
+export const CatalogRouter: React.FC = () => {
     const { path } = useRouteMatch();
 
     return (
