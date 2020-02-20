@@ -15,12 +15,16 @@ import {
 import {
     ListAlt as ListAltIcon,
     ContactMail as ContactMailIcon,
+    Info as InfoIcon,
 } from "@material-ui/icons";
 import Logo from "@src/components/common/Logo";
 
+// TODO move outside
 const sidebarLinks: IPathWithIcon[] = [
     { path: "/contact", label: "Kontakt", icon: <ContactMailIcon /> },
-    { path: "/about", label: "O nas", icon: <ListAltIcon /> },
+    { path: "/about", label: "O nas", icon: <InfoIcon /> },
+    { path: "/terms", label: "Regułamin", icon: <ListAltIcon /> },
+    { path: "/policy", label: "Polityka prywatności", icon: <ListAltIcon /> },
 ];
 
 interface IProps {

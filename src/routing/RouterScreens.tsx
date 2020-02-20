@@ -8,6 +8,8 @@ import FullpageThrobber from "@src/components/common/FullpageThrobber";
 const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));
 const CatalogScreen = lazy(() => import("@src/screens/Catalog"));
+const TermsScreen = lazy(() => import("@src/screens/Terms"));
+const PolicyScreen = lazy(() => import("@src/screens/Policy"));
 
 export const RouterScreens: React.FC = () => {
     const location = useLocation();
@@ -29,6 +31,8 @@ export const RouterScreens: React.FC = () => {
             <Switch>
                 <Route path="/about" component={AboutScreen} exact />
                 <Route path="/contact" component={ContactScreen} exact />
+                <Route path="/terms" component={TermsScreen} exact />
+                <Route path="/policy" component={PolicyScreen} exact />
                 <Route path="/catalog" component={CatalogScreen} />
                 <Redirect from="/*" to="/catalog" />
             </Switch>
