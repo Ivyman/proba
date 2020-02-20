@@ -1,8 +1,9 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { useDispatch } from "@src/hooks/dispatch";
-import { CircularProgress } from "@material-ui/core";
 import { setOpenedStudio } from "@src/store/studios/actions";
+
+import FullpageThrobber from "@src/components/common/FullpageThrobber";
 
 const AboutScreen = lazy(() => import("@src/screens/About"));
 const ContactScreen = lazy(() => import("@src/screens/Contact"));
@@ -24,7 +25,7 @@ export const RouterScreens: React.FC = () => {
     }, [location, dispatchOpenedStudio]);
 
     return (
-        <Suspense fallback={<CircularProgress />}>
+        <Suspense fallback={<FullpageThrobber />}>
             <Switch>
                 <Route path="/about" component={AboutScreen} exact />
                 <Route path="/contact" component={ContactScreen} exact />

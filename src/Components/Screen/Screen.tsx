@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { EApiStatuses } from "@src/types/api";
 
-import { CircularProgress, Box } from "@material-ui/core";
+import FullpageThrobber from "@src/components/common/FullpageThrobber";
 
 interface IProps {
     apiStatus?: EApiStatuses;
@@ -14,16 +14,7 @@ export const Screen: React.FC<IProps> = memo(({ apiStatus, children }) => {
                 return "error";
             case EApiStatuses.RUNNING:
             case EApiStatuses.IDLE:
-                return (
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        flexGrow={1}
-                        justifyContent="center"
-                    >
-                        <CircularProgress size={30} />
-                    </Box>
-                );
+                return <FullpageThrobber />;
             case EApiStatuses.SUCCESS:
             default:
                 return children;
