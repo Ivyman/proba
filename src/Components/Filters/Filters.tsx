@@ -4,14 +4,8 @@ import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import {
-    TextField,
-    RadioGroup,
-    Grid,
-    CircularProgress,
-    Box,
-} from "@material-ui/core";
-import ChipField from "@src/components/common/ChipField";
+import { TextField, Grid, CircularProgress, Box } from "@material-ui/core";
+import Select from "@src/components/common/Select";
 
 interface IProps {
     fields: IFilters;
@@ -36,8 +30,8 @@ export const Filters: React.FC<IProps> = memo(
             Studios.filtersDebouncedInterval,
         );
 
-        const handleCityChange = (event: ChangeEvent<HTMLInputElement>) => {
-            setCity(event.target.value);
+        const handleCityChange = (value: string) => {
+            setCity(value);
             setTouched(true);
         };
         const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -67,26 +61,28 @@ export const Filters: React.FC<IProps> = memo(
                 <Grid item xs={5} className={classes.searchFiledWrapper}>
                     <TextField
                         fullWidth
+                        size="small"
                         label="Wpisz nazwe lub adres"
                         variant="outlined"
                         onChange={handleSearchChange}
-                        className={classes.searchField}
-                        InputProps={
-                            showThrobber
-                                ? {
-                                      endAdornment: (
-                                          <Box display="flex">
-                                              <CircularProgress size={25} />
-                                          </Box>
-                                      ),
-                                  }
-                                : {}
-                        }
+                        InputProps={{
+                            endAdornment: showThrobber && (
+                                <Box display="flex" pl={1}>
+                                    <CircularProgress size={25} />
+                                </Box>
+                            ),
+                        }}
                     />
                 </Grid>
 
                 <Grid item xs={7}>
-                    <RadioGroup
+                    <Select
+                        values={cities}
+                        label="Miasto"
+                        onChange={handleCityChange}
+                    />
+
+                    {/* <RadioGroup
                         aria-label="position"
                         value={city}
                         className={classes.radioGroup}
@@ -100,7 +96,7 @@ export const Filters: React.FC<IProps> = memo(
                                 checked={city === cityItem.key}
                             />
                         ))}
-                    </RadioGroup>
+                    </RadioGroup> */}
                 </Grid>
             </Grid>
         );

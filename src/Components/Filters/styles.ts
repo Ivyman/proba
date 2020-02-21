@@ -10,9 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "flex",
             alignItems: "center ",
         },
-        searchField: {
-            background: theme.palette.common.white,
-        },
     }),
 );
 

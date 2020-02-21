@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import App from "./App";

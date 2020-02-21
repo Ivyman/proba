@@ -1,10 +1,10 @@
-export interface ICityFilter {
+export interface IFilter {
     key: string;
     name: string;
 }
 
 export interface IFilters {
-    cities: ICityFilter[];
+    cities: IFilter[];
 }
 
 export interface IFiltersData {

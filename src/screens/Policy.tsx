@@ -1,8 +1,6 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
 
-import { Container, Box, Typography, Button } from "@material-ui/core";
-import { MailOutline as MailOutlineIcon } from "@material-ui/icons";
+import { Container, Box, Typography } from "@material-ui/core";
 import Screen from "@src/components/Screen";
 
 const TermsScreen: React.FC = () => (
