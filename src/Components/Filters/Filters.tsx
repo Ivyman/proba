@@ -1,11 +1,13 @@
-import React, { useState, useEffect, memo, ChangeEvent } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { IFilters } from "@src/types/filters";
 import { Studios } from "@src/utils/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { TextField, Grid, CircularProgress, Box } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import Select from "@src/components/common/Select";
+import SortMenu from "@src/components/common/SortMenu";
+import SearchField from "./SearchField";
 
 // TODO remove from here
 const priceFromRange = [
@@ -23,10 +25,17 @@ interface IProps {
 
 export const Filters: React.FC<IProps> = memo(
     ({ onFiltersChange, fields: { cities } }) => {
+        const [loadingData, setLoadingData] = useState<boolean>(false);
         const [touched, setTouched] = useState<boolean>(false);
         const [search, setSearch] = useState<string | null>(null);
+        const [priceFrom, setPriceFrom] = useState<string | null>(null);
         const [city, setCity] = useState<string | null>(null);
-        const [showThrobber, setShowThrobber] = useState<boolean>(false);
+
+        const [filterData, setFilterData] = useState<any>({
+            city: null,
+            search: null,
+            priceFrom: null,
+        });
 
         const classes = useStyles();
 
@@ -39,17 +48,26 @@ export const Filters: React.FC<IProps> = memo(
             Studios.filtersDebouncedInterval,
         );
 
+        // TODO merge this handlers
+        // const handleChange = (fieldName: string, value: string) => {
+        //     setFilterData((prevValue: any) => ({
+        //         ...prevValue,
+        //         [fieldName]: value,
+        //     }));
+        //     setTouched(true);
+        //     setLoadingData(true);
+        // };
         const handleCityChange = (value: string) => {
             setCity(value);
             setTouched(true);
         };
-        const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-            setSearch(event.target.value);
+        const handleSearchChange = (value: string) => {
+            setSearch(value);
             setTouched(true);
-            setShowThrobber(true);
+            setLoadingData(true);
         };
         const handlePriceFromChange = (value: string) => {
-            console.log(value);
+            setPriceFrom(value);
         };
 
         useEffect(() => {
@@ -58,8 +76,8 @@ export const Filters: React.FC<IProps> = memo(
                     search: debouncedSearch,
                     city: debouncedCity,
                 });
+                setLoadingData(false);
             }
-            setShowThrobber(false);
         }, [debouncedSearch, debouncedCity, onFiltersChange, touched]);
 
         useEffect(() => {
@@ -71,19 +89,9 @@ export const Filters: React.FC<IProps> = memo(
         return (
             <Grid container spacing={2} component="form">
                 <Grid item xs={5} className={classes.searchFiledWrapper}>
-                    <TextField
-                        fullWidth
-                        size="small"
-                        label="Wpisz nazwe lub adres"
-                        variant="outlined"
+                    <SearchField
                         onChange={handleSearchChange}
-                        InputProps={{
-                            endAdornment: showThrobber && (
-                                <Box display="flex" pl={1}>
-                                    <CircularProgress size={25} />
-                                </Box>
-                            ),
-                        }}
+                        showThrobber={loadingData}
                     />
                 </Grid>
 
@@ -91,6 +99,7 @@ export const Filters: React.FC<IProps> = memo(
                     <Box display="flex">
                         <Box mr={2}>
                             <Select
+                                disabled
                                 setDefault
                                 values={cities}
                                 label="Miasto"
@@ -100,13 +109,23 @@ export const Filters: React.FC<IProps> = memo(
                         </Box>
                         <Box mr={2}>
                             <Select
+                                noneOption="Dowolna"
                                 values={priceFromRange}
                                 label="Cena od"
-                                labelWidth={70}
+                                labelWidth={60}
                                 onChange={handlePriceFromChange}
                             />
                         </Box>
+                        <Box
+                            display="flex"
+                            flexGrow={1}
+                            alignItems="center"
+                            justifyContent="flex-end"
+                        >
+                            <SortMenu />
+                        </Box>
                     </Box>
+
                     {/* <RadioGroup
                         aria-label="position"
                         value={city}

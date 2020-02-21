@@ -67,6 +67,7 @@ export const CatalogItem: React.FC<IProps> = memo(
                     title={name}
                     className={classes.cardMedia}
                 />
+
                 <CardContent className={classes.cardContent}>
                     <Title
                         name={name}
@@ -76,7 +77,6 @@ export const CatalogItem: React.FC<IProps> = memo(
 
                 <Chip
                     label={price}
-                    variant="outlined"
                     size="small"
                     icon={<MonetizationOnIcons fontSize="small" />}
                     className={classes.chip}

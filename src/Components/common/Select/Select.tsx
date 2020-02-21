@@ -15,10 +15,20 @@ interface IProps {
     labelWidth: number;
     onChange: (event: any) => void;
     setDefault?: boolean;
+    noneOption?: string;
+    disabled?: boolean;
 }
 
 export const Select: React.FC<IProps> = memo(
-    ({ label, values, onChange, labelWidth, setDefault }) => {
+    ({
+        label,
+        values,
+        onChange,
+        labelWidth,
+        setDefault,
+        noneOption,
+        disabled,
+    }) => {
         const [chosenValue, setChoosenValue] = useState<string>(
             setDefault ? values[0].name : "",
         );
@@ -27,6 +37,10 @@ export const Select: React.FC<IProps> = memo(
 
         const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
             const chosenValue = event.target.value as string;
+
+            if (!Boolean(chosenValue)) {
+                return setChoosenValue(chosenValue);
+            }
 
             onChange(
                 (values.find(item => item.name === chosenValue) as IFilter).key,
@@ -38,11 +52,17 @@ export const Select: React.FC<IProps> = memo(
             <FormControl variant="outlined" className={classes.root}>
                 <InputLabel className={classes.label}>{label}</InputLabel>
                 <SelectUI
+                    disabled={disabled}
                     labelWidth={labelWidth}
                     value={chosenValue}
                     onChange={handleChange}
                     classes={{ root: classes.select }}
                 >
+                    {Boolean(noneOption) && (
+                        <MenuItem value="">
+                            <em>{noneOption}</em>
+                        </MenuItem>
+                    )}
                     {values.map(({ name, key }) => (
                         <MenuItem key={key} value={name}>
                             {name}
