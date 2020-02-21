@@ -23,7 +23,7 @@ export interface IStudioAddress {
 }
 
 export interface IPrice {
-    from: number;
+    from: string;
 }
 
 export interface IStudio {

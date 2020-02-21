@@ -7,6 +7,15 @@ import useStyles from "./styles";
 import { TextField, Grid, CircularProgress, Box } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 
+// TODO remove from here
+const priceFromRange = [
+    { key: "10", name: "10 zł/h" },
+    { key: "30", name: "30 zł/h" },
+    { key: "50", name: "50 zł/h" },
+    { key: "70", name: "70 zł/h" },
+    { key: "90", name: "90 zł/h" },
+];
+
 interface IProps {
     fields: IFilters;
     onFiltersChange: (filtersForm: any) => void;
@@ -38,6 +47,9 @@ export const Filters: React.FC<IProps> = memo(
             setSearch(event.target.value);
             setTouched(true);
             setShowThrobber(true);
+        };
+        const handlePriceFromChange = (value: string) => {
+            console.log(value);
         };
 
         useEffect(() => {
@@ -76,12 +88,25 @@ export const Filters: React.FC<IProps> = memo(
                 </Grid>
 
                 <Grid item xs={7}>
-                    <Select
-                        values={cities}
-                        label="Miasto"
-                        onChange={handleCityChange}
-                    />
-
+                    <Box display="flex">
+                        <Box mr={2}>
+                            <Select
+                                setDefault
+                                values={cities}
+                                label="Miasto"
+                                labelWidth={50}
+                                onChange={handleCityChange}
+                            />
+                        </Box>
+                        <Box mr={2}>
+                            <Select
+                                values={priceFromRange}
+                                label="Cena od"
+                                labelWidth={70}
+                                onChange={handlePriceFromChange}
+                            />
+                        </Box>
+                    </Box>
                     {/* <RadioGroup
                         aria-label="position"
                         value={city}
