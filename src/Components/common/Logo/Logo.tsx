@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Brand } from "@src/Confing";
+import { Brand } from "@src/config/constants";
 import useStyles from "./styles";
 
 import { ReactComponent as LogoIcon } from "@src/assets/logo.svg";

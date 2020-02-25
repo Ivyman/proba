@@ -1,7 +1,7 @@
 import React from "react";
 import { IViewport } from "@src/types/map";
 import { IStudio } from "@src/types/studio";
-import { GlMap } from "@src/Confing";
+import { GlMap } from "@src/config/constants";
 import useStyles from "./styles";
 
 import ReactMapGL, { NavigationControl } from "react-map-gl";

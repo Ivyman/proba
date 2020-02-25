@@ -49,6 +49,9 @@ export const Filters: React.FC<IProps> = memo(
         );
 
         // TODO merge this handlers
+        // onChange = event => {
+        //     this.setState({ [event.target.name]: event.target.value });
+        //   };
         // const handleChange = (fieldName: string, value: string) => {
         //     setFilterData((prevValue: any) => ({
         //         ...prevValue,
