@@ -1,7 +1,7 @@
 import React from "react";
 import { IViewport } from "@src/types/map";
 import { IStudio } from "@src/types/studio";
-import { GlMap } from "@src/config/constants";
+import { GL_MAP } from "@src/config/constants";
 import useStyles from "./styles";
 
 import ReactMapGL, { NavigationControl } from "react-map-gl";
@@ -36,7 +36,7 @@ export const Map: React.FC<IProps> = ({
             width="100%"
             height="100%"
             scrollZoom={false}
-            mapboxApiAccessToken={GlMap.accessToken}
+            mapboxApiAccessToken={GL_MAP.ACCESS_TOKEN}
             onViewportChange={onViewportChange}
         >
             <Markers

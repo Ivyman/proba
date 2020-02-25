@@ -5,7 +5,7 @@ import { EApiStatuses } from "@src/types/api";
 import { IContactFormData } from "@src/types/forms";
 import { sendMessage, setIdleStatus } from "@src/store/message/actions";
 import { getMessageApiStatus } from "@src/store/message/selectors";
-import { Brand } from "@src/Confing";
+import { BRAND } from "@src/config/constants";
 
 import { Container, Typography, Box, Link } from "@material-ui/core";
 import ContactForm from "@src/components/ContactForm";
@@ -67,8 +67,8 @@ export const ContactScreen: React.FC = () => {
                         color="textSecondary"
                     >
                         {"Lub wyślij wiedomość pod adress "}
-                        <Link href={`mailto:${Brand.email}`}>
-                            {Brand.email}
+                        <Link href={`mailto:${BRAND.EMAIL}`}>
+                            {BRAND.EMAIL}
                         </Link>
                     </Typography>
                 </Box>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from "react";
 import { IFilters } from "@src/types/filters";
-import { Studios } from "@src/utils/constants";
+import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
@@ -41,11 +41,11 @@ export const Filters: React.FC<IProps> = memo(
 
         const debouncedSearch = useDebounce<string | null>(
             search,
-            Studios.filtersDebouncedInterval,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
         );
         const debouncedCity = useDebounce<string | null>(
             city,
-            Studios.filtersDebouncedInterval,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
         );
 
         // TODO merge this handlers

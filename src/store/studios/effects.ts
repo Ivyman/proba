@@ -1,6 +1,6 @@
 import apiEndpoint, { URLS } from "@src/utils/api";
 import { removeEmptyFields } from "@src/utils/common";
-import { Studios } from "@src/utils/constants";
+import { STUDIOS } from "@src/config/constants";
 import { IFiltersData } from "@src/types/filters";
 import { IStudioResponse } from "@src/types/studio";
 
@@ -9,7 +9,7 @@ export const fetchStudios = async (
     nextPageToken?: string,
 ): Promise<{ data: IStudioResponse }> => {
     const params = removeEmptyFields({
-        limit: Studios.fetchLimit,
+        limit: STUDIOS.FETCH_LIMIT,
         search: filtersData.search || "",
         city: filtersData.city || "",
         nextPageToken,
