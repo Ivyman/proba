@@ -1,5 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+import * as ROUTES from "@src/config/router";
 
 import { Container, Box, Typography, Button } from "@material-ui/core";
 import { MailOutline as MailOutlineIcon } from "@material-ui/icons";
@@ -37,7 +38,7 @@ const AboutScreen: React.FC = () => (
 
                     <Box mt={3}>
                         <Button
-                            to="/contact"
+                            to={ROUTES.CONTACT}
                             size="large"
                             color="primary"
                             variant="contained"

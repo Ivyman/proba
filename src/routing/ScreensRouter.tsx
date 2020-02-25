@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { useDispatch } from "@src/hooks/dispatch";
 import { setOpenedStudio } from "@src/store/studios/actions";
+import * as ROUTERS from "@src/config/router";
 
 import FullpageThrobber from "@src/components/common/FullpageThrobber";
 
@@ -29,12 +30,12 @@ export const ScreensRouter: React.FC = () => {
     return (
         <Suspense fallback={<FullpageThrobber />}>
             <Switch>
-                <Route path="/about" component={AboutScreen} exact />
-                <Route path="/contact" component={ContactScreen} exact />
-                <Route path="/terms" component={TermsScreen} exact />
-                <Route path="/policy" component={PolicyScreen} exact />
-                <Route path="/catalog" component={CatalogScreen} />
-                <Redirect from="/*" to="/catalog" />
+                <Route path={ROUTERS.ABOUT} component={AboutScreen} exact />
+                <Route path={ROUTERS.CONTACT} component={ContactScreen} exact />
+                <Route path={ROUTERS.TERMS} component={TermsScreen} exact />
+                <Route path={ROUTERS.POLICY} component={PolicyScreen} exact />
+                <Route path={ROUTERS.CATALOG} component={CatalogScreen} />
+                <Redirect from="/*" to={ROUTERS.CATALOG} />
             </Switch>
         </Suspense>
     );

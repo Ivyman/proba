@@ -3,6 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { IContactFormData } from "@src/types/forms";
 import { useForm, OnSubmit } from "react-hook-form";
 import { contactValidationScheme } from "@src/utils/formsValidation";
+import * as ROUTES from "@src/config/router";
 import useStyles from "./styles";
 
 import { TextField, Button, Box, Grid } from "@material-ui/core";
@@ -119,7 +120,7 @@ export const ContactForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
             <Box display="flex" mb={4} justifyContent="space-between">
                 <Button
                     component={RouterLink}
-                    to="/catalog"
+                    to={ROUTES.CATALOG}
                     startIcon={<ArrowBackIosIcon />}
                 >
                     Katałog
