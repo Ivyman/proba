@@ -49,7 +49,12 @@ export const Select: React.FC<IProps> = memo(
         };
 
         return (
-            <FormControl variant="outlined" className={classes.root}>
+            <FormControl
+                variant="outlined"
+                className={`${classes.root} ${
+                    Boolean(disabled) ? classes.isDisabled : ""
+                }`}
+            >
                 <InputLabel className={classes.label}>{label}</InputLabel>
                 <SelectUI
                     disabled={disabled}

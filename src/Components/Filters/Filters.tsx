@@ -4,9 +4,10 @@ import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, RadioGroup } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
+import ChipField from "@src/components/common/ChipField";
 import SearchField from "./SearchField";
 
 // TODO remove from here
@@ -16,6 +17,27 @@ const priceFromRange = [
     { key: "50", name: "50 zł/h" },
     { key: "70", name: "70 zł/h" },
     { key: "90", name: "90 zł/h" },
+];
+const cityAreas = [
+    { key: "all", name: "Wszystkie" },
+    { key: "bem", name: "Bemowo" },
+    { key: "bial", name: "Białołęka" },
+    { key: "bel", name: "Bielany" },
+    { key: "moc", name: "Mokotów" },
+    { key: "och", name: "Ochota" },
+    { key: "prpne", name: "Praga Południe" },
+    { key: "prpc", name: "Praga Północ" },
+    { key: "rem", name: "Rembertów" },
+    { key: "sr", name: "Śródmieście" },
+    { key: "tar", name: "Targówek" },
+    { key: "urs", name: "Ursus" },
+    { key: "ursy", name: "Ursynów" },
+    { key: "waw", name: "Wawer" },
+    { key: "wes", name: "Wesoła" },
+    { key: "wil", name: "Wilanów" },
+    { key: "wlo", name: "Włochy" },
+    { key: "wol", name: "Wola" },
+    { key: "zol", name: "Żoliborz" },
 ];
 
 interface IProps {
@@ -112,7 +134,16 @@ export const Filters: React.FC<IProps> = memo(
                         </Box>
                         <Box mr={2}>
                             <Select
-                                noneOption="Dowolna"
+                                setDefault
+                                values={cityAreas}
+                                label="Dzielnica"
+                                labelWidth={65}
+                                onChange={handlePriceFromChange}
+                            />
+                        </Box>
+                        <Box mr={2}>
+                            <Select
+                                setDefault
                                 values={priceFromRange}
                                 label="Cena od"
                                 labelWidth={60}
@@ -128,24 +159,27 @@ export const Filters: React.FC<IProps> = memo(
                             <SortMenu />
                         </Box>
                     </Box>
-
-                    {/* <RadioGroup
-                        aria-label="position"
-                        value={city}
-                        className={classes.radioGroup}
-                        onChange={handleCityChange}
-                    >
-                        {cities.map(cityItem => (
-                            <ChipField
-                                key={cityItem.key}
-                                label={cityItem.name}
-                                value={cityItem.key}
-                                checked={city === cityItem.key}
-                            />
-                        ))}
-                    </RadioGroup> */}
                 </Grid>
             </Grid>
+            // <Grid container spacing={2}>
+            //     <Grid item>
+            //         <RadioGroup
+            //             aria-label="position"
+            //             value={city}
+            //             className={classes.radioGroup}
+            //             onChange={() => {}}
+            //         >
+            //             {cities.map(cityItem => (
+            //                 <ChipField
+            //                     key={cityItem.key}
+            //                     label={cityItem.name}
+            //                     value={cityItem.key}
+            //                     checked={city === cityItem.key}
+            //                 />
+            //             ))}
+            //         </RadioGroup>
+            //     </Grid>
+            // </Grid>
         );
     },
 );

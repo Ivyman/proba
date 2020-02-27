@@ -34,6 +34,8 @@ export const Title: React.FC<IProps> = memo(
                         fontSize="small"
                         className={classes.roomIcon}
                     />
+                    {/* TODO upload this data dinamicaly */}
+                    Targówek,&nbsp;
                     {address}
                 </Typography>
             </>

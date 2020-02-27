@@ -13,6 +13,18 @@ const useStyles = makeStyles((theme: Theme) =>
                 1.5,
             )}px) scale(1)`,
         },
+        isDisabled: {
+            "&::after": {
+                content: "''",
+                display: "block",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                cursor: "not-allowed",
+            },
+        },
     }),
 );
 
