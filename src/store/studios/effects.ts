@@ -10,8 +10,10 @@ export const fetchStudios = async (
 ): Promise<{ data: IStudioResponse }> => {
     const params = removeEmptyFields({
         limit: STUDIOS.FETCH_LIMIT,
-        search: filtersData.search || "",
-        city: filtersData.city || "",
+        search: filtersData.search || null,
+        city: filtersData.city || null,
+        cityArea: filtersData.cityArea || null,
+        priceFrom: filtersData.priceFrom || null,
         nextPageToken,
     });
     return await apiEndpoint.get(URLS.studios, { params });

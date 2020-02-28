@@ -1,13 +1,13 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { IFilters } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
+import { IFiltersData } from "@src/types/filters";
 import useStyles from "./styles";
 
-import { Grid, Box, RadioGroup } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
-import ChipField from "@src/components/common/ChipField";
 import SearchField from "./SearchField";
 
 // TODO remove from here
@@ -45,141 +45,162 @@ interface IProps {
     onFiltersChange: (filtersForm: any) => void;
 }
 
-export const Filters: React.FC<IProps> = memo(
-    ({ onFiltersChange, fields: { cities } }) => {
-        const [loadingData, setLoadingData] = useState<boolean>(false);
-        const [touched, setTouched] = useState<boolean>(false);
-        const [search, setSearch] = useState<string | null>(null);
-        const [priceFrom, setPriceFrom] = useState<string | null>(null);
-        const [city, setCity] = useState<string | null>(null);
+export const Filters: React.FC<IProps> = ({
+    onFiltersChange,
+    fields: { cities },
+}) => {
+    const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
+    const [filterData, setFilterData] = useState<IFiltersData>({
+        search: "",
+        city: cities[0].key,
+        priceFrom: priceFromRange[0].key,
+        cityArea: cityAreas[0].key,
+    });
 
-        const [filterData, setFilterData] = useState<any>({
-            city: null,
-            search: null,
-            priceFrom: null,
-        });
+    const classes = useStyles();
 
-        const classes = useStyles();
-
-        const debouncedSearch = useDebounce<string | null>(
-            search,
+    const [
+        debouncedSearch,
+        debouncedCity,
+        debouncedPriceFrom,
+        debouncedCityArea,
+    ] = [
+        useDebounce<string>(
+            filterData.search,
             STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        );
-        const debouncedCity = useDebounce<string | null>(
-            city,
+        ),
+        useDebounce<string>(
+            filterData.city,
             STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        );
+        ),
+        useDebounce<string>(
+            filterData.priceFrom,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
+        ),
+        useDebounce<string>(
+            filterData.cityArea,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
+        ),
+    ];
 
-        // TODO merge this handlers
-        // onChange = event => {
-        //     this.setState({ [event.target.name]: event.target.value });
-        //   };
-        // const handleChange = (fieldName: string, value: string) => {
-        //     setFilterData((prevValue: any) => ({
-        //         ...prevValue,
-        //         [fieldName]: value,
-        //     }));
-        //     setTouched(true);
-        //     setLoadingData(true);
-        // };
-        const handleCityChange = (value: string) => {
-            setCity(value);
-            setTouched(true);
-        };
-        const handleSearchChange = (value: string) => {
-            setSearch(value);
-            setTouched(true);
-            setLoadingData(true);
-        };
-        const handlePriceFromChange = (value: string) => {
-            setPriceFrom(value);
-        };
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
 
-        useEffect(() => {
-            if (debouncedSearch !== null || debouncedCity !== null) {
-                onFiltersChange({
-                    search: debouncedSearch,
-                    city: debouncedCity,
-                });
-                setLoadingData(false);
-            }
-        }, [debouncedSearch, debouncedCity, onFiltersChange, touched]);
+        setFilterData((prevState: any) => ({
+            ...prevState,
+            [name]: value,
+        }));
+        setDataIsLoading(true);
+    };
 
-        useEffect(() => {
-            if (cities.length) {
-                setCity(cities[0].key);
-            }
-        }, [cities]);
+    const handleSelectChante = (
+        event: ChangeEvent<{ value: unknown }>,
+        name: string,
+    ) => {
+        const { value } = event.target;
 
-        return (
-            <Grid container spacing={2} component="form">
-                <Grid item xs={5} className={classes.searchFiledWrapper}>
-                    <SearchField
-                        onChange={handleSearchChange}
-                        showThrobber={loadingData}
-                    />
-                </Grid>
+        setFilterData((prevState: any) => ({
+            ...prevState,
+            [name]: value,
+        }));
+        setDataIsLoading(true);
+    };
 
-                <Grid item xs={7}>
-                    <Box display="flex">
-                        <Box mr={2}>
-                            <Select
-                                disabled
-                                setDefault
-                                values={cities}
-                                label="Miasto"
-                                labelWidth={50}
-                                onChange={handleCityChange}
-                            />
-                        </Box>
-                        <Box mr={2}>
-                            <Select
-                                setDefault
-                                values={cityAreas}
-                                label="Dzielnica"
-                                labelWidth={65}
-                                onChange={handlePriceFromChange}
-                            />
-                        </Box>
-                        <Box mr={2}>
-                            <Select
-                                setDefault
-                                values={priceFromRange}
-                                label="Cena od"
-                                labelWidth={60}
-                                onChange={handlePriceFromChange}
-                            />
-                        </Box>
-                        <Box
-                            display="flex"
-                            flexGrow={1}
-                            alignItems="center"
-                            justifyContent="flex-end"
-                        >
-                            <SortMenu />
-                        </Box>
-                    </Box>
-                </Grid>
+    useEffect(() => {
+        if (
+            debouncedSearch ||
+            debouncedCity ||
+            debouncedPriceFrom ||
+            debouncedCityArea
+        ) {
+            onFiltersChange({
+                search: debouncedSearch,
+                city: debouncedCity,
+                priceFrom: debouncedPriceFrom,
+                cityArea: debouncedCityArea,
+            });
+        }
+        setDataIsLoading(false);
+    }, [
+        debouncedSearch,
+        debouncedCity,
+        debouncedCityArea,
+        debouncedPriceFrom,
+        onFiltersChange,
+    ]);
+
+    return (
+        <Grid container spacing={2} component="form">
+            <Grid item xs={5} className={classes.searchFiledWrapper}>
+                <SearchField
+                    name="search"
+                    onChange={handleInputChange}
+                    showThrobber={dataIsLoading}
+                />
             </Grid>
-            // <Grid container spacing={2}>
-            //     <Grid item>
-            //         <RadioGroup
-            //             aria-label="position"
-            //             value={city}
-            //             className={classes.radioGroup}
-            //             onChange={() => {}}
-            //         >
-            //             {cities.map(cityItem => (
-            //                 <ChipField
-            //                     key={cityItem.key}
-            //                     label={cityItem.name}
-            //                     value={cityItem.key}
-            //                     checked={city === cityItem.key}
-            //                 />
-            //             ))}
-            //         </RadioGroup>
-            //     </Grid>
-            // </Grid>
-        );
-    },
-);
+
+            <Grid item xs={7}>
+                <Box display="flex">
+                    <Box mr={2}>
+                        <Select
+                            disabled
+                            setDefault
+                            name="city"
+                            values={cities}
+                            label="Miasto"
+                            labelWidth={50}
+                            onChange={handleSelectChante}
+                        />
+                    </Box>
+                    <Box mr={2}>
+                        <Select
+                            setDefault
+                            name="cityArea"
+                            values={cityAreas}
+                            label="Dzielnica"
+                            labelWidth={65}
+                            onChange={handleSelectChante}
+                        />
+                    </Box>
+                    <Box mr={2}>
+                        <Select
+                            setDefault
+                            name="priceFrom"
+                            values={priceFromRange}
+                            label="Cena od"
+                            labelWidth={60}
+                            onChange={handleSelectChante}
+                        />
+                    </Box>
+                    <Box
+                        display="flex"
+                        flexGrow={1}
+                        alignItems="center"
+                        justifyContent="flex-end"
+                    >
+                        <SortMenu />
+                    </Box>
+                </Box>
+            </Grid>
+        </Grid>
+        // <Grid container spacing={2}>
+        //     <Grid item>
+        //         <RadioGroup
+        //             aria-label="position"
+        //             value={city}
+        //             className={classes.radioGroup}
+        //             onChange={() => {}}
+        //         >
+        //             {cities.map(cityItem => (
+        //                 <ChipField
+        //                     key={cityItem.key}
+        //                     label={cityItem.name}
+        //                     value={cityItem.key}
+        //                     checked={city === cityItem.key}
+        //                 />
+        //             ))}
+        //         </RadioGroup>
+        //     </Grid>
+        // </Grid>
+    );
+};

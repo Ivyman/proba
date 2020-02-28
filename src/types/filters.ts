@@ -8,6 +8,8 @@ export interface IFilters {
 }
 
 export interface IFiltersData {
-    city: string[] | string;
-    search?: string;
+    city: string;
+    search: string;
+    cityArea: string;
+    priceFrom: string;
 }

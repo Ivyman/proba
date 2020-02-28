@@ -26,19 +26,26 @@ const CatalogScreen: React.FC = () => {
         fetchFilters,
     );
 
-    const handleFiltersChange = ({ search, city }: IFiltersData) => {
+    const handleFiltersChange = ({
+        search,
+        city,
+        cityArea,
+        priceFrom,
+    }: IFiltersData) => {
         dispatchStudios({
             search,
             city,
+            cityArea,
+            priceFrom,
         });
     };
 
     useEffect(() => dispatchFilters(), [dispatchFilters]);
-    useEffect(() => {
-        if (fields.cities.length) {
-            dispatchStudios({ city: fields.cities[0].key });
-        }
-    }, [fields, dispatchStudios]);
+    // useEffect(() => {
+    //     if (fields.cities.length) {
+    //         dispatchStudios({ city: fields.cities[0].key });
+    //     }
+    // }, [fields, dispatchStudios]);
 
     return (
         <Screen apiStatus={studiosApiStatus}>

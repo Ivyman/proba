@@ -1,4 +1,4 @@
-import React, { memo, ChangeEvent, useState } from "react";
+import React, { memo, useCallback, useState, ChangeEvent } from "react";
 import { IFilter } from "@src/types/filters";
 import useStyles from "./styles";
 
@@ -13,16 +13,18 @@ interface IProps {
     label: string;
     values: Array<IFilter>;
     labelWidth: number;
-    onChange: (event: any) => void;
     setDefault?: boolean;
     noneOption?: string;
     disabled?: boolean;
+    name?: string;
+    onChange: (event: ChangeEvent<{ value: unknown }>, name: string) => void;
 }
 
 export const Select: React.FC<IProps> = memo(
     ({
         label,
         values,
+        name,
         onChange,
         labelWidth,
         setDefault,
@@ -30,23 +32,18 @@ export const Select: React.FC<IProps> = memo(
         disabled,
     }) => {
         const [chosenValue, setChoosenValue] = useState<string>(
-            setDefault ? values[0].name : "",
+            setDefault ? values[0].key : "",
         );
 
         const classes = useStyles();
 
-        const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-            const chosenValue = event.target.value as string;
-
-            if (!Boolean(chosenValue)) {
-                return setChoosenValue(chosenValue);
-            }
-
-            onChange(
-                (values.find(item => item.name === chosenValue) as IFilter).key,
-            );
-            setChoosenValue(chosenValue);
-        };
+        const handleChange = useCallback(
+            (event: ChangeEvent<{ value: unknown }>) => {
+                onChange(event, Boolean(name) ? (name as string) : "select");
+                setChoosenValue(event.target.value as string);
+            },
+            [onChange, setChoosenValue, name],
+        );
 
         return (
             <FormControl
@@ -69,7 +66,7 @@ export const Select: React.FC<IProps> = memo(
                         </MenuItem>
                     )}
                     {values.map(({ name, key }) => (
-                        <MenuItem key={key} value={name}>
+                        <MenuItem key={key} value={key}>
                             {name}
                         </MenuItem>
                     ))}
