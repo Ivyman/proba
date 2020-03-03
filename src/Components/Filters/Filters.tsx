@@ -1,8 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { IFilters } from "@src/types/filters";
+import { IFilters, IFiltersData } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
-import { IFiltersData } from "@src/types/filters";
 import useStyles from "./styles";
 
 import { Grid, Box } from "@material-ui/core";
@@ -42,7 +41,7 @@ const cityAreas = [
 
 interface IProps {
     fields: IFilters;
-    onFiltersChange: (filtersForm: any) => void;
+    onFiltersChange: (filtersForm: IFiltersData) => void;
 }
 
 export const Filters: React.FC<IProps> = ({
@@ -83,23 +82,13 @@ export const Filters: React.FC<IProps> = ({
         ),
     ];
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-
-        setFilterData((prevState: any) => ({
-            ...prevState,
-            [name]: value,
-        }));
-        setDataIsLoading(true);
-    };
-
-    const handleSelectChante = (
-        event: ChangeEvent<{ value: unknown }>,
+    const handleFieldChange = (
+        event: ChangeEvent<HTMLInputElement | { value: unknown }>,
         name: string,
     ) => {
         const { value } = event.target;
 
-        setFilterData((prevState: any) => ({
+        setFilterData((prevState: IFiltersData) => ({
             ...prevState,
             [name]: value,
         }));
@@ -134,7 +123,7 @@ export const Filters: React.FC<IProps> = ({
             <Grid item xs={5} className={classes.searchFiledWrapper}>
                 <SearchField
                     name="search"
-                    onChange={handleInputChange}
+                    onChange={handleFieldChange}
                     showThrobber={dataIsLoading}
                 />
             </Grid>
@@ -149,7 +138,7 @@ export const Filters: React.FC<IProps> = ({
                             values={cities}
                             label="Miasto"
                             labelWidth={50}
-                            onChange={handleSelectChante}
+                            onChange={handleFieldChange}
                         />
                     </Box>
                     <Box mr={2}>
@@ -159,7 +148,7 @@ export const Filters: React.FC<IProps> = ({
                             values={cityAreas}
                             label="Dzielnica"
                             labelWidth={65}
-                            onChange={handleSelectChante}
+                            onChange={handleFieldChange}
                         />
                     </Box>
                     <Box mr={2}>
@@ -169,7 +158,7 @@ export const Filters: React.FC<IProps> = ({
                             values={priceFromRange}
                             label="Cena od"
                             labelWidth={60}
-                            onChange={handleSelectChante}
+                            onChange={handleFieldChange}
                         />
                     </Box>
                     <Box

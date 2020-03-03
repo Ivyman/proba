@@ -6,11 +6,12 @@ import { Box, TextField, CircularProgress } from "@material-ui/core";
 interface IProps {
     name?: string;
     showThrobber?: boolean;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement>, name: string) => void;
 }
 
 export const SearchField: React.FC<IProps> = memo(
     ({ onChange, showThrobber, name }) => {
+        const fieldName = !name ? "input" : name;
         const [searchString, setSearchString] = useState<string>("");
 
         const classes = useStyles();
@@ -18,16 +19,16 @@ export const SearchField: React.FC<IProps> = memo(
         const handleChange = useCallback(
             (event: ChangeEvent<HTMLInputElement>) => {
                 setSearchString(event.target.value);
-                onChange(event);
+                onChange(event, fieldName as string);
             },
-            [onChange, setSearchString],
+            [onChange, setSearchString, fieldName],
         );
 
         return (
             <TextField
                 fullWidth
                 size="small"
-                name={Boolean(name) ? name : "input"}
+                name={fieldName}
                 label="Wpisz nazwe lub adres"
                 variant="outlined"
                 value={searchString}

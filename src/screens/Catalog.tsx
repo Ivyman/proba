@@ -41,11 +41,17 @@ const CatalogScreen: React.FC = () => {
     };
 
     useEffect(() => dispatchFilters(), [dispatchFilters]);
-    // useEffect(() => {
-    //     if (fields.cities.length) {
-    //         dispatchStudios({ city: fields.cities[0].key });
-    //     }
-    // }, [fields, dispatchStudios]);
+    useEffect(() => {
+        // TODO change this condition depend on search, cityArea, priceFrom
+        if (fields.cities.length) {
+            dispatchStudios({
+                city: fields.cities[0].key,
+                search: "",
+                cityArea: "",
+                priceFrom: "",
+            });
+        }
+    }, [fields, dispatchStudios]);
 
     return (
         <Screen apiStatus={studiosApiStatus}>

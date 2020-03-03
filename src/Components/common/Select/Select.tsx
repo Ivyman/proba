@@ -31,6 +31,7 @@ export const Select: React.FC<IProps> = memo(
         noneOption,
         disabled,
     }) => {
+        const fieldName: string = !name ? "select" : name;
         const [chosenValue, setChoosenValue] = useState<string>(
             setDefault ? values[0].key : "",
         );
@@ -39,28 +40,29 @@ export const Select: React.FC<IProps> = memo(
 
         const handleChange = useCallback(
             (event: ChangeEvent<{ value: unknown }>) => {
-                onChange(event, Boolean(name) ? (name as string) : "select");
+                onChange(event, fieldName);
                 setChoosenValue(event.target.value as string);
             },
-            [onChange, setChoosenValue, name],
+            [onChange, setChoosenValue, fieldName],
         );
 
         return (
             <FormControl
                 variant="outlined"
                 className={`${classes.root} ${
-                    Boolean(disabled) ? classes.isDisabled : ""
+                    !disabled ? "" : classes.isDisabled
                 }`}
             >
                 <InputLabel className={classes.label}>{label}</InputLabel>
                 <SelectUI
+                    name={fieldName}
                     disabled={disabled}
                     labelWidth={labelWidth}
                     value={chosenValue}
                     onChange={handleChange}
                     classes={{ root: classes.select }}
                 >
-                    {Boolean(noneOption) && (
+                    {noneOption && (
                         <MenuItem value="">
                             <em>{noneOption}</em>
                         </MenuItem>
