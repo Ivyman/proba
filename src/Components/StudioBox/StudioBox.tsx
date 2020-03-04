@@ -102,7 +102,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                             <Box flexGrow={1}>
                                 <Box>
                                     <ul className={classes.contactsList}>
-                                        {openedStudio.contact.mail && (
+                                        {openedStudio.contact.email && (
                                             <Typography
                                                 component="li"
                                                 className={
@@ -114,9 +114,9 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                                                 <Link
                                                     target="_blank"
                                                     variant="body1"
-                                                    href={`mailto:${openedStudio.contact.mail}`}
+                                                    href={`mailto:${openedStudio.contact.email}`}
                                                 >
-                                                    {openedStudio.contact.mail}
+                                                    {openedStudio.contact.email}
                                                 </Link>
                                             </Typography>
                                         )}

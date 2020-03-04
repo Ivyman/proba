@@ -27,13 +27,13 @@ const CatalogScreen: React.FC = () => {
     );
 
     const handleFiltersChange = ({
-        search,
+        searchQuery,
         city,
         cityArea,
         priceFrom,
     }: IFiltersData) => {
         dispatchStudios({
-            search,
+            searchQuery,
             city,
             cityArea,
             priceFrom,
@@ -46,7 +46,7 @@ const CatalogScreen: React.FC = () => {
         if (fields.cities.length) {
             dispatchStudios({
                 city: fields.cities[0].key,
-                search: "",
+                searchQuery: "",
                 cityArea: "",
                 priceFrom: "",
             });

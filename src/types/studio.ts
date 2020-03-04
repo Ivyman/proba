@@ -1,9 +1,9 @@
 export interface IContact {
     phones: string[];
-    mail?: string;
+    email?: string;
     site?: string;
-    // instagram?: string;
-    // facebook?: string;
+    instagram?: string;
+    facebook?: string;
 }
 
 export interface ICoordinate {
@@ -23,7 +23,7 @@ export interface IStudioAddress {
 }
 
 export interface IPrice {
-    from: string;
+    from: number;
 }
 
 export interface IStudio {
@@ -33,7 +33,7 @@ export interface IStudio {
     logo: string;
     description: string;
     contact: IContact;
-    // price: IPrice;
+    price: IPrice;
 }
 
 export interface IStudioResponse {

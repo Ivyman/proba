@@ -50,7 +50,7 @@ export const Filters: React.FC<IProps> = ({
 }) => {
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
     const [filterData, setFilterData] = useState<IFiltersData>({
-        search: "",
+        searchQuery: "",
         city: cities[0].key,
         priceFrom: priceFromRange[0].key,
         cityArea: cityAreas[0].key,
@@ -59,13 +59,13 @@ export const Filters: React.FC<IProps> = ({
     const classes = useStyles();
 
     const [
-        debouncedSearch,
+        debouncedSearchQuery,
         debouncedCity,
         debouncedPriceFrom,
         debouncedCityArea,
     ] = [
         useDebounce<string>(
-            filterData.search,
+            filterData.searchQuery,
             STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
         ),
         useDebounce<string>(
@@ -97,13 +97,13 @@ export const Filters: React.FC<IProps> = ({
 
     useEffect(() => {
         if (
-            debouncedSearch ||
+            debouncedSearchQuery ||
             debouncedCity ||
             debouncedPriceFrom ||
             debouncedCityArea
         ) {
             onFiltersChange({
-                search: debouncedSearch,
+                searchQuery: debouncedSearchQuery,
                 city: debouncedCity,
                 priceFrom: debouncedPriceFrom,
                 cityArea: debouncedCityArea,
@@ -111,7 +111,7 @@ export const Filters: React.FC<IProps> = ({
         }
         setDataIsLoading(false);
     }, [
-        debouncedSearch,
+        debouncedSearchQuery,
         debouncedCity,
         debouncedCityArea,
         debouncedPriceFrom,
@@ -122,7 +122,7 @@ export const Filters: React.FC<IProps> = ({
         <Grid container spacing={2} component="form">
             <Grid item xs={5} className={classes.searchFiledWrapper}>
                 <SearchField
-                    name="search"
+                    name="searchQuery"
                     onChange={handleFieldChange}
                     showThrobber={dataIsLoading}
                 />

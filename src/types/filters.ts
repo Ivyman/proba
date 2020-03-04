@@ -9,7 +9,16 @@ export interface IFilters {
 
 export interface IFiltersData {
     city: string;
-    search: string;
+    searchQuery: string;
     cityArea: string;
     priceFrom: string;
+}
+
+export interface IFiltersParams {
+    limit: number;
+    city?: string;
+    searchQuery?: string;
+    cityArea?: string;
+    priceFrom?: number;
+    nextPageToken?: string;
 }

@@ -18,6 +18,9 @@
                 "phones": ["603-725-488"],
                 "email": "zyrtychmedia@gmail.com",
                 "site": "http://www.zyrtychmedia.pl"
+            },
+            "price": {
+                "from": 25
             }
         },
         {
@@ -38,6 +41,9 @@
                 "phones": ["504-421-035", "504-155-533"],
                 "email": "misticstudio@gmail.com",
                 "site": "http://www.misticstudio.waw.pl"
+            },
+            "price": {
+                "from": 30
             }
         },
         {
@@ -58,6 +64,9 @@
                 "phones": ["534-013-170"],
                 "email": "",
                 "site": "https://sala-prob.net"
+            },
+            "price": {
+                "from": 25
             }
         },
         {
@@ -78,6 +87,9 @@
                 "phones": ["515-847-203"],
                 "email": "redrum@redrumstudio.pl",
                 "site": "http://www.redrumstudio.pl"
+            },
+            "price": {
+                "from": 35
             }
         }
     ],
