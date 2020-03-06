@@ -1,4 +1,5 @@
-import apiEndpoint, { URLS } from "@src/utils/api";
+import apiEndpoint from "@src/utils/api";
+import { API } from "@src/config/constants";
 import { removeEmptyFields } from "@src/utils/common";
 import { STUDIOS } from "@src/config/constants";
 import { IFiltersData, IFiltersParams } from "@src/types/filters";
@@ -16,5 +17,5 @@ export const fetchStudios = async (
         priceFrom: filtersData.priceFrom || null,
         nextPageToken,
     });
-    return await apiEndpoint.get(URLS.studios, { params });
+    return await apiEndpoint.get(API.URLS.STUDIOS, { params });
 };

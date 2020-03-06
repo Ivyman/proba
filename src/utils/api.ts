@@ -1,11 +1,6 @@
 import axios from "axios";
-
-export const URLS = {
-    studios: "studios",
-    filters: "filters",
-    message: "message",
-};
+import { API } from "@src/config/constants";
 
 export default axios.create({
-    baseURL: "http://localhost:8086/",
+    baseURL: API.BASE_URL_FIREBASE,
 });

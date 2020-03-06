@@ -1,3 +1,14 @@
+export const API = {
+    BASE_URL_LOCAL: "http://localhost:8086/",
+    BASE_URL_FIREBASE: "http://localhost:8086/",
+    URLS: {
+        STUDIOS: "/studios",
+        USERS: "/users",
+        FILTERS: "/filters",
+        MESSAGE: "/message",
+    },
+};
+
 export const GL_MAP = {
     ACCESS_TOKEN:
         "pk.eyJ1Ijoibm8tbmFtZSIsImEiOiJjazA3M2N1YWYwM2J2M25vMXhlZDVhcWExIn0.Rm7b72RFKxrx6HjVLFqSRQ",
