@@ -6,7 +6,14 @@
             "address": {
                 "latitude": 52.233343,
                 "longitude": 21.000965,
-                "city": "Warszawa",
+                "city": {
+                    "key": "waw",
+                    "name": "Warszawa"
+                },
+                "cityArea": {
+                    "key": "bem",
+                    "name": "Bemowo"
+                },
                 "zipcode": "00-123",
                 "street": "ul. Mariańska",
                 "buildingNumber": "1",
@@ -29,7 +36,14 @@
             "address": {
                 "latitude": 52.210513,
                 "longitude": 21.005193,
-                "city": "Warszawa",
+                "city": {
+                    "key": "waw",
+                    "name": "Warszawa"
+                },
+                "cityArea": {
+                    "key": "tar",
+                    "name": "Targówek"
+                },
                 "zipcode": "02-591",
                 "street": "Ul.Stefana Batorego",
                 "buildingNumber": "14",
@@ -52,7 +66,14 @@
             "address": {
                 "latitude": 52.241297,
                 "longitude": 20.959305,
-                "city": "Warszawa",
+                "city": {
+                    "key": "waw",
+                    "name": "Warszawa"
+                },
+                "cityArea": {
+                    "key": "tar",
+                    "name": "Targówek"
+                },
                 "zipcode": "01-424",
                 "street": "Aleja Prymasa Tysiąclecia",
                 "buildingNumber": "62",
@@ -75,7 +96,44 @@
             "address": {
                 "latitude": 52.248147,
                 "longitude": 21.060489,
-                "city": "Warszawa",
+                "city": {
+                    "key": "waw",
+                    "name": "Warszawa"
+                },
+                "cityArea": {
+                    "key": "wol",
+                    "name": "Wola"
+                },
+                "zipcode": "00-001",
+                "street": "Grochowska",
+                "buildingNumber": "316/320",
+                "room": ""
+            },
+            "logo": "http://www.redrumstudio.pl/wp-content/uploads/2016/07/REDRUM-LOGO.jpg",
+            "description": "Nasze studio to trzy, akustycznie zaadaptowane sale prób i studio nagrań mieszczące się na terenie dawnej fabryki PZO.",
+            "contact": {
+                "phones": ["515-847-203"],
+                "email": "redrum@redrumstudio.pl",
+                "site": "http://www.redrumstudio.pl"
+            },
+            "price": {
+                "from": 35
+            }
+        },
+        {
+            "id": "5",
+            "name": "Redrum Studio",
+            "address": {
+                "latitude": 52.248147,
+                "longitude": 21.060489,
+                "city": {
+                    "key": "bial",
+                    "name": "Białystok"
+                },
+                "cityArea": {
+                    "key": "boj",
+                    "name": "Bojary"
+                },
                 "zipcode": "00-001",
                 "street": "Grochowska",
                 "buildingNumber": "316/320",

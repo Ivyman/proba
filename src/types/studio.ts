@@ -1,9 +1,8 @@
-export interface IContact {
-    phones: string[];
-    email?: string;
-    site?: string;
-    instagram?: string;
-    facebook?: string;
+import { IRecord } from "./main";
+
+export enum ECoordinateName {
+    latitude = "latitude",
+    longitude = "longitude",
 }
 
 export interface ICoordinate {
@@ -12,18 +11,32 @@ export interface ICoordinate {
     longitude: number;
 }
 
-export interface IStudioAddress {
-    latitude: number;
-    longitude: number;
-    city: string;
-    zipcode: string;
-    street: string;
-    buildingNumber: string;
-    room?: string;
+export interface IStudioResponse {
+    studios: IStudio[];
+    nextPageToken: string;
 }
 
 export interface IPrice {
     from: number;
+}
+
+export interface IContact {
+    phones: string[];
+    email?: string;
+    site?: string;
+    instagram?: string;
+    facebook?: string;
+}
+
+export interface IStudioAddress {
+    latitude: number;
+    longitude: number;
+    city: IRecord;
+    cityArea: IRecord;
+    zipcode: string;
+    street: string;
+    buildingNumber: string;
+    room?: string;
 }
 
 export interface IStudio {
@@ -34,14 +47,4 @@ export interface IStudio {
     description: string;
     contact: IContact;
     price: IPrice;
-}
-
-export interface IStudioResponse {
-    studios: IStudio[];
-    nextPageToken: string;
-}
-
-export enum ECoordinateName {
-    latitude = "latitude",
-    longitude = "longitude",
 }

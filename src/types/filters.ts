@@ -15,7 +15,7 @@ export interface IFiltersData {
 }
 
 export interface IFiltersParams {
-    limit: number;
+    limit?: number;
     city?: string;
     searchQuery?: string;
     cityArea?: string;
