@@ -12,10 +12,5 @@ export interface IFiltersData {
 }
 
 export interface IFiltersParams {
-    limit?: number;
     city?: string;
-    searchQuery?: string;
-    cityArea?: string;
-    priceFrom?: number;
-    nextPageToken?: string;
 }

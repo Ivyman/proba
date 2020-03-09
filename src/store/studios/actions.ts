@@ -10,15 +10,9 @@ export const fetchStudios = (filtersData: IFiltersData) => async (
     getStatate: () => RootState,
 ) => {
     try {
-        const {
-            studios: { nextPageToken },
-        } = getStatate();
+        const { data: studiosList } = await effects.fetchStudios(filtersData);
 
-        const {
-            data: { studios, nextPageToken: newNextPageToken },
-        } = await effects.fetchStudios(filtersData, nextPageToken);
-
-        dispatch(fetchStudiosSuccess(studios, newNextPageToken));
+        dispatch(fetchStudiosSuccess(studiosList));
     } catch (error) {
         dispatch(fetchStudiosReject());
         // tslint:disable-next-line
@@ -30,20 +24,9 @@ export const isFetching = (): IStudioAction => ({
     type: StudioTypes.STUDIOS_FETCHING,
 });
 
-export const fetchStudiosSuccess = (
-    studios: IStudio[],
-    nextPageToken: string,
-): IStudioAction => ({
+export const fetchStudiosSuccess = (studios: IStudio[]): IStudioAction => ({
     type: StudioTypes.STUDIOS_FETCH_SUCCESS,
-    payload: { studios, nextPageToken },
-});
-
-export const studiosAppend = (
-    studios: IStudio[],
-    nextPageToken: string,
-): IStudioAction => ({
-    type: StudioTypes.STUDIOS_APPEND,
-    payload: { studios, nextPageToken },
+    payload: studios,
 });
 
 export const fetchStudiosReject = (): IStudioAction => ({

@@ -8,7 +8,6 @@ export interface IStudioAction extends IAction<StudioTypes> {}
 export interface IStudioState {
     apiStatus: EApiStatuses;
     studios: IStudio[];
-    nextPageToken: string;
     hoveredStudioId: string;
     openedStudioId: string;
 }
@@ -16,7 +15,6 @@ export interface IStudioState {
 export const initialState: IStudioState = {
     apiStatus: EApiStatuses.IDLE,
     studios: [],
-    nextPageToken: "",
     hoveredStudioId: "",
     openedStudioId: "",
 };
@@ -36,8 +34,7 @@ export default (
             return {
                 ...state,
                 apiStatus: EApiStatuses.SUCCESS,
-                studios: payload.studios,
-                nextPageToken: payload.nextPageToken,
+                studios: payload,
             };
 
         case StudioTypes.STUDIOS_FETCH_REJECT:
@@ -45,14 +42,6 @@ export default (
                 ...state,
                 apiStatus: EApiStatuses.ERROR,
                 studios: [],
-                nextPageToken: "",
-            };
-
-        case StudioTypes.STUDIOS_APPEND:
-            return {
-                ...state,
-                studios: [...state.studios, ...payload.studios],
-                nextPageToken: payload.nextPageToken,
             };
 
         case StudioTypes.STUDIOS_SET_HOVERED:

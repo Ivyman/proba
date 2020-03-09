@@ -10,9 +10,6 @@ export const getStudios = (state: RootState): IStudio[] =>
 export const getStudiosApiStatus = (state: RootState): EApiStatuses =>
     state.studios.apiStatus;
 
-export const hasMoreStudios = (state: RootState): boolean =>
-    !!state.studios.nextPageToken;
-
 export const getHoveredStudioId = (state: RootState): string =>
     state.studios.hoveredStudioId;
 

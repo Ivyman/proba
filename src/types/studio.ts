@@ -11,10 +11,7 @@ export interface ICoordinate {
     longitude: number;
 }
 
-export interface IStudioResponse {
-    studios: IStudio[];
-    nextPageToken: string;
-}
+export type IStudioResponse = IStudio[];
 
 export interface IPrice {
     from: number;

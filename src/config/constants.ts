@@ -16,7 +16,6 @@ export const GL_MAP = {
 
 export const STUDIOS = {
     FILTERS_DEBOUNCED_INTERVAL: 500,
-    FETCH_LIMIT: 10,
 };
 
 export const BRAND = {
