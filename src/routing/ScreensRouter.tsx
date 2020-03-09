@@ -21,7 +21,7 @@ export const ScreensRouter: React.FC = () => {
 
     useEffect(() => {
         switch (location.pathname) {
-            case "/catalog":
+            case ROUTERS.CATALOG:
                 dispatchOpenedStudio();
                 break;
         }

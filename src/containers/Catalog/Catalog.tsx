@@ -5,6 +5,7 @@ import { useDispatch } from "@src/hooks/dispatch";
 import { IStudio } from "@src/types/studio";
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
 import { getStudios, getHoveredStudioId } from "@src/store/studios/selectors";
+import * as ROUTERS from "@src/config/router";
 
 import CatalogItem from "@src/components/CatalogItem";
 
@@ -23,7 +24,7 @@ export const Catalog: React.FC = () => {
 
     const handleItemClick = (studioId: string) => {
         dispatchOpenedStudio(studioId);
-        history.push(`/catalog/${studioId}`);
+        history.push(`${ROUTERS.CATALOG}/${studioId}`);
     };
 
     return (

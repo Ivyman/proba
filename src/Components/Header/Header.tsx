@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { IPath } from "@src/types/path";
+import * as ROUTERS from "@src/config/router";
 import useStyles from "./styles";
 
 import { Container, AppBar, Toolbar, IconButton, Box } from "@material-ui/core";
@@ -8,7 +9,7 @@ import { Menu as MenuIcon } from "@material-ui/icons";
 import Logo from "@src/components/common/Logo";
 import Navbar from "./Navbar";
 
-const navbarLinks: IPath[] = [{ path: "/catalog", label: "Katalog" }];
+const navbarLinks: IPath[] = [{ path: ROUTERS.CATALOG, label: "Katalog" }];
 
 interface IProps {
     onSwitchSidebar: () => void;

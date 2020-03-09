@@ -2,6 +2,7 @@
     "cities": [
         { "name": "Warszawa", "key": "waw" },
         { "name": "Gdańsk", "key": "gda" },
+        { "name": "Białystok", "key": "bial" },
         { "name": "Wrocław", "key": "wro" },
         { "name": "Gdynia", "key": "gdy" }
     ]

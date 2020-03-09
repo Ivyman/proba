@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { IFilters, IFiltersData } from "@src/types/filters";
+import { IFilters, IFieldsData } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
@@ -41,15 +41,17 @@ const cityAreas = [
 
 interface IProps {
     fields: IFilters;
-    onFiltersChange: (filtersForm: IFiltersData) => void;
+    onCityChange: (city: string) => void;
+    onFieldsChange: (filters: Omit<IFieldsData, "city">) => void;
 }
 
 export const Filters: React.FC<IProps> = ({
-    onFiltersChange,
+    onCityChange,
+    onFieldsChange,
     fields: { cities },
 }) => {
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
-    const [filterData, setFilterData] = useState<IFiltersData>({
+    const [filterData, setFilterData] = useState<IFieldsData>({
         searchQuery: "",
         city: cities[0].key,
         priceFrom: priceFromRange[0].key,
@@ -88,7 +90,7 @@ export const Filters: React.FC<IProps> = ({
     ) => {
         const { value } = event.target;
 
-        setFilterData((prevState: IFiltersData) => ({
+        setFilterData((prevState: IFieldsData) => ({
             ...prevState,
             [name]: value,
         }));
@@ -96,17 +98,12 @@ export const Filters: React.FC<IProps> = ({
     };
 
     useEffect(() => {
-        if (
-            debouncedSearchQuery ||
-            debouncedCity ||
-            debouncedPriceFrom ||
-            debouncedCityArea
-        ) {
-            onFiltersChange({
+        if (debouncedCity) onCityChange(debouncedCity);
+        if (debouncedSearchQuery || debouncedPriceFrom || debouncedCityArea) {
+            onFieldsChange({
                 searchQuery: debouncedSearchQuery,
-                city: debouncedCity,
-                priceFrom: debouncedPriceFrom,
                 cityArea: debouncedCityArea,
+                priceFrom: debouncedPriceFrom,
             });
         }
         setDataIsLoading(false);
@@ -115,7 +112,8 @@ export const Filters: React.FC<IProps> = ({
         debouncedCity,
         debouncedCityArea,
         debouncedPriceFrom,
-        onFiltersChange,
+        onCityChange,
+        onFieldsChange,
     ]);
 
     return (
@@ -132,7 +130,6 @@ export const Filters: React.FC<IProps> = ({
                 <Box display="flex">
                     <Box mr={2}>
                         <Select
-                            disabled
                             setDefault
                             name="city"
                             values={cities}

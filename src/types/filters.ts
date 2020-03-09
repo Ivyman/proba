@@ -4,7 +4,7 @@ export interface IFilters {
     cities: IRecord[];
 }
 
-export interface IFiltersData {
+export interface IFieldsData {
     city: string;
     searchQuery: string;
     cityArea: string;

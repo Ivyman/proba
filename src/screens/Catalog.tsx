@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { IFiltersData, IFilters } from "@src/types/filters";
+import { IFilters, IFieldsData } from "@src/types/filters";
 import { EApiStatuses } from "@src/types/api";
 import { fetchStudios } from "@src/store/studios/actions";
 import { fetchFilters } from "@src/store/filters/actions";
@@ -16,50 +16,56 @@ import MapContainer from "@src/containers/MapContainer";
 import Screen from "@src/components/Screen";
 
 const CatalogScreen: React.FC = () => {
-    const fields: IFilters = useSelector(getFilters);
+    const filterFields: IFilters = useSelector(getFilters);
     const studiosApiStatus: EApiStatuses = useSelector(getStudiosApiStatus);
 
-    const dispatchStudios = useDispatch<typeof fetchStudios, IFiltersData>(
+    const dispatchStudios = useDispatch<typeof fetchStudios, string>(
         fetchStudios,
     );
     const dispatchFilters = useDispatch<typeof fetchFilters, undefined>(
         fetchFilters,
     );
 
-    const handleFiltersChange = ({
-        searchQuery,
-        city,
-        cityArea,
-        priceFrom,
-    }: IFiltersData) => {
-        dispatchStudios({
-            searchQuery,
-            city,
-            cityArea,
-            priceFrom,
-        });
-    };
+    const handleCityChange = useCallback(
+        (city: string) => {
+            dispatchStudios(city);
+        },
+        [dispatchStudios],
+    );
+
+    const handleFieldsChange = useCallback(
+        (fieldsData: Omit<IFieldsData, "city">) => console.log(fieldsData),
+        [],
+    );
+
+    // const handCityChange = ({
+    //     searchQuery,
+    //     city,
+    //     cityArea,
+    //     priceFrom,
+    // }: IFiltersData) => {
+    //     dispatchStudios({
+    //         searchQuery,
+    //         city,
+    //         cityArea,
+    //         priceFrom,
+    //     });
+    // };
 
     useEffect(() => dispatchFilters(), [dispatchFilters]);
     useEffect(() => {
-        // TODO change this condition depend on search, cityArea, priceFrom
-        if (fields.cities.length) {
-            dispatchStudios({
-                city: fields.cities[0].key,
-                searchQuery: "",
-                cityArea: "",
-                priceFrom: "",
-            });
-        }
-    }, [fields, dispatchStudios]);
+        if (filterFields.cities.length)
+            dispatchStudios(filterFields.cities[0].key);
+    }, [filterFields, dispatchStudios]);
 
     return (
         <Screen apiStatus={studiosApiStatus}>
             <Box py={2}>
                 <Container maxWidth="xl">
                     <Filters
-                        onFiltersChange={handleFiltersChange}
-                        fields={fields}
+                        onCityChange={handleCityChange}
+                        onFieldsChange={handleFieldsChange}
+                        fields={filterFields}
                     />
                 </Container>
             </Box>

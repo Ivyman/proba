@@ -2,15 +2,14 @@ import StudioTypes from "./types";
 import { IStudioAction } from ".";
 import { RootState, ThunkDispatch } from "@src/types/store";
 import { IStudio } from "@src/types/studio";
-import { IFiltersData } from "@src/types/filters";
 import * as effects from "./effects";
 
-export const fetchStudios = (filtersData: IFiltersData) => async (
+export const fetchStudios = (city: string) => async (
     dispatch: ThunkDispatch,
     getStatate: () => RootState,
 ) => {
     try {
-        const { data: studiosList } = await effects.fetchStudios(filtersData);
+        const { data: studiosList } = await effects.fetchStudios(city);
 
         dispatch(fetchStudiosSuccess(studiosList));
     } catch (error) {

@@ -12,6 +12,7 @@ import {
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
 import { useDispatch } from "@src/hooks/dispatch";
 import { ICoordinate } from "@src/types/studio";
+import * as ROUTERS from "@src/config/router";
 
 import Map from "@src/components/Map";
 
@@ -54,7 +55,7 @@ export const MapContainer: React.FC = () => {
     const handleMarkerLeave = () => dispatchHoveredStudio();
     const handleMarkerClick = (studioId: string) => {
         dispatchOpenedStudio(studioId);
-        history.push(`/catalog/${studioId}`);
+        history.push(`${ROUTERS.CATALOG}/${studioId}`);
     };
 
     return (

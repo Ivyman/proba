@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studios/selectors";
 import { setOpenedStudio } from "@src/store/studios/actions";
+import * as ROUTERS from "@src/config/router";
 
 import { Card } from "@material-ui/core";
 import StudioBox from "@src/components/StudioBox";
@@ -19,7 +20,7 @@ export const Studio: React.FC = () => {
     );
 
     const handleGoBack = () => {
-        history.push("/catalog");
+        history.push(ROUTERS.CATALOG);
         dispatchOpenedStudio();
     };
 
