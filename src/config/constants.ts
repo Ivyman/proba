@@ -1,6 +1,6 @@
 export const API = {
-    BASE_URL_LOCAL: "http://localhost:8086/",
-    BASE_URL_FIREBASE: "http://localhost:8086/",
+    BASE_URL_LOCAL: "http://localhost:8086",
+    BASE_URL_FIREBASE: "https://proba-db.firebaseapp.com/api/v0.5",
     URLS: {
         STUDIOS: "/studios",
         USERS: "/users",

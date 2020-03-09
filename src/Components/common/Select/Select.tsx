@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState, ChangeEvent } from "react";
-import { IFilter } from "@src/types/filters";
+import { IRecord } from "@src/types/main";
 import useStyles from "./styles";
 
 import {
@@ -11,7 +11,7 @@ import {
 
 interface IProps {
     label: string;
-    values: Array<IFilter>;
+    values: Array<IRecord>;
     labelWidth: number;
     setDefault?: boolean;
     noneOption?: string;

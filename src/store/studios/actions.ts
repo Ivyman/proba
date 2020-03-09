@@ -27,14 +27,14 @@ export const fetchStudios = (filtersData: IFiltersData) => async (
 };
 
 export const isFetching = (): IStudioAction => ({
-    type: StudioTypes.STUDIO_FETCHING,
+    type: StudioTypes.STUDIOS_FETCHING,
 });
 
 export const fetchStudiosSuccess = (
     studios: IStudio[],
     nextPageToken: string,
 ): IStudioAction => ({
-    type: StudioTypes.STUDIO_FETCH_SUCCESS,
+    type: StudioTypes.STUDIOS_FETCH_SUCCESS,
     payload: { studios, nextPageToken },
 });
 
@@ -42,20 +42,20 @@ export const studiosAppend = (
     studios: IStudio[],
     nextPageToken: string,
 ): IStudioAction => ({
-    type: StudioTypes.STUDIO_APPEND,
+    type: StudioTypes.STUDIOS_APPEND,
     payload: { studios, nextPageToken },
 });
 
 export const fetchStudiosReject = (): IStudioAction => ({
-    type: StudioTypes.STUDIO_FETCH_REJECT,
+    type: StudioTypes.STUDIOS_FETCH_REJECT,
 });
 
 export const setHoveredStudio = (id?: string): IStudioAction => ({
-    type: StudioTypes.STUDIO_SET_HOVERED,
+    type: StudioTypes.STUDIOS_SET_HOVERED,
     payload: id,
 });
 
 export const setOpenedStudio = (id?: string): IStudioAction => ({
-    type: StudioTypes.STUDIO_SET_OPENED,
+    type: StudioTypes.STUDIOS_SET_OPENED,
     payload: id,
 });

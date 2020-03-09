@@ -1,10 +1,7 @@
-export interface IFilter {
-    key: string;
-    name: string;
-}
+import { IRecord } from "./main";
 
 export interface IFilters {
-    cities: IFilter[];
+    cities: IRecord[];
 }
 
 export interface IFiltersData {

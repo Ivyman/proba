@@ -26,13 +26,13 @@ export default (
     { type, payload }: IStudioAction,
 ): IStudioState => {
     switch (type) {
-        case StudioTypes.STUDIO_FETCHING:
+        case StudioTypes.STUDIOS_FETCHING:
             return {
                 ...state,
                 apiStatus: EApiStatuses.RUNNING,
             };
 
-        case StudioTypes.STUDIO_FETCH_SUCCESS:
+        case StudioTypes.STUDIOS_FETCH_SUCCESS:
             return {
                 ...state,
                 apiStatus: EApiStatuses.SUCCESS,
@@ -40,7 +40,7 @@ export default (
                 nextPageToken: payload.nextPageToken,
             };
 
-        case StudioTypes.STUDIO_FETCH_REJECT:
+        case StudioTypes.STUDIOS_FETCH_REJECT:
             return {
                 ...state,
                 apiStatus: EApiStatuses.ERROR,
@@ -48,20 +48,20 @@ export default (
                 nextPageToken: "",
             };
 
-        case StudioTypes.STUDIO_APPEND:
+        case StudioTypes.STUDIOS_APPEND:
             return {
                 ...state,
                 studios: [...state.studios, ...payload.studios],
                 nextPageToken: payload.nextPageToken,
             };
 
-        case StudioTypes.STUDIO_SET_HOVERED:
+        case StudioTypes.STUDIOS_SET_HOVERED:
             return {
                 ...state,
                 hoveredStudioId: payload || "",
             };
 
-        case StudioTypes.STUDIO_SET_OPENED:
+        case StudioTypes.STUDIOS_SET_OPENED:
             return {
                 ...state,
                 openedStudioId: payload || "",
