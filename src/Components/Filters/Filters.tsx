@@ -99,6 +99,9 @@ export const Filters: React.FC<IProps> = ({
 
     useEffect(() => {
         if (debouncedCity) onCityChange(debouncedCity);
+        setDataIsLoading(false);
+    }, [onCityChange, debouncedCity]);
+    useEffect(() => {
         if (debouncedSearchQuery || debouncedPriceFrom || debouncedCityArea) {
             onFieldsChange({
                 searchQuery: debouncedSearchQuery,
@@ -109,10 +112,8 @@ export const Filters: React.FC<IProps> = ({
         setDataIsLoading(false);
     }, [
         debouncedSearchQuery,
-        debouncedCity,
         debouncedCityArea,
         debouncedPriceFrom,
-        onCityChange,
         onFieldsChange,
     ]);
 

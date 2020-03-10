@@ -5,3 +5,6 @@ export const removeEmptyFields = <T>(obj: any) =>
         }
         return object;
     }, {} as T);
+
+export const hasSubsring = (str: string, query: string): boolean =>
+    str.toLowerCase().indexOf(query.toLocaleLowerCase()) >= 0;

@@ -18,7 +18,7 @@ export const Title: React.FC<IProps> = memo(
         return (
             <>
                 <Typography
-                    component="h6"
+                    component="h4"
                     variant={large ? "h5" : "h6"}
                     className={whiteText ? classes.whiteText : classes.darkText}
                 >

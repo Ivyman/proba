@@ -9,12 +9,22 @@ export interface IFiltersState {
     fields: {
         cities: IRecord[];
     };
+    values: {
+        searchQuery: string;
+        cityArea: string;
+        priceFrom: string;
+    };
     fetchStatus: EApiStatuses;
 }
 
 export const initialState: IFiltersState = {
     fields: {
         cities: [],
+    },
+    values: {
+        searchQuery: "",
+        cityArea: "",
+        priceFrom: "",
     },
     fetchStatus: EApiStatuses.IDLE,
 };
@@ -38,6 +48,12 @@ export default (
                     cities: [],
                 },
                 fetchStatus: EApiStatuses.ERROR,
+            };
+
+        case FiltersTypes.FILTERS_SET_FIELDS:
+            return {
+                ...state,
+                values: payload,
             };
 
         default:

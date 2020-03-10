@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { IFilters, IFieldsData } from "@src/types/filters";
 import { EApiStatuses } from "@src/types/api";
 import { fetchStudios } from "@src/store/studios/actions";
-import { fetchFilters } from "@src/store/filters/actions";
+import { fetchFilters, setFilterFields } from "@src/store/filters/actions";
 import { getFilters } from "@src/store/filters/selectors";
 import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { CatalogRouter } from "@src/routing/CatalogRouter";
@@ -25,6 +25,10 @@ const CatalogScreen: React.FC = () => {
     const dispatchFilters = useDispatch<typeof fetchFilters, undefined>(
         fetchFilters,
     );
+    const dispatchFilterFields = useDispatch<
+        typeof setFilterFields,
+        Omit<IFieldsData, "city">
+    >(setFilterFields);
 
     const handleCityChange = useCallback(
         (city: string) => {
@@ -34,23 +38,10 @@ const CatalogScreen: React.FC = () => {
     );
 
     const handleFieldsChange = useCallback(
-        (fieldsData: Omit<IFieldsData, "city">) => console.log(fieldsData),
-        [],
+        (fieldsData: Omit<IFieldsData, "city">) =>
+            dispatchFilterFields(fieldsData),
+        [dispatchFilterFields],
     );
-
-    // const handCityChange = ({
-    //     searchQuery,
-    //     city,
-    //     cityArea,
-    //     priceFrom,
-    // }: IFiltersData) => {
-    //     dispatchStudios({
-    //         searchQuery,
-    //         city,
-    //         cityArea,
-    //         priceFrom,
-    //     });
-    // };
 
     useEffect(() => dispatchFilters(), [dispatchFilters]);
     useEffect(() => {

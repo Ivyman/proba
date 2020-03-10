@@ -9,6 +9,8 @@ export const fetchStudios = (city: string) => async (
     getStatate: () => RootState,
 ) => {
     try {
+        // dispatch(isFetching());
+
         const { data: studiosList } = await effects.fetchStudios(city);
 
         dispatch(fetchStudiosSuccess(studiosList));

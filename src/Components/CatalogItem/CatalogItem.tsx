@@ -16,7 +16,9 @@ interface IProps {
 
 export const CatalogItem: React.FC<IProps> = memo(
     ({ studioData, hoverdStudioId, price, onHoverStudio, onItemClick }) => {
-        const [hover, setHover] = useState();
+        const [hover, setHover] = useState<
+            (EventTarget & HTMLElement) | null
+        >();
 
         const classes = useStyles();
 

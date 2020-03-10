@@ -1,6 +1,6 @@
 import { ThunkDispatch } from "@src/types/store";
 import { IFiltersAction } from ".";
-import { IFilters } from "@src/types/filters";
+import { IFilters, IFieldsData } from "@src/types/filters";
 import FiltersTypes from "./types";
 import * as effects from "./effects";
 
@@ -23,4 +23,11 @@ export const fetchFiltersSuccess = (filters: IFilters): IFiltersAction => ({
 
 export const fetchFiltersReject = (): IFiltersAction => ({
     type: FiltersTypes.FILTERS_FETCH_REJECT,
+});
+
+export const setFilterFields = (
+    fields: Omit<IFieldsData, "city">,
+): IFiltersAction => ({
+    type: FiltersTypes.FILTERS_SET_FIELDS,
+    payload: fields,
 });

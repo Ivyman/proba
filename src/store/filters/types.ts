@@ -1,6 +1,7 @@
 export enum FiltersTypes {
     FILTERS_FETCH_SUCCESS = "FILTERS_FETCH_SUCCESS",
     FILTERS_FETCH_REJECT = "FILTERS_FETCH_REJECT",
+    FILTERS_SET_FIELDS = "FILTERS_SET_FIELDS",
 }
 
 export default FiltersTypes;
