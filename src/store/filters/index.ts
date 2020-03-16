@@ -1,32 +1,32 @@
 import FiltersTypes from "./types";
 import { EApiStatuses } from "@src/types/api";
-import { IRecord } from "@src/types/main";
+import { IFilters } from "@src/types/filters";
 import { IAction } from "@src/types/store";
 
 export interface IFiltersAction extends IAction<FiltersTypes> {}
 
 export interface IFiltersState {
-    fields: {
-        cities: IRecord[];
-    };
+    fields: IFilters;
     values: {
         searchQuery: string;
         cityArea: string;
         priceFrom: string;
     };
-    fetchStatus: EApiStatuses;
+    apiStatus: EApiStatuses;
 }
 
 export const initialState: IFiltersState = {
     fields: {
         cities: [],
+        priceFrom: [],
+        cityArea: [],
     },
     values: {
         searchQuery: "",
         cityArea: "",
         priceFrom: "",
     },
-    fetchStatus: EApiStatuses.IDLE,
+    apiStatus: EApiStatuses.IDLE,
 };
 
 export default (
@@ -34,20 +34,23 @@ export default (
     { type, payload }: IFiltersAction,
 ): IFiltersState => {
     switch (type) {
+        case FiltersTypes.FILTERS_FETCHING:
+            return {
+                ...state,
+                apiStatus: EApiStatuses.RUNNING,
+            };
+
         case FiltersTypes.FILTERS_FETCH_SUCCESS:
             return {
                 ...state,
                 fields: payload,
-                fetchStatus: EApiStatuses.SUCCESS,
+                apiStatus: EApiStatuses.SUCCESS,
             };
 
         case FiltersTypes.FILTERS_FETCH_REJECT:
             return {
-                ...state,
-                fields: {
-                    cities: [],
-                },
-                fetchStatus: EApiStatuses.ERROR,
+                ...initialState,
+                apiStatus: EApiStatuses.ERROR,
             };
 
         case FiltersTypes.FILTERS_SET_FIELDS:

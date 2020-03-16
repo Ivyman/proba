@@ -118,7 +118,7 @@ export const Filters: React.FC<IProps> = ({
     ]);
 
     return (
-        <Grid container spacing={2} component="form">
+        <Grid container spacing={2}>
             <Grid item xs={5} className={classes.searchFiledWrapper}>
                 <SearchField
                     name="searchQuery"

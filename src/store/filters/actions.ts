@@ -6,6 +6,8 @@ import * as effects from "./effects";
 
 export const fetchFilters = () => async (dispatch: ThunkDispatch) => {
     try {
+        dispatch(isFetching());
+
         const { data: filters } = await effects.fetchFilters();
 
         dispatch(fetchFiltersSuccess(filters));
@@ -30,4 +32,8 @@ export const setFilterFields = (
 ): IFiltersAction => ({
     type: FiltersTypes.FILTERS_SET_FIELDS,
     payload: fields,
+});
+
+export const isFetching = (): IFiltersAction => ({
+    type: FiltersTypes.FILTERS_FETCHING,
 });

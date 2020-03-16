@@ -36,7 +36,6 @@ const CatalogScreen: React.FC = () => {
         },
         [dispatchStudios],
     );
-
     const handleFieldsChange = useCallback(
         (fieldsData: Omit<IFieldsData, "city">) =>
             dispatchFilterFields(fieldsData),
@@ -44,38 +43,39 @@ const CatalogScreen: React.FC = () => {
     );
 
     useEffect(() => dispatchFilters(), [dispatchFilters]);
-    useEffect(() => {
-        if (filterFields.cities.length)
-            dispatchStudios(filterFields.cities[0].key);
-    }, [filterFields, dispatchStudios]);
+    // useEffect(() => {
+    //     if (filterFields.cities.length)
+    //         dispatchStudios(filterFields.cities[0].key);
+    // }, [filterFields, dispatchStudios]);
 
     return (
-        <Screen apiStatus={studiosApiStatus}>
-            <Box py={2}>
-                <Container maxWidth="xl">
-                    <Filters
-                        onCityChange={handleCityChange}
-                        onFieldsChange={handleFieldsChange}
-                        fields={filterFields}
-                    />
-                </Container>
-            </Box>
+        // <Screen apiStatus={studiosApiStatus}>
+        //     <Box py={2}>
+        //         <Container maxWidth="xl">
+        //             <Filters
+        //                 onCityChange={handleCityChange}
+        //                 onFieldsChange={handleFieldsChange}
+        //                 fields={filterFields}
+        //             />
+        //         </Container>
+        //     </Box>
 
-            <Divider />
+        //     <Divider />
 
-            <Box py={2} flexGrow={1} display="flex" alignItems="stretch">
-                <Container maxWidth="xl">
-                    <Grid container spacing={2} style={{ minHeight: "100%" }}>
-                        <Grid item sm={5}>
-                            <CatalogRouter />
-                        </Grid>
-                        <Grid item sm={7}>
-                            <MapContainer />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
-        </Screen>
+        //     <Box py={2} flexGrow={1} display="flex" alignItems="stretch">
+        //         <Container maxWidth="xl">
+        //             <Grid container spacing={2} style={{ minHeight: "100%" }}>
+        //                 <Grid item sm={5}>
+        //                     <CatalogRouter />
+        //                 </Grid>
+        //                 <Grid item sm={7}>
+        //                     <MapContainer />
+        //                 </Grid>
+        //             </Grid>
+        //         </Container>
+        //     </Box>
+        // </Screen>
+        <>test</>
     );
 };
 
