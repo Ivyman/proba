@@ -10,7 +10,7 @@ export interface IFiltersState {
     values: {
         searchQuery: string;
         cityArea: string;
-        priceFrom: string;
+        priceTo: string;
     };
     apiStatus: EApiStatuses;
 }
@@ -18,13 +18,13 @@ export interface IFiltersState {
 export const initialState: IFiltersState = {
     fields: {
         cities: [],
-        priceFrom: [],
-        cityArea: [],
+        priceTo: [],
+        cityAreas: {},
     },
     values: {
         searchQuery: "",
         cityArea: "",
-        priceFrom: "",
+        priceTo: "",
     },
     apiStatus: EApiStatuses.IDLE,
 };

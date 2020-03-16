@@ -9,36 +9,6 @@ import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
 import SearchField from "./SearchField";
 
-// TODO remove from here
-const priceFromRange = [
-    { key: "10", name: "10 zł/h" },
-    { key: "30", name: "30 zł/h" },
-    { key: "50", name: "50 zł/h" },
-    { key: "70", name: "70 zł/h" },
-    { key: "90", name: "90 zł/h" },
-];
-const cityAreas = [
-    { key: "all", name: "Wszystkie" },
-    { key: "bem", name: "Bemowo" },
-    { key: "bial", name: "Białołęka" },
-    { key: "bel", name: "Bielany" },
-    { key: "moc", name: "Mokotów" },
-    { key: "och", name: "Ochota" },
-    { key: "prpne", name: "Praga Południe" },
-    { key: "prpc", name: "Praga Północ" },
-    { key: "rem", name: "Rembertów" },
-    { key: "sr", name: "Śródmieście" },
-    { key: "tar", name: "Targówek" },
-    { key: "urs", name: "Ursus" },
-    { key: "ursy", name: "Ursynów" },
-    { key: "waw", name: "Wawer" },
-    { key: "wes", name: "Wesoła" },
-    { key: "wil", name: "Wilanów" },
-    { key: "wlo", name: "Włochy" },
-    { key: "wol", name: "Wola" },
-    { key: "zol", name: "Żoliborz" },
-];
-
 interface IProps {
     fields: IFilters;
     onCityChange: (city: string) => void;
@@ -48,14 +18,16 @@ interface IProps {
 export const Filters: React.FC<IProps> = ({
     onCityChange,
     onFieldsChange,
-    fields: { cities },
+    fields: { cities, priceTo, cityAreas },
 }) => {
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
+
     const [filterData, setFilterData] = useState<IFieldsData>({
+        // TODO: Fill this automaticaly
         searchQuery: "",
-        city: cities[0].key,
-        priceFrom: priceFromRange[0].key,
-        cityArea: cityAreas[0].key,
+        city: "waw",
+        priceTo: "all",
+        cityArea: "all",
     });
 
     const classes = useStyles();
@@ -63,7 +35,7 @@ export const Filters: React.FC<IProps> = ({
     const [
         debouncedSearchQuery,
         debouncedCity,
-        debouncedPriceFrom,
+        debouncedPriceTo,
         debouncedCityArea,
     ] = [
         useDebounce<string>(
@@ -75,7 +47,7 @@ export const Filters: React.FC<IProps> = ({
             STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
         ),
         useDebounce<string>(
-            filterData.priceFrom,
+            filterData.priceTo,
             STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
         ),
         useDebounce<string>(
@@ -86,14 +58,24 @@ export const Filters: React.FC<IProps> = ({
 
     const handleFieldChange = (
         event: ChangeEvent<HTMLInputElement | { value: unknown }>,
-        name: string,
+        fieldName: string,
     ) => {
         const { value } = event.target;
 
-        setFilterData((prevState: IFieldsData) => ({
-            ...prevState,
-            [name]: value,
-        }));
+        if (fieldName === "city") {
+            setFilterData({
+                city: value as string,
+                priceTo: "all",
+                cityArea: "all",
+                searchQuery: "",
+            });
+        } else {
+            setFilterData((prevState: IFieldsData) => ({
+                ...prevState,
+                [fieldName]: value,
+            }));
+        }
+
         setDataIsLoading(true);
     };
 
@@ -101,19 +83,20 @@ export const Filters: React.FC<IProps> = ({
         if (debouncedCity) onCityChange(debouncedCity);
         setDataIsLoading(false);
     }, [onCityChange, debouncedCity]);
+
     useEffect(() => {
-        if (debouncedSearchQuery || debouncedPriceFrom || debouncedCityArea) {
+        if (debouncedSearchQuery || debouncedPriceTo || debouncedCityArea) {
             onFieldsChange({
                 searchQuery: debouncedSearchQuery,
                 cityArea: debouncedCityArea,
-                priceFrom: debouncedPriceFrom,
+                priceTo: debouncedPriceTo,
             });
         }
         setDataIsLoading(false);
     }, [
         debouncedSearchQuery,
         debouncedCityArea,
-        debouncedPriceFrom,
+        debouncedPriceTo,
         onFieldsChange,
     ]);
 
@@ -133,7 +116,8 @@ export const Filters: React.FC<IProps> = ({
                         <Select
                             setDefault
                             name="city"
-                            values={cities}
+                            value={filterData.city}
+                            options={cities}
                             label="Miasto"
                             labelWidth={50}
                             onChange={handleFieldChange}
@@ -143,7 +127,8 @@ export const Filters: React.FC<IProps> = ({
                         <Select
                             setDefault
                             name="cityArea"
-                            values={cityAreas}
+                            value={filterData.cityArea}
+                            options={cityAreas[filterData.city]}
                             label="Dzielnica"
                             labelWidth={65}
                             onChange={handleFieldChange}
@@ -152,8 +137,9 @@ export const Filters: React.FC<IProps> = ({
                     <Box mr={2}>
                         <Select
                             setDefault
-                            name="priceFrom"
-                            values={priceFromRange}
+                            name="priceTo"
+                            value={filterData.priceTo}
+                            options={priceTo}
                             label="Cena od"
                             labelWidth={60}
                             onChange={handleFieldChange}

@@ -9,7 +9,7 @@ import { BRAND } from "@src/config/constants";
 
 import { Container, Typography, Box, Link } from "@material-ui/core";
 import ContactForm from "@src/components/ContactForm";
-import Screen from "@src/components/Screen";
+import Loader from "@src/components/common/Loader";
 
 export const ContactScreen: React.FC = () => {
     const messageApiStatus: EApiStatuses = useSelector(getMessageApiStatus);
@@ -41,7 +41,7 @@ export const ContactScreen: React.FC = () => {
     }, [dispatchIdleStatus, messageApiStatus]);
 
     return (
-        <Screen>
+        <Loader>
             <Container maxWidth="lg">
                 <Box py={4}>
                     <Box mb={4}>
@@ -73,7 +73,7 @@ export const ContactScreen: React.FC = () => {
                     </Typography>
                 </Box>
             </Container>
-        </Screen>
+        </Loader>
     );
 };
 

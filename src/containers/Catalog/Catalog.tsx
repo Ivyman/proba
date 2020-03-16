@@ -17,7 +17,9 @@ export const Catalog: React.FC = () => {
     const history = useHistory();
 
     const studios: IStudio[] = useSelector(getStudios);
+
     const hoverdStudioId: string = useSelector(getHoveredStudioId);
+
     const filterFields: Omit<IFieldsData, "city"> = useSelector(
         getFilterFields,
     );
@@ -40,18 +42,18 @@ export const Catalog: React.FC = () => {
     useEffect(() => {
         // TODO move it to hook
         // TODO it rus twice after change filterFields, maybe reselect chenge it
-        const { searchQuery, cityArea, priceFrom } = filterFields;
+        const { searchQuery, cityArea, priceTo } = filterFields;
         const studiosList = studios.filter((studio: IStudio) => {
             const {
                 name,
-                price: { from },
+                price: { to },
                 address: { cityArea: area },
             } = studio;
 
             // TODO implement search by address
             return (
                 hasSubsring(name, searchQuery) &&
-                from >= priceFrom &&
+                (to >= priceTo || priceTo === "all") &&
                 (cityArea === area.key || cityArea === "all")
             );
         });

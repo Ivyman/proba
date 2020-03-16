@@ -1,7 +1,9 @@
-import React, { Suspense, lazy, useEffect } from "react";
-import { Route, Switch, Redirect, useLocation } from "react-router-dom";
-import { useDispatch } from "@src/hooks/dispatch";
-import { setOpenedStudio } from "@src/store/studios/actions";
+import React, { Suspense, lazy } from "react";
+// import React, { Suspense, lazy, useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+// import { Route, Switch, Redirect, useLocation } from "react-router-dom";
+// import { useDispatch } from "@src/hooks/dispatch";
+// import { setOpenedStudio } from "@src/store/studios/actions";
 import * as ROUTERS from "@src/config/router";
 
 import FullpageThrobber from "@src/components/common/FullpageThrobber";
@@ -13,19 +15,20 @@ const TermsScreen = lazy(() => import("@src/screens/Terms"));
 const PolicyScreen = lazy(() => import("@src/screens/Policy"));
 
 export const ScreensRouter: React.FC = () => {
-    const location = useLocation();
+    // TODO remove this functionality from here
+    // const location = useLocation();
 
-    const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
-        setOpenedStudio,
-    );
+    // const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
+    //     setOpenedStudio,
+    // );
 
-    useEffect(() => {
-        switch (location.pathname) {
-            case ROUTERS.CATALOG:
-                dispatchOpenedStudio();
-                break;
-        }
-    }, [location, dispatchOpenedStudio]);
+    // useEffect(() => {
+    //     switch (location.pathname) {
+    //         case ROUTERS.CATALOG:
+    //             dispatchOpenedStudio();
+    //             break;
+    //     }
+    // }, [location, dispatchOpenedStudio]);
 
     return (
         <Suspense fallback={<FullpageThrobber />}>

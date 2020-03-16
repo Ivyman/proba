@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Container, Box, Typography } from "@material-ui/core";
-import Screen from "@src/components/Screen";
+import Loader from "@src/components/common/Loader";
 
 const TermsScreen: React.FC = () => (
-    <Screen>
+    <Loader>
         <Container maxWidth="lg">
             <Box py={4}>
                 <Box mb={4}>
@@ -24,7 +24,7 @@ const TermsScreen: React.FC = () => (
                 </Box>
             </Box>
         </Container>
-    </Screen>
+    </Loader>
 );
 
 export default TermsScreen;

@@ -2,15 +2,15 @@ import { IRecord, IRecordsList } from "./main";
 
 export interface IFilters {
     cities: IRecord[];
-    cityArea: IRecordsList[];
-    priceFrom: IRecordsList[];
+    priceTo: IRecord[];
+    cityAreas: IRecordsList;
 }
 
 export interface IFieldsData {
     city: string;
     searchQuery: string;
     cityArea: string;
-    priceFrom: string;
+    priceTo: string;
 }
 
 export interface IFiltersParams {

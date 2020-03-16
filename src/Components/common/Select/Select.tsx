@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState, ChangeEvent } from "react";
+import React, { memo, useCallback, ChangeEvent } from "react";
 import { IRecord } from "@src/types/main";
 import useStyles from "./styles";
 
@@ -11,7 +11,8 @@ import {
 
 interface IProps {
     label: string;
-    values: Array<IRecord>;
+    options: IRecord[];
+    value: string;
     labelWidth: number;
     setDefault?: boolean;
     noneOption?: string;
@@ -23,27 +24,19 @@ interface IProps {
 export const Select: React.FC<IProps> = memo(
     ({
         label,
-        values,
-        name,
+        options,
+        value,
+        name = "select",
         onChange,
         labelWidth,
-        setDefault,
         noneOption,
         disabled,
     }) => {
-        const fieldName: string = !name ? "select" : name;
-        const [chosenValue, setChoosenValue] = useState<string>(
-            setDefault ? values[0].key : "",
-        );
-
         const classes = useStyles();
 
         const handleChange = useCallback(
-            (event: ChangeEvent<{ value: unknown }>) => {
-                onChange(event, fieldName);
-                setChoosenValue(event.target.value as string);
-            },
-            [onChange, setChoosenValue, fieldName],
+            (event: ChangeEvent<{ value: unknown }>) => onChange(event, name),
+            [name, onChange],
         );
 
         return (
@@ -55,10 +48,10 @@ export const Select: React.FC<IProps> = memo(
             >
                 <InputLabel className={classes.label}>{label}</InputLabel>
                 <SelectUI
-                    name={fieldName}
+                    name={name}
                     disabled={disabled}
                     labelWidth={labelWidth}
-                    value={chosenValue}
+                    value={value}
                     onChange={handleChange}
                     classes={{ root: classes.select }}
                 >
@@ -67,7 +60,7 @@ export const Select: React.FC<IProps> = memo(
                             <em>{noneOption}</em>
                         </MenuItem>
                     )}
-                    {values.map(({ name, key }) => (
+                    {options.map(({ name, key }) => (
                         <MenuItem key={key} value={key}>
                             {name}
                         </MenuItem>

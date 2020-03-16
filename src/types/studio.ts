@@ -14,7 +14,7 @@ export interface ICoordinate {
 export type IStudioResponse = IStudio[];
 
 export interface IPrice {
-    from: string;
+    to: string;
 }
 
 export interface IContact {

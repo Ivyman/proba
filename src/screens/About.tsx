@@ -4,10 +4,10 @@ import * as ROUTES from "@src/config/router";
 
 import { Container, Box, Typography, Button } from "@material-ui/core";
 import { MailOutline as MailOutlineIcon } from "@material-ui/icons";
-import Screen from "@src/components/Screen";
+import Loader from "@src/components/common/Loader";
 
 const AboutScreen: React.FC = () => (
-    <Screen>
+    <Loader>
         <Container maxWidth="lg">
             <Box py={4}>
                 <Box mb={4}>
@@ -51,7 +51,7 @@ const AboutScreen: React.FC = () => (
                 </Box>
             </Box>
         </Container>
-    </Screen>
+    </Loader>
 );
 
 export default AboutScreen;
