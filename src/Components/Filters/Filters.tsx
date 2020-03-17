@@ -20,8 +20,8 @@ export const Filters: React.FC<IProps> = ({
     onFieldsChange,
     fields: { cities, priceTo, cityAreas },
 }) => {
+    const classes = useStyles();
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
-
     const [filterData, setFilterData] = useState<IFieldsData>({
         // TODO: Fill this automaticaly
         searchQuery: "",
@@ -30,30 +30,16 @@ export const Filters: React.FC<IProps> = ({
         cityArea: "all",
     });
 
-    const classes = useStyles();
-
     const [
         debouncedSearchQuery,
         debouncedCity,
         debouncedPriceTo,
         debouncedCityArea,
     ] = [
-        useDebounce<string>(
-            filterData.searchQuery,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
-        useDebounce<string>(
-            filterData.city,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
-        useDebounce<string>(
-            filterData.priceTo,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
-        useDebounce<string>(
-            filterData.cityArea,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
+        useDebounce(filterData.searchQuery, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
+        useDebounce(filterData.city, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
+        useDebounce(filterData.priceTo, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
+        useDebounce(filterData.cityArea, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
     ];
 
     const handleFieldChange = (
@@ -80,10 +66,11 @@ export const Filters: React.FC<IProps> = ({
     };
 
     useEffect(() => {
-        if (debouncedCity) onCityChange(debouncedCity);
-        setDataIsLoading(false);
+        if (debouncedCity) {
+            onCityChange(debouncedCity);
+            setDataIsLoading(false);
+        }
     }, [onCityChange, debouncedCity]);
-
     useEffect(() => {
         if (debouncedSearchQuery || debouncedPriceTo || debouncedCityArea) {
             onFieldsChange({
@@ -105,6 +92,7 @@ export const Filters: React.FC<IProps> = ({
             <Grid item xs={5} className={classes.searchFiledWrapper}>
                 <SearchField
                     name="searchQuery"
+                    value={filterData.searchQuery}
                     onChange={handleFieldChange}
                     showThrobber={dataIsLoading}
                 />
@@ -140,7 +128,7 @@ export const Filters: React.FC<IProps> = ({
                             name="priceTo"
                             value={filterData.priceTo}
                             options={priceTo}
-                            label="Cena od"
+                            label="Cena do"
                             labelWidth={60}
                             onChange={handleFieldChange}
                         />

@@ -10,7 +10,17 @@ interface IProps {
 }
 
 export const LogoBox: React.FC<IProps> = memo(
-    ({ studioData: { logo, name, address } }) => {
+    ({
+        studioData: {
+            logo,
+            name,
+            address: {
+                cityArea: { name: cityAreaName },
+                street,
+                buildingNumber,
+            },
+        },
+    }) => {
         const classes = useStyles();
 
         return (
@@ -25,8 +35,8 @@ export const LogoBox: React.FC<IProps> = memo(
                 >
                     <Title
                         large
-                        name={name}
-                        address={`${address.street} ${address.buildingNumber}`}
+                        title={name}
+                        subtitle={`${cityAreaName}, ${street} ${buildingNumber}`}
                     />
                 </Box>
             </Box>

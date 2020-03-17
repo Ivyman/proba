@@ -30,9 +30,7 @@ const CatalogScreen: React.FC = () => {
     >(setFilterFields);
 
     const handleCityChange = useCallback(
-        (city: string) => {
-            dispatchStudios(city);
-        },
+        (city: string) => dispatchStudios(city),
         [dispatchStudios],
     );
     const handleFieldsChange = useCallback(

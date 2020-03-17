@@ -5,14 +5,14 @@ import { Typography } from "@material-ui/core";
 import { RoomOutlined as RoomOutlinedIcon } from "@material-ui/icons";
 
 interface IProps {
-    name: string;
-    address: string;
+    title: string;
+    subtitle: string;
     large?: boolean;
     whiteText?: boolean;
 }
 
 export const Title: React.FC<IProps> = memo(
-    ({ name, address, large, whiteText }) => {
+    ({ title, subtitle, large, whiteText }) => {
         const classes = useStyles();
 
         return (
@@ -22,7 +22,7 @@ export const Title: React.FC<IProps> = memo(
                     variant={large ? "h5" : "h6"}
                     className={whiteText ? classes.whiteText : classes.darkText}
                 >
-                    {name}
+                    {title}
                 </Typography>
                 <Typography
                     variant="subtitle2"
@@ -34,9 +34,7 @@ export const Title: React.FC<IProps> = memo(
                         fontSize="small"
                         className={classes.roomIcon}
                     />
-                    {/* TODO upload this data dinamicaly */}
-                    Targówek,&nbsp;
-                    {address}
+                    {subtitle}
                 </Typography>
             </>
         );

@@ -9,13 +9,12 @@ import Title from "@src/components/common/Title";
 interface IProps {
     studioData: IStudio;
     hoverdStudioId: string;
-    price: string;
     onItemClick: (id: string) => void;
     onHoverStudio: (id?: string) => void;
 }
 
 export const CatalogItem: React.FC<IProps> = memo(
-    ({ studioData, hoverdStudioId, price, onHoverStudio, onItemClick }) => {
+    ({ studioData, hoverdStudioId, onHoverStudio, onItemClick }) => {
         const [hover, setHover] = useState<
             (EventTarget & HTMLElement) | null
         >();
@@ -48,9 +47,14 @@ export const CatalogItem: React.FC<IProps> = memo(
 
         const {
             id,
-            address: { street, buildingNumber },
+            address: {
+                street,
+                buildingNumber,
+                cityArea: { name: cityAreaName },
+            },
             name,
             logo,
+            price: { from: priceFrom },
         } = studioData;
 
         return (
@@ -72,13 +76,13 @@ export const CatalogItem: React.FC<IProps> = memo(
 
                 <CardContent className={classes.cardContent}>
                     <Title
-                        name={name}
-                        address={`${street} ${buildingNumber}`}
+                        title={name}
+                        subtitle={`${cityAreaName}, ${street} ${buildingNumber}`}
                     />
                 </CardContent>
 
                 <Chip
-                    label={price}
+                    label={`od ${priceFrom} zł/h`}
                     size="small"
                     icon={<MonetizationOnIcons fontSize="small" />}
                     className={classes.chip}
