@@ -13,10 +13,6 @@ export interface ICoordinate {
 
 export type IStudioResponse = IStudio[];
 
-export interface IPrice {
-    from: string;
-}
-
 export interface IContact {
     phones: string[];
     email?: string;
@@ -43,5 +39,5 @@ export interface IStudio {
     logo: string;
     description: string;
     contact: IContact;
-    price: IPrice;
+    services: IRecord[];
 }

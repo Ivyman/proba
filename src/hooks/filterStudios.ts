@@ -10,23 +10,21 @@ export const useFilterStudios = (
     const [filteredStudios, setFilteredStudios] = useState<IStudio[]>(studios);
 
     useEffect(() => {
-        const { searchQuery, cityArea, priceTo } = fields;
+        const { searchQuery, cityArea } = fields;
 
         const studiosList = studios.filter((studio: IStudio) => {
             const {
                 name,
-                price: { from },
                 address: { cityArea: area, street },
             } = studio;
 
             const filterBySearchQuery: boolean =
                 hasSubsring(name, searchQuery) ||
                 hasSubsring(street, searchQuery);
-            const filterByPrice = from <= priceTo || priceTo === "all";
             const filterByCityArea =
                 cityArea === area.key || cityArea === "all";
 
-            return filterBySearchQuery && filterByPrice && filterByCityArea;
+            return filterBySearchQuery && filterByCityArea;
         });
 
         setFilteredStudios(studiosList);

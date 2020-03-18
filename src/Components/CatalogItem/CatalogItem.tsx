@@ -2,8 +2,9 @@ import React, { MouseEvent, useState, memo, useCallback } from "react";
 import { IStudio } from "@src/types/studio";
 import useStyles from "./styles";
 
-import { Card, CardContent, CardMedia, Chip } from "@material-ui/core";
-import { MonetizationOn as MonetizationOnIcons } from "@material-ui/icons";
+import { Card, CardContent, CardMedia } from "@material-ui/core";
+// import { Card, CardContent, CardMedia, Chip } from "@material-ui/core";
+// import { MonetizationOn as MonetizationOnIcons } from "@material-ui/icons";
 import Title from "@src/components/common/Title";
 
 interface IProps {
@@ -54,7 +55,6 @@ export const CatalogItem: React.FC<IProps> = memo(
             },
             name,
             logo,
-            price: { from: priceFrom },
         } = studioData;
 
         return (
@@ -81,12 +81,12 @@ export const CatalogItem: React.FC<IProps> = memo(
                     />
                 </CardContent>
 
-                <Chip
+                {/* <Chip
                     label={`od ${priceFrom} zł/h`}
                     size="small"
                     icon={<MonetizationOnIcons fontSize="small" />}
                     className={classes.chip}
-                />
+                /> */}
             </Card>
         );
     },

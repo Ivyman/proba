@@ -18,7 +18,7 @@ interface IProps {
 export const Filters: React.FC<IProps> = ({
     onCityChange,
     onFieldsChange,
-    fields: { cities, priceTo, cityAreas },
+    fields: { cities, cityAreas },
 }) => {
     const classes = useStyles();
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
@@ -26,19 +26,12 @@ export const Filters: React.FC<IProps> = ({
         // TODO: Fill this automaticaly
         searchQuery: "",
         city: "waw",
-        priceTo: "all",
         cityArea: "all",
     });
 
-    const [
-        debouncedSearchQuery,
-        debouncedCity,
-        debouncedPriceTo,
-        debouncedCityArea,
-    ] = [
+    const [debouncedSearchQuery, debouncedCity, debouncedCityArea] = [
         useDebounce(filterData.searchQuery, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
         useDebounce(filterData.city, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
-        useDebounce(filterData.priceTo, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
         useDebounce(filterData.cityArea, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
     ];
 
@@ -51,7 +44,6 @@ export const Filters: React.FC<IProps> = ({
         if (fieldName === "city") {
             setFilterData({
                 city: value as string,
-                priceTo: "all",
                 cityArea: "all",
                 searchQuery: "",
             });
@@ -72,20 +64,14 @@ export const Filters: React.FC<IProps> = ({
         }
     }, [onCityChange, debouncedCity]);
     useEffect(() => {
-        if (debouncedSearchQuery || debouncedPriceTo || debouncedCityArea) {
+        if (debouncedSearchQuery || debouncedCityArea) {
             onFieldsChange({
                 searchQuery: debouncedSearchQuery,
                 cityArea: debouncedCityArea,
-                priceTo: debouncedPriceTo,
             });
         }
         setDataIsLoading(false);
-    }, [
-        debouncedSearchQuery,
-        debouncedCityArea,
-        debouncedPriceTo,
-        onFieldsChange,
-    ]);
+    }, [debouncedSearchQuery, debouncedCityArea, onFieldsChange]);
 
     return (
         <Grid container spacing={2}>
@@ -119,17 +105,6 @@ export const Filters: React.FC<IProps> = ({
                             options={cityAreas[filterData.city]}
                             label="Dzielnica"
                             labelWidth={65}
-                            onChange={handleFieldChange}
-                        />
-                    </Box>
-                    <Box mr={2}>
-                        <Select
-                            setDefault
-                            name="priceTo"
-                            value={filterData.priceTo}
-                            options={priceTo}
-                            label="Cena do"
-                            labelWidth={60}
                             onChange={handleFieldChange}
                         />
                     </Box>
