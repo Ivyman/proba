@@ -7,6 +7,7 @@ import useStyles from "./styles";
 import { Grid, Box } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
+import CheckSelect from "@src/components/common/CheckSelect";
 import SearchField from "./SearchField";
 
 interface IProps {
@@ -27,12 +28,31 @@ export const Filters: React.FC<IProps> = ({
         searchQuery: "",
         city: "waw",
         cityArea: "all",
+        services: [],
     });
 
-    const [debouncedSearchQuery, debouncedCity, debouncedCityArea] = [
-        useDebounce(filterData.searchQuery, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
-        useDebounce(filterData.city, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
-        useDebounce(filterData.cityArea, STUDIOS.FILTERS_DEBOUNCED_INTERVAL),
+    const [
+        debouncedSearchQuery,
+        debouncedCity,
+        debouncedCityArea,
+        debouncedServices,
+    ] = [
+        useDebounce<string>(
+            filterData.searchQuery,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
+        ),
+        useDebounce<string>(
+            filterData.city,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
+        ),
+        useDebounce<string>(
+            filterData.cityArea,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
+        ),
+        useDebounce<string[]>(
+            filterData.services,
+            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
+        ),
     ];
 
     const handleFieldChange = (
@@ -46,6 +66,7 @@ export const Filters: React.FC<IProps> = ({
                 city: value as string,
                 cityArea: "all",
                 searchQuery: "",
+                services: [],
             });
         } else {
             setFilterData((prevState: IFieldsData) => ({
@@ -64,14 +85,20 @@ export const Filters: React.FC<IProps> = ({
         }
     }, [onCityChange, debouncedCity]);
     useEffect(() => {
-        if (debouncedSearchQuery || debouncedCityArea) {
+        if (debouncedSearchQuery || debouncedCityArea || debouncedServices) {
             onFieldsChange({
                 searchQuery: debouncedSearchQuery,
                 cityArea: debouncedCityArea,
+                services: debouncedServices,
             });
         }
         setDataIsLoading(false);
-    }, [debouncedSearchQuery, debouncedCityArea, onFieldsChange]);
+    }, [
+        debouncedSearchQuery,
+        debouncedCityArea,
+        onFieldsChange,
+        debouncedServices,
+    ]);
 
     return (
         <Grid container spacing={2}>
@@ -104,6 +131,17 @@ export const Filters: React.FC<IProps> = ({
                             value={filterData.cityArea}
                             options={cityAreas[filterData.city]}
                             label="Dzielnica"
+                            labelWidth={65}
+                            onChange={handleFieldChange}
+                        />
+                    </Box>
+                    <Box>
+                        <CheckSelect
+                            setDefault
+                            name="services"
+                            value={filterData.cityArea}
+                            options={cityAreas[filterData.city]}
+                            label="Usługi"
                             labelWidth={65}
                             onChange={handleFieldChange}
                         />

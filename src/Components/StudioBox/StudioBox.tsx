@@ -16,7 +16,7 @@ import {
 import {
     ArrowBackIos as ArrowBackIosIcon,
     Phone as PhoneIcone,
-    Share as ShareIcon,
+    // Share as ShareIcon,
     MailOutline as MailOutlineIcone,
     Language as LanguageIcon,
     Facebook as FacebookIcon,
@@ -46,14 +46,15 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
 
             {openedStudio ? (
                 <>
-                    <Fab
+                    {/* TODO: add share button */}
+                    {/* <Fab
                         aria-label="share"
                         size="small"
                         onClick={() => {}}
                         className={classes.shareBotton}
                     >
                         <ShareIcon fontSize="small" />
-                    </Fab>
+                    </Fab> */}
                     <CardMedia
                         className={classes.cardMedia}
                         image={pattern}

@@ -24,7 +24,12 @@
             "phones": ["603-725-488"],
             "email": "zyrtychmedia@gmail.com",
             "site": "http://www.zyrtychmedia.pl"
-        }
+        },
+        "services": [
+            { "key": "pro", "name": "Sała prób" },
+            { "key": "nag", "name": "Nagrania" },
+            { "key": "sprz", "name": "Wynajem sprzętu" }
+        ]
     },
     {
         "id": "2",
@@ -51,7 +56,11 @@
             "phones": ["504-421-035", "504-155-533"],
             "email": "misticstudio@gmail.com",
             "site": "http://www.misticstudio.waw.pl"
-        }
+        },
+        "services": [
+            { "key": "pro", "name": "Sała prób" },
+            { "key": "sprz", "name": "Wynajem sprzętu" }
+        ]
     },
     {
         "id": "3",
@@ -78,7 +87,8 @@
             "phones": ["534-013-170"],
             "email": "",
             "site": "https://sala-prob.net"
-        }
+        },
+        "services": [{ "key": "pro", "name": "Sała prób" }]
     },
     {
         "id": "4",
@@ -105,7 +115,8 @@
             "phones": ["515-847-203"],
             "email": "redrum@redrumstudio.pl",
             "site": "http://www.redrumstudio.pl"
-        }
+        },
+        "services": [{ "key": "pro", "name": "Sała prób" }]
     },
     {
         "id": "5",
@@ -132,6 +143,10 @@
             "phones": ["515-847-203"],
             "email": "redrum@redrumstudio.pl",
             "site": "http://www.redrumstudio.pl"
-        }
+        },
+        "services": [
+            { "key": "pro", "name": "Sała prób" },
+            { "key": "sprz", "name": "Wynajem sprzętu" }
+        ]
     }
 ]

@@ -34,5 +34,11 @@
             { "key": "bem", "name": "Jasień" },
             { "key": "kok", "name": "Kokoszki" }
         ]
-    }
+    },
+    "services": [
+        { "key": "all", "name": "Wszystkie" },
+        { "key": "pro", "name": "Sała prób" },
+        { "key": "nag", "name": "Nagrania" },
+        { "key": "sprz", "name": "Wynajem sprzętu" }
+    ]
 }

@@ -10,18 +10,21 @@ export interface IFiltersState {
     values: {
         searchQuery: string;
         cityArea: string;
+        services: string[];
     };
     apiStatus: EApiStatuses;
 }
 
 export const initialState: IFiltersState = {
     fields: {
+        services: [],
         cities: [],
         cityAreas: {},
     },
     values: {
         searchQuery: "",
         cityArea: "",
+        services: [],
     },
     apiStatus: EApiStatuses.IDLE,
 };

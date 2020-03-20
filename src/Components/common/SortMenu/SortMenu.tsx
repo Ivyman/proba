@@ -32,7 +32,6 @@ export const SortMenu: React.FC<IProps> = memo(() => {
         <>
             <Button
                 disableElevation
-                aria-controls="sorting"
                 aria-haspopup="true"
                 variant="outlined"
                 color="default"
