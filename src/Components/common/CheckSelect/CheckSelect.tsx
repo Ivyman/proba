@@ -9,7 +9,6 @@ import {
     Checkbox,
     MenuItem,
     ListItemText,
-    Input,
 } from "@material-ui/core";
 
 interface IProps {
@@ -24,6 +23,7 @@ interface IProps {
     onChange: (event: ChangeEvent<{ value: unknown }>, name: string) => void;
 }
 
+// TODO it doesn't work, improve
 export const CheckSelect: React.FC<IProps> = memo(
     ({
         label,
@@ -38,38 +38,13 @@ export const CheckSelect: React.FC<IProps> = memo(
         const classes = useStyles();
 
         const handleChange = useCallback(
-            (event: ChangeEvent<{ value: unknown }>) => onChange(event, name),
+            (event: ChangeEvent<{ value: unknown }>) => {
+                onChange(event, name);
+            },
             [name, onChange],
         );
 
         return (
-            // <FormControl
-            //     variant="outlined"
-            //     className={`${classes.root} ${
-            //         !disabled ? "" : classes.isDisabled
-            //     }`}
-            // >
-            //     <InputLabel className={classes.label}>{label}</InputLabel>
-            //     <SelectUI
-            //         name={name}
-            //         disabled={disabled}
-            //         labelWidth={labelWidth}
-            //         value={value}
-            //         onChange={handleChange}
-            //         classes={{ root: classes.select }}
-            //     >
-            //         {noneOption && (
-            //             <MenuItem value="">
-            //                 <em>{noneOption}</em>
-            //             </MenuItem>
-            //         )}
-            //         {options.map(({ name, key }) => (
-            //             <MenuItem key={key} value={key}>
-            //                 {name}
-            //             </MenuItem>
-            //         ))}
-            //     </SelectUI>
-            // </FormControl>
             <FormControl
                 variant="outlined"
                 className={`${classes.root} ${
@@ -79,18 +54,21 @@ export const CheckSelect: React.FC<IProps> = memo(
                 <InputLabel className={classes.label}>{label}</InputLabel>
                 <Select
                     multiple
-                    // value={personName}
+                    name={name}
                     disabled={disabled}
-                    value={"Wybrano 0"}
+                    labelWidth={labelWidth}
+                    value={[value, value]}
                     onChange={handleChange}
-                    input={<Input />}
-                    renderValue={selected => (selected as string[]).join(", ")}
-                    // MenuProps={MenuProps}
+                    classes={{ root: classes.select }}
                 >
-                    {options.map(({ key, name }: IRecord) => (
-                        <MenuItem key={key} value={name}>
-                            {/* <Checkbox checked={personName.indexOf(name) > -1} /> */}
-                            <Checkbox />
+                    {noneOption && (
+                        <MenuItem value="">
+                            <em>{noneOption}</em>
+                        </MenuItem>
+                    )}
+                    {options.map(({ name, key }: IRecord) => (
+                        <MenuItem key={key} value={key}>
+                            <Checkbox checked={value === key} />
                             <ListItemText primary={name} />
                         </MenuItem>
                     ))}

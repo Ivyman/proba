@@ -60,7 +60,7 @@ export const Select: React.FC<IProps> = memo(
                             <em>{noneOption}</em>
                         </MenuItem>
                     )}
-                    {options.map(({ name, key }) => (
+                    {options.map(({ name, key }: IRecord) => (
                         <MenuItem key={key} value={key}>
                             {name}
                         </MenuItem>

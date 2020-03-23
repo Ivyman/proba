@@ -4,10 +4,10 @@ import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, RadioGroup } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
-import CheckSelect from "@src/components/common/CheckSelect";
+import ChipField from "@src/components/common/ChipField";
 import SearchField from "./SearchField";
 
 interface IProps {
@@ -61,18 +61,26 @@ export const Filters: React.FC<IProps> = ({
     ) => {
         const { value } = event.target;
 
-        if (fieldName === "city") {
-            setFilterData({
-                city: value as string,
-                cityArea: "all",
-                searchQuery: "",
-                services: [],
-            });
-        } else {
-            setFilterData((prevState: IFieldsData) => ({
-                ...prevState,
-                [fieldName]: value,
-            }));
+        switch (fieldName) {
+            case "city":
+                setFilterData({
+                    city: value as string,
+                    cityArea: "all",
+                    searchQuery: "",
+                    services: [],
+                });
+                break;
+            case "services":
+                setFilterData((prevState: IFieldsData) => ({
+                    ...prevState,
+                    services: value as string[],
+                }));
+                break;
+            default:
+                setFilterData((prevState: IFieldsData) => ({
+                    ...prevState,
+                    [fieldName]: value,
+                }));
         }
 
         setDataIsLoading(true);
@@ -101,80 +109,71 @@ export const Filters: React.FC<IProps> = ({
     ]);
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={5} className={classes.searchFiledWrapper}>
-                <SearchField
-                    name="searchQuery"
-                    value={filterData.searchQuery}
-                    onChange={handleFieldChange}
-                    showThrobber={dataIsLoading}
-                />
-            </Grid>
+        <Grid>
+            <Grid container spacing={2}>
+                <Grid item xs={5} className={classes.searchFiledWrapper}>
+                    <SearchField
+                        name="searchQuery"
+                        value={filterData.searchQuery}
+                        onChange={handleFieldChange}
+                        showThrobber={dataIsLoading}
+                    />
+                </Grid>
 
-            <Grid item xs={7}>
-                <Box display="flex">
-                    <Box mr={2}>
-                        <Select
-                            setDefault
-                            name="city"
-                            value={filterData.city}
-                            options={cities}
-                            label="Miasto"
-                            labelWidth={50}
-                            onChange={handleFieldChange}
-                        />
+                <Grid item xs={7}>
+                    <Box display="flex">
+                        <Box mr={2}>
+                            <Select
+                                setDefault
+                                name="city"
+                                value={filterData.city}
+                                options={cities}
+                                label="Miasto"
+                                labelWidth={50}
+                                onChange={handleFieldChange}
+                            />
+                        </Box>
+                        <Box mr={2}>
+                            <Select
+                                setDefault
+                                name="cityArea"
+                                value={filterData.cityArea}
+                                options={cityAreas[filterData.city]}
+                                label="Dzielnica"
+                                labelWidth={68}
+                                onChange={handleFieldChange}
+                            />
+                        </Box>
+                        <Box
+                            display="flex"
+                            flexGrow={1}
+                            alignItems="center"
+                            justifyContent="flex-end"
+                        >
+                            <SortMenu />
+                        </Box>
                     </Box>
-                    <Box mr={2}>
-                        <Select
-                            setDefault
-                            name="cityArea"
-                            value={filterData.cityArea}
-                            options={cityAreas[filterData.city]}
-                            label="Dzielnica"
-                            labelWidth={65}
-                            onChange={handleFieldChange}
-                        />
-                    </Box>
-                    <Box>
-                        <CheckSelect
-                            setDefault
-                            name="services"
-                            value={filterData.cityArea}
-                            options={cityAreas[filterData.city]}
-                            label="Usługi"
-                            labelWidth={65}
-                            onChange={handleFieldChange}
-                        />
-                    </Box>
-                    <Box
-                        display="flex"
-                        flexGrow={1}
-                        alignItems="center"
-                        justifyContent="flex-end"
+                </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+                <Grid item>
+                    <RadioGroup
+                        aria-label="position"
+                        value={city}
+                        className={classes.radioGroup}
+                        onChange={() => {}}
                     >
-                        <SortMenu />
-                    </Box>
-                </Box>
+                        {cities.map(cityItem => (
+                            <ChipField
+                                key={cityItem.key}
+                                label={cityItem.name}
+                                value={cityItem.key}
+                                checked={city === cityItem.key}
+                            />
+                        ))}
+                    </RadioGroup>
+                </Grid>
             </Grid>
         </Grid>
-        // <Grid container spacing={2}>
-        //     <Grid item>
-        //         <RadioGroup
-        //             aria-label="position"
-        //             value={city}
-        //             className={classes.radioGroup}
-        //             onChange={() => {}}
-        //         >
-        //             {cities.map(cityItem => (
-        //                 <ChipField
-        //                     key={cityItem.key}
-        //                     label={cityItem.name}
-        //                     value={cityItem.key}
-        //                     checked={city === cityItem.key}
-        //                 />
-        //             ))}
-        //         </RadioGroup>
-        //     </Grid>
-        // </Grid>
     );
 };
