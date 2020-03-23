@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const Title: React.FC<IProps> = memo(
-    ({ title, subtitle, large, whiteText }) => {
+    ({ title, subtitle, large, whiteText, children }) => {
         const classes = useStyles();
 
         return (
@@ -24,6 +24,7 @@ export const Title: React.FC<IProps> = memo(
                 >
                     {title}
                 </Typography>
+                {children && children}
                 <Typography
                     variant="subtitle2"
                     color="textSecondary"

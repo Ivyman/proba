@@ -1,10 +1,9 @@
 import React, { MouseEvent, useState, memo, useCallback } from "react";
 import { IStudio } from "@src/types/studio";
+import { IRecord } from "@src/types/main";
 import useStyles from "./styles";
 
-import { Card, CardContent, CardMedia } from "@material-ui/core";
-// import { Card, CardContent, CardMedia, Chip } from "@material-ui/core";
-// import { MonetizationOn as MonetizationOnIcons } from "@material-ui/icons";
+import { Card, CardContent, CardMedia, Chip, Box } from "@material-ui/core";
 import Title from "@src/components/common/Title";
 
 interface IProps {
@@ -55,7 +54,10 @@ export const CatalogItem: React.FC<IProps> = memo(
             },
             name,
             logo,
+            services,
         } = studioData;
+
+        console.log(name, services);
 
         return (
             <Card
@@ -78,15 +80,19 @@ export const CatalogItem: React.FC<IProps> = memo(
                     <Title
                         title={name}
                         subtitle={`${cityAreaName}, ${street} ${buildingNumber}`}
-                    />
+                    >
+                        <Box className={classes.chipList}>
+                            {services.map(({ key, name }: IRecord) => (
+                                <Chip
+                                    key={key}
+                                    className={classes.chip}
+                                    label={name}
+                                    size="small"
+                                />
+                            ))}
+                        </Box>
+                    </Title>
                 </CardContent>
-
-                {/* <Chip
-                    label={`od ${priceFrom} zł/h`}
-                    size="small"
-                    icon={<MonetizationOnIcons fontSize="small" />}
-                    className={classes.chip}
-                /> */}
             </Card>
         );
     },

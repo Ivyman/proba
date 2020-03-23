@@ -1,13 +1,13 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { IFilters, IFieldsData } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
 import useStyles from "./styles";
 
-import { Grid, Box, RadioGroup } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
-import ChipField from "@src/components/common/ChipField";
+import ChipsList from "@src/components/common/ChipsList";
 import SearchField from "./SearchField";
 
 interface IProps {
@@ -19,7 +19,7 @@ interface IProps {
 export const Filters: React.FC<IProps> = ({
     onCityChange,
     onFieldsChange,
-    fields: { cities, cityAreas },
+    fields: { cities, cityAreas, services },
 }) => {
     const classes = useStyles();
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
@@ -55,12 +55,7 @@ export const Filters: React.FC<IProps> = ({
         ),
     ];
 
-    const handleFieldChange = (
-        event: ChangeEvent<HTMLInputElement | { value: unknown }>,
-        fieldName: string,
-    ) => {
-        const { value } = event.target;
-
+    const handleFieldChange = (value: string | string[], fieldName: string) => {
         switch (fieldName) {
             case "city":
                 setFilterData({
@@ -73,7 +68,7 @@ export const Filters: React.FC<IProps> = ({
             case "services":
                 setFilterData((prevState: IFieldsData) => ({
                     ...prevState,
-                    services: value as string[],
+                    [fieldName]: value as string[],
                 }));
                 break;
             default:
@@ -109,7 +104,7 @@ export const Filters: React.FC<IProps> = ({
     ]);
 
     return (
-        <Grid>
+        <>
             <Grid container spacing={2}>
                 <Grid item xs={5} className={classes.searchFiledWrapper}>
                     <SearchField
@@ -157,23 +152,15 @@ export const Filters: React.FC<IProps> = ({
             </Grid>
             <Grid container spacing={2}>
                 <Grid item>
-                    <RadioGroup
-                        aria-label="position"
-                        value={city}
-                        className={classes.radioGroup}
-                        onChange={() => {}}
-                    >
-                        {cities.map(cityItem => (
-                            <ChipField
-                                key={cityItem.key}
-                                label={cityItem.name}
-                                value={cityItem.key}
-                                checked={city === cityItem.key}
-                            />
-                        ))}
-                    </RadioGroup>
+                    <ChipsList
+                        name="services"
+                        allOptionKey="all"
+                        value={filterData.services}
+                        onChange={handleFieldChange}
+                        options={services}
+                    />
                 </Grid>
             </Grid>
-        </Grid>
+        </>
     );
 };

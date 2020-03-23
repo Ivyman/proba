@@ -42,7 +42,7 @@ const CatalogScreen: React.FC = () => {
     return (
         <>
             <Box py={2}>
-                <Container maxWidth="xl">
+                <Container>
                     <Loader apiStatus={filtersApiStatus}>
                         <Filters
                             onCityChange={handleCityChange}
@@ -57,7 +57,7 @@ const CatalogScreen: React.FC = () => {
 
             <Box py={2} flexGrow={1} display="flex" alignItems="stretch">
                 <Container maxWidth="xl">
-                    <Grid container spacing={2} style={{ minHeight: "100%" }}>
+                    <Grid container spacing={2}>
                         <Grid item sm={5}>
                             <Loader apiStatus={studiosApiStatus}>
                                 <CatalogRouter />

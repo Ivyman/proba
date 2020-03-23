@@ -1,5 +1,6 @@
 import React from "react";
 import { IStudio } from "@src/types/studio";
+import { IRecord } from "@src/types/main";
 import pattern from "@src/assets/pattern.jpg";
 import useStyles from "./styles";
 
@@ -12,6 +13,7 @@ import {
     Grid,
     Link,
     Button,
+    Chip,
 } from "@material-ui/core";
 import {
     ArrowBackIos as ArrowBackIosIcon,
@@ -55,6 +57,25 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                     >
                         <ShareIcon fontSize="small" />
                     </Fab> */}
+
+                    <Box className={classes.iconsList}>
+                        <Fab size="small" className={classes.socialIcon}>
+                            <FacebookIcon fontSize="small" />
+                        </Fab>
+                        <Fab size="small" className={classes.socialIcon}>
+                            <InstagramIcon fontSize="small" />
+                        </Fab>
+                        {openedStudio.contact.site && (
+                            <Fab
+                                size="small"
+                                href={openedStudio.contact.site}
+                                className={classes.socialIcon}
+                            >
+                                <LanguageIcon fontSize="small" />
+                            </Fab>
+                        )}
+                    </Box>
+
                     <CardMedia
                         className={classes.cardMedia}
                         image={pattern}
@@ -71,31 +92,17 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                         >
                             <Grid item>
                                 <Typography variant="h6" component="h3">
-                                    Dd <strong>20zł</strong> za godzinę
+                                    {openedStudio.services.map(
+                                        ({ key, name }: IRecord) => (
+                                            <Chip
+                                                key={key}
+                                                className={classes.chip}
+                                                label={name}
+                                                size="small"
+                                            />
+                                        ),
+                                    )}
                                 </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Fab
-                                    size="small"
-                                    className={classes.socialIcon}
-                                >
-                                    <FacebookIcon fontSize="small" />
-                                </Fab>
-                                <Fab
-                                    size="small"
-                                    className={classes.socialIcon}
-                                >
-                                    <InstagramIcon fontSize="small" />
-                                </Fab>
-                                {openedStudio.contact.site && (
-                                    <Fab
-                                        size="small"
-                                        href={openedStudio.contact.site}
-                                        className={classes.socialIcon}
-                                    >
-                                        <LanguageIcon fontSize="small" />
-                                    </Fab>
-                                )}
                             </Grid>
                         </Grid>
 

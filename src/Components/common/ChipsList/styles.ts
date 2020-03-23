@@ -3,9 +3,14 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            margin: theme.spacing(1, 0.5),
+            display: "flex",
+            flexDirection: "row",
         },
-        radio: {
+        chip: {
+            marginTop: theme.spacing(0.8),
+            marginRight: theme.spacing(1),
+        },
+        checkbox: {
             display: "none",
         },
     }),

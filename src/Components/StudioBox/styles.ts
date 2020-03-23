@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
         cardContent: {
             position: "relative",
             "&, &:last-child": {
-                padding: theme.spacing(4, 3),
+                padding: theme.spacing(3, 3, 4),
             },
         },
         backBotton: {
@@ -41,10 +41,16 @@ const useStyles = makeStyles((theme: Theme) =>
             right: theme.spacing(2),
         },
         socialIcon: {
-            boxShadow: "none",
+            backgroundColor: theme.palette.common.white,
             marginLeft: theme.spacing(1),
             width: theme.spacing(4.5),
             height: theme.spacing(4.5),
+        },
+        iconsList: {
+            position: "absolute",
+            zIndex: 1,
+            top: theme.spacing(2),
+            right: theme.spacing(2),
         },
         contactsList: {
             listStyleType: "none",
@@ -58,6 +64,9 @@ const useStyles = makeStyles((theme: Theme) =>
             "& > svg": {
                 marginRight: theme.spacing(2),
             },
+        },
+        chip: {
+            margin: theme.spacing(0.7, 0.7, 1.2, 0),
         },
     }),
 );

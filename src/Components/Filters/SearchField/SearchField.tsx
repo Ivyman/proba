@@ -7,7 +7,7 @@ interface IProps {
     value: string;
     name?: string;
     showThrobber?: boolean;
-    onChange: (event: ChangeEvent<HTMLInputElement>, name: string) => void;
+    onChange: (value: string, name: string) => void;
 }
 
 export const SearchField: React.FC<IProps> = memo(
@@ -15,9 +15,8 @@ export const SearchField: React.FC<IProps> = memo(
         const classes = useStyles();
 
         const handleChange = useCallback(
-            (event: ChangeEvent<HTMLInputElement>) => {
-                onChange(event, name);
-            },
+            (event: ChangeEvent<HTMLInputElement>) =>
+                onChange(event.target.value, name),
             [onChange, name],
         );
 

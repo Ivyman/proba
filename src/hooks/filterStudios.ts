@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { IStudio } from "@src/types/studio";
+import { IRecord } from "@src/types/main";
 import { IFieldsData } from "@src/types/filters";
 import { hasSubsring } from "@src/utils/common";
 
@@ -10,21 +11,29 @@ export const useFilterStudios = (
     const [filteredStudios, setFilteredStudios] = useState<IStudio[]>(studios);
 
     useEffect(() => {
-        const { searchQuery, cityArea } = fields;
+        const { searchQuery, cityArea, services } = fields;
 
         const studiosList = studios.filter((studio: IStudio) => {
             const {
                 name,
                 address: { cityArea: area, street },
+                services: studioServices,
             } = studio;
+
+            const servicesList: string[] = studioServices.map(
+                (item: IRecord) => item.key,
+            );
 
             const filterBySearchQuery: boolean =
                 hasSubsring(name, searchQuery) ||
                 hasSubsring(street, searchQuery);
             const filterByCityArea =
                 cityArea === area.key || cityArea === "all";
+            const filterByServices: boolean = services.every(item =>
+                servicesList.includes(item),
+            );
 
-            return filterBySearchQuery && filterByCityArea;
+            return filterBySearchQuery && filterByCityArea && filterByServices;
         });
 
         setFilteredStudios(studiosList);

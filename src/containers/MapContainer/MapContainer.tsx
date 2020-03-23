@@ -2,6 +2,9 @@ import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IStudio, ECoordinateName } from "@src/types/studio";
+import { IFieldsData } from "@src/types/filters";
+import { useFilterStudios } from "@src/hooks/filterStudios";
+import { useDispatch } from "@src/hooks/dispatch";
 import { IViewport } from "@src/types/map";
 import { countCoordinateAverage, getCoordinates } from "@src/utils/map";
 import {
@@ -10,7 +13,7 @@ import {
     getStudios,
 } from "@src/store/studios/selectors";
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
-import { useDispatch } from "@src/hooks/dispatch";
+import { getFilterFields } from "@src/store/filters/selectors";
 import { ICoordinate } from "@src/types/studio";
 import * as ROUTERS from "@src/config/router";
 
@@ -21,7 +24,12 @@ export const MapContainer: React.FC = () => {
 
     const hoveredItemId: string = useSelector(getHoveredStudioId);
     const openedStudio: IStudio | undefined = useSelector(getOpenedStudio);
-    const studiosList: IStudio[] = useSelector(getStudios);
+    const studios: IStudio[] = useSelector(getStudios);
+    const filterFields: Omit<IFieldsData, "city"> = useSelector(
+        getFilterFields,
+    );
+
+    const filteredStudios = useFilterStudios(studios, filterFields);
 
     const dispatchHoveredStudio = useDispatch<
         typeof setHoveredStudio,
@@ -31,10 +39,9 @@ export const MapContainer: React.FC = () => {
         setOpenedStudio,
     );
 
-    const coordinates = useMemo<ICoordinate[]>(
-        () => getCoordinates(studiosList),
-        [studiosList],
-    );
+    const coordinates = useMemo<ICoordinate[]>(() => getCoordinates(studios), [
+        studios,
+    ]);
     const getOpenedStudioId = useMemo<string>(
         () => (openedStudio ? openedStudio.id : ""),
         [openedStudio],
@@ -61,7 +68,7 @@ export const MapContainer: React.FC = () => {
     return (
         <Map
             viewport={viewport}
-            studiosList={studiosList}
+            studiosList={filteredStudios}
             hoveredItemId={hoveredItemId}
             openedStudioId={getOpenedStudioId}
             onViewportChange={handeleViewportChange}

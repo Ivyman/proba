@@ -16,9 +16,7 @@ export const Catalog: React.FC = () => {
     const history = useHistory();
 
     const studios: IStudio[] = useSelector(getStudios);
-
     const hoverdStudioId: string = useSelector(getHoveredStudioId);
-
     const filterFields: Omit<IFieldsData, "city"> = useSelector(
         getFilterFields,
     );

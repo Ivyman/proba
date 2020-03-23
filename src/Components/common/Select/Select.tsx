@@ -18,7 +18,7 @@ interface IProps {
     noneOption?: string;
     disabled?: boolean;
     name?: string;
-    onChange: (event: ChangeEvent<{ value: unknown }>, name: string) => void;
+    onChange: (value: string, name: string) => void;
 }
 
 export const Select: React.FC<IProps> = memo(
@@ -35,7 +35,8 @@ export const Select: React.FC<IProps> = memo(
         const classes = useStyles();
 
         const handleChange = useCallback(
-            (event: ChangeEvent<{ value: unknown }>) => onChange(event, name),
+            (event: ChangeEvent<{ value: unknown }>) =>
+                onChange(event.target.value as string, name),
             [name, onChange],
         );
 
