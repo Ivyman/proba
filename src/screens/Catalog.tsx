@@ -41,35 +41,33 @@ const CatalogScreen: React.FC = () => {
 
     return (
         <>
-            <Box py={2}>
-                <Container>
-                    <Loader apiStatus={filtersApiStatus}>
-                        <Filters
-                            onCityChange={handleCityChange}
-                            onFieldsChange={handleFieldsChange}
-                            fields={filterFields}
-                        />
-                    </Loader>
-                </Container>
+            <Box component={Container} py={2}>
+                <Loader apiStatus={filtersApiStatus}>
+                    <Filters
+                        onCityChange={handleCityChange}
+                        onFieldsChange={handleFieldsChange}
+                        fields={filterFields}
+                    />
+                </Loader>
             </Box>
 
             <Divider />
 
-            <Box py={2} flexGrow={1} display="flex" alignItems="stretch">
-                <Container maxWidth="xl">
-                    <Grid container spacing={2}>
-                        <Grid item sm={5}>
+            <Box component={Container} py={2} display="flex" flexGrow={1}>
+                <Grid container spacing={2}>
+                    <Grid item sm={5}>
+                        <Box position="realtive" display="flex">
                             <Loader apiStatus={studiosApiStatus}>
                                 <CatalogRouter />
                             </Loader>
-                        </Grid>
-                        <Grid item sm={7}>
-                            <Loader apiStatus={studiosApiStatus}>
-                                <MapContainer />
-                            </Loader>
-                        </Grid>
+                        </Box>
                     </Grid>
-                </Container>
+                    <Grid item sm={7}>
+                        <Loader apiStatus={studiosApiStatus}>
+                            <MapContainer />
+                        </Loader>
+                    </Grid>
+                </Grid>
             </Box>
         </>
     );

@@ -35,7 +35,6 @@ export const Map: React.FC<IProps> = ({
             {...viewport}
             width="100%"
             height="100%"
-            scrollZoom={false}
             mapboxApiAccessToken={GL_MAP.ACCESS_TOKEN}
             onViewportChange={onViewportChange}
         >
@@ -49,6 +48,7 @@ export const Map: React.FC<IProps> = ({
             />
             <NavigationControl
                 showCompass={false}
+                showZoom={false}
                 className={classes.navigationControl}
             />
         </ReactMapGL>

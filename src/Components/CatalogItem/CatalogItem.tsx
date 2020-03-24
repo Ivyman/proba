@@ -57,8 +57,6 @@ export const CatalogItem: React.FC<IProps> = memo(
             services,
         } = studioData;
 
-        console.log(name, services);
-
         return (
             <Card
                 onClick={() => handleClick(id)}
