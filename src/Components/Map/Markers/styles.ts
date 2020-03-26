@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme: Theme) =>
             bottom: theme.spacing(3),
             right: theme.spacing(1),
         },
+        indexed: {
+            zIndex: 1,
+        },
         marker: {
             cursor: "pointer",
             transition: "0.2s",

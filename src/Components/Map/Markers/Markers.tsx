@@ -47,6 +47,9 @@ export const Markers: React.FC<IProps> = memo(
                         <GlMarker
                             offsetLeft={-20}
                             offsetTop={-10}
+                            className={
+                                isStudioOpened(id) ? classes.indexed : ""
+                            }
                             latitude={address.latitude}
                             longitude={address.longitude}
                         >

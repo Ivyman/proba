@@ -12,8 +12,8 @@ import { useDispatch } from "@src/hooks/dispatch";
 
 import { Container, Box, Grid } from "@material-ui/core";
 import Filters from "@src/components/Filters";
-import CatalogWrapper from "@src/components/CatalogWrapper";
 import Divider from "@src/components/common/Divider";
+import CatalogWrapper from "@src/components/CatalogWrapper";
 import MapContainer from "@src/containers/MapContainer";
 import Loader from "@src/components/common/Loader";
 
@@ -56,11 +56,11 @@ const CatalogScreen: React.FC = () => {
 
             <Box component={Container} py={2} display="flex" flexGrow={1}>
                 <Grid container spacing={2}>
-                    <Grid item sm={5}>
+                    <CatalogWrapper>
                         <Loader apiStatus={studiosApiStatus}>
                             <CatalogRouter />
                         </Loader>
-                    </Grid>
+                    </CatalogWrapper>
                     <Grid item sm={7}>
                         <Loader apiStatus={studiosApiStatus}>
                             <MapContainer />

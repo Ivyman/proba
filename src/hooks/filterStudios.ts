@@ -16,7 +16,7 @@ export const useFilterStudios = (
         const studiosList = studios.filter((studio: IStudio) => {
             const {
                 name,
-                address: { cityArea: area, street },
+                address: { cityArea: area, street, buildingNumber },
                 services: studioServices,
             } = studio;
 
@@ -26,7 +26,7 @@ export const useFilterStudios = (
 
             const filterBySearchQuery: boolean =
                 hasSubsring(name, searchQuery) ||
-                hasSubsring(street, searchQuery);
+                hasSubsring(`${street} ${buildingNumber}`, searchQuery);
             const filterByCityArea =
                 cityArea === area.key || cityArea === "all";
             const filterByServices: boolean = services.every(item =>

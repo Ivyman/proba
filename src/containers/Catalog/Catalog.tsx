@@ -41,7 +41,7 @@ export const Catalog: React.FC = () => {
     );
 
     return (
-        <>
+        <CatalogItemsList>
             {filteredStudios.length ? (
                 filteredStudios.map((studio: IStudio) => (
                     <CatalogItem
@@ -55,6 +55,6 @@ export const Catalog: React.FC = () => {
             ) : (
                 <>Studios not found...</>
             )}
-        </>
+        </CatalogItemsList>
     );
 };
