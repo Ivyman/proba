@@ -10,8 +10,8 @@ import { getStudios, getHoveredStudioId } from "@src/store/studios/selectors";
 import { getFilterFields } from "@src/store/filters/selectors";
 import * as ROUTERS from "@src/config/router";
 
-import { Box } from "@material-ui/core";
 import CatalogItem from "@src/components/CatalogItem";
+import CatalogItemsList from "@src/components/CatalogItemsList";
 
 export const Catalog: React.FC = () => {
     const history = useHistory();
@@ -41,7 +41,7 @@ export const Catalog: React.FC = () => {
     );
 
     return (
-        <Box position="absolute" width="100%">
+        <>
             {filteredStudios.length ? (
                 filteredStudios.map((studio: IStudio) => (
                     <CatalogItem
@@ -55,6 +55,6 @@ export const Catalog: React.FC = () => {
             ) : (
                 <>Studios not found...</>
             )}
-        </Box>
+        </>
     );
 };

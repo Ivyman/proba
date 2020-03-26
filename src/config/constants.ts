@@ -6,6 +6,10 @@ export const API = {
         USERS: "/users",
         FILTERS: "/filters",
         MESSAGE: "/message",
+        CONTACT: "/contact",
+        ABOUT: "/about",
+        TERMS: "/terms",
+        POLICY: "/policy",
     },
 };
 

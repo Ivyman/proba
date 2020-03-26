@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { IPathWithIcon } from "@src/types/path";
 import { Link } from "react-router-dom";
+import { API } from "@src/config/constants";
 import useStyles from "./styles";
 
 import {
@@ -19,12 +20,16 @@ import {
 } from "@material-ui/icons";
 import Logo from "@src/components/common/Logo";
 
-// TODO move outside
+// TODO move outside replace from constants
 const sidebarLinks: IPathWithIcon[] = [
-    { path: "/contact", label: "Kontakt", icon: <ContactMailIcon /> },
-    { path: "/about", label: "O nas", icon: <InfoIcon /> },
-    { path: "/terms", label: "Regułamin", icon: <ListAltIcon /> },
-    { path: "/policy", label: "Polityka prywatności", icon: <ListAltIcon /> },
+    { path: API.URLS.CONTACT, label: "Kontakt", icon: <ContactMailIcon /> },
+    { path: API.URLS.ABOUT, label: "O nas", icon: <InfoIcon /> },
+    { path: API.URLS.TERMS, label: "Regułamin", icon: <ListAltIcon /> },
+    {
+        path: API.URLS.POLICY,
+        label: "Polityka prywatności",
+        icon: <ListAltIcon />,
+    },
 ];
 
 interface IProps {
