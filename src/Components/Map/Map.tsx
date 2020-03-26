@@ -35,6 +35,7 @@ export const Map: React.FC<IProps> = ({
             {...viewport}
             width="100%"
             height="100%"
+            className={classes.root}
             mapboxApiAccessToken={GL_MAP.ACCESS_TOKEN}
             onViewportChange={onViewportChange}
         >

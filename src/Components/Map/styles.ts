@@ -2,6 +2,10 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            borderRadius: theme.shape.borderRadius,
+            overflow: "hidden",
+        },
         navigationControl: {
             position: "absolute",
             bottom: theme.spacing(3),

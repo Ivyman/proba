@@ -15,21 +15,6 @@ const TermsScreen = lazy(() => import("@src/screens/Terms"));
 const PolicyScreen = lazy(() => import("@src/screens/Policy"));
 
 export const ScreensRouter: React.FC = () => {
-    // TODO remove this functionality from here
-    // const location = useLocation();
-
-    // const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
-    //     setOpenedStudio,
-    // );
-
-    // useEffect(() => {
-    //     switch (location.pathname) {
-    //         case ROUTERS.CATALOG:
-    //             dispatchOpenedStudio();
-    //             break;
-    //     }
-    // }, [location, dispatchOpenedStudio]);
-
     return (
         <Suspense fallback={<FullpageThrobber />}>
             <Switch>
