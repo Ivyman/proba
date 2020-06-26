@@ -13,6 +13,8 @@ const ContactScreen = lazy(() => import("@src/screens/Contact"));
 const CatalogScreen = lazy(() => import("@src/screens/Catalog"));
 const TermsScreen = lazy(() => import("@src/screens/Terms"));
 const PolicyScreen = lazy(() => import("@src/screens/Policy"));
+const SignInScreen = lazy(() => import("@src/screens/SignIn"));
+const SignUpScreen = lazy(() => import("@src/screens/SignUp"));
 
 export const ScreensRouter: React.FC = () => {
     return (
@@ -22,6 +24,8 @@ export const ScreensRouter: React.FC = () => {
                 <Route path={ROUTERS.CONTACT} component={ContactScreen} exact />
                 <Route path={ROUTERS.TERMS} component={TermsScreen} exact />
                 <Route path={ROUTERS.POLICY} component={PolicyScreen} exact />
+                <Route path={ROUTERS.SIGNUP} component={SignUpScreen} />
+                <Route path={ROUTERS.SIGNIN} component={SignInScreen} />
                 <Route path={ROUTERS.CATALOG} component={CatalogScreen} />
                 <Redirect from="/*" to={ROUTERS.CATALOG} />
             </Switch>

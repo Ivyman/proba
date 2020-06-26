@@ -9,7 +9,10 @@ import { Menu as MenuIcon } from "@material-ui/icons";
 import Logo from "@src/components/common/Logo";
 import Navbar from "./Navbar";
 
-const navbarLinks: IPath[] = [{ path: ROUTERS.CATALOG, label: "Katalog" }];
+const navbarLinks: IPath[] = [
+    { path: ROUTERS.CATALOG, label: "Katalog" },
+    { path: ROUTERS.SIGNIN, label: "Załoguj się" },
+];
 
 interface IProps {
     onSwitchSidebar: () => void;

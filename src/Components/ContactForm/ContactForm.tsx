@@ -15,6 +15,7 @@ interface IProps {
 
 export const ContactForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
     const classes = useStyles();
+
     const { register, handleSubmit, errors } = useForm<IContactFormData>({
         validationSchema: contactValidationScheme,
     });

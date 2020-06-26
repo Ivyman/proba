@@ -10,6 +10,8 @@ export const API = {
         ABOUT: "/about",
         TERMS: "/terms",
         POLICY: "/policy",
+        SIGNIN: "/signin",
+        SIGNUP: "/signup",
     },
 };
 
