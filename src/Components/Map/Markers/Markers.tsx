@@ -4,7 +4,7 @@ import useStyles from "./styles";
 
 import { Marker as GlMarker, Popup } from "react-map-gl";
 import { Typography } from "@material-ui/core";
-import { ReactComponent as DrumIcon } from "@src/assets/drum.svg";
+import DrumIcon from "@src/assets/drum.svg";
 
 interface IProps {
     dataList: IStudio[];
@@ -62,7 +62,11 @@ export const Markers: React.FC<IProps> = memo(
                                         : classes.markerDefault
                                 }`}
                             >
-                                <DrumIcon className={classes.markerIcon} />
+                                <img
+                                    src={DrumIcon}
+                                    className={classes.markerIcon}
+                                    alt="Drum icon"
+                                />
                             </div>
                         </GlMarker>
 

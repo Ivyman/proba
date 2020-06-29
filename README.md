@@ -3,7 +3,7 @@
 ## Run application
 
 ```javascript
-  $ yarn mockapi // run mock api local server
+  $ yarn mock-server // run mock api local server
   $ yarn start
 ```
 

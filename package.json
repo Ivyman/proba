@@ -34,7 +34,7 @@
         "build": "react-app-rewired build",
         "test": "react-app-rewired test -- --coverage",
         "eject": "react-scripts eject",
-        "mockapi": "nodemon mockApi --exec babel-node --"
+        "mock-server": "nodemon mockApi --exec babel-node --"
     },
     "eslintConfig": {
         "extends": "react-app"
