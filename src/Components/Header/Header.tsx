@@ -23,7 +23,7 @@ export const Header: React.FC<IProps> = memo(({ onSwitchSidebar }) => {
 
     return (
         <AppBar position="static" className={classes.root}>
-            <Container>
+            <Container maxWidth={false}>
                 <Toolbar className={classes.toolbar}>
                     <Link className={classes.logo} to="/">
                         <Logo />

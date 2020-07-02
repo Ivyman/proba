@@ -42,20 +42,27 @@ const CatalogScreen: React.FC = () => {
 
     return (
         <>
-            <Box component={Container} py={2}>
-                <Loader apiStatus={filtersApiStatus}>
-                    <Filters
-                        onCityChange={handleCityChange}
-                        onFieldsChange={handleFieldsChange}
-                        fields={filterFields}
-                    />
-                </Loader>
-            </Box>
+            <Container maxWidth={false}>
+                <Box py={2}>
+                    <Loader apiStatus={filtersApiStatus}>
+                        <Filters
+                            onCityChange={handleCityChange}
+                            onFieldsChange={handleFieldsChange}
+                            fields={filterFields}
+                        />
+                    </Loader>
+                </Box>
+            </Container>
 
             <Divider />
 
-            <Box component={Container} py={2} display="flex" flexGrow={1}>
-                <Grid container spacing={2}>
+            <Box py={2} display="flex" flexGrow={1}>
+                <Container
+                    component={Grid}
+                    container
+                    spacing={2}
+                    maxWidth={false}
+                >
                     <CatalogWrapper>
                         <Loader apiStatus={studiosApiStatus}>
                             <CatalogRouter />
@@ -66,7 +73,7 @@ const CatalogScreen: React.FC = () => {
                             <MapContainer />
                         </Loader>
                     </Grid>
-                </Grid>
+                </Container>
             </Box>
         </>
     );

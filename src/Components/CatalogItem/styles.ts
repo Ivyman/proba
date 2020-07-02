@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 theme.palette.common.white
             }`,
             "&:hover": hoveredItem(theme),
+            "&:last-of-type": {
+                marginBottom: 0,
+            },
         },
         hoveredItem: {
             ...hoveredItem(theme),
