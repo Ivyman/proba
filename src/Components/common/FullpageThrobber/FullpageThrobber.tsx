@@ -9,6 +9,7 @@ export const FullpageThrobber: React.FC = memo(() => {
             alignItems="center"
             flexGrow={1}
             justifyContent="center"
+            height="100%"
         >
             <CircularProgress size={30} />
         </Box>

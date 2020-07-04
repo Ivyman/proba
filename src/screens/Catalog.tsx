@@ -56,24 +56,17 @@ const CatalogScreen: React.FC = () => {
 
             <Divider />
 
-            <Box py={2} display="flex" flexGrow={1}>
-                <Container
-                    component={Grid}
-                    container
-                    spacing={2}
-                    maxWidth={false}
-                >
-                    <CatalogWrapper>
-                        <Loader apiStatus={studiosApiStatus}>
-                            <CatalogRouter />
-                        </Loader>
-                    </CatalogWrapper>
-                    <Grid item sm={7}>
-                        <Loader apiStatus={studiosApiStatus}>
-                            <MapContainer />
-                        </Loader>
-                    </Grid>
-                </Container>
+            <Box display="flex" flexGrow={1}>
+                <Box width={2 / 5} position="relative" overflow="auto">
+                    <Loader apiStatus={studiosApiStatus}>
+                        <CatalogRouter />
+                    </Loader>
+                </Box>
+                <Box width={3 / 5}>
+                    <Loader apiStatus={studiosApiStatus}>
+                        <MapContainer />
+                    </Loader>
+                </Box>
             </Box>
         </>
     );

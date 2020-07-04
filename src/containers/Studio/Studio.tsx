@@ -7,7 +7,7 @@ import { getOpenedStudio } from "@src/store/studios/selectors";
 import { setOpenedStudio } from "@src/store/studios/actions";
 import * as ROUTERS from "@src/config/router";
 
-import { Card } from "@material-ui/core";
+import { Card, Box } from "@material-ui/core";
 import StudioBox from "@src/components/StudioBox";
 
 export const Studio: React.FC = () => {
@@ -25,8 +25,13 @@ export const Studio: React.FC = () => {
     };
 
     return (
-        <Card>
-            <StudioBox openedStudio={openedStudio} onGoBack={handleGoBack} />
-        </Card>
+        <Box py={1.5} pr={1.5} pl={3}>
+            <Card>
+                <StudioBox
+                    openedStudio={openedStudio}
+                    onGoBack={handleGoBack}
+                />
+            </Card>
+        </Box>
     );
 };
