@@ -16,7 +16,7 @@ export const SignUpScreen: React.FC = () => (
             <SignUpForm onFormSubmit={() => {}} />
 
             <Typography component="p" variant="body1" color="textSecondary">
-                {"Masz konta? "}
+                {"Masz konto? "}
                 <Link href={ROUTES.SIGNIN}>Załoguj się</Link>
             </Typography>
         </Box>

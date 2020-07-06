@@ -37,63 +37,68 @@ export const Markers: React.FC<IProps> = memo(
 
         return (
             <>
-                {dataList.map(({ id, name, address }: IStudio) => (
-                    <div
-                        key={id}
-                        onMouseOver={() => onMarkerOver(id)}
-                        onMouseLeave={() => onMarkerLeave()}
-                        onClick={() => onMarkerClick(id)}
-                    >
-                        <GlMarker
-                            offsetLeft={-20}
-                            offsetTop={-10}
-                            className={
-                                isStudioOpened(id) ? classes.indexed : ""
-                            }
-                            latitude={address.latitude}
-                            longitude={address.longitude}
+                {dataList.length &&
+                    dataList.map(({ id, name, address }: IStudio) => (
+                        <div
+                            key={id}
+                            onMouseOver={() => onMarkerOver(id)}
+                            onMouseLeave={() => onMarkerLeave()}
+                            onClick={() => onMarkerClick(id)}
                         >
-                            <div
-                                className={`${classes.marker} ${
-                                    isOpened
-                                        ? isStudioOpened(id)
-                                            ? classes.markerActive
-                                            : classes.markerNotActive
-                                        : classes.markerDefault
-                                }`}
-                            >
-                                <img
-                                    src={DrumIcon}
-                                    className={classes.markerIcon}
-                                    alt="Drum icon"
-                                />
-                            </div>
-                        </GlMarker>
-
-                        {isHovered(id) && (
-                            <Popup
-                                anchor="top"
-                                offsetTop={30}
-                                offsetLeft={-2}
-                                closeButton={false}
-                                className={classes.popup}
+                            <GlMarker
+                                offsetLeft={-20}
+                                offsetTop={-10}
+                                className={
+                                    isStudioOpened(id) ? classes.indexed : ""
+                                }
                                 latitude={address.latitude}
                                 longitude={address.longitude}
                             >
-                                <Typography
-                                    component="h6"
-                                    variant="subtitle2"
-                                    className={classes.popupTitle}
+                                <div
+                                    className={`${classes.marker} ${
+                                        isOpened
+                                            ? isStudioOpened(id)
+                                                ? classes.markerActive
+                                                : classes.markerNotActive
+                                            : classes.markerDefault
+                                    }`}
                                 >
-                                    {name}
-                                </Typography>
-                                <Typography component="p" variant="subtitle2">
-                                    {address.street} {address.buildingNumber}
-                                </Typography>
-                            </Popup>
-                        )}
-                    </div>
-                ))}
+                                    <img
+                                        src={DrumIcon}
+                                        className={classes.markerIcon}
+                                        alt="Drum icon"
+                                    />
+                                </div>
+                            </GlMarker>
+
+                            {isHovered(id) && (
+                                <Popup
+                                    anchor="top"
+                                    offsetTop={30}
+                                    offsetLeft={-2}
+                                    closeButton={false}
+                                    className={classes.popup}
+                                    latitude={address.latitude}
+                                    longitude={address.longitude}
+                                >
+                                    <Typography
+                                        component="h6"
+                                        variant="subtitle2"
+                                        className={classes.popupTitle}
+                                    >
+                                        {name}
+                                    </Typography>
+                                    <Typography
+                                        component="p"
+                                        variant="subtitle2"
+                                    >
+                                        {address.street}{" "}
+                                        {address.buildingNumber}
+                                    </Typography>
+                                </Popup>
+                            )}
+                        </div>
+                    ))}
             </>
         );
     },

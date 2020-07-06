@@ -64,7 +64,7 @@ export const SignUpForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
                     to={ROUTES.CATALOG}
                     startIcon={<ArrowBackIosIcon />}
                 >
-                    Powrót
+                    Powrót do katalogu
                 </Button>
 
                 <Button
@@ -73,7 +73,7 @@ export const SignUpForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
                     size="large"
                     type="submit"
                 >
-                    Załoguj
+                    Zarejestruj
                 </Button>
             </Box>
         </form>

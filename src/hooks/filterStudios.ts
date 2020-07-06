@@ -29,7 +29,7 @@ export const useFilterStudios = (
                 hasSubsring(`${street} ${buildingNumber}`, searchQuery);
             const filterByCityArea =
                 cityArea === area.key || cityArea === "all";
-            const filterByServices: boolean = services.every(item =>
+            const filterByServices: boolean = services.every((item) =>
                 servicesList.includes(item),
             );
 

@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import { IFilters, IFieldsData } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
+import { Close as CloseIcon } from "@material-ui/icons";
 import useStyles from "./styles";
 
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, IconButton } from "@material-ui/core";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
 import ChipsList from "@src/components/common/ChipsList";
 import SearchField from "./SearchField";
+
+const INIT_FILTERS: IFieldsData = {
+    searchQuery: "",
+    city: "waw",
+    cityArea: "all",
+    services: [],
+};
 
 interface IProps {
     fields: IFilters;
@@ -23,13 +31,8 @@ export const Filters: React.FC<IProps> = ({
 }) => {
     const classes = useStyles();
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
-    const [filterData, setFilterData] = useState<IFieldsData>({
-        // TODO: Fill this automaticaly
-        searchQuery: "",
-        city: "waw",
-        cityArea: "all",
-        services: [],
-    });
+    const [showClearButton, setShowClearButton] = useState<boolean>(false);
+    const [filterData, setFilterData] = useState<IFieldsData>(INIT_FILTERS);
 
     const [
         debouncedSearchQuery,
@@ -77,8 +80,13 @@ export const Filters: React.FC<IProps> = ({
                     [fieldName]: value,
                 }));
         }
-
+        setShowClearButton(true);
         setDataIsLoading(true);
+    };
+
+    const handleClear = () => {
+        setShowClearButton(false);
+        setFilterData(INIT_FILTERS);
     };
 
     useEffect(() => {
@@ -139,6 +147,17 @@ export const Filters: React.FC<IProps> = ({
                                 onChange={handleFieldChange}
                             />
                         </Box>
+                        {showClearButton && (
+                            <Box
+                                display="flex"
+                                alignItems="center"
+                                onClick={handleClear}
+                            >
+                                <IconButton size="small" color="secondary">
+                                    <CloseIcon />
+                                </IconButton>
+                            </Box>
+                        )}
                         <Box
                             display="flex"
                             flexGrow={1}
