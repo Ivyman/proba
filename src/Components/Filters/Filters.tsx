@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { IFilters, IFieldsData } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
 import { useDebounce } from "@src/hooks/debounce";
-import { Close as CloseIcon } from "@material-ui/icons";
+import { isEqual } from "lodash/fp";
 import useStyles from "./styles";
 
 import { Grid, Box, IconButton } from "@material-ui/core";
+import { Close as CloseIcon } from "@material-ui/icons";
 import Select from "@src/components/common/Select";
 import SortMenu from "@src/components/common/SortMenu";
 import ChipsList from "@src/components/common/ChipsList";
@@ -80,7 +81,6 @@ export const Filters: React.FC<IProps> = ({
                     [fieldName]: value,
                 }));
         }
-        setShowClearButton(true);
         setDataIsLoading(true);
     };
 
@@ -95,6 +95,7 @@ export const Filters: React.FC<IProps> = ({
             setDataIsLoading(false);
         }
     }, [onCityChange, debouncedCity]);
+
     useEffect(() => {
         if (debouncedSearchQuery || debouncedCityArea || debouncedServices) {
             onFieldsChange({
@@ -109,6 +110,10 @@ export const Filters: React.FC<IProps> = ({
         debouncedCityArea,
         onFieldsChange,
         debouncedServices,
+    ]);
+
+    useEffect(() => setShowClearButton(!isEqual(INIT_FILTERS, filterData)), [
+        filterData,
     ]);
 
     return (
