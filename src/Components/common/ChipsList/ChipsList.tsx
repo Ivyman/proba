@@ -8,32 +8,32 @@ interface IProps {
     options: IRecord[];
     value: string[];
     name: string;
-    allOptionKey: string;
+    defaultValue: string;
     onChange: (value: string[], name: string) => void;
 }
 export const ChipsList: React.FC<IProps> = memo(
-    ({ value, onChange, options, allOptionKey, name = "chipslist" }) => {
+    ({ value, onChange, options, defaultValue, name = "chipslist" }) => {
         const classes = useStyles();
 
         const isChecked = useCallback(
-            key => {
+            (key) => {
                 return !value.length
-                    ? key === allOptionKey
+                    ? key === defaultValue
                     : value.includes(key);
             },
-            [value, allOptionKey],
+            [value, defaultValue],
         );
         const handleClick = useCallback(
             (key: string) => {
                 const newValues: string[] = value.includes(key)
-                    ? [...value.filter(item => item !== key)]
-                    : key !== allOptionKey
+                    ? [...value.filter((item) => item !== key)]
+                    : key !== defaultValue
                     ? [...value, key]
                     : [];
 
                 onChange(newValues, name);
             },
-            [name, value, allOptionKey, onChange],
+            [name, value, defaultValue, onChange],
         );
 
         return (

@@ -2,6 +2,7 @@ import FiltersTypes from "./types";
 import { EApiStatuses } from "@src/types/api";
 import { IFilters } from "@src/types/filters";
 import { IAction } from "@src/types/store";
+import { convertToOptionsList } from "@src/utils/filters";
 
 export interface IFiltersAction extends IAction<FiltersTypes> {}
 
@@ -43,7 +44,10 @@ export default (
         case FiltersTypes.FILTERS_FETCH_SUCCESS:
             return {
                 ...state,
-                fields: payload,
+                fields: {
+                    ...payload,
+                    services: convertToOptionsList(payload.services),
+                },
                 apiStatus: EApiStatuses.SUCCESS,
             };
 

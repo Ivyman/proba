@@ -108,8 +108,8 @@ export const Filters: React.FC<IProps> = ({
     }, [
         debouncedSearchQuery,
         debouncedCityArea,
-        onFieldsChange,
         debouncedServices,
+        onFieldsChange,
     ]);
 
     useEffect(() => setShowClearButton(!isEqual(INIT_FILTERS, filterData)), [
@@ -178,9 +178,9 @@ export const Filters: React.FC<IProps> = ({
                 <Grid item>
                     <ChipsList
                         name="services"
-                        allOptionKey="all"
-                        value={filterData.services}
+                        defaultValue="0"
                         options={services}
+                        value={filterData.services}
                         onChange={handleFieldChange}
                     />
                 </Grid>

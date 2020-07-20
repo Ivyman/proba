@@ -26,10 +26,9 @@
             "site": "http://www.zyrtychmedia.pl"
         },
         "services": [
-            { "key": "proh", "name": "Sała prób na godziny" },
-            { "key": "prow", "name": "Sała prób na wyłączność" },
-            { "key": "nag", "name": "Nagrania" },
-            { "key": "sprz", "name": "Wynajem sprzętu" }
+            { "id": "1", "name": "Sała prób na godziny" },
+            { "id": "2", "name": "Sała prób na wyłączność" },
+            { "id": "3", "name": "Nagrania" }
         ]
     },
     {
@@ -59,8 +58,8 @@
             "site": "http://www.misticstudio.waw.pl"
         },
         "services": [
-            { "key": "prow", "name": "Sała prób na wyłączność" },
-            { "key": "sprz", "name": "Wynajem sprzętu" }
+            { "id": "1", "name": "Sała prób na godziny" },
+            { "id": "4", "name": "Wynajem sprzętu" }
         ]
     },
     {
@@ -90,8 +89,8 @@
             "site": "https://sala-prob.net"
         },
         "services": [
-            { "key": "prow", "name": "Sała prób na wyłączność" },
-            { "key": "proh", "name": "Sała prób" }
+            { "id": "2", "name": "Sała prób na wyłączność" },
+            { "id": "1", "name": "Sała prób na godziny" }
         ]
     },
     {
@@ -120,7 +119,7 @@
             "email": "redrum@redrumstudio.pl",
             "site": "http://www.redrumstudio.pl"
         },
-        "services": [{ "key": "prow", "name": "Sała prób" }]
+        "services": [{ "id": "1", "name": "Sała prób na godziny" }]
     },
     {
         "id": "5",
@@ -149,8 +148,8 @@
             "site": "http://www.redrumstudio.pl"
         },
         "services": [
-            { "key": "proh", "name": "Sała prób" },
-            { "key": "sprz", "name": "Wynajem sprzętu" }
+            { "id": "1", "name": "Sała prób na godziny" },
+            { "id": "4", "name": "Wynajem sprzętu" }
         ]
     }
 ]
