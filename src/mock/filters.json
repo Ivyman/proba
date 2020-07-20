@@ -37,7 +37,8 @@
     },
     "services": [
         { "key": "all", "name": "Wszystkie" },
-        { "key": "pro", "name": "Sała prób" },
+        { "key": "proh", "name": "Sała prób na godziny" },
+        { "key": "prow", "name": "Sała prób na wyłączność" },
         { "key": "nag", "name": "Nagrania" },
         { "key": "sprz", "name": "Wynajem sprzętu" }
     ]

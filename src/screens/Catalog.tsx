@@ -10,10 +10,9 @@ import { getFiltersApiStatus } from "@src/store/filters/selectors";
 import { CatalogRouter } from "@src/routing/CatalogRouter";
 import { useDispatch } from "@src/hooks/dispatch";
 
-import { Container, Box, Grid } from "@material-ui/core";
+import { Container, Box } from "@material-ui/core";
 import Filters from "@src/components/Filters";
 import Divider from "@src/components/common/Divider";
-import CatalogWrapper from "@src/components/CatalogWrapper";
 import MapContainer from "@src/containers/MapContainer";
 import Loader from "@src/components/common/Loader";
 

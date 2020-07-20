@@ -47,8 +47,8 @@ export const Catalog: React.FC = () => {
                     <CatalogItem
                         key={studio.id}
                         studioData={studio}
-                        onHoverStudio={dispatchHoveredStudio}
                         hoverdStudioId={hoverdStudioId}
+                        onHoverStudio={dispatchHoveredStudio}
                         onItemClick={handleItemClick}
                     />
                 ))

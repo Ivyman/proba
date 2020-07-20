@@ -40,24 +40,6 @@ export const SignUpForm: React.FC<IProps> = memo(({ onFormSubmit }) => {
                 )}
             </Box>
 
-            <Box mb={3}>
-                <TextField
-                    fullWidth
-                    className={classes.field}
-                    label="Hasło"
-                    variant="outlined"
-                    name="password"
-                    type="password"
-                    error={!!errors.password}
-                    inputRef={register}
-                />
-                {errors.password && (
-                    <Box color="error.main" component="p" m={0.5}>
-                        {errors.password.message}
-                    </Box>
-                )}
-            </Box>
-
             <Box display="flex" mb={4} justifyContent="space-between">
                 <Button
                     component={RouterLink}

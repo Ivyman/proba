@@ -180,8 +180,8 @@ export const Filters: React.FC<IProps> = ({
                         name="services"
                         allOptionKey="all"
                         value={filterData.services}
-                        onChange={handleFieldChange}
                         options={services}
+                        onChange={handleFieldChange}
                     />
                 </Grid>
             </Grid>
