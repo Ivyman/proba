@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { IStudio } from "@src/types/studio";
-import { IRecord } from "@src/types/main";
+import { IIdNameRecord } from "@src/types/api";
 import { IFieldsData } from "@src/types/filters";
 import { hasSubsring } from "@src/utils/common";
 
@@ -21,7 +21,7 @@ export const useFilterStudios = (
             } = studio;
 
             const servicesList: string[] = studioServices.map(
-                (item: IRecord) => item.key,
+                (item: IIdNameRecord) => item.id,
             );
 
             const filterBySearchQuery: boolean =

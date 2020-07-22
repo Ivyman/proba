@@ -1,4 +1,5 @@
 import { IRecord } from "./main";
+import { IIdNameRecord } from "./api";
 
 export enum ECoordinateName {
     latitude = "latitude",
@@ -39,5 +40,5 @@ export interface IStudio {
     logo: string;
     description: string;
     contact: IContact;
-    services: IRecord[];
+    services: IIdNameRecord[];
 }

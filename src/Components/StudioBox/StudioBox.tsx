@@ -1,6 +1,6 @@
 import React from "react";
 import { IStudio } from "@src/types/studio";
-import { IRecord } from "@src/types/main";
+import { IIdNameRecord } from "@src/types/api";
 import pattern from "@src/assets/pattern.jpg";
 import useStyles from "./styles";
 
@@ -93,9 +93,9 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                             <Grid item>
                                 <Typography variant="h6" component="h3">
                                     {openedStudio.services.map(
-                                        ({ key, name }: IRecord) => (
+                                        ({ id, name }: IIdNameRecord) => (
                                             <Chip
-                                                key={key}
+                                                key={id}
                                                 className={classes.chip}
                                                 label={name}
                                                 size="small"

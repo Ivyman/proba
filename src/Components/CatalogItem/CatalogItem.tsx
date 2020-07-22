@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState, memo, useCallback } from "react";
 import { IStudio } from "@src/types/studio";
-import { IRecord } from "@src/types/main";
+import { IIdNameRecord } from "@src/types/api";
 import useStyles from "./styles";
 
 import { Card, CardContent, CardMedia, Chip, Box } from "@material-ui/core";
@@ -80,9 +80,9 @@ export const CatalogItem: React.FC<IProps> = memo(
                         subtitle={`${cityAreaName}, ${street} ${buildingNumber}`}
                     >
                         <Box className={classes.chipList}>
-                            {services.map(({ key, name }: IRecord) => (
+                            {services.map(({ id, name }: IIdNameRecord) => (
                                 <Chip
-                                    key={key}
+                                    key={id}
                                     className={classes.chip}
                                     label={name}
                                     size="small"
