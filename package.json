@@ -37,7 +37,8 @@
         "build": "react-app-rewired build",
         "test": "react-app-rewired test -- --coverage",
         "eject": "react-scripts eject",
-        "mock-server": "nodemon mockApi --exec babel-node --"
+        "mock-server": "json-server --watch src/mock/db.json --routes src/mock/routes.json --port 3001",
+        "generate-mock-data": "node src/mock/generators/index.js"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -66,7 +67,9 @@
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "faker": "^4.1.0",
         "husky": "^4.2.5",
+        "json-server": "^0.16.1",
         "nodemon": "^2.0.4",
         "pretty-quick": "^2.0.1",
         "react-app-rewired": "^2.1.6",

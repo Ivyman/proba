@@ -1,0 +1,5 @@
+{
+    "/filters": "/filters",
+    "/studios/:id": "/studios/:id",
+    "/studios": "/studios"
+}
