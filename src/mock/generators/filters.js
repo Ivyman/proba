@@ -1,41 +1,19 @@
 const faker = require("faker");
+const { cities } = require("./data");
+
+const cityNames = Object.values(cities).map(({ id, name }) => ({ id, name }));
+const defaultItem = { id: 0, name: "Wszystkie" };
+const getAreas = (cityId) =>
+    cities
+        .find(({ id }) => id === cityId)
+        .areas.map((area, i) => ({ id: ++i, name: area }));
 
 const filters = {
-    cities: [
-        { name: "Warszawa", key: "waw" },
-        { name: "Gdańsk", key: "gda" },
-    ],
+    cities: [...cityNames],
     cityAreas: {
-        waw: [
-            { key: "all", name: "Wszystkie" },
-            { key: "bem", name: "Bemowo" },
-            { key: "bial", name: "Białołęka" },
-            { key: "bel", name: "Bielany" },
-            { key: "moc", name: "Mokotów" },
-            { key: "och", name: "Ochota" },
-            { key: "prpne", name: "Praga Południe" },
-            { key: "prpc", name: "Praga Północ" },
-            { key: "rem", name: "Rembertów" },
-            { key: "sr", name: "Śródmieście" },
-            { key: "tar", name: "Targówek" },
-            { key: "urs", name: "Ursus" },
-            { key: "ursy", name: "Ursynów" },
-            { key: "waw", name: "Wawer" },
-            { key: "wes", name: "Wesoła" },
-            { key: "wil", name: "Wilanów" },
-            { key: "wlo", name: "Włochy" },
-            { key: "wol", name: "Wola" },
-            { key: "zol", name: "Żoliborz" },
-        ],
-        gda: [
-            { key: "all", name: "Wszystkie" },
-            { key: "ani", name: "Aniołki" },
-            { key: "bre", name: "Brętowo" },
-            { key: "brz", name: "Brzeźno" },
-            { key: "che", name: "Chełm" },
-            { key: "bem", name: "Jasień" },
-            { key: "kok", name: "Kokoszki" },
-        ],
+        1: [defaultItem, ...getAreas(1)],
+        2: [defaultItem, ...getAreas(2)],
+        3: [defaultItem, ...getAreas(3)],
     },
     services: [
         { id: "0", name: "Wszystkie" },

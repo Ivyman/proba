@@ -27,10 +27,10 @@ export const Select: React.FC<IProps> = memo(
         options,
         value,
         name = "select",
-        onChange,
         labelWidth,
         noneOption,
         disabled,
+        onChange,
     }) => {
         const classes = useStyles();
 
