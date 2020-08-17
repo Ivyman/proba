@@ -1,4 +1,4 @@
-const cities = [
+module.exports = [
     {
         id: 1,
         name: "Warszawa",
@@ -102,5 +102,3 @@ const cities = [
         ],
     },
 ];
-
-module.exports = { cities };

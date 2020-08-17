@@ -1,5 +1,6 @@
 const faker = require("faker");
-const { cities } = require("./data");
+const cities = require("../data/cities.data");
+const services = require("../data/services.data");
 
 const cityNames = Object.values(cities).map(({ id, name }) => ({ id, name }));
 const defaultItem = { id: 0, name: "Wszystkie" };
@@ -15,13 +16,7 @@ const filters = {
         2: [defaultItem, ...getAreas(2)],
         3: [defaultItem, ...getAreas(3)],
     },
-    services: [
-        { id: "0", name: "Wszystkie" },
-        { id: "1", name: "Sała prób na godziny" },
-        { id: "2", name: "Sała prób na wyłączność" },
-        { id: "3", name: "Nagrania" },
-        { id: "4", name: "Wynajem sprzętu" },
-    ],
+    services: [{ id: "0", name: "Wszystkie" }, ...services],
 };
 
 module.exports = filters;
