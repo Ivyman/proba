@@ -1,6 +1,6 @@
 module.exports = [
     {
-        id: 1,
+        id: "1",
         name: "Warszawa",
         areas: [
             "Bemowo",
@@ -24,7 +24,7 @@ module.exports = [
         ],
     },
     {
-        id: 2,
+        id: "2",
         name: "Kraków",
         areas: [
             "Stare Miasto",
@@ -48,7 +48,7 @@ module.exports = [
         ],
     },
     {
-        id: 3,
+        id: "3",
         name: "Wrocław",
         areas: [
             "Gajowice",
