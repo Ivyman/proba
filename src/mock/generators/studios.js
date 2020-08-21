@@ -1,20 +1,28 @@
 const faker = require("faker");
-const { random, range } = require("lodash/fp");
+const { range, random } = require("lodash/fp");
+const {
+    getRandomCoordinates,
+    getRandomServices,
+    getRandomArea,
+} = require("../helpers/studios.helper");
+
 const cities = require("../data/cities.data");
 const services = require("../data/services.data");
 
 const generateStudios = (amount = 50) => {
     const itemsRange = range(1, amount);
-    const randomCity = "";
+    const randomCity = cities[random(0, cities.length - 1)];
 
     return itemsRange.map((item) => ({
         id: item.toString(),
         name: faker.lorem.words(2),
         address: {
-            latitude: 52.233343,
-            longitude: 21.000965,
-            city: {},
-            cityArea: {},
+            ...getRandomCoordinates(),
+            city: {
+                id: randomCity.id,
+                name: randomCity.name,
+            },
+            cityArea: getRandomArea(randomCity),
             zipcode: faker.address.zipCode(),
             street: faker.address.streetName(),
             buildingNumber: faker.random.number(),
@@ -31,7 +39,7 @@ const generateStudios = (amount = 50) => {
             email: faker.internet.email(),
             site: faker.internet.url(),
         },
-        services: [],
+        services: getRandomServices(services),
     }));
 };
 
