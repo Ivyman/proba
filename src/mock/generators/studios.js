@@ -1,8 +1,14 @@
 const faker = require("faker");
+const { random, range } = require("lodash/fp");
+const cities = require("../data/cities.data");
+const services = require("../data/services.data");
 
-const studios = [
-    {
-        id: "1",
+const generateStudios = (amount = 50) => {
+    const itemsRange = range(1, amount);
+    const randomCity = "";
+
+    return itemsRange.map((item) => ({
+        id: item.toString(),
         name: faker.lorem.words(2),
         address: {
             latitude: 52.233343,
@@ -26,7 +32,9 @@ const studios = [
             site: faker.internet.url(),
         },
         services: [],
-    },
-];
+    }));
+};
+
+const studios = generateStudios(50);
 
 module.exports = studios;

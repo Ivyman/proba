@@ -1,4 +1,3 @@
-const faker = require("faker");
 const cities = require("../data/cities.data");
 const services = require("../data/services.data");
 
