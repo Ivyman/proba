@@ -2,10 +2,13 @@ const { random, range } = require("lodash/fp");
 
 const getRandomIndex = (array) => random(0, array.length - 1);
 
-const getRandomCoordinates = (cityData) => ({
-    latitude: 52.233343,
-    longitude: 21.000965,
-});
+const getRandomCoordinates = (cityData) => {
+    const { latitudeRange, longitudeRange } = cityData;
+    const latitude = random(latitudeRange[0], latitudeRange[1]);
+    const longitude = random(longitudeRange[0], longitudeRange[1]);
+
+    return { latitude, longitude };
+};
 
 const getRandomArea = (cityData) => {
     const areas = cityData.areas;

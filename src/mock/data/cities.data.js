@@ -2,6 +2,8 @@ module.exports = [
     {
         id: "1",
         name: "Warszawa",
+        latitudeRange: [52.24672, 52.20129],
+        longitudeRange: [20.92826, 21.05529],
         areas: [
             "Bemowo",
             "Białołęka",
@@ -26,6 +28,8 @@ module.exports = [
     {
         id: "2",
         name: "Kraków",
+        latitudeRange: [50.09327, 50.02825],
+        longitudeRange: [19.87941, 20.037],
         areas: [
             "Stare Miasto",
             "Grzegórzki",
@@ -50,6 +54,8 @@ module.exports = [
     {
         id: "3",
         name: "Wrocław",
+        latitudeRange: [51.14597, 51.0785],
+        longitudeRange: [16.94606, 17.12013],
         areas: [
             "Gajowice",
             "Gądów-Popowice Południowe",

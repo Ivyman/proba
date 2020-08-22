@@ -17,7 +17,7 @@ const generateStudios = (amount = 50) => {
         id: item.toString(),
         name: faker.lorem.words(2),
         address: {
-            ...getRandomCoordinates(),
+            ...getRandomCoordinates(randomCity),
             city: {
                 id: randomCity.id,
                 name: randomCity.name,
