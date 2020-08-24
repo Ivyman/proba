@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "@src/hooks/dispatch";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studios/selectors";
 import { setOpenedStudio } from "@src/store/studios/actions";
@@ -12,6 +12,7 @@ import StudioBox from "@src/components/StudioBox";
 
 export const Studio: React.FC = () => {
     const history = useHistory();
+    const { studioId } = useParams<{ studioId: string }>();
 
     const openedStudio: IStudio | undefined = useSelector(getOpenedStudio);
 
@@ -19,10 +20,16 @@ export const Studio: React.FC = () => {
         setOpenedStudio,
     );
 
+    const goToCatalog = () => history.push(ROUTERS.CATALOG);
+
     const handleGoBack = () => {
-        history.push(ROUTERS.CATALOG);
+        goToCatalog();
         dispatchOpenedStudio();
     };
+
+    useEffect(() => {
+        if (!openedStudio) dispatchOpenedStudio(studioId);
+    }, [openedStudio]);
 
     return (
         <Box py={1.5} pr={1.5} pl={3}>
