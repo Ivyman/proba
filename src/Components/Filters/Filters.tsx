@@ -14,8 +14,8 @@ import SearchField from "./SearchField";
 
 const INIT_FILTERS: IFieldsData = {
     searchQuery: "",
-    city: "waw",
-    cityArea: "all",
+    city: "1",
+    cityArea: "0",
     services: [],
 };
 
@@ -64,7 +64,7 @@ export const Filters: React.FC<IProps> = ({
             case "city":
                 setFilterData({
                     city: value as string,
-                    cityArea: "all",
+                    cityArea: "0",
                     searchQuery: "",
                     services: [],
                 });
