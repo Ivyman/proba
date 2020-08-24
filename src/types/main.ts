@@ -1,8 +1,8 @@
 export interface IRecord {
-    key: string;
+    id: string;
     name: string;
 }
 
 export interface IRecordsList {
-    [key: string]: IRecord[];
+    [id: string]: IRecord[];
 }

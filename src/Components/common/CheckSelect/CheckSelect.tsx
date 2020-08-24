@@ -66,9 +66,9 @@ export const CheckSelect: React.FC<IProps> = memo(
                             <em>{noneOption}</em>
                         </MenuItem>
                     )}
-                    {options.map(({ name, key }: IRecord) => (
-                        <MenuItem key={key} value={key}>
-                            <Checkbox checked={value === key} />
+                    {options.map(({ name, id }: IRecord) => (
+                        <MenuItem key={id} value={id}>
+                            <Checkbox checked={value === id} />
                             <ListItemText primary={name} />
                         </MenuItem>
                     ))}

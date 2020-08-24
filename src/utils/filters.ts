@@ -4,10 +4,10 @@ export const createCityFields = (obj: any) =>
     obj.reduce(
         (acc: any, next: any) => ({
             ...acc,
-            [next.key]: false,
+            [next.id]: false,
         }),
-        {} as { [key: string]: boolean },
+        {} as { [id: string]: boolean },
     );
 
 export const convertToOptionsList = (list: IIdNameRecord[]) =>
-    list.map(({ id, name }) => ({ key: id, name }));
+    list.map(({ id, name }) => ({ id, name }));

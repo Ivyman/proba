@@ -12,23 +12,21 @@ interface IProps {
     onChange: (value: string[], name: string) => void;
 }
 export const ChipsList: React.FC<IProps> = memo(
-    ({ value, onChange, options, defaultValue, name = "chipslist" }) => {
+    ({ value, onChange, defaultValue, options = [], name = "chipslist" }) => {
         const classes = useStyles();
 
         const isChecked = useCallback(
-            (key) => {
-                return !value.length
-                    ? key === defaultValue
-                    : value.includes(key);
+            (id) => {
+                return !value.length ? id === defaultValue : value.includes(id);
             },
             [value, defaultValue],
         );
         const handleClick = useCallback(
-            (key: string) => {
-                const newValues: string[] = value.includes(key)
-                    ? [...value.filter((item) => item !== key)]
-                    : key !== defaultValue
-                    ? [...value, key]
+            (id: string) => {
+                const newValues: string[] = value.includes(id)
+                    ? [...value.filter((item) => item !== id)]
+                    : id !== defaultValue
+                    ? [...value, id]
                     : [];
 
                 onChange(newValues, name);
@@ -38,14 +36,14 @@ export const ChipsList: React.FC<IProps> = memo(
 
         return (
             <Box className={classes.root}>
-                {options.map(({ key, name }) => (
+                {options.map(({ id, name }) => (
                     <Chip
-                        key={key}
-                        variant={isChecked(key) ? "default" : "outlined"}
-                        onClick={() => handleClick(key)}
+                        key={id}
+                        variant={isChecked(id) ? "default" : "outlined"}
+                        onClick={() => handleClick(id)}
                         label={name}
                         className={classes.chip}
-                        color={isChecked(key) ? "primary" : "default"}
+                        color={isChecked(id) ? "primary" : "default"}
                     />
                 ))}
             </Box>

@@ -24,12 +24,12 @@ interface IProps {
 export const Select: React.FC<IProps> = memo(
     ({
         label,
-        options,
         value,
-        name = "select",
         labelWidth,
         noneOption,
         disabled,
+        options = [],
+        name = "select",
         onChange,
     }) => {
         const classes = useStyles();
@@ -61,8 +61,8 @@ export const Select: React.FC<IProps> = memo(
                             <em>{noneOption}</em>
                         </MenuItem>
                     )}
-                    {options.map(({ name, key }: IRecord) => (
-                        <MenuItem key={key} value={key}>
+                    {options.map(({ name, id }: IRecord) => (
+                        <MenuItem key={id} value={id}>
                             {name}
                         </MenuItem>
                     ))}
