@@ -11,18 +11,18 @@ const services = require("../data/services.data");
 
 const generateStudios = (amount = 50) => {
     const itemsRange = range(1, amount);
-    const randomCity = cities[random(0, cities.length - 1)];
+    const randomCity = () => cities[random(0, cities.length - 1)];
 
     return itemsRange.map((item) => ({
         id: item.toString(),
         name: faker.lorem.words(2),
         address: {
-            ...getRandomCoordinates(randomCity),
+            ...getRandomCoordinates(randomCity()),
             city: {
-                id: randomCity.id,
-                name: randomCity.name,
+                id: randomCity().id,
+                name: randomCity().name,
             },
-            cityArea: getRandomArea(randomCity),
+            cityArea: getRandomArea(randomCity()),
             zipcode: faker.address.zipCode(),
             street: faker.address.streetName(),
             buildingNumber: faker.random.number(),
