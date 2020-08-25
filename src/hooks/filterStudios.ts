@@ -27,10 +27,12 @@ export const useFilterStudios = (
             const filterBySearchQuery: boolean =
                 hasSubsring(name, searchQuery) ||
                 hasSubsring(`${street} ${buildingNumber}`, searchQuery);
+
             const filterByCityArea = cityArea === area.id || cityArea === "0";
-            const filterByServices: boolean = services.every((item) =>
-                servicesList.includes(item),
-            );
+
+            const filterByServices: boolean =
+                services.some((item) => servicesList.includes(item)) ||
+                !services.length;
 
             return filterBySearchQuery && filterByCityArea && filterByServices;
         });
