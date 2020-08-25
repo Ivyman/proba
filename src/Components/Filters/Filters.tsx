@@ -175,7 +175,7 @@ export const Filters: React.FC<IProps> = ({
                 </Grid>
             </Grid>
             <Grid container spacing={2}>
-                <Grid item>
+                <Grid item xs={10}>
                     <ChipsList
                         name="services"
                         defaultValue="0"
@@ -183,6 +183,17 @@ export const Filters: React.FC<IProps> = ({
                         value={filterData.services}
                         onChange={handleFieldChange}
                     />
+                </Grid>
+                <Grid item xs={2}>
+                    <Box
+                        height="100%"
+                        display="flex"
+                        flexGrow={1}
+                        alignItems="center"
+                        justifyContent="flex-end"
+                    >
+                        znaleziono:&nbsp;<h3>12</h3>
+                    </Box>
                 </Grid>
             </Grid>
         </>
