@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useDispatch } from "@src/hooks/dispatch";
 import { getSidebarStatus } from "@src/store/app/selectors";
 import { switchSidebar } from "@src/store/app/actions";
 import { fetchFilters } from "@src/store/filters/actions";
 import { ScreensRouter } from "@src/routing/ScreensRouter";
+import useDispatch from "@src/hooks/useDispatch";
 
 import { Box } from "@material-ui/core";
 import Sidebar from "@src/components/Sidebar";

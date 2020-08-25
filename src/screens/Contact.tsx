@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "@src/hooks/dispatch";
 import { EApiStatuses } from "@src/types/api";
 import { IContactFormData } from "@src/types/forms";
 import { sendMessage, setIdleStatus } from "@src/store/message/actions";
 import { getMessageApiStatus } from "@src/store/message/selectors";
 import { BRAND } from "@src/config/constants";
+import useDispatch from "@src/hooks/useDispatch";
 
 import { Container, Typography, Box, Link } from "@material-ui/core";
 import ContactForm from "@src/components/ContactForm";

@@ -1,13 +1,13 @@
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "@src/hooks/dispatch";
-import { useFilterStudios } from "@src/hooks/filterStudios";
 import { IFieldsData } from "@src/types/filters";
 import { IStudio } from "@src/types/studio";
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
 import { getStudios, getHoveredStudioId } from "@src/store/studios/selectors";
 import { getFilterFields } from "@src/store/filters/selectors";
+import useFilters from "@src/hooks/useFilters";
+import useDispatch from "@src/hooks/useDispatch";
 import * as ROUTERS from "@src/config/router";
 
 import CatalogItem from "@src/components/CatalogItem";
@@ -30,7 +30,7 @@ export const Catalog: React.FC = () => {
         setOpenedStudio,
     );
 
-    const filteredStudios = useFilterStudios(studios, filterFields);
+    const filteredStudios = useFilters(studios, filterFields);
 
     const handleItemClick = useCallback(
         (studioId: string) => {

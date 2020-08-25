@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { isEqual } from "lodash/fp";
 import { IFilters, IFieldsData } from "@src/types/filters";
 import { STUDIOS } from "@src/config/constants";
-import { useDebounce } from "@src/hooks/debounce";
-import { isEqual } from "lodash/fp";
+import useDebounce from "@src/hooks/useDebounce";
 import useStyles from "./styles";
 
 import { Grid, Box, IconButton } from "@material-ui/core";

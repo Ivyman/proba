@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "@src/hooks/dispatch";
 import { useHistory, useParams } from "react-router-dom";
 import { IStudio } from "@src/types/studio";
 import { getOpenedStudio } from "@src/store/studios/selectors";
 import { setOpenedStudio } from "@src/store/studios/actions";
+import useDispatch from "@src/hooks/useDispatch";
 import * as ROUTERS from "@src/config/router";
 
 import { Card, Box } from "@material-ui/core";
@@ -29,7 +29,7 @@ export const Studio: React.FC = () => {
 
     useEffect(() => {
         if (!openedStudio) dispatchOpenedStudio(studioId);
-    }, [openedStudio]);
+    }, [openedStudio, dispatchOpenedStudio, studioId]);
 
     return (
         <Box py={1.5} pr={1.5} pl={3}>

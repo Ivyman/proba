@@ -4,10 +4,7 @@ import { IIdNameRecord } from "@src/types/api";
 import { IFieldsData } from "@src/types/filters";
 import { hasSubsring } from "@src/utils/common";
 
-export const useFilterStudios = (
-    studios: IStudio[],
-    fields: Omit<IFieldsData, "city">,
-) => {
+const useFilters = (studios: IStudio[], fields: Omit<IFieldsData, "city">) => {
     const [filteredStudios, setFilteredStudios] = useState<IStudio[]>(studios);
 
     useEffect(() => {
@@ -42,3 +39,5 @@ export const useFilterStudios = (
 
     return filteredStudios;
 };
+
+export default useFilters;

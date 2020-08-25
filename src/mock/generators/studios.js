@@ -28,7 +28,7 @@ const generateStudios = (amount = 50) => {
             buildingNumber: faker.random.number(),
             room: faker.random.number(),
         },
-        logo: faker.image.business(),
+        logo: `${faker.image.business()}?random=${item}`,
         description: faker.lorem.paragraph(),
         contact: {
             phones: [

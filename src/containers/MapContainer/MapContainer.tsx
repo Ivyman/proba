@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IStudio, ECoordinateName } from "@src/types/studio";
 import { IFieldsData } from "@src/types/filters";
-import { useFilterStudios } from "@src/hooks/filterStudios";
-import { useDispatch } from "@src/hooks/dispatch";
 import { IViewport } from "@src/types/map";
 import { countCoordinateAverage, getCoordinates } from "@src/utils/map";
 import {
@@ -15,6 +13,8 @@ import {
 import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
 import { getFilterFields } from "@src/store/filters/selectors";
 import { ICoordinate } from "@src/types/studio";
+import useFilters from "@src/hooks/useFilters";
+import useDispatch from "@src/hooks/useDispatch";
 import * as ROUTERS from "@src/config/router";
 
 import Map from "@src/components/Map";
@@ -29,7 +29,7 @@ export const MapContainer: React.FC = () => {
         getFilterFields,
     );
 
-    const filteredStudios = useFilterStudios(studios, filterFields);
+    const filteredStudios = useFilters(studios, filterFields);
 
     const dispatchHoveredStudio = useDispatch<
         typeof setHoveredStudio,

@@ -8,7 +8,7 @@ import { getFilters } from "@src/store/filters/selectors";
 import { getStudiosApiStatus } from "@src/store/studios/selectors";
 import { getFiltersApiStatus } from "@src/store/filters/selectors";
 import { CatalogRouter } from "@src/routing/CatalogRouter";
-import { useDispatch } from "@src/hooks/dispatch";
+import useDispatch from "@src/hooks/useDispatch";
 
 import { Container, Box } from "@material-ui/core";
 import Filters from "@src/components/Filters";
