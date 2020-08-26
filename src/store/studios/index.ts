@@ -10,6 +10,7 @@ export interface IStudioState {
     studios: IStudio[];
     hoveredStudioId: string;
     openedStudioId: string;
+    filteredAmount: number;
 }
 
 export const initialState: IStudioState = {
@@ -17,6 +18,7 @@ export const initialState: IStudioState = {
     studios: [],
     hoveredStudioId: "",
     openedStudioId: "",
+    filteredAmount: 0,
 };
 
 export default (
@@ -48,6 +50,12 @@ export default (
             return {
                 ...state,
                 hoveredStudioId: payload || "",
+            };
+
+        case StudioTypes.STUDIOS_SET_FILTERED_AMOUNT:
+            return {
+                ...state,
+                filteredAmount: payload,
             };
 
         case StudioTypes.STUDIOS_SET_OPENED:

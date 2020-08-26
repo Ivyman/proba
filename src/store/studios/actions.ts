@@ -43,3 +43,8 @@ export const setOpenedStudio = (id?: string): IStudioAction => ({
     type: StudioTypes.STUDIOS_SET_OPENED,
     payload: id,
 });
+
+export const setFilteredStudiosAmount = (amount: number): IStudioAction => ({
+    type: StudioTypes.STUDIOS_SET_FILTERED_AMOUNT,
+    payload: amount,
+});

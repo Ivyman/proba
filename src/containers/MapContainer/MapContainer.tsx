@@ -56,14 +56,14 @@ export const MapContainer: React.FC = () => {
         zoom: 10,
     });
 
-    const handeleViewportChange = (changedViewport: IViewport) =>
-        setViewport(changedViewport);
     const handleMarkerOver = (id: string) => dispatchHoveredStudio(id);
     const handleMarkerLeave = () => dispatchHoveredStudio();
     const handleMarkerClick = (studioId: string) => {
         dispatchOpenedStudio(studioId);
         history.push(`${ROUTERS.CATALOG}/${studioId}`);
     };
+    const handeleViewportChange = (changedViewport: IViewport) =>
+        setViewport(changedViewport);
 
     return (
         <Map

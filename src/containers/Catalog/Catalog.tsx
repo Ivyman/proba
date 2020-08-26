@@ -1,9 +1,13 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IFieldsData } from "@src/types/filters";
 import { IStudio } from "@src/types/studio";
-import { setHoveredStudio, setOpenedStudio } from "@src/store/studios/actions";
+import {
+    setHoveredStudio,
+    setOpenedStudio,
+    setFilteredStudiosAmount,
+} from "@src/store/studios/actions";
 import { getStudios, getHoveredStudioId } from "@src/store/studios/selectors";
 import { getFilterFields } from "@src/store/filters/selectors";
 import useFilters from "@src/hooks/useFilters";
@@ -25,10 +29,13 @@ export const Catalog: React.FC = () => {
     const dispatchHoveredStudio = useDispatch<typeof setHoveredStudio, string>(
         setHoveredStudio,
     );
-
     const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
         setOpenedStudio,
     );
+    const dispatchFilteredStudiosAmout = useDispatch<
+        typeof setFilteredStudiosAmount,
+        number
+    >(setFilteredStudiosAmount);
 
     const filteredStudios = useFilters(studios, filterFields);
 
@@ -39,6 +46,11 @@ export const Catalog: React.FC = () => {
         },
         [dispatchOpenedStudio, history],
     );
+
+    useEffect(() => {
+        if (filteredStudios)
+            dispatchFilteredStudiosAmout(filteredStudios.length);
+    }, [dispatchFilteredStudiosAmout, filteredStudios]);
 
     return (
         <CatalogItemsList>
