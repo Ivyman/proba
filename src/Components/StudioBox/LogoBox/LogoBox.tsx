@@ -16,6 +16,7 @@ export const LogoBox: React.FC<IProps> = memo(
             name,
             address: {
                 cityArea: { name: cityAreaName },
+                city: { name: cityName },
                 street,
                 buildingNumber,
             },
@@ -36,7 +37,7 @@ export const LogoBox: React.FC<IProps> = memo(
                     <Title
                         large
                         title={name}
-                        subtitle={`${cityAreaName}, ${street} ${buildingNumber}`}
+                        subtitle={`${cityName}, ${cityAreaName}, ${street} ${buildingNumber}`}
                     />
                 </Box>
             </Box>

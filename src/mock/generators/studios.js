@@ -13,34 +13,39 @@ const generateStudios = (amount = 50) => {
     const itemsRange = range(1, amount);
     const randomCity = () => cities[random(0, cities.length - 1)];
 
-    return itemsRange.map((item) => ({
-        id: item.toString(),
-        name: faker.lorem.words(2),
-        address: {
-            ...getRandomCoordinates(randomCity()),
-            city: {
-                id: randomCity().id,
-                name: randomCity().name,
+    return itemsRange.map((item) => {
+        const randomCityData = randomCity();
+
+        return {
+            id: item.toString(),
+            cityId: randomCityData.id,
+            name: faker.lorem.words(2),
+            address: {
+                ...getRandomCoordinates(randomCityData),
+                city: {
+                    id: randomCityData.id,
+                    name: randomCityData.name,
+                },
+                cityArea: getRandomArea(randomCityData),
+                zipcode: faker.address.zipCode(),
+                street: faker.address.streetName(),
+                buildingNumber: faker.random.number(),
+                room: faker.random.number(),
             },
-            cityArea: getRandomArea(randomCity()),
-            zipcode: faker.address.zipCode(),
-            street: faker.address.streetName(),
-            buildingNumber: faker.random.number(),
-            room: faker.random.number(),
-        },
-        logo: `${faker.image.business()}?random=${item}`,
-        description: faker.lorem.paragraph(),
-        contact: {
-            phones: [
-                faker.phone.phoneNumber(),
-                faker.phone.phoneNumber(),
-                faker.phone.phoneNumber(),
-            ],
-            email: faker.internet.email(),
-            site: faker.internet.url(),
-        },
-        services: getRandomServices(services),
-    }));
+            logo: `${faker.image.business()}?random=${item}`,
+            description: faker.lorem.paragraph(),
+            contact: {
+                phones: [
+                    faker.phone.phoneNumber(),
+                    faker.phone.phoneNumber(),
+                    faker.phone.phoneNumber(),
+                ],
+                email: faker.internet.email(),
+                site: faker.internet.url(),
+            },
+            services: getRandomServices(services),
+        };
+    });
 };
 
 const studios = generateStudios(50);

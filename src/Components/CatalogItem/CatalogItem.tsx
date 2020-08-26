@@ -51,6 +51,7 @@ export const CatalogItem: React.FC<IProps> = memo(
                 street,
                 buildingNumber,
                 cityArea: { name: cityAreaName },
+                city: { name: cityName },
             },
             name,
             logo,
@@ -77,7 +78,7 @@ export const CatalogItem: React.FC<IProps> = memo(
                 <CardContent className={classes.cardContent}>
                     <Title
                         title={name}
-                        subtitle={`${cityAreaName}, ${street} ${buildingNumber}`}
+                        subtitle={`${cityName}, ${cityAreaName}, ${street} ${buildingNumber}`}
                     >
                         <Box className={classes.chipList}>
                             {services.map(({ id, name }: IIdNameRecord) => (

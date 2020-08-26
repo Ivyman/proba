@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
             ...hoveredItem(theme),
         },
         cardMedia: {
-            width: "120px",
+            flexBasis: "120px",
+            flexShrink: 0,
             marginRight: theme.spacing(2),
             backgroundSize: "contain",
         },
@@ -41,9 +42,13 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         chipList: {
             display: "flex",
+            flexWrap: "wrap",
+            marginBottom: theme.spacing(1),
+            marginTop: theme.spacing(1),
         },
         chip: {
-            margin: theme.spacing(0.7, 0.7, 1.2, 0),
+            marginRight: theme.spacing(1),
+            marginBottom: theme.spacing(1),
             cursor: "pointer",
         },
     }),

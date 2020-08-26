@@ -65,6 +65,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                         <Fab size="small" className={classes.socialIcon}>
                             <InstagramIcon fontSize="small" />
                         </Fab>
+
                         {openedStudio.contact.site && (
                             <Fab
                                 size="small"
@@ -179,9 +180,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                     </CardContent>
                 </>
             ) : (
-                <CardContent>
-                    <span>No any studio data :(</span>
-                </CardContent>
+                <CardContent>No any studio data</CardContent>
             )}
         </Box>
     );

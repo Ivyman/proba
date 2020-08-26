@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isEqual } from "lodash/fp";
+import { isEqual, omit } from "lodash/fp";
 import { IFilters, IFieldsData } from "@src/types/filters";
 import { useSelector } from "react-redux";
 import { STUDIOS } from "@src/config/constants";
@@ -90,7 +90,7 @@ export const Filters: React.FC<IProps> = ({
 
     const handleClear = () => {
         setShowClearButton(false);
-        setFilterData(INIT_FILTERS);
+        setFilterData({ ...INIT_FILTERS, city: filterData.city });
     };
 
     useEffect(() => {
@@ -116,9 +116,15 @@ export const Filters: React.FC<IProps> = ({
         onFieldsChange,
     ]);
 
-    useEffect(() => setShowClearButton(!isEqual(INIT_FILTERS, filterData)), [
-        filterData,
-    ]);
+    useEffect(() => {
+        const initFilters: Omit<IFieldsData, "city"> = omit(
+            "city",
+            INIT_FILTERS,
+        );
+        const filters: Omit<IFieldsData, "city"> = omit("city", filterData);
+
+        setShowClearButton(!isEqual(initFilters, filters));
+    }, [filterData]);
 
     return (
         <>
@@ -156,6 +162,7 @@ export const Filters: React.FC<IProps> = ({
                                 onChange={handleFieldChange}
                             />
                         </Box>
+
                         {showClearButton && (
                             <Box
                                 display="flex"
@@ -196,7 +203,7 @@ export const Filters: React.FC<IProps> = ({
                         alignItems="center"
                         justifyContent="flex-end"
                     >
-                        znaleziono salek:&nbsp;<h3>{amount}</h3>
+                        <h3>{amount}</h3>&nbsp;wyników znaleziono
                     </Box>
                 </Grid>
             </Grid>

@@ -53,7 +53,7 @@ export const MapContainer: React.FC = () => {
             coordinates,
             ECoordinateName.longitude,
         ),
-        zoom: 10,
+        zoom: 10.5,
     });
 
     const handleMarkerOver = (id: string) => dispatchHoveredStudio(id);

@@ -1,5 +1,6 @@
 {
     "/filters": "/filters",
     "/studios/:id": "/studios/:id",
-    "/studios": "/studios"
+    "/studios": "/studios",
+    "/studios\\?city=:id": "/studios?cityId=:id"
 }
