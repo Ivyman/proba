@@ -16,6 +16,9 @@ export const getHoveredStudioId = (state: RootState): string =>
 export const getOpenedStudioId = (state: RootState): string =>
     state.studios.openedStudioId;
 
+export const getFilteredStudiosAmount = (state: RootState): number =>
+    state.studios.filteredAmount;
+
 export const getOpenedStudio = createSelector(
     getOpenedStudioId,
     getStudios,

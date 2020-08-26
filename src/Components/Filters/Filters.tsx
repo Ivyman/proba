@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { isEqual } from "lodash/fp";
 import { IFilters, IFieldsData } from "@src/types/filters";
+import { useSelector } from "react-redux";
 import { STUDIOS } from "@src/config/constants";
+import { getFilteredStudiosAmount } from "@src/store/studios/selectors";
 import useDebounce from "@src/hooks/useDebounce";
 import useStyles from "./styles";
 
@@ -34,6 +36,8 @@ export const Filters: React.FC<IProps> = ({
     const [dataIsLoading, setDataIsLoading] = useState<boolean>(false);
     const [showClearButton, setShowClearButton] = useState<boolean>(false);
     const [filterData, setFilterData] = useState<IFieldsData>(INIT_FILTERS);
+
+    const amount: number = useSelector(getFilteredStudiosAmount);
 
     const [
         debouncedSearchQuery,
@@ -192,7 +196,7 @@ export const Filters: React.FC<IProps> = ({
                         alignItems="center"
                         justifyContent="flex-end"
                     >
-                        znaleziono:&nbsp;<h3>12</h3>
+                        znaleziono salek:&nbsp;<h3>{amount}</h3>
                     </Box>
                 </Grid>
             </Grid>

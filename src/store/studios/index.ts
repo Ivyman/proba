@@ -55,7 +55,7 @@ export default (
         case StudioTypes.STUDIOS_SET_FILTERED_AMOUNT:
             return {
                 ...state,
-                filteredAmount: payload,
+                filteredAmount: payload || 0,
             };
 
         case StudioTypes.STUDIOS_SET_OPENED:
