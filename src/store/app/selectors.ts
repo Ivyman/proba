@@ -1,4 +1,4 @@
-import { RootState } from "@src/types/store";
+import { RootState } from "@typing/store";
 
 export const getSidebarStatus = (state: RootState): boolean =>
     state.app.showSidebar;

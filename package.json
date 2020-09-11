@@ -60,6 +60,19 @@
             "env"
         ]
     },
+    "jest": {
+        "moduleNameMapper": {
+            "@assets/(.*)$": "<rootDir>/src/assets/$1",
+            "@components/(.*)$": "<rootDir>/src/components/$1",
+            "@typing/(.*)$": "<rootDir>/src/typing/$1",
+            "@utils/(.*)$": "<rootDir>/src/utils/$1",
+            "@config/(.*)$": "<rootDir>/src/config/$1",
+            "@screens/(.*)$": "<rootDir>/src/screens/$1",
+            "@hooks/(.*)$": "<rootDir>/src/hooks/$1",
+            "@routing/(.*)$": "<rootDir>/src/routing/$1",
+            "@store/(.*)$": "<rootDir>/src/store/$1"
+        }
+    },
     "devDependencies": {
         "@types/lodash": "^4.14.157",
         "babel-cli": "^6.26.0",

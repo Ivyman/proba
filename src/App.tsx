@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getSidebarStatus } from "@src/store/app/selectors";
-import { switchSidebar } from "@src/store/app/actions";
-import { fetchFilters } from "@src/store/filters/actions";
-import { ScreensRouter } from "@src/routing/ScreensRouter";
-import useDispatch from "@src/hooks/useDispatch";
+import { getSidebarStatus } from "@store/app/selectors";
+import { switchSidebar } from "@store/app/actions";
+import { fetchFilters } from "@store/filters/actions";
+import { ScreensRouter } from "@routing/ScreensRouter";
+import useDispatch from "@hooks/useDispatch";
 
 import { Box } from "@material-ui/core";
-import Sidebar from "@src/components/Sidebar";
-import Header from "@src/components/Header";
+import Sidebar from "@components/dump/Sidebar";
+import Header from "@components/dump/Header";
 
 const App: React.FC = () => {
     const sidebarStatus: boolean = useSelector(getSidebarStatus);

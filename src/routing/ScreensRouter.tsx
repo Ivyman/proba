@@ -1,20 +1,16 @@
 import React, { Suspense, lazy } from "react";
-// import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-// import { Route, Switch, Redirect, useLocation } from "react-router-dom";
-// import { useDispatch } from "@src/hooks/dispatch";
-// import { setOpenedStudio } from "@src/store/studios/actions";
-import * as ROUTERS from "@src/config/router";
+import * as ROUTERS from "@config/router";
 
-import FullpageThrobber from "@src/components/common/FullpageThrobber";
+import FullpageThrobber from "@components/dump/common/FullpageThrobber";
 
-const AboutScreen = lazy(() => import("@src/screens/About"));
-const ContactScreen = lazy(() => import("@src/screens/Contact"));
-const CatalogScreen = lazy(() => import("@src/screens/Catalog"));
-const TermsScreen = lazy(() => import("@src/screens/Terms"));
-const PolicyScreen = lazy(() => import("@src/screens/Policy"));
-const SignInScreen = lazy(() => import("@src/screens/SignIn"));
-const SignUpScreen = lazy(() => import("@src/screens/SignUp"));
+const AboutScreen = lazy(() => import("@screens/About"));
+const ContactScreen = lazy(() => import("@screens/Contact"));
+const CatalogScreen = lazy(() => import("@screens/Catalog"));
+const TermsScreen = lazy(() => import("@screens/Terms"));
+const PolicyScreen = lazy(() => import("@screens/Policy"));
+const SignInScreen = lazy(() => import("@screens/SignIn"));
+const SignUpScreen = lazy(() => import("@screens/SignUp"));
 
 export const ScreensRouter: React.FC = () => {
     return (

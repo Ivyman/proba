@@ -1,6 +1,6 @@
-import { IFilters, IFieldsData } from "@src/types/filters";
-import { RootState } from "@src/types/store";
-import { EApiStatuses } from "@src/types/api";
+import { IFilters, IFieldsData } from "@typing/filters";
+import { RootState } from "@typing/store";
+import { EApiStatuses } from "@typing/api";
 
 export const getFilters = (state: RootState): IFilters => state.filters.fields;
 

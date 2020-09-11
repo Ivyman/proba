@@ -1,5 +1,5 @@
-import { EApiStatuses } from "@src/types/api";
-import { RootState } from "@src/types/store";
+import { EApiStatuses } from "@typing/api";
+import { RootState } from "@typing/store";
 
 export const getMessageApiStatus = (state: RootState): EApiStatuses =>
     state.message.apiStatus;

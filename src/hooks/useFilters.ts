@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { IStudio } from "@src/types/studio";
-import { IIdNameRecord } from "@src/types/api";
-import { IFieldsData } from "@src/types/filters";
-import { hasSubsring } from "@src/utils/common";
+import { IStudio } from "@typing//studio";
+import { IIdNameRecord } from "@typing//api";
+import { IFieldsData } from "@typing//filters";
+import { hasSubsring } from "@utils/common";
 
 const useFilters = (studios: IStudio[], fields: Omit<IFieldsData, "city">) => {
     const [filteredStudios, setFilteredStudios] = useState<IStudio[]>(studios);

@@ -1,7 +1,7 @@
 import StudioTypes from "./types";
 import { IStudioAction } from ".";
-import { RootState, ThunkDispatch } from "@src/types/store";
-import { IStudio } from "@src/types/studio";
+import { RootState, ThunkDispatch } from "@typing/store";
+import { IStudio } from "@typing/studio";
 import * as effects from "./effects";
 
 export const fetchStudios = (city: string) => async (

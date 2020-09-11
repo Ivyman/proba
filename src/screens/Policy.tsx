@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container, Box, Typography } from "@material-ui/core";
-import Loader from "@src/components/common/Loader";
+import Loader from "@components/dump/common/Loader";
 
 const TermsScreen: React.FC = () => (
     <Loader>

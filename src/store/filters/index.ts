@@ -1,8 +1,8 @@
 import FiltersTypes from "./types";
-import { EApiStatuses } from "@src/types/api";
-import { IFilters } from "@src/types/filters";
-import { IAction } from "@src/types/store";
-import { convertToOptionsList } from "@src/utils/filters";
+import { EApiStatuses } from "@typing/api";
+import { IFilters } from "@typing/filters";
+import { IAction } from "@typing/store";
+import { convertToOptionsList } from "@utils/filters";
 
 export interface IFiltersAction extends IAction<FiltersTypes> {}
 

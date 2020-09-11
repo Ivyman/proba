@@ -1,5 +1,5 @@
 import AppTypes from "./types";
-import { IAction } from "@src/types/store";
+import { IAction } from "@typing/store";
 
 export interface IAppAction extends IAction<AppTypes> {}
 

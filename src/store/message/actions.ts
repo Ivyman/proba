@@ -1,7 +1,7 @@
 import MessageTypes from "./types";
 import { IMessageAction } from ".";
-import { ThunkDispatch } from "@src/types/store";
-import { IContactFormData } from "@src/types/forms";
+import { ThunkDispatch } from "@typing/store";
+import { IContactFormData } from "@typing/forms";
 import * as effects from "./effects";
 
 export const sendMessage = (formData: IContactFormData) => async (

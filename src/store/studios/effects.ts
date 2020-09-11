@@ -1,8 +1,8 @@
-import apiEndpoint from "@src/utils/api";
-import { API } from "@src/config/constants";
-import { removeEmptyFields } from "@src/utils/common";
-import { IFiltersParams } from "@src/types/filters";
-import { IStudioResponse } from "@src/types/studio";
+import apiEndpoint from "@utils/api";
+import { API } from "@config/constants";
+import { removeEmptyFields } from "@utils/common";
+import { IFiltersParams } from "@typing/filters";
+import { IStudioResponse } from "@typing/studio";
 
 export const fetchStudios = async (
     city: string,

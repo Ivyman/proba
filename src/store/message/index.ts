@@ -1,6 +1,6 @@
 import MessageTypes from "./types";
-import { EApiStatuses } from "@src/types/api";
-import { IAction } from "@src/types/store";
+import { EApiStatuses } from "@typing/api";
+import { IAction } from "@typing/store";
 
 export interface IMessageAction extends IAction<MessageTypes> {}
 

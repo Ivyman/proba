@@ -1,7 +1,7 @@
 import StudioTypes from "./types";
-import { EApiStatuses } from "@src/types/api";
-import { IStudio } from "@src/types/studio";
-import { IAction } from "@src/types/store";
+import { EApiStatuses } from "@typing/api";
+import { IStudio } from "@typing/studio";
+import { IAction } from "@typing/store";
 
 export interface IStudioAction extends IAction<StudioTypes> {}
 

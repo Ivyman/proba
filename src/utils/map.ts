@@ -1,4 +1,4 @@
-import { ICoordinate, IStudio, ECoordinateName } from "@src/types/studio";
+import { ICoordinate, IStudio, ECoordinateName } from "@typing/studio";
 
 export const countCoordinateAverage = (
     coordinates: ICoordinate[],

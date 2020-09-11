@@ -1,6 +1,6 @@
-import apiEndpoint from "@src/utils/api";
-import { API } from "@src/config/constants";
-import { IContactFormData } from "@src/types/forms";
+import apiEndpoint from "@utils/api";
+import { API } from "@config/constants";
+import { IContactFormData } from "@typing/forms";
 
 export const sendMessage = async (formData: IContactFormData) => {
     const params = { ...formData };

@@ -1,6 +1,6 @@
-import { ThunkDispatch } from "@src/types/store";
+import { ThunkDispatch } from "@typing/store";
+import { IFilters, IFieldsData } from "@typing/filters";
 import { IFiltersAction } from ".";
-import { IFilters, IFieldsData } from "@src/types/filters";
 import FiltersTypes from "./types";
 import * as effects from "./effects";
 

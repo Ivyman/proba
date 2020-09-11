@@ -1,10 +1,10 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import * as ROUTES from "@src/config/router";
+import * as ROUTES from "@config/router";
 
 import { Container, Box, Typography, Button } from "@material-ui/core";
 import { MailOutline as MailOutlineIcon } from "@material-ui/icons";
-import Loader from "@src/components/common/Loader";
+import Loader from "@components/dump/common/Loader";
 
 const AboutScreen: React.FC = () => (
     <Loader>

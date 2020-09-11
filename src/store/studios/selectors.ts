@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
 
-import { IStudio } from "@src/types/studio";
-import { EApiStatuses } from "@src/types/api";
-import { RootState } from "@src/types/store";
+import { IStudio } from "@typing/studio";
+import { EApiStatuses } from "@typing/api";
+import { RootState } from "@typing/store";
 
 export const getStudios = (state: RootState): IStudio[] =>
     state.studios.studios;

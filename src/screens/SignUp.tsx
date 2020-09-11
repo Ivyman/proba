@@ -1,8 +1,8 @@
 import React from "react";
-import * as ROUTES from "@src/config/router";
+import * as ROUTES from "@config/router";
 
 import { Box, Typography, Container, Link } from "@material-ui/core";
-import SignUpForm from "@src/components/SignUpForm";
+import SignUpForm from "@components/dump/SignUpForm";
 
 export const SignUpScreen: React.FC = () => (
     <Container maxWidth="md">

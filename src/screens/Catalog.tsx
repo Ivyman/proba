@@ -1,20 +1,20 @@
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { IFilters, IFieldsData } from "@src/types/filters";
-import { EApiStatuses } from "@src/types/api";
-import { fetchStudios } from "@src/store/studios/actions";
-import { setFilterFields } from "@src/store/filters/actions";
-import { getFilters } from "@src/store/filters/selectors";
-import { getStudiosApiStatus } from "@src/store/studios/selectors";
-import { getFiltersApiStatus } from "@src/store/filters/selectors";
-import { CatalogRouter } from "@src/routing/CatalogRouter";
-import useDispatch from "@src/hooks/useDispatch";
+import { IFilters, IFieldsData } from "@typing/filters";
+import { EApiStatuses } from "@typing/api";
+import { fetchStudios } from "@store/studios/actions";
+import { setFilterFields } from "@store/filters/actions";
+import { getFilters } from "@store/filters/selectors";
+import { getStudiosApiStatus } from "@store/studios/selectors";
+import { getFiltersApiStatus } from "@store/filters/selectors";
+import { CatalogRouter } from "@routing/CatalogRouter";
+import useDispatch from "@hooks/useDispatch";
 
 import { Container, Box } from "@material-ui/core";
-import Filters from "@src/components/Filters";
-import Divider from "@src/components/common/Divider";
-import MapContainer from "@src/containers/MapContainer";
-import Loader from "@src/components/common/Loader";
+import MapContainer from "@components/smart/MapContainer";
+import Filters from "@components/dump/Filters";
+import Divider from "@components/dump/common/Divider";
+import Loader from "@components/dump/common/Loader";
 
 const CatalogScreen: React.FC = () => {
     const filterFields: IFilters = useSelector(getFilters);

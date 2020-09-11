@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { EApiStatuses } from "@src/types/api";
-import { IContactFormData } from "@src/types/forms";
-import { sendMessage, setIdleStatus } from "@src/store/message/actions";
-import { getMessageApiStatus } from "@src/store/message/selectors";
-import { BRAND } from "@src/config/constants";
-import useDispatch from "@src/hooks/useDispatch";
+import { EApiStatuses } from "@typing/api";
+import { IContactFormData } from "@typing/forms";
+import { sendMessage, setIdleStatus } from "@store/message/actions";
+import { getMessageApiStatus } from "@store/message/selectors";
+import { BRAND } from "@config/constants";
+import useDispatch from "@hooks/useDispatch";
 
 import { Container, Typography, Box, Link } from "@material-ui/core";
-import ContactForm from "@src/components/ContactForm";
-import Loader from "@src/components/common/Loader";
+import ContactForm from "@components/dump/ContactForm";
+import Loader from "@components/dump/common/Loader";
 
 export const ContactScreen: React.FC = () => {
     const messageApiStatus: EApiStatuses = useSelector(getMessageApiStatus);

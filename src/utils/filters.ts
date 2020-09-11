@@ -1,4 +1,4 @@
-import { IIdNameRecord } from "@src/types/api";
+import { IIdNameRecord } from "@typing/api";
 
 export const createCityFields = (obj: any) =>
     obj.reduce(
