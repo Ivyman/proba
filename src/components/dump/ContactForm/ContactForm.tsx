@@ -2,8 +2,8 @@ import React, { memo } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useForm, OnSubmit } from "react-hook-form";
 import { IContactFormData } from "@typing/forms";
-import { contactValidationScheme } from "@utils/formsValidation";
 import * as ROUTES from "@config/router";
+import { contactValidationScheme } from "./validation";
 import useStyles from "./styles";
 
 import { TextField, Button, Box, Grid } from "@material-ui/core";
