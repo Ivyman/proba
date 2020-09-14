@@ -2,13 +2,13 @@ import apiEndpoint from "@utils/api";
 import { API } from "@config/constants";
 import { removeEmptyFields } from "@utils/common";
 import { IFiltersParams } from "@typing/filters";
-import { IStudioResponse } from "@typing/studio";
+import { IUnitResponse } from "@typing/unit";
 
-export const fetchStudios = async (
+export const fetchUnits = async (
     city: string,
-): Promise<{ data: IStudioResponse }> => {
+): Promise<{ data: IUnitResponse }> => {
     const params: IFiltersParams = removeEmptyFields<IFiltersParams>({
         city: city || null,
     });
-    return await apiEndpoint.get(API.URLS.STUDIOS, { params });
+    return await apiEndpoint.get(API.URLS.UNITS, { params });
 };

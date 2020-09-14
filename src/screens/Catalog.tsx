@@ -2,10 +2,10 @@ import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { IFilters, IFieldsData } from "@typing/filters";
 import { EApiStatuses } from "@typing/api";
-import { fetchStudios } from "@store/studios/actions";
+import { fetchUnits } from "@store/units/actions";
 import { setFilterFields } from "@store/filters/actions";
 import { getFilters } from "@store/filters/selectors";
-import { getStudiosApiStatus } from "@store/studios/selectors";
+import { getUnitsApiStatus } from "@store/units/selectors";
 import { getFiltersApiStatus } from "@store/filters/selectors";
 import { CatalogRouter } from "@routing/CatalogRouter";
 import useDispatch from "@hooks/useDispatch";
@@ -18,20 +18,18 @@ import Loader from "@components/dump/common/Loader";
 
 const CatalogScreen: React.FC = () => {
     const filterFields: IFilters = useSelector(getFilters);
-    const studiosApiStatus: EApiStatuses = useSelector(getStudiosApiStatus);
+    const unitsApiStatus: EApiStatuses = useSelector(getUnitsApiStatus);
     const filtersApiStatus: EApiStatuses = useSelector(getFiltersApiStatus);
 
-    const dispatchStudios = useDispatch<typeof fetchStudios, string>(
-        fetchStudios,
-    );
+    const dispatchUnits = useDispatch<typeof fetchUnits, string>(fetchUnits);
     const dispatchFilterFields = useDispatch<
         typeof setFilterFields,
         Omit<IFieldsData, "city">
     >(setFilterFields);
 
     const handleCityChange = useCallback(
-        (city: string) => dispatchStudios(city),
-        [dispatchStudios],
+        (city: string) => dispatchUnits(city),
+        [dispatchUnits],
     );
     const handleFieldsChange = useCallback(
         (fieldsData: Omit<IFieldsData, "city">) =>
@@ -57,12 +55,12 @@ const CatalogScreen: React.FC = () => {
 
             <Box display="flex" flexGrow={1}>
                 <Box width={2 / 5} position="relative" overflow="auto">
-                    <Loader apiStatus={studiosApiStatus}>
+                    <Loader apiStatus={unitsApiStatus}>
                         <CatalogRouter />
                     </Loader>
                 </Box>
                 <Box width={3 / 5}>
-                    <Loader apiStatus={studiosApiStatus}>
+                    <Loader apiStatus={unitsApiStatus}>
                         <MapContainer />
                     </Loader>
                 </Box>

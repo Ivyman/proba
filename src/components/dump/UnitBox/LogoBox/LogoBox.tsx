@@ -1,17 +1,17 @@
 import React, { memo } from "react";
 import useStyles from "./styles";
-import { IStudio } from "@typing/studio";
+import { IUnit } from "@typing/unit";
 
 import { Box } from "@material-ui/core";
 import Title from "@components/dump/common/Title";
 
 interface IProps {
-    studioData: IStudio;
+    unitData: IUnit;
 }
 
 export const LogoBox: React.FC<IProps> = memo(
     ({
-        studioData: {
+        unitData: {
             logo,
             name,
             address: {

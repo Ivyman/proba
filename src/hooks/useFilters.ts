@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
-import { IStudio } from "@typing//studio";
-import { IIdNameRecord } from "@typing//api";
-import { IFieldsData } from "@typing//filters";
+import { IUnit } from "@typing/unit";
+import { IIdNameRecord } from "@typing/api";
+import { IFieldsData } from "@typing/filters";
 import { hasSubsring } from "@utils/common";
 
-const useFilters = (studios: IStudio[], fields: Omit<IFieldsData, "city">) => {
-    const [filteredStudios, setFilteredStudios] = useState<IStudio[]>(studios);
+const useFilters = (units: IUnit[], fields: Omit<IFieldsData, "city">) => {
+    const [filteredUnits, setFilteredUnits] = useState<IUnit[]>(units);
 
     useEffect(() => {
         const { searchQuery, cityArea, services } = fields;
 
-        const studiosList = studios.filter((studio: IStudio) => {
+        const unitsList = units.filter((unit: IUnit) => {
             const {
                 name,
                 address: { cityArea: area, street, buildingNumber },
-                services: studioServices,
-            } = studio;
+                services: unitServices,
+            } = unit;
 
-            const servicesList: string[] = studioServices.map(
+            const servicesList: string[] = unitServices.map(
                 (item: IIdNameRecord) => item.id,
             );
 
@@ -34,10 +34,10 @@ const useFilters = (studios: IStudio[], fields: Omit<IFieldsData, "city">) => {
             return filterBySearchQuery && filterByCityArea && filterByServices;
         });
 
-        setFilteredStudios(studiosList);
-    }, [setFilteredStudios, fields, studios]);
+        setFilteredUnits(unitsList);
+    }, [setFilteredUnits, fields, units]);
 
-    return filteredStudios;
+    return filteredUnits;
 };
 
 export default useFilters;

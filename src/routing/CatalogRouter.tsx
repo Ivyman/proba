@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, useRouteMatch, Switch } from "react-router-dom";
 
-import Studio from "@components/smart/Studio";
+import Unit from "@components/smart/Unit";
 import Catalog from "@components/smart/Catalog";
 
 export const CatalogRouter: React.FC = () => {
@@ -9,8 +9,8 @@ export const CatalogRouter: React.FC = () => {
 
     return (
         <Switch>
-            <Route path={`${path}/:studioId`}>
-                <Studio />
+            <Route path={`${path}/:unitId`}>
+                <Unit />
             </Route>
             <Route path={path}>
                 <Catalog />

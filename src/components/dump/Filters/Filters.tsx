@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { isEqual, omit } from "lodash/fp";
 import { IFilters, IFieldsData } from "@typing/filters";
-import { STUDIOS } from "@config/constants";
-import { getFilteredStudiosAmount } from "@store/studios/selectors";
+import { FILTERS_DEBOUNCED_INTERVAL } from "@config/constants";
+import { getFilteredUnitsAmount } from "@store/units/selectors";
 import useDebounce from "@hooks/useDebounce";
 import useStyles from "./styles";
 
@@ -37,7 +37,7 @@ export const Filters: React.FC<IProps> = ({
     const [showClearButton, setShowClearButton] = useState<boolean>(false);
     const [filterData, setFilterData] = useState<IFieldsData>(INIT_FILTERS);
 
-    const amount: number = useSelector(getFilteredStudiosAmount);
+    const amount: number = useSelector(getFilteredUnitsAmount);
 
     const [
         debouncedSearchQuery,
@@ -45,22 +45,10 @@ export const Filters: React.FC<IProps> = ({
         debouncedCityArea,
         debouncedServices,
     ] = [
-        useDebounce<string>(
-            filterData.searchQuery,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
-        useDebounce<string>(
-            filterData.city,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
-        useDebounce<string>(
-            filterData.cityArea,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
-        useDebounce<string[]>(
-            filterData.services,
-            STUDIOS.FILTERS_DEBOUNCED_INTERVAL,
-        ),
+        useDebounce<string>(filterData.searchQuery, FILTERS_DEBOUNCED_INTERVAL),
+        useDebounce<string>(filterData.city, FILTERS_DEBOUNCED_INTERVAL),
+        useDebounce<string>(filterData.cityArea, FILTERS_DEBOUNCED_INTERVAL),
+        useDebounce<string[]>(filterData.services, FILTERS_DEBOUNCED_INTERVAL),
     ];
 
     const handleFieldChange = (value: string | string[], fieldName: string) => {

@@ -2,11 +2,11 @@ const fs = require("fs");
 const path = require("path");
 
 const filtersGenerator = require("./filters");
-const studiosGenerator = require("./studios");
+const unitsGenerator = require("./units");
 
 const db = {
     filters: filtersGenerator,
-    studios: studiosGenerator,
+    units: unitsGenerator,
 };
 
 const serializedDb = JSON.stringify(db, null, 2);

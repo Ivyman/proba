@@ -4,12 +4,12 @@ const {
     getRandomCoordinates,
     getRandomServices,
     getRandomArea,
-} = require("../helpers/studios.helper");
+} = require("../helpers/units.helper");
 
 const cities = require("../data/cities.data");
 const services = require("../data/services.data");
 
-const generateStudios = (amount = 50) => {
+const generateUnits = (amount = 50) => {
     const itemsRange = range(1, amount);
     const randomCity = () => cities[random(0, cities.length - 1)];
 
@@ -48,6 +48,6 @@ const generateStudios = (amount = 50) => {
     });
 };
 
-const studios = generateStudios(50);
+const units = generateUnits(50);
 
-module.exports = studios;
+module.exports = units;

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useForm, OnSubmit } from "react-hook-form";
 import { ILoginFormData } from "@typing/forms";
-import { loginValidationScheme } from "@utils/formsValidation";
+import { loginValidationScheme } from "./validation";
 import * as ROUTES from "@config/router";
 import useStyles from "./styles";
 

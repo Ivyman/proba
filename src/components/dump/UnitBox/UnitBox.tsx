@@ -1,5 +1,5 @@
 import React from "react";
-import { IStudio } from "@typing/studio";
+import { IUnit } from "@typing/unit";
 import { IIdNameRecord } from "@typing/api";
 import pattern from "@assets/pattern.jpg";
 import useStyles from "./styles";
@@ -28,11 +28,11 @@ import {
 import LogoBox from "./LogoBox";
 
 interface IProps {
-    openedStudio: IStudio | undefined;
+    openedUnit: IUnit | undefined;
     onGoBack: () => void;
 }
 
-export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
+export const UnitBox: React.FC<IProps> = ({ openedUnit, onGoBack }) => {
     const classes = useStyles();
 
     return (
@@ -46,7 +46,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                 <ArrowBackIosIcon fontSize="small" />
             </Fab>
 
-            {openedStudio ? (
+            {openedUnit ? (
                 <>
                     {/* TODO: add share button */}
                     {/* <Fab
@@ -66,10 +66,10 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                             <InstagramIcon fontSize="small" />
                         </Fab>
 
-                        {openedStudio.contact.site && (
+                        {openedUnit.contact.site && (
                             <Fab
                                 size="small"
-                                href={openedStudio.contact.site}
+                                href={openedUnit.contact.site}
                                 className={classes.socialIcon}
                             >
                                 <LanguageIcon fontSize="small" />
@@ -82,7 +82,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                         image={pattern}
                         title="Contemplative Reptile"
                     >
-                        <LogoBox studioData={openedStudio} />
+                        <LogoBox unitData={openedUnit} />
                     </CardMedia>
                     <CardContent className={classes.cardContent}>
                         <Grid
@@ -93,7 +93,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                         >
                             <Grid item>
                                 <Typography variant="h6" component="h3">
-                                    {openedStudio.services.map(
+                                    {openedUnit.services.map(
                                         ({ id, name }: IIdNameRecord) => (
                                             <Chip
                                                 key={id}
@@ -111,7 +111,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                             <Box flexGrow={1}>
                                 <Box>
                                     <ul className={classes.contactsList}>
-                                        {openedStudio.contact.email && (
+                                        {openedUnit.contact.email && (
                                             <Typography
                                                 component="li"
                                                 className={
@@ -123,14 +123,14 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                                                 <Link
                                                     target="_blank"
                                                     variant="body1"
-                                                    href={`mailto:${openedStudio.contact.email}`}
+                                                    href={`mailto:${openedUnit.contact.email}`}
                                                 >
-                                                    {openedStudio.contact.email}
+                                                    {openedUnit.contact.email}
                                                 </Link>
                                             </Typography>
                                         )}
 
-                                        {openedStudio.contact.phones && (
+                                        {openedUnit.contact.phones && (
                                             <Typography
                                                 component="li"
                                                 className={
@@ -139,7 +139,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                                             >
                                                 <PhoneIcone />
 
-                                                {openedStudio.contact.phones.map(
+                                                {openedUnit.contact.phones.map(
                                                     (
                                                         phone: string,
                                                         i: number,
@@ -159,19 +159,19 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
 
                         <Box my={2}>
                             <Typography component="p" variant="body1">
-                                {openedStudio.description}
+                                {openedUnit.description}
                             </Typography>
                         </Box>
 
                         <Box mt={4}>
-                            {openedStudio.contact.site && (
+                            {openedUnit.contact.site && (
                                 <Button
                                     fullWidth
                                     variant="contained"
                                     color="primary"
                                     target="_blank"
                                     endIcon={<OpenInNewIcon />}
-                                    href={openedStudio.contact.site}
+                                    href={openedUnit.contact.site}
                                 >
                                     Przejdź na stronę
                                 </Button>
@@ -180,7 +180,7 @@ export const StudioBox: React.FC<IProps> = ({ openedStudio, onGoBack }) => {
                     </CardContent>
                 </>
             ) : (
-                <CardContent>No any studio data</CardContent>
+                <CardContent>No any data</CardContent>
             )}
         </Box>
     );

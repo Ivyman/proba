@@ -3,7 +3,7 @@ export const API = {
         ? process.env.REACT_APP_BASE_URL_REAL_DB
         : process.env.REACT_APP_BASE_URL,
     URLS: {
-        STUDIOS: "/studios",
+        UNITS: "/units",
         USERS: "/users",
         FILTERS: "/filters",
         MESSAGE: "/message",
@@ -21,9 +21,7 @@ export const GL_MAP = {
         "pk.eyJ1Ijoibm8tbmFtZSIsImEiOiJjazA3M2N1YWYwM2J2M25vMXhlZDVhcWExIn0.Rm7b72RFKxrx6HjVLFqSRQ",
 };
 
-export const STUDIOS = {
-    FILTERS_DEBOUNCED_INTERVAL: 500,
-};
+export const FILTERS_DEBOUNCED_INTERVAL = 500;
 
 export const BRAND = {
     NAME: "Proba",

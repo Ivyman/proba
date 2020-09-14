@@ -1,16 +1,16 @@
 import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IStudio, ECoordinateName, ICoordinate } from "@typing/studio";
+import { IUnit, ECoordinateName, ICoordinate } from "@typing/unit";
 import { IFieldsData } from "@typing/filters";
 import { IViewport } from "@typing/map";
 import { countCoordinateAverage, getCoordinates } from "@utils/map";
 import {
-    getHoveredStudioId,
-    getOpenedStudio,
-    getStudios,
-} from "@store/studios/selectors";
-import { setHoveredStudio, setOpenedStudio } from "@store/studios/actions";
+    getHoveredUnitId,
+    getOpenedUnit,
+    getUnits,
+} from "@store/units/selectors";
+import { setHoveredUnit, setOpenedUnit } from "@store/units/actions";
 import { getFilterFields } from "@store/filters/selectors";
 import useFilters from "@hooks/useFilters";
 import useDispatch from "@hooks/useDispatch";
@@ -21,29 +21,29 @@ import Map from "@components/dump/Map";
 export const MapContainer: React.FC = () => {
     const history = useHistory();
 
-    const hoveredItemId: string = useSelector(getHoveredStudioId);
-    const openedStudio: IStudio | undefined = useSelector(getOpenedStudio);
-    const studios: IStudio[] = useSelector(getStudios);
+    const hoveredItemId: string = useSelector(getHoveredUnitId);
+    const openedUnit: IUnit | undefined = useSelector(getOpenedUnit);
+    const units: IUnit[] = useSelector(getUnits);
     const filterFields: Omit<IFieldsData, "city"> = useSelector(
         getFilterFields,
     );
 
-    const filteredStudios = useFilters(studios, filterFields);
+    const filteredUnits = useFilters(units, filterFields);
 
-    const dispatchHoveredStudio = useDispatch<
-        typeof setHoveredStudio,
+    const dispatchHoveredUnit = useDispatch<
+        typeof setHoveredUnit,
         string | undefined
-    >(setHoveredStudio);
-    const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
-        setOpenedStudio,
+    >(setHoveredUnit);
+    const dispatchOpenedUnit = useDispatch<typeof setOpenedUnit, string>(
+        setOpenedUnit,
     );
 
-    const coordinates = useMemo<ICoordinate[]>(() => getCoordinates(studios), [
-        studios,
+    const coordinates = useMemo<ICoordinate[]>(() => getCoordinates(units), [
+        units,
     ]);
-    const getOpenedStudioId = useMemo<string>(
-        () => (openedStudio ? openedStudio.id : ""),
-        [openedStudio],
+    const getOpenedUnitId = useMemo<string>(
+        () => (openedUnit ? openedUnit.id : ""),
+        [openedUnit],
     );
 
     const [viewport, setViewport] = useState<IViewport>({
@@ -55,11 +55,11 @@ export const MapContainer: React.FC = () => {
         zoom: 10.5,
     });
 
-    const handleMarkerOver = (id: string) => dispatchHoveredStudio(id);
-    const handleMarkerLeave = () => dispatchHoveredStudio();
-    const handleMarkerClick = (studioId: string) => {
-        dispatchOpenedStudio(studioId);
-        history.push(`${ROUTERS.CATALOG}/${studioId}`);
+    const handleMarkerOver = (id: string) => dispatchHoveredUnit(id);
+    const handleMarkerLeave = () => dispatchHoveredUnit();
+    const handleMarkerClick = (unitId: string) => {
+        dispatchOpenedUnit(unitId);
+        history.push(`${ROUTERS.CATALOG}/${unitId}`);
     };
     const handeleViewportChange = (changedViewport: IViewport) =>
         setViewport(changedViewport);
@@ -67,9 +67,9 @@ export const MapContainer: React.FC = () => {
     return (
         <Map
             viewport={viewport}
-            studiosList={filteredStudios}
+            unitsList={filteredUnits}
             hoveredItemId={hoveredItemId}
-            openedStudioId={getOpenedStudioId}
+            openedUnitId={getOpenedUnitId}
             onViewportChange={handeleViewportChange}
             onMarkerOver={handleMarkerOver}
             onMarkerLeave={handleMarkerLeave}

@@ -2,13 +2,13 @@ import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IFieldsData } from "@typing/filters";
-import { IStudio } from "@typing/studio";
+import { IUnit } from "@typing/unit";
 import {
-    setHoveredStudio,
-    setOpenedStudio,
-    setFilteredStudiosAmount,
-} from "@store/studios/actions";
-import { getStudios, getHoveredStudioId } from "@store/studios/selectors";
+    setHoveredUnit,
+    setOpenedUnit,
+    setFilteredUnitsAmount,
+} from "@store/units/actions";
+import { getUnits, getHoveredUnitId } from "@store/units/selectors";
 import { getFilterFields } from "@store/filters/selectors";
 import useFilters from "@hooks/useFilters";
 import useDispatch from "@hooks/useDispatch";
@@ -20,52 +20,51 @@ import CatalogItemsList from "@components/dump/CatalogItemsList";
 export const Catalog: React.FC = () => {
     const history = useHistory();
 
-    const studios: IStudio[] = useSelector(getStudios);
-    const hoverdStudioId: string = useSelector(getHoveredStudioId);
+    const units: IUnit[] = useSelector(getUnits);
+    const hoverdUnitId: string = useSelector(getHoveredUnitId);
     const filterFields: Omit<IFieldsData, "city"> = useSelector(
         getFilterFields,
     );
 
-    const dispatchHoveredStudio = useDispatch<typeof setHoveredStudio, string>(
-        setHoveredStudio,
+    const dispatchHoveredUnit = useDispatch<typeof setHoveredUnit, string>(
+        setHoveredUnit,
     );
-    const dispatchOpenedStudio = useDispatch<typeof setOpenedStudio, string>(
-        setOpenedStudio,
+    const dispatchOpenedUnit = useDispatch<typeof setOpenedUnit, string>(
+        setOpenedUnit,
     );
-    const dispatchFilteredStudiosAmout = useDispatch<
-        typeof setFilteredStudiosAmount,
+    const dispatchFilteredUnitsAmout = useDispatch<
+        typeof setFilteredUnitsAmount,
         number
-    >(setFilteredStudiosAmount);
+    >(setFilteredUnitsAmount);
 
-    const filteredStudios = useFilters(studios, filterFields);
+    const filteredUnits = useFilters(units, filterFields);
 
     const handleItemClick = useCallback(
-        (studioId: string) => {
-            dispatchOpenedStudio(studioId);
-            history.push(`${ROUTERS.CATALOG}/${studioId}`);
+        (unitId: string) => {
+            dispatchOpenedUnit(unitId);
+            history.push(`${ROUTERS.CATALOG}/${unitId}`);
         },
-        [dispatchOpenedStudio, history],
+        [dispatchOpenedUnit, history],
     );
 
     useEffect(() => {
-        if (filteredStudios)
-            dispatchFilteredStudiosAmout(filteredStudios.length);
-    }, [dispatchFilteredStudiosAmout, filteredStudios]);
+        filteredUnits && dispatchFilteredUnitsAmout(filteredUnits.length);
+    }, [dispatchFilteredUnitsAmout, filteredUnits]);
 
     return (
         <CatalogItemsList>
-            {filteredStudios.length ? (
-                filteredStudios.map((studio: IStudio) => (
+            {filteredUnits.length ? (
+                filteredUnits.map((unit: IUnit) => (
                     <CatalogItem
-                        key={studio.id}
-                        studioData={studio}
-                        hoverdStudioId={hoverdStudioId}
-                        onHoverStudio={dispatchHoveredStudio}
+                        key={unit.id}
+                        unitData={unit}
+                        hoverdUnitId={hoverdUnitId}
+                        onHoverUnit={dispatchHoveredUnit}
                         onItemClick={handleItemClick}
                     />
                 ))
             ) : (
-                <>Studios not found...</>
+                <>Nothing found...</>
             )}
         </CatalogItemsList>
     );

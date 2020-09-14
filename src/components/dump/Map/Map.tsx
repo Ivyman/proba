@@ -1,6 +1,6 @@
 import React from "react";
 import { IViewport } from "@typing/map";
-import { IStudio } from "@typing/studio";
+import { IUnit } from "@typing/unit";
 import { GL_MAP } from "@config/constants";
 import useStyles from "./styles";
 
@@ -8,21 +8,21 @@ import ReactMapGL, { NavigationControl } from "react-map-gl";
 import Markers from "./Markers";
 
 interface IProps {
-    studiosList: IStudio[];
+    unitsList: IUnit[];
     hoveredItemId: string;
-    openedStudioId: string;
+    openedUnitId: string;
     viewport: IViewport;
     onViewportChange: (viewport: IViewport) => void;
     onMarkerOver: (id: string) => void;
-    onMarkerClick: (studioId: string) => void;
+    onMarkerClick: (unitId: string) => void;
     onMarkerLeave: () => void;
 }
 
 export const Map: React.FC<IProps> = ({
     viewport,
-    studiosList,
+    unitsList,
     hoveredItemId,
-    openedStudioId,
+    openedUnitId,
     onViewportChange,
     onMarkerOver,
     onMarkerLeave,
@@ -40,9 +40,9 @@ export const Map: React.FC<IProps> = ({
             onViewportChange={onViewportChange}
         >
             <Markers
-                dataList={studiosList}
+                dataList={unitsList}
                 hoveredItemId={hoveredItemId}
-                openedStudioId={openedStudioId}
+                openedUnitId={openedUnitId}
                 onMarkerOver={onMarkerOver}
                 onMarkerLeave={onMarkerLeave}
                 onMarkerClick={onMarkerClick}

@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState, memo, useCallback } from "react";
-import { IStudio } from "@typing/studio";
+import { IUnit } from "@typing/unit";
 import { IIdNameRecord } from "@typing/api";
 import useStyles from "./styles";
 
@@ -7,14 +7,14 @@ import { Card, CardContent, CardMedia, Chip, Box } from "@material-ui/core";
 import Title from "@components/dump/common/Title";
 
 interface IProps {
-    studioData: IStudio;
-    hoverdStudioId: string;
+    unitData: IUnit;
+    hoverdUnitId: string;
     onItemClick: (id: string) => void;
-    onHoverStudio: (id?: string) => void;
+    onHoverUnit: (id?: string) => void;
 }
 
 export const CatalogItem: React.FC<IProps> = memo(
-    ({ studioData, hoverdStudioId, onHoverStudio, onItemClick }) => {
+    ({ unitData, hoverdUnitId, onHoverUnit, onItemClick }) => {
         const [hover, setHover] = useState<
             (EventTarget & HTMLElement) | null
         >();
@@ -22,27 +22,27 @@ export const CatalogItem: React.FC<IProps> = memo(
         const classes = useStyles();
 
         const isHovered = useCallback(
-            (hoveredId: string) => hoverdStudioId === hoveredId,
-            [hoverdStudioId],
+            (hoveredId: string) => hoverdUnitId === hoveredId,
+            [hoverdUnitId],
         );
 
         const handleClick = (itemId: string) => {
-            onHoverStudio();
+            onHoverUnit();
             onItemClick(itemId);
         };
         const handleMouseOver = (
             event: MouseEvent<HTMLElement>,
-            studioId: string,
+            unitId: string,
         ) => {
             if (hover === event.currentTarget) {
                 return;
             }
             setHover(event.currentTarget);
-            onHoverStudio(studioId);
+            onHoverUnit(unitId);
         };
         const handleMouseLeave = () => {
             setHover(null);
-            onHoverStudio();
+            onHoverUnit();
         };
 
         const {
@@ -56,7 +56,7 @@ export const CatalogItem: React.FC<IProps> = memo(
             name,
             logo,
             services,
-        } = studioData;
+        } = unitData;
 
         return (
             <Card

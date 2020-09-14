@@ -12,7 +12,7 @@ export interface ICoordinate {
     longitude: number;
 }
 
-export type IStudioResponse = IStudio[];
+export type IUnitResponse = IUnit[];
 
 export interface IContact {
     phones: string[];
@@ -22,7 +22,7 @@ export interface IContact {
     facebook?: string;
 }
 
-export interface IStudioAddress {
+export interface IUnitAddress {
     latitude: number;
     longitude: number;
     city: IRecord;
@@ -33,10 +33,10 @@ export interface IStudioAddress {
     room?: string;
 }
 
-export interface IStudio {
+export interface IUnit {
     id: string;
     name: string;
-    address: IStudioAddress;
+    address: IUnitAddress;
     logo: string;
     description: string;
     contact: IContact;

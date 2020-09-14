@@ -1,5 +1,5 @@
 import React, { useCallback, memo, useMemo } from "react";
-import { IStudio } from "@typing/studio";
+import { IUnit } from "@typing/unit";
 import useStyles from "./styles";
 
 import { Marker as GlMarker, Popup } from "react-map-gl";
@@ -7,11 +7,11 @@ import { Typography } from "@material-ui/core";
 import DrumIcon from "@assets/drum.svg";
 
 interface IProps {
-    dataList: IStudio[];
+    dataList: IUnit[];
     hoveredItemId: string;
-    openedStudioId: string;
+    openedUnitId: string;
     onMarkerOver: (id: string) => void;
-    onMarkerClick: (studioId: string) => void;
+    onMarkerClick: (unitId: string) => void;
     onMarkerLeave: () => void;
 }
 
@@ -19,7 +19,7 @@ export const Markers: React.FC<IProps> = memo(
     ({
         dataList,
         hoveredItemId,
-        openedStudioId,
+        openedUnitId,
         onMarkerOver,
         onMarkerLeave,
         onMarkerClick,
@@ -29,15 +29,14 @@ export const Markers: React.FC<IProps> = memo(
         const isHovered = useCallback((id: string) => hoveredItemId === id, [
             hoveredItemId,
         ]);
-        const isStudioOpened = useCallback(
-            (id: string) => openedStudioId === id,
-            [openedStudioId],
-        );
-        const isOpened = useMemo(() => !!openedStudioId, [openedStudioId]);
+        const isUnitOpened = useCallback((id: string) => openedUnitId === id, [
+            openedUnitId,
+        ]);
+        const isOpened = useMemo(() => !!openedUnitId, [openedUnitId]);
 
         return (
             <>
-                {dataList.map(({ id, name, address }: IStudio) => (
+                {dataList.map(({ id, name, address }: IUnit) => (
                     <div
                         key={id}
                         onMouseOver={() => onMarkerOver(id)}
@@ -47,16 +46,14 @@ export const Markers: React.FC<IProps> = memo(
                         <GlMarker
                             offsetLeft={-20}
                             offsetTop={-10}
-                            className={
-                                isStudioOpened(id) ? classes.indexed : ""
-                            }
+                            className={isUnitOpened(id) ? classes.indexed : ""}
                             latitude={address.latitude}
                             longitude={address.longitude}
                         >
                             <div
                                 className={`${classes.marker} ${
                                     isOpened
-                                        ? isStudioOpened(id)
+                                        ? isUnitOpened(id)
                                             ? classes.markerActive
                                             : classes.markerNotActive
                                         : classes.markerDefault
