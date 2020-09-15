@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { IFilters, IFieldsData } from "@typing/filters";
 import { EApiStatuses } from "@typing/api";
 import { fetchUnits } from "@store/units/actions";
@@ -9,6 +10,7 @@ import { getUnitsApiStatus } from "@store/units/selectors";
 import { getFiltersApiStatus } from "@store/filters/selectors";
 import { CatalogRouter } from "@routing/CatalogRouter";
 import useDispatch from "@hooks/useDispatch";
+import * as ROUTERS from "@config/router";
 
 import { Container, Box } from "@material-ui/core";
 import MapContainer from "@components/smart/MapContainer";
@@ -17,6 +19,8 @@ import Divider from "@components/dump/common/Divider";
 import Loader from "@components/dump/common/Loader";
 
 const CatalogScreen: React.FC = () => {
+    const history = useHistory();
+
     const filterFields: IFilters = useSelector(getFilters);
     const unitsApiStatus: EApiStatuses = useSelector(getUnitsApiStatus);
     const filtersApiStatus: EApiStatuses = useSelector(getFiltersApiStatus);
@@ -32,9 +36,11 @@ const CatalogScreen: React.FC = () => {
         [dispatchUnits],
     );
     const handleFieldsChange = useCallback(
-        (fieldsData: Omit<IFieldsData, "city">) =>
-            dispatchFilterFields(fieldsData),
-        [dispatchFilterFields],
+        (fieldsData: Omit<IFieldsData, "city">) => {
+            history.push(ROUTERS.CATALOG);
+            dispatchFilterFields(fieldsData);
+        },
+        [dispatchFilterFields, history],
     );
 
     return (
