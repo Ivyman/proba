@@ -1,4 +1,4 @@
-# proba.pl
+# proba
 
 ## Run application
 
